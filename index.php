@@ -1,16 +1,9 @@
 <?php
 	// Last Modified Day : 2012.09.07
 	header('P3P: CP="NOI ADM DEV COM NAV OUR STP"');
-	include('conn.php');
-	session_start();
 	
-	// If the session doesn't exist, check cookies to get user info.
-	if( !isset($_SESSION['stu_id']) ){
-		if ( isset($_COOKIE['name']) && isset($_COOKIE['stu_id']) ) {
-	    	$_SESSION['stu_id'] = $_COOKIE['stu_id'];
-	    	$_SESSION['name'] = $_COOKIE['name'];
-	    }
-	}
+	require_once( "connectVar.php" );
+	require_once( "setSession.php" );
 	
 	$hot = "SELECT * FROM `Activities` WHERE type = 'hot' ORDER BY time ASC";
 	$clubs = "SELECT * FROM `Activities` WHERE type = 'clubs' ORDER BY time ASC";
@@ -18,6 +11,8 @@
 	$authorities = "SELECT * FROM `Activities` WHERE type = 'authorities' ORDER BY time ASC";
 	$concerts = "SELECT * FROM `Activities` WHERE type = 'concerts' ORDER BY time ASC";
 ?>
+
+<!DOCTYPE HTML>
 <html><head>
 <link href="http://www.airstage.com.tw/nsysu/airs/tm2.ico" rel="shortcut icon"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -34,59 +29,6 @@ A:hover {text-decoration: underline; font-weight: bold}
 a{text-decoration:none;}
 </style>
 <link rel="stylesheet" type="text/css" href="css/index.css">
-<!--style type="text/css">
-td{
-	font-size:12px;
-}
-.img{
-	width:300;
-	height:210;
-}
-.title{
-	font-weight:bold;
-	font-size:16px;
-	color:#000000;
-}
-.sub{
-	color:#666666;
-}
-.description{
-	font-size:13px;
-	color:#666;
-	width:100%;
-	font-weight:bold;
-	font:msjh;
-	height:50px;
-}
-.name{
-	color:#666666;
-	width:700px;
-}
-.time{
-	color:#666666;
-}
-.venue{
-	color:#666666;
-}
-.fee{
-	color:#666666;
-}
-.host{
-	color:#666666;
-}
-.tdimg{
-	border: 1px solid #C0C0C0;
-}
-body {
-	background-image: url(jpg/background.png);
-	background-repeat: repeat-x;
-	background-color: #F2F2F2;
-}
-body,td,th {
-	font-family: "微軟正黑體";
-}
-</style-->
-
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -176,25 +118,26 @@ function clickSwapImg() {}
 <script language="JavaScript">
 <!--
 function FP_changeProp() {//v1.0
- var args=arguments,d=document,i,j,id=args[0],o=FP_getObjectByID(id),s,ao,v,x;
- d.$cpe=new Array(); if(o) for(i=2; i<args.length; i+=2) { v=args[i+1]; s="o"; 
- ao=args[i].split("."); for(j=0; j<ao.length; j++) { s+="."+ao[j]; if(null==eval(s)) { 
-  s=null; break; } } x=new Object; x.o=o; x.n=new Array(); x.v=new Array();
- x.n[x.n.length]=s; eval("x.v[x.v.length]="+s); d.$cpe[d.$cpe.length]=x;
- if(s) eval(s+"=v"); }
+	 var args=arguments,d=document,i,j,id=args[0],o=FP_getObjectByID(id),s,ao,v,x;
+	 d.$cpe=new Array(); if(o) for(i=2; i<args.length; i+=2) { v=args[i+1]; s="o"; 
+	 ao=args[i].split("."); for(j=0; j<ao.length; j++) { s+="."+ao[j]; if(null==eval(s)) { 
+	  s=null; break; } } x=new Object; x.o=o; x.n=new Array(); x.v=new Array();
+	 x.n[x.n.length]=s; eval("x.v[x.v.length]="+s); d.$cpe[d.$cpe.length]=x;
+	 if(s) eval(s+"=v"); }
 }
 
 function FP_getObjectByID(id,o) {//v1.0
- var c,el,els,f,m,n; if(!o)o=document; if(o.getElementById) el=o.getElementById(id);
- else if(o.layers) c=o.layers; else if(o.all) el=o.all[id]; if(el) return el;
- if(o.id==id || o.name==id) return o; if(o.childNodes) c=o.childNodes; if(c)
- for(n=0; n<c.length; n++) { el=FP_getObjectByID(id,c[n]); if(el) return el; }
- f=o.forms; if(f) for(n=0; n<f.length; n++) { els=f[n].elements;
- for(m=0; m<els.length; m++){ el=FP_getObjectByID(id,els[n]); if(el) return el; } }
- return null;
+	 var c,el,els,f,m,n; if(!o)o=document; if(o.getElementById) el=o.getElementById(id);
+	 else if(o.layers) c=o.layers; else if(o.all) el=o.all[id]; if(el) return el;
+	 if(o.id==id || o.name==id) return o; if(o.childNodes) c=o.childNodes; if(c)
+	 for(n=0; n<c.length; n++) { el=FP_getObjectByID(id,c[n]); if(el) return el; }
+	 f=o.forms; if(f) for(n=0; n<f.length; n++) { els=f[n].elements;
+	 for(m=0; m<els.length; m++){ el=FP_getObjectByID(id,els[n]); if(el) return el; } }
+	 return null;
 }
 // -->
 </script>
+
 <script type="text/javascript">
 var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-34181090-1']);
@@ -244,16 +187,11 @@ body {
 	<table border="0" width="980" height="75" cellspacing="0" cellpadding="0">
   <tr>
         	<td width="38" background="jpg/topbar001.png"></td>
-        	<td height="43" width="99" background="jpg/topbar002.png" align="right"><p style="margin-top: 0; margin-bottom: 0"><a href="http://www.airstage.com.tw/"><img src="page/airstab/app/theater/jpg/logo.png" name="logo" id="logo" align="left" /></a></td>
-			<td height="75" background="jpg/topbar002.png" width="700" valign="top"></a><font color="#FFFFFF"><a href="http://www.airstage.com.tw/nsysu/airs/"><img border="0" src="jpg/cal_bot002.png" width="89" height="75"></a><img border="0" src="jpg/topbar002.png" width="20" height="75"><a onMouseOver="var img=document['fpAnimswapImgFP9'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP9'].src=document['fpAnimswapImgFP9'].imgRolln" target="_parent" href="page/airstab/index.htm"><img src="jpg/air_bot001.png" alt="" name="fpAnimswapImgFP9" width="89" height="75" lowsrc="jpg/air_bot002.png" id="fpAnimswapImgFP" border="0" dynamicanimation="fpAnimswapImgFP9"></a></font></td>
+        	<td height="43" width="99" background="jpg/topbar002.png" align="right"><p style="margin-top: 0; margin-bottom: 0"><a href="http://www.airstage.com.tw/nsysu/airs/index.php"><img src="page/airstab/app/theater/jpg/logo.png" name="logo" id="logo" align="left" /></a></td>
+			<td height="75" background="jpg/topbar002.png" width="700" valign="top"><font color="#FFFFFF"><a href="index.php"><img border="0" src="jpg/cal_bot002.png" width="89" height="75"></a><img border="0" src="jpg/topbar002.png" width="20" height="75"><a onMouseOver="var img=document['fpAnimswapImgFP9'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP9'].src=document['fpAnimswapImgFP9'].imgRolln" target="_parent" href="page/airstab/index.htm"><img src="jpg/air_bot001.png" alt="" name="fpAnimswapImgFP9" width="89" height="75" lowsrc="jpg/air_bot002.png" id="fpAnimswapImgFP" border="0" dynamicanimation="fpAnimswapImgFP9"></a></font></td>
 			<td background="jpg/topbar003.png" width="124" valign="middle"><span style="margin-top: 0; margin-bottom: 0">
-			  <?php
-				if( !isset($_SESSION['name']) ){
-            	echo '<a LANGUAGE="VBScript" TARGET="screen" onClick="screen.location.href =\'main.htm\'" href="member/login.php"  style="border:0 none; text-decoration:none; font-weight:700" id="login" rel="shadowbox; width=330; height=350" title=\'會員登入\'>
-			<font color="#000000" size="2">會員登入</font></a>';
-				} else {
-					echo '<a href="correct.php" style="border:0; color:#000000; font-size:14px"><b>'.$_SESSION['name'].'</b></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="member/logout.php" style="border:0; color:#000000; font-size:14px"><b>登出</b></a>';
-				}
+			<?php
+			 	require_once( "loginCheck.php" );
 			?>
 			</span></td>
 			
@@ -701,13 +639,15 @@ echo'
   </table>
 </div>
 <div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/zh_TW/all.js#xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+<script>
+	(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/zh_TW/all.js#xfbml=1";
+	  fjs.parentNode.insertBefore(js, fjs);
+	} (document, 'script', 'facebook-jssdk'));
+</script>
 </body>
 
 </html>

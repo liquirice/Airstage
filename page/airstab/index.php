@@ -1,14 +1,14 @@
-<?php session_start(); 
-if(isset($_SESSION['name']) == false){
-	$_SESSION['name'] = "";
-}
+<?php 
+	// Last Modified Day : 2012.09.10
+	require_once( "../../setSession.php" );
 ?>
+<!DOCTYPE HTML>
 <html><head>
 
 <link href="http://www.airstage.com.tw/nsysu/airs/tm2.ico" rel="shortcut icon"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Language" content="zh-tw">
-<title>│Airstage 西灣人│會員中心：修改個人資料</title>
+<title>│Airstage 西灣人│實驗研究室</title>
 <style fprolloverstyle>
 A:hover {text-decoration: underline; font-weight: bold}
 a{text-decoration:none;}
@@ -46,22 +46,22 @@ function clickSwapImg() {}
 <script language="JavaScript">
 <!--
 function FP_changeProp() {//v1.0
- var args=arguments,d=document,i,j,id=args[0],o=FP_getObjectByID(id),s,ao,v,x;
- d.$cpe=new Array(); if(o) for(i=2; i<args.length; i+=2) { v=args[i+1]; s="o"; 
- ao=args[i].split("."); for(j=0; j<ao.length; j++) { s+="."+ao[j]; if(null==eval(s)) { 
-  s=null; break; } } x=new Object; x.o=o; x.n=new Array(); x.v=new Array();
- x.n[x.n.length]=s; eval("x.v[x.v.length]="+s); d.$cpe[d.$cpe.length]=x;
- if(s) eval(s+"=v"); }
+	 var args=arguments,d=document,i,j,id=args[0],o=FP_getObjectByID(id),s,ao,v,x;
+	 d.$cpe=new Array(); if(o) for(i=2; i<args.length; i+=2) { v=args[i+1]; s="o"; 
+	 ao=args[i].split("."); for(j=0; j<ao.length; j++) { s+="."+ao[j]; if(null==eval(s)) { 
+	  s=null; break; } } x=new Object; x.o=o; x.n=new Array(); x.v=new Array();
+	 x.n[x.n.length]=s; eval("x.v[x.v.length]="+s); d.$cpe[d.$cpe.length]=x;
+	 if(s) eval(s+"=v"); }
 }
 
 function FP_getObjectByID(id,o) {//v1.0
- var c,el,els,f,m,n; if(!o)o=document; if(o.getElementById) el=o.getElementById(id);
- else if(o.layers) c=o.layers; else if(o.all) el=o.all[id]; if(el) return el;
- if(o.id==id || o.name==id) return o; if(o.childNodes) c=o.childNodes; if(c)
- for(n=0; n<c.length; n++) { el=FP_getObjectByID(id,c[n]); if(el) return el; }
- f=o.forms; if(f) for(n=0; n<f.length; n++) { els=f[n].elements;
- for(m=0; m<els.length; m++){ el=FP_getObjectByID(id,els[n]); if(el) return el; } }
- return null;
+	 var c,el,els,f,m,n; if(!o)o=document; if(o.getElementById) el=o.getElementById(id);
+	 else if(o.layers) c=o.layers; else if(o.all) el=o.all[id]; if(el) return el;
+	 if(o.id==id || o.name==id) return o; if(o.childNodes) c=o.childNodes; if(c)
+	 for(n=0; n<c.length; n++) { el=FP_getObjectByID(id,c[n]); if(el) return el; }
+	 f=o.forms; if(f) for(n=0; n<f.length; n++) { els=f[n].elements;
+	 for(m=0; m<els.length; m++){ el=FP_getObjectByID(id,els[n]); if(el) return el; } }
+	 return null;
 }
 // -->
 </script>
@@ -87,16 +87,10 @@ body {
 			<td height="75" background="../../jpg/topbar002.png" width="700" valign="top">
   			
 			<font color="#FFFFFF">
-      <a onMouseOver="var img=document['fpAnimswapImgFP9'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP9'].src=document['fpAnimswapImgFP9'].imgRolln" target="_parent" href="http://www.airstage.com.tw/nsysu/airs/index.htm"><img border="0" src="../../jpg/cal_bot001.png" width="89" height="75" id="fpAnimswapImgFP9" name="fpAnimswapImgFP9" dynamicanimation="fpAnimswapImgFP9" lowsrc="../../jpg/cal_bot002.png"></a></font></a><font color="#FFFFFF"><img border="0" src="../../jpg/topbar002.png" width="20" height="75"><a href="http://www.airstage.com.tw/nsysu/airs/page/airstab/index.htm"><img border="0" src="../../jpg/air_bot002.png" width="89" height="75"></a></font></td>
+      <a onMouseOver="var img=document['fpAnimswapImgFP9'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP9'].src=document['fpAnimswapImgFP9'].imgRolln" target="_parent" href="../../index.php"><img border="0" src="../../jpg/cal_bot001.png" width="89" height="75" id="fpAnimswapImgFP9" name="fpAnimswapImgFP9" dynamicanimation="fpAnimswapImgFP9" lowsrc="../../jpg/cal_bot002.png"></a></font></a><font color="#FFFFFF"><img border="0" src="../../jpg/topbar002.png" width="20" height="75"><a href="index.htm"><img border="0" src="../../jpg/air_bot002.png" width="89" height="75"></a></font></td>
 			<td background="../../jpg/topbar003.png" width="124" valign="middle"><span style="margin-top: 0; margin-bottom: 0">
-			  <?php
-				if($_SESSION['name'] == ""){
-            	echo '<a LANGUAGE="VBScript" TARGET="screen" onClick="screen.location.href =\'main.htm\'" href="../../member/login.php"  style="border:0 none; text-decoration:none; font-weight:700" id="login" rel="shadowbox; width=330; height=350" title=\'會員登入\'>
-			<font color="#000000" size="2">會員登入</font></a>';
-				}
-				else if($_SESSION['name'] != ""){
-					echo '<a href="correct.php" style="border:0; color:#000000; font-size:14px"><b>'.$_SESSION['name'].'</b></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="../../member/logout.php" style="border:0; color:#000000; font-size:14px"><b>登出</b></a>';
-				}
+			<?php
+				require_once( "loginCheck.php" );	
 			?>
 			</span></td>
 			

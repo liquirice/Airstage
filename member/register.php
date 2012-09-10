@@ -1,6 +1,8 @@
+<!DOCTYPE HTML>
 <html>
 <? 
-	include("../conn.php")
+	// Last Modified Day : 2012.09.10
+	require_once( "connectVar.php" );
 ?>
 <head>
 <meta http-equiv="Content-Language" content="zh-tw">
