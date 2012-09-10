@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="zh-tw">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>新增網頁1</title>
+<!-----shadowbox部分開始------->
+<link rel="stylesheet" type="text/css" href="build/shadowbox.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="build/shadowbox.js"></script>
+<script type="text/javascript">
+	Shadowbox.init({
+		players : ['html'],
+		overlayColor: "#FFFFFF"
+	});
+</script>
+<script type="text/javascript">
+$('#b1').click(function(){
+	$('#list').toggle('slow');
+	});
+</script>
+
+<!-----shadowbox部分結束------->
+
+<script language="JavaScript">
+<!--
+function FP_changeProp() {//v1.0
+ var args=arguments,d=document,i,j,id=args[0],o=FP_getObjectByID(id),s,ao,v,x;
+ d.$cpe=new Array(); if(o) for(i=2; i<args.length; i+=2) { v=args[i+1]; s="o"; 
+ ao=args[i].split("."); for(j=0; j<ao.length; j++) { s+="."+ao[j]; if(null==eval(s)) { 
+  s=null; break; } } x=new Object; x.o=o; x.n=new Array(); x.v=new Array();
+ x.n[x.n.length]=s; eval("x.v[x.v.length]="+s); d.$cpe[d.$cpe.length]=x;
+ if(s) eval(s+"=v"); }
+}
+
+function FP_getObjectByID(id,o) {//v1.0
+ var c,el,els,f,m,n; if(!o)o=document; if(o.getElementById) el=o.getElementById(id);
+ else if(o.layers) c=o.layers; else if(o.all) el=o.all[id]; if(el) return el;
+ if(o.id==id || o.name==id) return o; if(o.childNodes) c=o.childNodes; if(c)
+ for(n=0; n<c.length; n++) { el=FP_getObjectByID(id,c[n]); if(el) return el; }
+ f=o.forms; if(f) for(n=0; n<f.length; n++) { els=f[n].elements;
+ for(m=0; m<els.length; m++){ el=FP_getObjectByID(id,els[n]); if(el) return el; } }
+ return null;
+}
+
+function FP_openNewWindow(w,h,nav,loc,sts,menu,scroll,resize,name,url) {//v1.0
+ var windowProperties=''; if(nav==false) windowProperties+='toolbar=no,'; else
+  windowProperties+='toolbar=yes,'; if(loc==false) windowProperties+='location=no,'; 
+ else windowProperties+='location=yes,'; if(sts==false) windowProperties+='status=no,';
+ else windowProperties+='status=yes,'; if(menu==false) windowProperties+='menubar=no,';
+ else windowProperties+='menubar=yes,'; if(scroll==false) windowProperties+='scrollbars=no,';
+ else windowProperties+='scrollbars=yes,'; if(resize==false) windowProperties+='resizable=no,';
+ else windowProperties+='resizable=yes,'; if(w!="") windowProperties+='width='+w+',';
+ if(h!="") windowProperties+='height='+h; if(windowProperties!="") { 
+  if( windowProperties.charAt(windowProperties.length-1)==',') 
+   windowProperties=windowProperties.substring(0,windowProperties.length-1); } 
+ window.open(url,name,windowProperties);
+}
+
+function FP_preloadImgs() {//v1.0
+ var d=document,a=arguments; if(!d.FP_imgs) d.FP_imgs=new Array();
+ for(var i=0; i<a.length; i++) { d.FP_imgs[i]=new Image; d.FP_imgs[i].src=a[i]; }
+}
+// -->
+</script>
+<script language="JavaScript" fptype="dynamicanimation">
+<!--
+function dynAnimation() {}
+function clickSwapImg() {}
+//-->
+</script>
+<script language="JavaScript1.2" fptype="dynamicanimation" src="file:///C:/Program%20Files%20(x86)/Microsoft%20Office/OFFICE11/fpclass/animate.js">
+</script>
+</head>
+
+<body topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0" marginwidth="0" marginheight="0" onLoad="dynAnimation()" language="Javascript1.2">
+
+<div align="center">
+	<div style="position: absolute; width: 100px; height: 100px; z-index: 11; left: -22px; top: -591px" id="layer1">
+&nbsp;</div>
+	<div style="position: absolute; width: 654px; height: 455px; z-index: 10; left: 220px; top: 125px" id="screen">
+		<iframe name="screen" src="comming.htm" marginwidth="1" marginheight="1" height="439" width="643" scrolling="no" border="0" frameborder="0">
+		您的瀏覽器不支援內置框架或目前的設定為不顯示內置框架。</iframe></div>
+	<div style="position: absolute; width: 50px; height: 32px; z-index: 12; left: 253px; top: 14px" id="news">
+		<a onMouseOver="var img=document['fpAnimswapImgFP4'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP4'].src=document['fpAnimswapImgFP4'].imgRolln" target="_parent" href="../../calendar.htm">
+		<img border="0" src="../news/png/cri01.png" width="85" height="65" id="fpAnimswapImgFP4" name="fpAnimswapImgFP4" dynamicanimation="fpAnimswapImgFP4" lowsrc="../news/png/cri02.png"></a></div>
+	<div style="position: absolute; width: 57px; height: 37px; z-index: 13; left: 440px; top: 14px" id="gallery">
+		<a onMouseOver="var img=document['fpAnimswapImgFP6'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP6'].src=document['fpAnimswapImgFP6'].imgRolln" target="_parent" href="../../gallery.htm">
+		<img border="0" src="../news/png/cri01.png" width="85" height="65" id="fpAnimswapImgFP6" name="fpAnimswapImgFP6" dynamicanimation="fpAnimswapImgFP6" lowsrc="../news/png/cri02.png"></a></div>
+	<div style="position: absolute; width: 57px; height: 37px; z-index: 13; left: 347px; top: 14px" id="broadcast">
+		<a onMouseOver="var img=document['fpAnimswapImgFP5'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP5'].src=document['fpAnimswapImgFP5'].imgRolln" target="_parent" href="../../broadcast.htm">
+		<img border="0" src="../news/png/cri01.png" width="85" height="65" id="fpAnimswapImgFP5" name="fpAnimswapImgFP5" dynamicanimation="fpAnimswapImgFP5" lowsrc="../news/png/cri02.png"></a></div>
+	<table border="0" width="1043" height="872">
+		<tr>
+			<td background="01_jpg.jpg" align="center">
+			<a onMouseOver="document.button7.src='button6.png'" onMouseOut="document.button7.src='button1-1.png'" rel="shadowbox; width=400; height=420" href="../po/index.htm" title="新增影片" style="cursor:pointer">
+			<div style="position: absolute; width: 65px; height: 64px; z-index: 3; left: 120px; top: 700px" id="b2" onClick="FP_changeProp(/*id*/'screen',0,'style.visibility','hidden')">
+            <img src="button1-1.png" name="button7" border="0">
+				<p align="center">
+</div></a>
+<div onMouseOver="document.button6.src='button6.png'" onMouseOut="document.button6.src='button1-1.png'" style="position: absolute; width: 183px; height: 176px; z-index: 2; left: 44px; top: 89px; cursor:pointer" id="b1" onClick="FP_changeProp(/*id*/'list',0,'style.visibility','visible');">
+            <object classid="clsid:D27CDB6E-AE6D-11CF-96B8-444553540000" id="obj1" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0" border="0" width="185" height="550">
+				<param name="movie" value="lists.swf">
+				<param name="quality" value="High">
+				<param name="wmode" value="transparent">
+				<embed src="lists.swf" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" name="obj1" width="185" height="550" quality="High" wmode="transparent"></object>
+</div>
+			
+			<div style="position: absolute; width: 779px; height: 24px; z-index: 8; left: 235px; top: 96px" id="torefine0" onMouseOver="FP_changeProp(/*id*/'screen',0,'style.visibility','visible')">
+&nbsp;</div>
+			
+			<div style="position: absolute; width: 779px; height: 24px; z-index: 8; left: 233px; top: 584px" id="torefine" onMouseOver="FP_changeProp(/*id*/'screen',0,'style.visibility','visible')">
+&nbsp;</div>
+			
+			<div style="position: absolute; width: 142px; height: 21px; z-index: 7; left: 660px; top: 786px" id="link">
+				<font size="2">
+				<a target="_parent" href="http://airstagestudio.weebly.com/38364260442510520497.html" style="text-decoration: none" dynamicanimation="fpAnimformatRolloverFP1" fprolloverstyle="text-decoration: underline" onMouseOver="rollIn(this)" onMouseOut="rollOut(this)" language="Javascript1.2">
+				<font color="#808080">關於我們</font></a><font color="#808080">　　</font><a href="http://airstagestudio.weebly.com/21332211613287932097.html" style="text-decoration: none" dynamicanimation="fpAnimformatRolloverFP1" fprolloverstyle="text-decoration: underline" onMouseOver="rollIn(this)" onMouseOut="rollOut(this)" language="Javascript1.2"><font color="#808080">協助聯絡</font></a></font></div>
+			<div style="position: absolute; width: 748px; height: 98px; z-index: 5; left: 257px; top: 615px" id="ban">
+				<iframe name="ban" width="738" height="110" marginwidth="1" marginheight="1" scrolling="no" src="ban/ban_ori.htm" border="0" frameborder="0" style="border: 0px solid #000000">
+				您的瀏覽器不支援內置框架或目前的設定為不顯示內置框架。</iframe></div>
+			</td>
+			<td background="01_jpg.jpg" align="center" width="4">&nbsp;
+			</td>
+		</tr>
+	</table>
+</div>
+
+</body>
+
+</html>
