@@ -145,24 +145,24 @@ else if($url['stu_id'] == $_SESSION['stu_id']){
 								}
 								else if($url['type'] == 'departments'){
 									echo'
-        								<option value="clubs" selected>社團組織</option>
-            							<option value="departments">校內系所</option>
+        								<option value="clubs">社團組織</option>
+            							<option value="departments" selected>校內系所</option>
             							<option value="authorities">校方機構</option>
             							<option value="concerts">藝文音樂</option>';
 								}
 								else if($url['type'] == 'authorities'){
 									echo'
-        								<option value="clubs" selected>社團組織</option>
+        								<option value="clubs">社團組織</option>
             							<option value="departments">校內系所</option>
-            							<option value="authorities">校方機構</option>
+            							<option value="authorities" selected>校方機構</option>
             							<option value="concerts">藝文音樂</option>';
 								}
 								else if($url['type'] == 'concerts'){
 									echo'
-        								<option value="clubs" selected>社團組織</option>
+        								<option value="clubs">社團組織</option>
             							<option value="departments">校內系所</option>
             							<option value="authorities">校方機構</option>
-            							<option value="concerts">藝文音樂</option>';
+            							<option value="concerts" selected>藝文音樂</option>';
 								}
 							echo'
         						</select>
