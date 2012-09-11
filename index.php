@@ -1,5 +1,5 @@
 <?php
-	// Last Modified Day : 2012.09.07
+	// Last Modified Day : 2012.09.11
 	header('P3P: CP="NOI ADM DEV COM NAV OUR STP"');
 	
 	require_once( "connectVar.php" );
@@ -10,6 +10,72 @@
 	$departments = "SELECT * FROM `Activities` WHERE type = 'departments' ORDER BY time ASC";
 	$authorities = "SELECT * FROM `Activities` WHERE type = 'authorities' ORDER BY time ASC";
 	$concerts = "SELECT * FROM `Activities` WHERE type = 'concerts' ORDER BY time ASC";
+	
+	$h = 0;
+	$c = 0;
+	$d = 0;
+	$a = 0;
+	$con = 0;
+	
+	$hot1 = mysqli_query($conn, $hot);
+	while($hot2 = mysqli_fetch_array($hot1)){
+		if(date('Y-m-d') < $hot2['time']){
+			$h++;
+			$hclass = 'style="width:10; height:12; color:#FFF; background-color:#000"';
+		}
+		else if(date('Y-m-d') == $hot2['time']){
+			$h++;
+			$hclass = 'style="width:10; height:12; color:#FFF; background-color:#F00"';
+		}
+	}
+	
+	$clubs1 = mysqli_query($conn, $clubs);
+	while($clubs2 = mysqli_fetch_array($clubs1)){
+		if(date('Y-m-d') < $clubs2['time']){
+			$c++;
+			$cclass = 'style="width:10; height:12; color:#FFF; background-color:#000"';
+		}
+		else if(date('Y-m-d') == $clubs2['time']){
+			$c++;
+			$cclass = 'style="width:10; height:12; color:#FFF; background-color:#F00"';
+		}
+	}
+	
+	$departments1 = mysqli_query($conn, $departments);
+	while($departments2 = mysqli_fetch_array($departments1)){
+		if(date('Y-m-d') < $departments2['time']){
+			$d++;
+			$dclass = 'style="width:10; height:12; color:#FFF; background-color:#000"';
+		}
+		else if(date('Y-m-d') == $departments2['time']){
+			$d++;
+			$dclass = 'style="width:10; height:12; color:#FFF; background-color:#F00"';
+		}
+	}
+	
+	$authorities1 = mysqli_query($conn, $authorities);
+	while($authorities2 = mysqli_fetch_array($authorities1)){
+		if(date('Y-m-d') < $authorities2['time']){
+			$a++;
+			$aclass = 'style="width:10; height:12; color:#FFF; background-color:#000"';
+		}
+		else if(date('Y-m-d') == $authorities2['time']){
+			$a++;
+			$aclass = 'style="width:10; height:12; color:#FFF; background-color:#F00"';
+		}
+	}
+	
+	$concerts1 = mysqli_query($conn, $concerts);
+	while($concerts2 = mysqli_fetch_array($concerts1)){
+		if(date('Y-m-d') < $concerts2['time']){
+			$con++;
+			$conclass = 'style="width:10; height:12; color:#FFF; background-color:#000"';
+		}
+		else if(date('Y-m-d') == $concerts2['time']){
+			$con++;
+			$conclass = 'style="width:10; height:12; color:#FFF; background-color:#F00"';
+		}
+	}
 ?>
 
 <!DOCTYPE HTML>
@@ -25,25 +91,13 @@
 <link type="text/css" rel="stylesheet" href="plugin/bsjq/basic-jquery-slider.css" />
 <title>│Airstage 西灣人│活動牆：開始倒數！</title>
 <style fprolloverstyle>
-A:hover {text-decoration: underline; font-weight: bold}
+A:hover {text-decoration: underline; font-weight: bold;}
 a{text-decoration:none;}
 </style>
 <link rel="stylesheet" type="text/css" href="css/index.css">
 
 <script type="text/javascript">
 $(document).ready(function() {
-	/*$('.slidyContainer').slidy({
-        throttle: false, // Set to true, and include jQuery throttle plugin (http://benalman.com/projects/jquery-throttle-debounce-plugin/)
-        throttleTime: 500, // number of ms to wait for throttling
-        showArrows: true, // Show arrows for next/prev image
-        movePrev: 'movePrev', // Div id to use for previous button
-        moveNext: 'moveNext', // Div id to use for next button
-        useKeybord: true, // use keys defined below to expand / collapse sections
-        auto: true,       // Start slideshow automatically
-        interval: 120000,     // Time between each slide
-        initialInterval: 12000  // Initial interval when page loads
-
-    });*/
 	$('#banner').bjqs({
           'animation' : 'slide',
           'width' : 961,
@@ -209,11 +263,11 @@ body {
 	      <!----------活動列表-------------->
 	      <table width="862">
 	<tr>
-    	<td width="721" align="center" style="color:#333333; font-size:9pt"><img src="jpg/b.png" width="144" height="6"><a style="border:0; color:#333333; font-size:11pt; cursor:pointer" id="hot1" href="#hot"><b>熱門精選</b></a>&nbsp;&nbsp;|&nbsp;&nbsp;
-    	  <a style="border:0; color:#333333; font-size:11pt; cursor:pointer" id="clubs1" href="#clubs"><b>社團組織</b></a>&nbsp;&nbsp;|&nbsp;&nbsp;
-    	  <a style="border:0; color:#333333; font-size:11pt; cursor:pointer" id="departments1" href="#departments"><b>校內系所</b></a>&nbsp;&nbsp;|&nbsp;&nbsp;
-    	  <a style="border:0; color:#333333; font-size:11pt; cursor:pointer" id="authorities1" href="#authorities"><b>校方機構</b></a>&nbsp;&nbsp;|&nbsp;&nbsp;
-    	  <a style="border:0; color:#333333; font-size:11pt; cursor:pointer" id="concerts1" href="#concerts"><b>藝文音樂</b></a></td>
+    	<td width="721" align="center" style="color:#333333; font-size:9pt"><img src="jpg/b.png" width="144" height="6"><a style="border:0; color:#333333; font-size:11pt; cursor:pointer" id="hot1" href="#hot"><b>熱門精選</b></a>&nbsp;<div <?php echo ''.$hclass.'>'.$h.''; ?></div>&nbsp;&nbsp;
+    	  <a style="border:0; color:#333333; font-size:11pt; cursor:pointer" id="clubs1" href="#clubs"><b>社團組織</b></a>&nbsp;<div <?php echo ''.$cclass.'>'.$c.''; ?></div>&nbsp;&nbsp;
+    	  <a style="border:0; color:#333333; font-size:11pt; cursor:pointer" id="departments1" href="#departments"><b>校內系所</b></a>&nbsp;<div <?php echo ''.$dclass.'>'.$d.''; ?></div>&nbsp;&nbsp;
+    	  <a style="border:0; color:#333333; font-size:11pt; cursor:pointer" id="authorities1" href="#authorities"><b>校方機構</b></a>&nbsp;<div <?php echo ''.$aclass.'>'.$a.''; ?></div>&nbsp;&nbsp;
+    	  <a style="border:0; color:#333333; font-size:11pt; cursor:pointer" id="concerts1" href="#concerts"><b>藝文音樂</b></a>&nbsp;<div <?php echo ''.$conclass.'>'.$con.''; ?></div></td>
     	<td width="133" align="center" style="color:#333333; font-size:9pt"><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image16','','jpg/sharenew2.png',1)"><img src="jpg/sharenew.png" name="Image16" width="133" height="32" border="0"<a onClick="window.open('activities/share.php','','menubar=no,status=no,scrollbars=no,top=200,left=200,toolbar=no,width=925,height=546')" style="border:0; cursor:pointer"></a></td>
         </tr>
     <tr>
