@@ -21,11 +21,14 @@
 	while($hot2 = mysqli_fetch_array($hot1)){
 		if(date('Y-m-d') < $hot2['time']){
 			$h++;
-			$hclass = 'style="width:10; height:12; color:#FFF; background-color:#000"';
+			$hclass = 'style="width:14; height:14; color:#FFF; background-color:#000"';
 		}
-		else if(date('Y-m-d') == $hot2['time']){
+		else if(date('Y-m-d') == $clubs2['time']){
 			$h++;
-			$hclass = 'style="width:10; height:12; color:#FFF; background-color:#F00"';
+			$hclass = 'style="width:14; height:14; color:#FFF; background-color:#F00"';
+		}
+		else{
+			$hclass = 'style="width:14; height:14; color:#FFF; background-color:#000"';
 		}
 	}
 	
@@ -33,11 +36,14 @@
 	while($clubs2 = mysqli_fetch_array($clubs1)){
 		if(date('Y-m-d') < $clubs2['time']){
 			$c++;
-			$cclass = 'style="width:10; height:12; color:#FFF; background-color:#000"';
+			$cclass = 'style="width:14; height:14; color:#FFF; background-color:#000"';
 		}
 		else if(date('Y-m-d') == $clubs2['time']){
 			$c++;
-			$cclass = 'style="width:10; height:12; color:#FFF; background-color:#F00"';
+			$cclass = 'style="width:14; height:14; color:#FFF; background-color:#F00"';
+		}
+		else{
+			$cclass = 'style="width:14; height:14; color:#FFF; background-color:#000"';
 		}
 	}
 	
@@ -45,11 +51,14 @@
 	while($departments2 = mysqli_fetch_array($departments1)){
 		if(date('Y-m-d') < $departments2['time']){
 			$d++;
-			$dclass = 'style="width:10; height:12; color:#FFF; background-color:#000"';
+			$dclass = 'style="width:14; height:14; color:#FFF; background-color:#000"';
 		}
 		else if(date('Y-m-d') == $departments2['time']){
 			$d++;
-			$dclass = 'style="width:10; height:12; color:#FFF; background-color:#F00"';
+			$dclass = 'style="width:14; height:14; color:#FFF; background-color:#F00"';
+		}
+		else{
+			$dclass = 'style="width:14; height:14; color:#FFF; background-color:#000"';
 		}
 	}
 	
@@ -57,11 +66,14 @@
 	while($authorities2 = mysqli_fetch_array($authorities1)){
 		if(date('Y-m-d') < $authorities2['time']){
 			$a++;
-			$aclass = 'style="width:10; height:12; color:#FFF; background-color:#000"';
+			$aclass = 'style="width:14; height:14; color:#FFF; background-color:#000"';
 		}
 		else if(date('Y-m-d') == $authorities2['time']){
 			$a++;
-			$aclass = 'style="width:10; height:12; color:#FFF; background-color:#F00"';
+			$aclass = 'style="width:14; height:14; color:#FFF; background-color:#F00"';
+		}
+		else{
+			$aclass = 'style="width:14; height:14; color:#FFF; background-color:#000"';
 		}
 	}
 	
@@ -74,6 +86,9 @@
 		else if(date('Y-m-d') == $concerts2['time']){
 			$con++;
 			$conclass = 'style="width:10; height:12; color:#FFF; background-color:#F00"';
+		}
+		else{
+			$conclass = 'style="width:14; height:14; color:#FFF; background-color:#000"';
 		}
 	}
 ?>
