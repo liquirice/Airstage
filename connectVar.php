@@ -2,9 +2,9 @@
 	// Last Modified Day : 2012.09.10
 	//連接資料庫的參數
 	$host = "localhost";	
-	$user = "root";		
-	$pass = "root";	
-	$db = "Airstage";		
+	$user = "airstage";		
+	$pass = "airstage0401";	
+	$db = "airstage";		
 
 	$conn = @mysqli_connect( $host, $user, $pass, $db );	
 	if(!$conn){	//判斷是否已連上：上面的指令是不是有回傳值

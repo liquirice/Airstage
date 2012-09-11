@@ -263,11 +263,11 @@ body {
 	      <!----------活動列表-------------->
 	      <table width="862">
 	<tr>
-    	<td width="721" align="center" style="color:#333333; font-size:9pt"><img src="jpg/b.png" width="144" height="6"><a style="border:0; color:#333333; font-size:11pt; cursor:pointer" id="hot1" href="#hot"><b>熱門精選</b></a>&nbsp;<div <?php echo ''.$hclass.'>'.$h.''; ?></div>&nbsp;&nbsp;
-    	  <a style="border:0; color:#333333; font-size:11pt; cursor:pointer" id="clubs1" href="#clubs"><b>社團組織</b></a>&nbsp;<div <?php echo ''.$cclass.'>'.$c.''; ?></div>&nbsp;&nbsp;
-    	  <a style="border:0; color:#333333; font-size:11pt; cursor:pointer" id="departments1" href="#departments"><b>校內系所</b></a>&nbsp;<div <?php echo ''.$dclass.'>'.$d.''; ?></div>&nbsp;&nbsp;
-    	  <a style="border:0; color:#333333; font-size:11pt; cursor:pointer" id="authorities1" href="#authorities"><b>校方機構</b></a>&nbsp;<div <?php echo ''.$aclass.'>'.$a.''; ?></div>&nbsp;&nbsp;
-    	  <a style="border:0; color:#333333; font-size:11pt; cursor:pointer" id="concerts1" href="#concerts"><b>藝文音樂</b></a>&nbsp;<div <?php echo ''.$conclass.'>'.$con.''; ?></div></td>
+    	<td width="721" align="center" style="color:#333333; font-size:9pt"><img src="jpg/b.png" width="144" height="6"><a style="border:0; color:#333333; font-size:11pt; cursor:pointer" id="hot1" href="#hot"><b>熱門精選</b></a>&nbsp;<span <?php echo ''.$hclass.'>'.$h.''; ?></span>&nbsp;&nbsp;
+    	  <a style="border:0; color:#333333; font-size:11pt; cursor:pointer" id="clubs1" href="#clubs"><b>社團組織</b></a>&nbsp;<span <?php echo ''.$cclass.'>'.$c.''; ?></span>&nbsp;&nbsp;
+    	  <a style="border:0; color:#333333; font-size:11pt; cursor:pointer" id="departments1" href="#departments"><b>校內系所</b></a>&nbsp;<span <?php echo ''.$dclass.'>'.$d.''; ?></span>&nbsp;&nbsp;
+    	  <a style="border:0; color:#333333; font-size:11pt; cursor:pointer" id="authorities1" href="#authorities"><b>校方機構</b></a>&nbsp;<span <?php echo ''.$aclass.'>'.$a.''; ?></span>&nbsp;&nbsp;
+    	  <a style="border:0; color:#333333; font-size:11pt; cursor:pointer" id="concerts1" href="#concerts"><b>藝文音樂</b></a>&nbsp;<span <?php echo ''.$conclass.'>'.$con.''; ?></span></td>
     	<td width="133" align="center" style="color:#333333; font-size:9pt"><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image16','','jpg/sharenew2.png',1)"><img src="jpg/sharenew.png" name="Image16" width="133" height="32" border="0"<a onClick="window.open('activities/share.php','','menubar=no,status=no,scrollbars=no,top=200,left=200,toolbar=no,width=925,height=546')" style="border:0; cursor:pointer"></a></td>
         </tr>
     <tr>
