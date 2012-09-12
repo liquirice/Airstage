@@ -189,6 +189,7 @@ else if($_SESSION['record'] == 'share'){
     	<td colspan="2" class="type" width="100"><img src="jpg/cub.png" />活動分類</td>
 		<td width="407" align="left">
         <select name="type">
+			<option value="null">====請選擇====</option>
         	<option value="clubs">社團組織</option>
             <option value="departments">校內系所</option>
             <option value="authorities">校方機構</option>
