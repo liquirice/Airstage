@@ -1,0 +1,35 @@
+@charset "UTF-8"; 
+input.error { 
+/* If the field is error, color it like this */
+    background: #FBE3E4;
+    color: #D12F19;
+    border-color: #FBC2C4;
+	border-radius: 7px;/*讓input框架變圓*/
+	-moz-border-radius: 7px;/*讓input框架變圓*/
+}    
+label.error {
+/* If the field is wrong, style the error text like this */
+        background: url("./picture/uncheck.png") no-repeat;
+        padding-left: 16px;
+        margin-left: .3em;
+        color: red;
+}
+
+input.valid{
+	/* If the field is error, color it like this */
+    border-style:solid;
+    color: #000000;
+    border-color: #00B311;
+	border-radius: 7px;/*讓input框架變圓*/
+	-moz-border-radius: 7px;/*讓input框架變圓*/
+}
+label.valid {
+/* If the field is right, style the label like this */
+        background: url("./picture/check.gif") no-repeat;
+        padding-left: 16px;
+        margin-left: .3em; 
+		border-radius: 7px;/*讓input框架變圓*/
+		-moz-border-radius: 7px;/*讓input框架變圓*/
+		
+}
+

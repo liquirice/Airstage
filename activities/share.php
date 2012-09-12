@@ -23,6 +23,7 @@ $last = mysqli_query($conn, $select);
 <title>分享新活動</title>
 <link href="http://www.airstage.com.tw/nsysu/airs/tm2.ico" rel="shortcut icon"/>
 <link href="../plugin/jquery-ui/css/ui-lightness/jquery-ui-1.8.21.custom.css" rel="stylesheet" type="text/css" />
+<link href="../css/validate.css" rel="stylesheet" type="text/css" />
 <style>
 td{font-size:10pt;}
 .ui-datepicker { width: 23em; padding: .2em .2em 0; display: none; font-size: 62.5%; }
@@ -49,6 +50,7 @@ body {
 <script type="text/javascript" language="javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" language="javascript" src="../plugin/jquery-ui/js/jquery-ui-1.8.21.custom.min.js"></script>
 <script type="text/javascript" language="javascript" src="http://jquery-ui.googlecode.com/svn/trunk/ui/i18n/jquery.ui.datepicker-zh-TW.js"></script>
+<script type="text/javascript" language="javascript" src="../plugin/validate/jquery.validate.js"></script>
 <script type="text/javascript" language="javascript">
         $(function(){
 			$('#datepicker').datepicker(
@@ -57,6 +59,27 @@ body {
 			
 		});
 		
+</script>
+<script type="text/javascript" language="javascript">
+$(document).ready(function() {
+    $('#form').validate({
+		success: 'valid',
+		rules:{
+			type:{required:true},
+			title:{required:true},
+			description:{required:true},
+			name:{required:true},
+			time:{required:true},
+			venue:{required:true},
+			host:{required:true},
+			url1:{url:true},
+			url2:{url:true},
+		},
+		errorPlacement: function(error, element) { //指定错误信息位置 
+			error.insertAfter(element);
+		}, 
+	});
+});
 </script>
 </head>
 
@@ -82,7 +105,7 @@ if($_SESSION['record'] === 'submit'){
 		$insert = "INSERT INTO Activities(type, title, description, name, time, extratime, venue, fee, host, url1, url2, stu_id, note, signup) VALUES('$type', '$title', '$description', '$name', '$time', '$extratime', '$venue', '$fee', '$host', '$url1', '$url2', '".$_SESSION['stu_id']."', '$note', '$signup')";
 		
 		if(mysqli_query($conn,$insert)){
-			if($signup == 'yes'){
+			if($signup == 'yes' && $url1 != ''){
 				$lastrno = mysqli_fetch_array($last);
 				$_SESSION['rnotemp'] = $lastrno['rno'];
 				$newevent = 'ALTER TABLE `List` ADD `event'.$_SESSION['rnotemp'].'` VARCHAR( 10 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL';
@@ -175,7 +198,7 @@ else if($_SESSION['record'] == 'upload'){
 else if($_SESSION['record'] == 'share'){
 	echo '
 <!--填寫資料-->
-<form method="post" action="share.php?action=submit" target="_self">
+<form method="post" action="share.php?action=submit" target="_self" id="form">
 <table width="919" height="546" border="0" cellspacing="0" align="left" background="jpg/box_share.png" style="background-repeat:no-repeat">
 <tr valign="top">
 	<td>
@@ -188,50 +211,51 @@ else if($_SESSION['record'] == 'share'){
     <tr>
     	<td colspan="2" class="type" width="100"><img src="jpg/cub.png" />活動分類</td>
 		<td width="407" align="left">
-        <select name="type">
-			<option value="null">====請選擇====</option>
-        	<option value="clubs">社團組織</option>
-            <option value="departments">校內系所</option>
-            <option value="authorities">校方機構</option>
-            <option value="concerts">藝文音樂</option>
+        <select name="type" id="type">
+			<optgroup label="====請選擇====">
+        		<option value="clubs">社團組織</option>
+            	<option value="departments">校內系所</option>
+            	<option value="authorities">校方機構</option>
+            	<option value="concerts">藝文音樂</option>
+			</optgroup>
         </select>
     	</td>
     </tr>
     <!--大標題-->
     <tr>
     	<td colspan="2" class="type" width="100"><img src="jpg/cub.png" />大標題</td>
-        <td><input type="text" name="title" placeholder="2012中山校園演唱會" /></td>
+        <td><input type="text" id="title" name="title" placeholder="2012中山校園演唱會" /></td>
     </tr>
     <!--活動簡介-->
     <tr>
     	<td colspan="3" class="type" width="100"><img src="jpg/cub.png" />活動簡介<br /><br />
-        &nbsp;&nbsp;&nbsp;<input type="text" maxlength="80" max="80" size="75" name="description" placeholder="演出藝人：陳綺貞|盧廣仲|魏如萱|蛋堡|李佳薇|張芸京|玩聲樂團 (host:NONO)" /></td>
+        &nbsp;&nbsp;&nbsp;<input type="text" maxlength="80" max="80" size="75" name="description" id="description" placeholder="演出藝人：陳綺貞|盧廣仲|魏如萱|蛋堡|李佳薇|張芸京|玩聲樂團 (host:NONO)" /></td>
     </tr>
     <!--活動名稱-->
     <tr>
     	<td colspan="2" class="type" width="100"><img src="jpg/cub.png" />活動名稱</td>
-        <td><input type="text" size="53" name="name" placeholder="活末日之花　奇蹟綻放" /></td>
+        <td><input type="text" size="53" name="name" id="name" placeholder="活末日之花　奇蹟綻放" /></td>
     </tr>
     <!--時間-->
     <tr>
     	<td colspan="2" class="type" width="100"><img src="jpg/cub.png" />時間</td>
         <td width="407"><input type="text" name="time" placeholder="2012/05/25" id="datepicker" />&nbsp;&nbsp;
-		<input type="text" name="extratime" placeholder=" 5:45 開放入場" /></td>
+		<input type="text" name="extratime" id="extratime" placeholder=" 5:45 開放入場" /></td>
     </tr>
     <!--地點-->
     <tr>
     	<td colspan="2" class="type" width="100"><img src="jpg/cub.png" />地點</td>
-        <td><input type="text" name="venue" placeholder="西子灣沙灘海水浴場" /></td>
+        <td><input type="text" name="venue" id="venue" placeholder="西子灣沙灘海水浴場" /></td>
     </tr>
     <!--費用-->
     <tr>
     	<td colspan="2" class="type" width="100"><img src="jpg/cub.png" />費用</td>
-        <td><input type="text" size="53" name="fee" placeholder="貴賓票－免費 校內票－$250 校外票－$400" /></td>
+        <td><input type="text" size="53" name="fee" id="fee" placeholder="貴賓票－免費 校內票－$250 校外票－$400" /></td>
     </tr>
     <!--主辦單位-->
     <tr>
     	<td colspan="2" class="type" width="100"><img src="jpg/cub.png" />主辦單位</td>
-        <td><input type="text" name="host" placeholder="中山大學學生會" /></td>
+        <td><input type="text" name="host" id="host" placeholder="中山大學學生會" /></td>
     </tr>
 	</table>
 </td>
@@ -244,17 +268,17 @@ else if($_SESSION['record'] == 'share'){
     <!--網址1-->
     <tr>
     	<td colspan="2" class="type" width="100"><img src="jpg/cub.png" />活動主頁<br /><br />
-     	&nbsp;&nbsp;&nbsp;<input type="text" size="50" name="url1" placeholder="Google協作平台、無名小站等,沒有可空白" /><br />
+     	&nbsp;&nbsp;&nbsp;<input type="text" size="50" name="url1" id="url1" placeholder="Google協作平台、無名小站等,沒有可空白" /><br />
 &nbsp;&nbsp;&nbsp;<input type="button" onclick="window.open(\'https://sites.google.com/\')" value="申請Google協作平台" /></td>
     </tr>
     <!--網址2-->
     <tr>
     	<td colspan="2" class="type" width="100"><img src="jpg/cub.png" />Facebook網址<br /><br />
-        &nbsp;&nbsp;&nbsp;<input type="text" size="50" name="url2" placeholder="活動資訊的Facebook網址" /></td>
+        &nbsp;&nbsp;&nbsp;<input type="text" size="50" name="url2" id="url2" placeholder="活動資訊的Facebook網址" /></td>
     </tr>
 	<tr>
 		<td colspan="2" class="type" width="100"><img src="jpg/cub.png" />附註<br /><br />
-		&nbsp;&nbsp;&nbsp;<textarea name="note" cols="30" placeholder="注意事項" rows="4"></textarea></td>
+		&nbsp;&nbsp;&nbsp;<textarea name="note" cols="30" id="note"" placeholder="注意事項" rows="4"></textarea></td>
 	</tr>
 	<tr>
 		<td height="100" align="center" valign="middle" colspan="2" bgcolor="#f1f1f1">是否需要開啟【線上報名】與【有誰參加】的功能?<br /><span style="color:#F00">如果沒有活動首頁將無法開啟此功能哦!</span><br />
