@@ -24,6 +24,7 @@
 			echo '<script language="javascript">alert("登入成功!"); self.opener.location.reload();</script>';
 			exit();
 		}
+		mysqli_close( $conn );
 	}
 ?>
 

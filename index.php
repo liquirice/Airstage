@@ -734,6 +734,9 @@ echo'
 	  fjs.parentNode.insertBefore(js, fjs);
 	} (document, 'script', 'facebook-jssdk'));
 </script>
+
+<?php mysqli_close( $conn ); ?>
+
 </body>
 
 </html>

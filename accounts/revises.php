@@ -6,6 +6,7 @@
 		echo '<script type="text/javascript">alert("請先登入唷～"); location.href="../index2.htm"</script>';
 	} else {
 		require_once( "../connectVar.php" );
+		$stu_id = $_SESSION['stu_id'];
 		
 		// Upadte the user info.
 		if( isset($_POST['submit']) ) {
@@ -30,9 +31,21 @@
 			$outAddr = mysqli_real_escape_string( $conn, trim($_POST['outAddr']) );
 			$car = mysqli_real_escape_string( $conn, trim($_POST['car']) );
 			// TODO : Profile Pic.
+			
+			// Update the basic info.
+			$query = "UPDATE Member SET gender = '$gender', department = '$department', grade = '$grade', email = '$email'".
+					 " WHERE stu_id = '$stu_id'";
+			$result = mysqli_query( $conn, $query ) or die('Update Error1');
+			
+			// Upadte the common info.
+			$query = "UPDATE member_Info SET msn = '$msn', twitter = '$twitter', plurk = '$plurk', skype = '$skype', facebook = '$facebook'".
+			 		 " ,phone = '$phone', food = '$food', home = '$home', id = '$id', dorm = '$dorm', room = '$room', outAddr = '$outAddr', car = '$car'".
+			 		 " WHERE stu_id = '$stu_id'";
+			$result = mysqli_query( $conn, $query ) or die('Update Error2');
+			
+			echo '<script type="text/javascript">alert("更新完成！");</script>';
 		}
-		
-		$stu_id = $_SESSION['stu_id'];
+			
 		$query = "SELECT * FROM Member INNER JOIN member_Info Using(stu_id) WHERE Member.stu_id = '$stu_id'";
 		$result = mysqli_query( $conn, $query );
 		
@@ -924,6 +937,7 @@ function FP_getObjectByID(id,o) {//v1.0
 <p>&nbsp;</p>
 </div>
 
+<?php mysqli_close( $conn ); ?>
 </body>
 
 </html>
