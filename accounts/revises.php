@@ -31,14 +31,32 @@
 			$room = mysqli_real_escape_string( $conn, trim($_POST['room']) );
 			$outAddr = mysqli_real_escape_string( $conn, trim($_POST['outAddr']) );
 			$car = mysqli_real_escape_string( $conn, trim($_POST['car']) );
-									
+			
+			// Checkboxes.
+			$stu_id_c = $_POST['stu_id_c'];
+			$name_c = $_POST['name_c'];
+			$gender_c = $_POST['gender_c'];
+			$grade_c = $_POST['grade_c'];
+			$facebook_c = $_POST['facebook_c'];
+			$msn_c = $_POST['msn_c'];
+			$twitter_c = $_POST['twitter_c'];
+			$plurk_c = $_POST['plurk_c'];
+			$skype_c = $_POST['skype_c'];
+			$phone_c = $_POST['phone_c'];
+			$email_c = $_POST['email_c'];
+			$home_c = $_POST['home_c'];
+			$dorm_c = $_POST['dorm_c'];
+			$outAddr_c = $_POST['outAddr_c'];
+			$car_c = $_POST['car_c'];
+			$profile_pic_c = $_POST['profile_pic_c'];
+				
 			// Profile Pic.
 			$picName = $_FILES['profile_pic']['name'];
 			$picType = $_FILES['profile_pic']['type'];
 			$picSize = $_FILES['profile_pic']['size'];
 			
 			if( !empty($picName) ) {
-				if( (($picType == 'image/gif') || ($picType == 'image/jpeg') || ($picType == 'image/png')) && ($picSize > 0) && ($picSize <= MAXSIZE) ) {
+				if( (($picType == 'image/gif') || ($picType == 'image/jpeg') || ($picType == 'image/png') || ($picType == 'image/pjpeg')) && ($picSize > 0) && ($picSize <= MAXSIZE) ) {
 					if( $FILES['profile_pic']['error'] == 0 ) {
 						// Move to the target folder.
 						$target = UPLOADPATH . $picName;
@@ -61,16 +79,26 @@
 			 		 " WHERE stu_id = '$stu_id'";
 			$result = mysqli_query( $conn, $query ) or die('Update Error2');
 			
+			// Upadte the checkbox.
+			$query = "UPDATE display_check SET stu_id_c = '$stu_id_c', name_c = '$name_c', gender_c = '$gender_c', grade_c = '$grade_c', facebook_c = '$facebook_c'".
+					 " ,msn_c = '$msn_c', twitter_c = '$twitter_c', plurk_c = '$plurk_c', skype_c = '$skype_c', phone_c = '$phone_c', email_c = '$email_c', home_c = '$home_c'".
+					 " ,dorm_c = '$dorm_c', outAddr_c = '$outAddr_c', car_c = '$car_c', profile_pic_c = '$profile_pic_c'";
+			$result = mysqli_query( $conn, $query ) or die('Upadte Error3');
+			
 			echo '<script type="text/javascript">alert("更新完成！");</script>';
 		}
 			
 		$query = "SELECT * FROM Member INNER JOIN member_Info Using(stu_id) WHERE Member.stu_id = '$stu_id'";
 		$result = mysqli_query( $conn, $query );
 		
+		$displayCheck = "SELECT * FROM display_check WHERE stu_id = '$stu_id'";
+		$checkResult = mysqli_query( $conn, $displayCheck );
+		
 		if( mysqli_num_rows($result) == 0 ) {
 			echo '<script type="text/javascript">alert("查無此使用者，請重新登入"); location.href="../index.php"</script>';
 		} else {
 			$row = mysqli_fetch_array( $result );	
+			$check = mysqli_fetch_array( $checkResult );
 		}
 	}
 ?>
@@ -81,7 +109,7 @@
 <link href="tm2.ico" rel="shortcut icon"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Language" content="zh-tw">
-<title>│Airstage 西灣人│會員中心：修改個人資料</title>
+<title>│Airstage 西灣人│會員中心：編輯個人資料</title>
 <style fprolloverstyle>
 	A:hover {text-decoration: underline; font-weight: bold}
 	a{text-decoration:none;}
@@ -199,7 +227,7 @@ function FP_getObjectByID(id,o) {//v1.0
 	                  </td>
 	                  <td height="48" width="8%"><p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium">&nbsp;</span></td>
 	                  <td height="48" width="81%">
-	                  	<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium"><b> <font size="2">修改個人資料</font></b></span></p>
+	                  	<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium"><b> <font size="2">編輯個人資料</font></b></span></p>
 	                    <p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px"> <font color="#C0C0C0" size="2"> 
 	                    <span style="text-decoration: none; vertical-align: medium"> 偏好設定</span></font>
 	                  </td>
@@ -238,7 +266,7 @@ function FP_getObjectByID(id,o) {//v1.0
 	                  <tr>
 	                    <td align="left" height="14" width="22"><span style="vertical-align: medium"> 
 	                    	<font face="微軟正黑體">
-		                    <input type="checkbox" name="check_student_id" value="1" checked></font></span>
+		                    <input type="checkbox" name="stu_id_c" <?php if($check['stu_id_c'] == "on") { echo 'checked'; } ?>></font></span>
 		                </td>
 	                    <td height="14" colspan="2" align="left">
 	                    	<p align="left" style="margin-top: 0px; margin-bottom: 0px" > 
@@ -251,7 +279,7 @@ function FP_getObjectByID(id,o) {//v1.0
                       
 	                  <tr>
 	                    <td align="left" height="13" width="22"><span style="vertical-align: medium"> <font face="微軟正黑體">
-	                      <input type="checkbox" name="check_name" value="1" checked id="check_name"></font></span>
+	                      <input type="checkbox" name="name_c" id="check_name" <?php if($check['name_c'] == "on") { echo "checked"; }?>></font></span>
 	                    </td>
 	                    <td height="13" colspan="2" align="left">
 	                    	<p align="left" style="margin-top: 0px; margin-bottom: 0px"> 
@@ -264,7 +292,7 @@ function FP_getObjectByID(id,o) {//v1.0
                       
 	                  <tr>
 	                    <td align="left" height="13" width="22"><span style="vertical-align: medium"> <font face="微軟正黑體">
-	                      <input type="checkbox" name="check_name" value="1" id="check_gender"></font></span>
+	                      <input type="checkbox" name="gender_c" id="check_gender" <?php if($check['gender_c'] == "on") { echo "checked"; }?>></font></span>
 	                    </td>
 	                    <td height="7" colspan="2" align="left">
 	                    	<p style="margin-top: 0px; margin-bottom: 0px"> 
@@ -279,7 +307,7 @@ function FP_getObjectByID(id,o) {//v1.0
                       
 	                  <tr>
 	                    <td align="left" height="13" width="22"><span style="vertical-align: medium"> <font face="微軟正黑體">
-	                      <input type="checkbox" name="check_name" value="1" id="check_grade"></font></span>
+	                      <input type="checkbox" name="grade_c" id="check_grade" <?php if($check['grade_c'] == "on") { echo "checked"; }?>></font></span>
 	                    </td>
 	                    <td height="6" colspan="2" align="left"><span style="vertical-align: medium"> <font size="2" face="微軟正黑體">系　　級</font></span></td>
 	                    <td align="left" height="6" width="502"><font face="微軟正黑體">	        
@@ -349,7 +377,7 @@ function FP_getObjectByID(id,o) {//v1.0
                       </tr>
 	                  <tr>
 	                    <td align="left" height="13" width="22"><span style="vertical-align: medium"><font face="微軟正黑體">
-	                      	<input type="checkbox" name="check_facebook" value="1" checked id="check_facebook"></font></span>
+	                      	<input type="checkbox" name="facebook_c" id="check_facebook" <?php if($check['facebook_c'] == "on") { echo "checked"; }?>></font></span>
 	                    </td>
 	                    <td align="left" height="13" width="89">
 	                    	<p style="margin-top: 0px; margin-bottom: 0px"><span style="vertical-align: medium"><font size="2" face="微軟正黑體" color="#0099FF"> Facebook</font></span>
@@ -413,7 +441,7 @@ function FP_getObjectByID(id,o) {//v1.0
                       </tr>
 	                  <tr>
 	                    <td align="left" height="1" width="22"><span style="vertical-align: medium"> <font face="微軟正黑體">
-	                      <input type="checkbox" name="check_msn" value="1" id="check_msn">
+	                      <input type="checkbox" name="msn_c" id="check_msn" <?php if($check['msn_c'] == "on") { echo "checked"; }?>>
 	                      </font></span>
 	                    </td>
 	                    <td align="left" height="1" width="93">
@@ -430,7 +458,7 @@ function FP_getObjectByID(id,o) {//v1.0
                       </tr>
 	                  <tr>
 	                    <td align="left" width="22"><span style="vertical-align: medium"> <font face="微軟正黑體">
-	                      <input type="checkbox" name="check_twitter" value="ON"></font></span>
+	                      <input type="checkbox" name="twitter_c" <?php if($check['twitter_c'] == "on") { echo "checked"; }?>></font></span>
 	                    </td>
 	                    <td align="left">
 	                    	<font color="#0099FF"><span style="vertical-align: medium"><font face="微軟正黑體" size="2">Twitter</font></span></font>
@@ -448,7 +476,7 @@ function FP_getObjectByID(id,o) {//v1.0
 	                  <tr>
 	                    <td align="left" width="22">
 	                    	<span style="vertical-align: medium"> <font face="微軟正黑體">
-	                      	<input type="checkbox" name="check_plurk" value="ON"></font></span>
+	                      	<input type="checkbox" name="plurk_c" <?php if($check['plurk_c'] == "on") { echo "checked"; }?>></font></span>
 	                    </td>
 	                    <td align="left">
 	                    	<font color="#0099FF"> <span style="vertical-align: medium"><font face="微軟正黑體" size="2">Plurk</font></span></font>
@@ -465,7 +493,7 @@ function FP_getObjectByID(id,o) {//v1.0
 	                  <tr>
 	                    <td align="left" height="1" width="22">
 	                    	<span style="vertical-align: medium"> <font face="微軟正黑體">
-		                    <input type="checkbox" name="check_skype" value="ON"></font></span>
+		                    <input type="checkbox" name="skype_c" <?php if($check['skype_c'] == "on") { echo "checked"; }?>></font></span>
 		                </td>
 	                    <td height="1" align="left">
 	                    	<font color="#0099FF"><span style="vertical-align: medium"><font size="2" face="微軟正黑體">Skype</font></span></font>
@@ -483,7 +511,7 @@ function FP_getObjectByID(id,o) {//v1.0
 	                  <tr>
 	                    <td align="left" width="22">
 	                    	<span style="vertical-align: medium"> <font face="微軟正黑體">
-		                    <input type="checkbox" name="check_phone" value="1" id="check_phone"></font></span>
+		                    <input type="checkbox" name="phone_c" id="check_phone" <?php if($check['phone_c'] == "on") { echo "checked"; }?>></font></span>
 		                </td>
 	                    <td colspan="2" align="left">
 	                    	<font size="2" face="微軟正黑體">手　　機</font>
@@ -497,7 +525,7 @@ function FP_getObjectByID(id,o) {//v1.0
 	                  <tr>
 	                    <td align="left" width="22">
 	                    	<span style="vertical-align: medium"> <font face="微軟正黑體">
-		                    <input type="checkbox" name="check_email" value="1" id="check_email"></font></span>
+		                    <input type="checkbox" name="email_c" id="check_email" <?php if($check['email_c'] == "on") { echo "checked"; }?>></font></span>
 		                </td>
 	                    <td colspan="2" align="left">
 	                    	<span style="vertical-align: medium"> <font size="2" face="微軟正黑體">常用信箱</font></span>
@@ -646,8 +674,8 @@ function FP_getObjectByID(id,o) {//v1.0
                       
 	                  <tr>
 	                    <td align="left" height="0" width="22">
-	                    	<span style="vertical-align: medium"> <font face="微軟正黑體">
-		                    <input type="checkbox" name="check_food" value="1" id="check_food"></font></span>
+	                    	<!--span style="vertical-align: medium"> <font face="微軟正黑體">
+		                    <input type="checkbox" name="check_food" value="1" id="check_food"></font></span-->
 		                </td>
 	                    <td height="0" colspan="2" align="left">
 	                    	<p style="margin-top: 0px; margin-bottom: 0px"><span style="vertical-align: medium"><font size="2" face="微軟正黑體">飲　　食</font></span>
@@ -699,7 +727,7 @@ function FP_getObjectByID(id,o) {//v1.0
                       
 	                  <tr>
 	                    <td align="left" width="22"><span style="vertical-align: medium"> <font face="微軟正黑體">
-	                      	<input type="checkbox" name="check_hometown" value="ON" id="check_hometown"></font></span>
+	                      	<input type="checkbox" name="home_c" id="check_hometown" <?php if($check['home_c'] == "on") { echo "checked"; }?>></font></span>
 	                    </td>
 	                    <td colspan="2" align="left">
 	                    	<span style="vertical-align: medium"> <font size="2" face="微軟正黑體">家　　鄉</font></span>
@@ -789,7 +817,7 @@ function FP_getObjectByID(id,o) {//v1.0
                       
 	                  <tr>
 	                    <td align="left" width="22"><font face="微軟正黑體"><span style="vertical-align: medium">
-	                      	<input type="checkbox" name="check_dorm" value="ON" id="check_dorm"></span>
+	                      	<input type="checkbox" name="dorm_c" id="check_dorm" <?php if($check['dorm_c'] == "on") { echo "checked"; }?>></span>
 	                    </td>
 	                    <td colspan="2" align="left">
 	                    	<span style="vertical-align: medium"> <font size="2" face="微軟正黑體">宿　　舍</font></span>
@@ -836,7 +864,7 @@ function FP_getObjectByID(id,o) {//v1.0
                       
 	                  <tr>
 	                    <td align="left" width="22"><span style="vertical-align: medium"><font face="微軟正黑體">
-	                      	<input type="checkbox" name="check_address0" value="1"></font></span>
+	                      	<input type="checkbox" name="outAddr_c" <?php if($check['outAddr_c'] == "on") { echo "checked"; }?>></font></span>
 	                    </td>
 	                    <td colspan="2" align="left">
 	                    	<span style="vertical-align: medium"> <font face="微軟正黑體" size="2">校外住址</font></span>
@@ -848,7 +876,7 @@ function FP_getObjectByID(id,o) {//v1.0
                       
 	                  <tr>
 	                    <td align="left" width="22"><span style="vertical-align: medium"> <font face="微軟正黑體">
-	                      	<input type="checkbox" name="check_transport" value="1"></font></span>
+	                      	<input type="checkbox" name="car_c" <?php if($check['car_c'] == "on") { echo "checked"; }?>></font></span>
 	                    </td>
 	                    <td colspan="2" align="left">
 	                    	<span style="vertical-align: medium"><font size="2" face="微軟正黑體">交通工具</font></span>
@@ -872,7 +900,7 @@ function FP_getObjectByID(id,o) {//v1.0
                       
 	                  <tr>
 	                    <td align="left" width="22"><span style="vertical-align: medium"><font face="微軟正黑體">
-	                      	<input type="checkbox" name="check_photo" value="1" id="check_photo"></font></span>
+	                      	<input type="checkbox" name="profile_pic_c" id="profile_pic_c" <?php if($check['profile_pic_c'] == "on") { echo "checked"; }?>></font></span>
 	                    </td>
 	                    <td colspan="2" align="left">
 	                    	<font size="2" face="微軟正黑體"> 個人圖像</font>
