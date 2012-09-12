@@ -162,7 +162,7 @@ else if($_SESSION['record'] == 'upload'){
 					list($txt, $ext) = explode(".", $name);
 					if(in_array($ext,$valid_formats))
 					{
-					if($size<(300*210))
+					if($size<(1024*1024))
 						{
 							$actual_image_name = time().substr(str_replace(" ", "_", $txt), 5).".".$ext;
 							$tmp = $_FILES['photoimg']['tmp_name'];
