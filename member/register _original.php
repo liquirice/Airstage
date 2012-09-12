@@ -42,7 +42,7 @@ $f.dom.ready(function() {
 		  },
 		  psw2:{
 			  required:1,compareTo:"psw",
-		  }
+		  },
 	  },
 	  messages:{
 		  stu_id:{
@@ -73,10 +73,29 @@ $f.dom.ready(function() {
   });
 });
 </script>
+<script type="text/javascript" language="javascript">
+(function(){
+	var reloadImg = function(dImg) {
+		var sOldUrl = dImg.src;
+		var sNewUrl = sOldUrl + "?rnd=" + Math.random();
+		dImg.src = sNewUrl;
+	};
+
+	var dReloadLink = document.getElementById("reload-img");
+
+	var dImg = document.getElementById("captchaimg");
+
+	dReloadLink.onclick = function(e) {
+		reloadImg(dImg);
+		if(e) e.preventDefault();
+		return false;
+	};
+})();
+</script>
 </head>
 <body>
-<div style="height:350; width:330; background-color:#FFFFFF"><form method="post" action="new.php" id="form">
-<table align="left" width="330" height="350" style="font-size:14px; font-weight:bold; background-repeat:no-repeat" background="img/bgreg.png">
+<div style="height:400; width:330; background-color:#FFFFFF"><form method="post" action="new.php" id="form">
+<table align="left" width="330" height="400" style="font-size:14px; font-weight:bold; background-repeat:no-repeat" background="img/bgreg.png">
 	<tr>
     	<td height="50">
         </td>
@@ -109,6 +128,17 @@ $f.dom.ready(function() {
     	<td align="right">確認密碼</td>
         <td><input type="password" name="psw2" id="psw2" value="" /></td>
     </tr>
+	<tr>
+		<td align="right">驗證碼</td>
+		<td>
+			<img src="captcha.php" id="captchaimg" />
+			( <a href="#" id="reload-img">重新產生</a> ) 
+		</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td><input type="text" name="captcha" id="captcha">
+	</tr>
     <tr>
     	<td colspan="2" align="center"><input type="submit" value="送出" name="submit" /></td>
     </tr>
