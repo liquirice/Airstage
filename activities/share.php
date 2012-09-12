@@ -65,7 +65,7 @@ $(document).ready(function() {
     $('#form').validate({
 		success: 'valid',
 		rules:{
-			type:{required:true},
+			type:{valid:true},
 			title:{required:true},
 			description:{required:true},
 			name:{required:true},
@@ -77,9 +77,12 @@ $(document).ready(function() {
 		},
 		errorPlacement: function(error, element) { //指定错误信息位置 
 			error.insertAfter(element);
-		}, 
+		},
 	});
 });
+$.validator.addMethod("valid", function(type, element) {
+        return (this.optional(element) || type != 'null')
+    }, "請選擇活動分類");
 </script>
 </head>
 
@@ -212,12 +215,11 @@ else if($_SESSION['record'] == 'share'){
     	<td colspan="2" class="type" width="100"><img src="jpg/cub.png" />活動分類</td>
 		<td width="407" align="left">
         <select name="type" id="type">
-			<optgroup label="====請選擇====">
-        		<option value="clubs">社團組織</option>
-            	<option value="departments">校內系所</option>
-            	<option value="authorities">校方機構</option>
-            	<option value="concerts">藝文音樂</option>
-			</optgroup>
+			<option selected="selected" value="null">====請選擇====</option>
+        	<option value="clubs">社團組織</option>
+            <option value="departments">校內系所</option>
+            <option value="authorities">校方機構</option>
+            <option value="concerts">藝文音樂</option>
         </select>
     	</td>
     </tr>
