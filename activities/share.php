@@ -122,7 +122,8 @@ if($_SESSION['record'] === 'submit'){
 				
 			}
 			else{
-				$_SESSION['rnotemp'] = mysqli_num_rows($last) + 1;
+				$lastrno = mysqli_fetch_array($last);
+				$_SESSION['rnotemp'] = $lastrno['rno'];
 				header("location:./share.php?action=poster");
 			}
 		}
