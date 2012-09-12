@@ -1,22 +1,64 @@
-<?php session_start(); 
-if(isset($_SESSION['name']) == false){
-	$_SESSION['name'] = "";
-}
+<?php
+	// Last Modified Day : 2012.09.12
+	require_once( "../setSession.php" );
+	
+	if( !isset($_SESSION['stu_id']) || !isset($_SESSION['name']) ) {
+		echo '<script type="text/javascript">alert("請先登入唷～"); location.href="../index2.htm"</script>';
+	} else {
+		require_once( "../connectVar.php" );
+		
+		// Upadte the user info.
+		if( isset($_POST['submit']) ) {
+			// Basic info.
+			$gender = mysqli_real_escape_string( $conn, trim($_POST['gender']) );
+			$department = mysqli_real_escape_string( $conn, trim($_POST['department']) );
+			$grade = mysqli_real_escape_string( $conn, trim($_POST['grade']) );
+			$facebook = mysqli_real_escape_string( $conn, trim($_POST['facebook']) );
+			
+			// Common info.
+			$msn = mysqli_real_escape_string( $conn, trim($_POST['msn']) );
+			$twitter = mysqli_real_escape_string( $conn, trim($_POST['twitter']) );
+			$plurk = mysqli_real_escape_string( $conn, trim($_POST['plurk']) );
+			$skype = mysqli_real_escape_string( $conn, trim($_POST['skype']) );
+			$phone = mysqli_real_escape_string( $conn, trim($_POST['phone']) );
+			$email = mysqli_real_escape_string( $conn, trim($_POST['email']) ); 
+			$food = mysqli_real_escape_string( $conn, trim($_POST['food']) );
+			$home = mysqli_real_escape_string( $conn, trim($_POST['home']) );
+			$id = mysqli_real_escape_string( $conn, trim($_POST['id']) );
+			$dorm = mysqli_real_escape_string( $conn, trim($_POST['dorm']) );
+			$room = mysqli_real_escape_string( $conn, trim($_POST['room']) );
+			$outAddr = mysqli_real_escape_string( $conn, trim($_POST['outAddr']) );
+			$car = mysqli_real_escape_string( $conn, trim($_POST['car']) );
+			// TODO : Profile Pic.
+		}
+		
+		$stu_id = $_SESSION['stu_id'];
+		$query = "SELECT * FROM Member INNER JOIN member_Info Using(stu_id) WHERE Member.stu_id = '$stu_id'";
+		$result = mysqli_query( $conn, $query );
+		
+		if( mysqli_num_rows($result) == 0 ) {
+			echo '<script type="text/javascript">alert("查無此使用者，請重新登入"); location.href="../index2.htm"</script>';
+		} else {
+			$row = mysqli_fetch_array( $result );	
+		}
+	}
 ?>
-<html><head>
 
-<link href="http://www.airstage.com.tw/nsysu/airs/tm2.ico" rel="shortcut icon"/>
+<!DOCTYPE HTML>
+<html>
+<head>
+<link href="tm2.ico" rel="shortcut icon"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Language" content="zh-tw">
 <title>│Airstage 西灣人│會員中心：修改個人資料</title>
 <style fprolloverstyle>
-A:hover {text-decoration: underline; font-weight: bold}
-a{text-decoration:none;}
+	A:hover {text-decoration: underline; font-weight: bold}
+	a{text-decoration:none;}
 </style>
 <script language="JavaScript" fptype="dynamicanimation">
 <!--
-function dynAnimation() {}
-function clickSwapImg() {}
+	function dynAnimation() {}
+	function clickSwapImg() {}
 //-->
 </script>
 <script language="javascript" type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -46,37 +88,37 @@ function clickSwapImg() {}
 <script language="JavaScript">
 <!--
 function FP_changeProp() {//v1.0
- var args=arguments,d=document,i,j,id=args[0],o=FP_getObjectByID(id),s,ao,v,x;
- d.$cpe=new Array(); if(o) for(i=2; i<args.length; i+=2) { v=args[i+1]; s="o"; 
- ao=args[i].split("."); for(j=0; j<ao.length; j++) { s+="."+ao[j]; if(null==eval(s)) { 
-  s=null; break; } } x=new Object; x.o=o; x.n=new Array(); x.v=new Array();
- x.n[x.n.length]=s; eval("x.v[x.v.length]="+s); d.$cpe[d.$cpe.length]=x;
- if(s) eval(s+"=v"); }
+	 var args=arguments,d=document,i,j,id=args[0],o=FP_getObjectByID(id),s,ao,v,x;
+	 d.$cpe=new Array(); if(o) for(i=2; i<args.length; i+=2) { v=args[i+1]; s="o"; 
+	 ao=args[i].split("."); for(j=0; j<ao.length; j++) { s+="."+ao[j]; if(null==eval(s)) { 
+	  s=null; break; } } x=new Object; x.o=o; x.n=new Array(); x.v=new Array();
+	 x.n[x.n.length]=s; eval("x.v[x.v.length]="+s); d.$cpe[d.$cpe.length]=x;
+	 if(s) eval(s+"=v"); }
 }
 
 function FP_getObjectByID(id,o) {//v1.0
- var c,el,els,f,m,n; if(!o)o=document; if(o.getElementById) el=o.getElementById(id);
- else if(o.layers) c=o.layers; else if(o.all) el=o.all[id]; if(el) return el;
- if(o.id==id || o.name==id) return o; if(o.childNodes) c=o.childNodes; if(c)
- for(n=0; n<c.length; n++) { el=FP_getObjectByID(id,c[n]); if(el) return el; }
- f=o.forms; if(f) for(n=0; n<f.length; n++) { els=f[n].elements;
- for(m=0; m<els.length; m++){ el=FP_getObjectByID(id,els[n]); if(el) return el; } }
- return null;
+	 var c,el,els,f,m,n; if(!o)o=document; if(o.getElementById) el=o.getElementById(id);
+	 else if(o.layers) c=o.layers; else if(o.all) el=o.all[id]; if(el) return el;
+	 if(o.id==id || o.name==id) return o; if(o.childNodes) c=o.childNodes; if(c)
+	 for(n=0; n<c.length; n++) { el=FP_getObjectByID(id,c[n]); if(el) return el; }
+	 f=o.forms; if(f) for(n=0; n<f.length; n++) { els=f[n].elements;
+	 for(m=0; m<els.length; m++){ el=FP_getObjectByID(id,els[n]); if(el) return el; } }
+	 return null;
 }
 // -->
 </script>
 <style type="text/css">
-body,td,th {
-	font-family: "微軟正黑體";
-}
-body {
-	background-image: url(../jpg/background.png);
-	background-repeat: repeat-x;
-	background-color: #F2F2F2;
-}
-.d {
-	font-size: 13px;
-}
+	body,td,th {
+		font-family: "微軟正黑體";
+	}
+	body {
+		background-image: url(../jpg/background.png);
+		background-repeat: repeat-x;
+		background-color: #F2F2F2;
+	}
+	.d {
+		font-size: 13px;
+	}
 </style>
 </head>
 
@@ -90,20 +132,20 @@ body {
 			<td height="75" background="../jpg/topbar002.png" width="700" valign="top">
   			
 			<font color="#FFFFFF">
-      <a onMouseOver="var img=document['fpAnimswapImgFP9'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP9'].src=document['fpAnimswapImgFP9'].imgRolln" target="_parent" href="http://www.airstage.com.tw/nsysu/airs/index.htm"><img border="0" src="../jpg/cal_bot001.png" width="89" height="75" id="fpAnimswapImgFP9" name="fpAnimswapImgFP9" dynamicanimation="fpAnimswapImgFP9" lowsrc="../jpg/cal_bot002.png"></a></font></a><font color="#FFFFFF"><img border="0" src="../jpg/topbar002.png" width="20" height="75"><a href="http://www.airstage.com.tw/nsysu/airs/page/airstab/index.htm"><img border="0" src="../jpg/air_bot002.png" width="89" height="75"></a></font></td>
+      <a onMouseOver="var img=document['fpAnimswapImgFP9'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP9'].src=document['fpAnimswapImgFP9'].imgRolln" target="_parent" href="../index.php"><img border="0" src="../jpg/cal_bot001.png" width="89" height="75" id="fpAnimswapImgFP9" name="fpAnimswapImgFP9" dynamicanimation="fpAnimswapImgFP9" lowsrc="../jpg/cal_bot002.png"></a></font></a><font color="#FFFFFF"><img border="0" src="../jpg/topbar002.png" width="20" height="75"><a href="../page/airstab/index.htm"><img border="0" src="../jpg/air_bot002.png" width="89" height="75"></a></font></td>
 			<td background="../jpg/topbar003.png" width="124" valign="middle"><span style="margin-top: 0; margin-bottom: 0">
-			  <?php
-				if($_SESSION['name'] == ""){
-            	echo '<a LANGUAGE="VBScript" TARGET="screen" onClick="screen.location.href =\'main.htm\'" href="../member/login.php"  style="border:0 none; text-decoration:none; font-weight:700" id="login" rel="shadowbox; width=330; height=350" title=\'會員登入\'>
-			<font color="#000000" size="2">會員登入</font></a>';
-				}
-				else if($_SESSION['name'] != ""){
-					echo '<a href="correct.php" style="border:0; color:#000000; font-size:14px"><b>'.$_SESSION['name'].'</b></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="../member/logout.php" style="border:0; color:#000000; font-size:14px"><b>登出</b></a>';
+			<?php
+				// Last Modified Day : 2012.09.11
+			 	// Check whether the member is login or not.
+				if( !isset($_SESSION['name']) || !isset($_SESSION['stu_id']) ){
+					echo '<script type="text/javascript">alert("請先登入唷～"); location.href="../index2.htm"</script>';
+				} else {
+					echo '<a href="revises.php" style="border:0; color:#000000; font-size:14px"><b>'.$_SESSION['name'].
+					'</b></a>&nbsp;&nbsp;|&nbsp;
+					<a href="../member/logout.php" style="border:0; color:#000000; font-size:14px"><b>登出</b></a>';
 				}
 			?>
 			</span></td>
-			
-           
 		</tr>
 	</table>
 	<div align="center">
@@ -119,221 +161,329 @@ body {
 	              <p align="center"> <font face="微軟正黑體"> <span style="vertical-align: medium">&nbsp;</span></p>
 	              <table border="0" width="65%" height="60">
 	                <tr>
-	                  <td height="48" width="4%"><p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium"> <img src="jpg/gray.jpg" alt="" width="6" height="50" border="0"></span></td>
+	                  <td height="48" width="4%">
+	                  	<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px"> 
+	                  	<span style="vertical-align: medium">
+	                  	<img src="jpg/gray.jpg" alt="" width="6" height="50" border="0"></span>
+	                  </td>
 	                  <td height="48" width="8%"><p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium">&nbsp;</span></td>
-	                  <td height="48" width="81%"><p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium"><b> <font size="2">修改個人資料</font></b></span></p>
-	                    <p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px"> <font color="#C0C0C0" size="2"> <span style="text-decoration: none; vertical-align: medium"> 偏好設定</span></font></td>
-	                  </tr>
+	                  <td height="48" width="81%">
+	                  	<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium"><b> <font size="2">修改個人資料</font></b></span></p>
+	                    <p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px"> <font color="#C0C0C0" size="2"> 
+	                    <span style="text-decoration: none; vertical-align: medium"> 偏好設定</span></font>
+	                  </td>
+	                </tr>
 	                <tr>
 	                  <td colspan="3" height="6"><p style="margin-top: 0px; margin-bottom: 0px"> <font color="#FFFFFF" style="font-size: 1pt; vertical-align: medium"> 1</font></td>
-	                  </tr>
-	                </table>
+	                </tr>
+	               </table>
 	              </div></td>
+	            
 	            <td align="center" valign="top" width="70%"><p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">&nbsp;</p>
-	              <form method="post" action="http://www.airstage.com.tw/nsysu/airs/page/airstab/app/accounts/revises_act.php">
+	            
+	            <!-- Start of the form -->
+	            <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+	              
 	              <table border="0" width="645" cellspacing="1" height="324">
 	                  <tr>
 	                    <td align="center" colspan="4" height="28" valign="top"><p align="left" style="margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium"> <font face="微軟正黑體" size="5" color="#1F1F1F" style="font-weight: 700"> ♠</font><font face="微軟正黑體"><span class="Apple-converted-space">&nbsp;</span></font><font face="微軟正黑體" size="4" color="#333333"><b>修改個人資料</b></font></span></p>
 	                      <p align="left" style="margin-top: 0px; margin-bottom: 0px"> <font face="微軟正黑體"> <span style="vertical-align: medium">&nbsp;</span></td>
                       </tr>
 	                  <tr>
-	                    <td align="center" colspan="4" height="6"><p style="margin-top: 0px; margin-bottom: 0px"> <font face="微軟正黑體"> <span style="vertical-align: medium"> <font size="2"> <img src="http://www.airstage.com.tw/nsysu/airs/page/airstab/app/accounts/jpg/line.jpg" alt="" width="630" height="1" border="0" align="left"></font></span></p>
-	                      <p style="margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium">&nbsp;</span></p>
-	                      <p align="left" style="margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium"> <font size="2"><b>（一）基本資料　</b><span class="Apple-converted-space">&nbsp;</span><font color="#333333">請</font><span class="Apple-converted-space">&nbsp;</span><font color="#FF0000">勾選</font><span class="Apple-converted-space">&nbsp;</span><font color="#333333">欲讓人看到的項目</font></font></span></p>
-	                      <p align="left" style="margin-top: 0px; margin-bottom: 0px">&nbsp;</p></td>
+	                    <td align="center" colspan="4" height="6">
+	                    	<p style="margin-top: 0px; margin-bottom: 0px"> <font face="微軟正黑體"> 
+		                    	<span style="vertical-align: medium"> <font size="2"> 
+		                    	<img src="jpg/line.jpg" alt="" width="630" height="1" border="0" align="left"></font></span>
+	                    	</p>
+	                    	<p style="margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium">&nbsp;</span></p>
+	                    	<p align="left" style="margin-top: 0px; margin-bottom: 0px"> 
+	                    	<span style="vertical-align: medium"><font size="2"><b>（一）基本資料　</b><span class="Apple-converted-space">&nbsp;</span>
+	                    	<font color="#333333">請</font><span class="Apple-converted-space">&nbsp;</span>
+	                    	<font color="#FF0000">勾選</font><span class="Apple-converted-space">&nbsp;</span><font color="#333333">欲讓人看到的項目</font></font></span></p>
+	                    	<p align="left" style="margin-top: 0px; margin-bottom: 0px">&nbsp;</p>
+	                    </td>
                       </tr>
+                      
 	                  <tr>
-	                    <td align="left" height="14" width="22"><span style="vertical-align: medium"> <font face="微軟正黑體">
-	                      <input type="checkbox" name="check_student_id" value="1" checked>
-	                      </font></span></td>
-	                    <td height="14" colspan="2" align="left"><p align="left" style="margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium"> <font size="2" face="微軟正黑體">學　　號</font></span></td>
-	                    <td align="left" height="14" width="502"><p style="margin-top: 0px; margin-bottom: 0px"></td>
+	                    <td align="left" height="14" width="22"><span style="vertical-align: medium"> 
+	                    	<font face="微軟正黑體">
+		                    <input type="checkbox" name="check_student_id" value="1" checked></font></span>
+		                </td>
+	                    <td height="14" colspan="2" align="left">
+	                    	<p align="left" style="margin-top: 0px; margin-bottom: 0px" > 
+	                    	<span style="vertical-align: medium"><font size="2" face="微軟正黑體">學　　號 </font></span>
+	                    </td>
+	                    <td align="left" height="14" width="502">
+	                    	<p style="margin-top: 0px; margin-bottom: 0px"><font size="2" face="微軟正黑體"><?php echo $row['stu_id'];?></font></p>
+	                    </td>
                       </tr>
+                      
 	                  <tr>
 	                    <td align="left" height="13" width="22"><span style="vertical-align: medium"> <font face="微軟正黑體">
-	                      <input type="checkbox" name="check_name" value="1" checked id="check_name">
-	                      </font></span></td>
-	                    <td height="13" colspan="2" align="left"><p align="left" style="margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium"> <font size="2" face="微軟正黑體">姓　　名</font></span></td>
-	                    <td align="left" height="13" width="502"><p style="margin-top: 0px; margin-bottom: 0px"></td>
+	                      <input type="checkbox" name="check_name" value="1" checked id="check_name"></font></span>
+	                    </td>
+	                    <td height="13" colspan="2" align="left">
+	                    	<p align="left" style="margin-top: 0px; margin-bottom: 0px"> 
+	                    	<span style="vertical-align: medium"> <font size="2" face="微軟正黑體">姓　　名 </font></span>
+	                    </td>
+	                    <td align="left" height="13" width="502">	
+	                    	<p style="margin-top: 0px; margin-bottom: 0px"><font size="2" face="微軟正黑體"><?php echo $row['name'];?></font></p>
+	                    </td>
                       </tr>
+                      
 	                  <tr>
-	                    <td align="left" height="7" width="22"></td>
-	                    <td height="7" colspan="2" align="left"><p style="margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium"> <font size="2" face="微軟正黑體">性　　別</font></span></td>
+	                    <td align="left" height="13" width="22"><span style="vertical-align: medium"> <font face="微軟正黑體">
+	                      <input type="checkbox" name="check_name" value="1" id="check_gender"></font></span>
+	                    </td>
+	                    <td height="7" colspan="2" align="left">
+	                    	<p style="margin-top: 0px; margin-bottom: 0px"> 
+	                    	<span style="vertical-align: medium"><font size="2" face="微軟正黑體">性　　別</font></span>
+	                    </td>
 	                    <td align="left" height="7" width="502"><p style="margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium"> <font face="微軟正黑體">
-	                      <input type="radio" value="男" name="gender" style="text-shadow: rgba(50, 50, 50, '0.292969) 2px 2px 3px'" checked>
+	                      <input type="radio" value="男" name="gender" style="text-shadow: rgba(50, 50, 50, '0.292969) 2px 2px 3px'" <?php if($row['gender'] == "男") { echo "checked"; } ?>>
 	                      <span class="Apple-converted-space">&nbsp;</span><font size="2">男&nbsp;&nbsp;</font><span class="Apple-converted-space">&nbsp;</span>
-	                      <input type="radio" value="V" name="gender" style="text-shadow: rgba(50, 50, 50, '0.292969) 2px 2px 3px'">
+	                      <input type="radio" value="女" name="gender" style="text-shadow: rgba(50, 50, 50, '0.292969) 2px 2px 3px'" <?php if($row['gender'] == "女") { echo "checked"; } ?>>
 	                      <span class="Apple-converted-space">&nbsp;</span><font size="2">女</font></font></span></td>
                       </tr>
+                      
 	                  <tr>
-	                    <td align="left" height="6" width="22"></td>
+	                    <td align="left" height="13" width="22"><span style="vertical-align: medium"> <font face="微軟正黑體">
+	                      <input type="checkbox" name="check_name" value="1" id="check_grade"></font></span>
+	                    </td>
 	                    <td height="6" colspan="2" align="left"><span style="vertical-align: medium"> <font size="2" face="微軟正黑體">系　　級</font></span></td>
-	                    <td align="left" height="6" width="502"><font face="微軟正黑體">
+	                    <td align="left" height="6" width="502"><font face="微軟正黑體">	        
 	                      <select name="department" size="1">
-  <option value="不知啥系">哪個科系呢？</option>
-  <option disabled>【 　文學院 　】</option>
-  <option value="中文系">中文系</option>
-  <option value="外文系">外文系</option>
-  <option value="劇藝系">劇藝系</option>
-  <option value="音樂系">音樂系</option>
-  <option value="文院研究所">文院碩博士</option>
-  <option value="文院教師與同仁">文院教師與同仁</option>
-  <option disabled>【 　社科院 　】</option>
-  <option value="政經系">政經系</option>
-  <option value="社會系">社會系</option>
-  <option value="社科院研究所">社科院碩博士</option>
-  <option value="社科院教師與同仁">社科院教師與同仁</option>
-  <option disabled>【 　理學院 　】</option>
-  <option value="應數系">應數系</option>
-  <option value="化學系">化學系</option>
-  <option value="物理系">物理系</option>
-  <option value="生科系">生科系</option>
-  <option value="理院研究所">理院碩博士</option>
-  <option value="理院教師與同仁">理院教師與同仁</option>
-  <option disabled>【 　工學院 　】</option>
-  <option value="電機系">電機系</option>
-  <option value="機電系">機電系</option>
-  <option value="資工系">資工系</option>
-  <option value="材光系">材光系</option>
-  <option value="工學院研究所">工學院碩博士</option>
-  <option value="工院教師與同仁">工院教師與同仁</option>
-  <option disabled>【 　管學院 　】</option>
-  <option value="企管系">企管系</option>
-  <option value="財管系">財管系</option>
-  <option value="資管系">資管系</option>
-  <option value="管學院研究所">管學院碩博士</option>
-  <option value="管院教師與同仁">管院教師與同仁</option>
-  <option disabled>【 　海科院 　】</option>
-  <option value="海資系">海資系</option>
-  <option value="海工系">海工系</option>
-  <option value="海科院研究所">海科院碩博士</option>
-  <option value="海院教師與同仁">海院教師與同仁</option>
-  <option disabled>【&nbsp;&nbsp;校方機構&nbsp;&nbsp;】</option>
-  <option value="行政處室">行政處室</option>
-  <option value="藝文中心">藝文中心</option>
-  <option value="圖書資訊處">圖書資訊處</option>
-  <option value="產學營運中心">產學營運中心</option>
-  <option value="其他單位">其他單位</option>
-</select>
-<span class="Apple-converted-space">&nbsp;</span>
-	                      <select size="1" name="grade">
-	                        <span class="Apple-converted-space"></span>
+							  <option value="<?php if($row['department'] == "") { echo '不知啥系">哪個科系呢？'; } else { echo $row['department'].'">'.$row['department']; } ?></option>
+							  <option disabled>【 　文學院 　】</option>
+							  <option value="中文系">中文系</option>
+							  <option value="外文系">外文系</option>
+							  <option value="劇藝系">劇藝系</option>
+							  <option value="音樂系">音樂系</option>
+							  <option value="文院研究所">文院碩博士</option>
+							  <option value="文院教師與同仁">文院教師與同仁</option>
+							  <option disabled>【 　社科院 　】</option>
+							  <option value="政經系">政經系</option>
+							  <option value="社會系">社會系</option>
+							  <option value="社科院研究所">社科院碩博士</option>
+							  <option value="社科院教師與同仁">社科院教師與同仁</option>
+							  <option disabled>【 　理學院 　】</option>
+							  <option value="應數系">應數系</option>
+							  <option value="化學系">化學系</option>
+							  <option value="物理系">物理系</option>
+							  <option value="生科系">生科系</option>
+							  <option value="理院研究所">理院碩博士</option>
+							  <option value="理院教師與同仁">理院教師與同仁</option>
+							  <option disabled>【 　工學院 　】</option>
+							  <option value="電機系">電機系</option>
+							  <option value="機電系">機電系</option>
+							  <option value="資工系">資工系</option>
+							  <option value="材光系">材光系</option>
+							  <option value="工學院研究所">工學院碩博士</option>
+							  <option value="工院教師與同仁">工院教師與同仁</option>
+							  <option disabled>【 　管學院 　】</option>
+							  <option value="企管系">企管系</option>
+							  <option value="財管系">財管系</option>
+							  <option value="資管系">資管系</option>
+							  <option value="管學院研究所">管學院碩博士</option>
+							  <option value="管院教師與同仁">管院教師與同仁</option>
+							  <option disabled>【 　海科院 　】</option>
+							  <option value="海資系">海資系</option>
+							  <option value="海工系">海工系</option>
+							  <option value="海科院研究所">海科院碩博士</option>
+							  <option value="海院教師與同仁">海院教師與同仁</option>
+							  <option disabled>【&nbsp;&nbsp;校方機構&nbsp;&nbsp;】</option>
+							  <option value="行政處室">行政處室</option>
+							  <option value="藝文中心">藝文中心</option>
+							  <option value="圖書資訊處">圖書資訊處</option>
+							  <option value="產學營運中心">產學營運中心</option>
+							  <option value="其他單位">其他單位</option>
+						</select>
+						<span class="Apple-converted-space">&nbsp;</span>
+	                    <select size="1" name="grade">	                    	
+	                      	<span class="Apple-converted-space"></span>
 	                        <option selected>第幾級呢？</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="105">105</option>
+	                        <option value="105" <?php if($row['grade'] == '105') { echo "selected"; }?>>105</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="104">104</option>
+	                        <option value="104" <?php if($row['grade'] == '104') { echo "selected"; }?>>104</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="102">102</option>
+	                        <option value="103" <?php if($row['grade'] == '103') { echo "selected"; }?>>103</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="101">101</option>
+	                        <option value="102" <?php if($row['grade'] == '102') { echo "selected"; }?>>102</option>
 	                        <span class="Apple-converted-space"></span>
-                          </select>
+	                        <option value="101" <?php if($row['grade'] == '101') { echo "selected"; }?>>101</option>
+	                        <span class="Apple-converted-space"></span>
+	                      </select>
 	                      <span class="Apple-converted-space">&nbsp;</span></font></td>
                       </tr>
 	                  <tr>
-	                    <td align="left" height="13" width="22"><span style="vertical-align: medium"> <font face="微軟正黑體">
-	                      <input type="checkbox" name="check_facebook" value="1" checked id="check_facebook">
-	                      </font></span></td>
-	                    <td align="left" height="13" width="89"><p style="margin-top: 0px; margin-bottom: 0px"><span style="vertical-align: medium"><font size="2" face="微軟正黑體" color="#0099FF"> 
-	                      Facebook</font></span></td>
-	                    <td align="right" width="19"><span style="margin-top: 0px; margin-bottom: 0px"><font face="微軟正黑體"><img src="http://www.pccillin.com.tw/images/fb.gif" alt=""></font></span></td>
-	                    <td align="left" height="13" width="502"><p style="margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium"> <font face="微軟正黑體" color="#C0C0C0">
-	                      <input name="T3" size="35" style="float: left; border: 1px solid rgb(192, 192, 192)">
-	                      </font></span></td>
+	                    <td align="left" height="13" width="22"><span style="vertical-align: medium"><font face="微軟正黑體">
+	                      	<input type="checkbox" name="check_facebook" value="1" checked id="check_facebook"></font></span>
+	                    </td>
+	                    <td align="left" height="13" width="89">
+	                    	<p style="margin-top: 0px; margin-bottom: 0px"><span style="vertical-align: medium"><font size="2" face="微軟正黑體" color="#0099FF"> Facebook</font></span>
+	                    </td>
+	                    <td align="right" width="19">
+	                    	<span style="margin-top: 0px; margin-bottom: 0px"><font face="微軟正黑體"><img src="http://www.pccillin.com.tw/images/fb.gif" alt=""></font></span>
+	                    </td>
+	                    <td align="left" height="13" width="502">
+	                    	<p style="margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium"> <font face="微軟正黑體" color="#C0C0C0">
+	                    	<input name="facebook" size="50" style="float: left; border: 1px solid rgb(192, 192, 192)" value = <?php echo $row['facebook'];?>></font></span>
+	                    </td>
                       </tr>
+                      
+                      <!-- Not good to write here -->
+	                  <!--tr>
+	                    <td align="left" height="13" width="22"></td>
+	                    <td height="13" colspan="2" align="left">
+	                    	<p style="margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium"> <font face="微軟正黑體" size="2" color="#FF0000"> 新的密碼</font></span>
+	                    </td>
+	                    <td align="left" height="13" width="502">
+	                    	<p style="margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium"> <font face="微軟正黑體" color="#C0C0C0">
+	                    	<input name="T4" size="35" style="float: left; color: rgb(192, 192, 192); border: 1px solid rgb(192, 192, 192)">
+	                    	</font></span>
+	                    </td>
+                      </tr>
+                      
 	                  <tr>
 	                    <td align="left" height="13" width="22"></td>
-	                    <td height="13" colspan="2" align="left"><p style="margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium"> <font face="微軟正黑體" size="2" color="#FF0000"> 新的密碼</font></span></td>
-	                    <td align="left" height="13" width="502"><p style="margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium"> <font face="微軟正黑體" color="#C0C0C0">
-	                      <input name="T4" size="35" style="float: left; color: rgb(192, 192, 192); border: 1px solid rgb(192, 192, 192)">
-	                      </font></span></td>
-                      </tr>
-	                  <tr>
-	                    <td align="left" height="13" width="22"></td>
-	                    <td height="13" colspan="2" align="left"><p style="margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium"> <font size="2" face="微軟正黑體" color="#FF0000"> 密碼確認</font></span></td>
-	                    <td align="left" height="13" width="502"><p style="margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium"> <font face="微軟正黑體" color="#C0C0C0">
-	                      <input name="T5" size="35" style="float: left; color: rgb(192, 192, 192); border: 1px solid rgb(192, 192, 192)">
-	                      </font></span></td>
-                      </tr>
+	                    <td height="13" colspan="2" align="left">
+	                    	<p style="margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium"> <font size="2" face="微軟正黑體" color="#FF0000"> 密碼確認</font></span>
+	                    </td>
+	                    <td align="left" height="13" width="502">
+	                    	<p style="margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium"> <font face="微軟正黑體" color="#C0C0C0">
+	                    	<input name="T5" size="35" style="float: left; color: rgb(192, 192, 192); border: 1px solid rgb(192, 192, 192)">
+	                    	</font></span>
+	                    </td>
+                      </tr-->
+                      
 	                  <tr>
 	                    <td align="left" colspan="3" height="13"><p style="margin-top: 0px; margin-bottom: 0px"></td>
 	                    <td align="left" height="13" width="502"><p style="margin-top: 0px; margin-bottom: 0px"></td>
                       </tr>
+                      
 	                  <tr>
-	                    <td align="left" colspan="4" height="42"><p style="margin-top: 0px; margin-bottom: 0px"><span style="vertical-align: medium">&nbsp;</span><span style="vertical-align: medium"><font size="2"><img src="http://www.airstage.com.tw/nsysu/airs/page/airstab/app/accounts/jpg/line.jpg" alt="" width="630" height="1" border="0" align="left"></font></span></p>
-                          <p style="margin-top: 0px; margin-bottom: 0px"></td>
+	                    <td align="left" colspan="4" height="42">
+	                    	<p style="margin-top: 0px; margin-bottom: 0px"><span style="vertical-align: medium">&nbsp;</span>
+	                    	<span style="vertical-align: medium"><font size="2">
+	                    		<img src="http://www.airstage.com.tw/nsysu/airs/page/airstab/app/accounts/jpg/line.jpg" alt="" width="630" height="1" border="0" align="left"></font></span></p>
+	                    	<p style="margin-top: 0px; margin-bottom: 0px">
+                        </td>
                       </tr>
                     </table>
+                    
 	                <table border="0" width="646" cellspacing="1" height="357">
 	                  <tr>
-	                    <td align="left" colspan="5" height="2"><p style="margin-top: 0px; margin-bottom: 0px"> <font face="微軟正黑體"></p>
-	                      <p style="margin-top: 0px; margin-bottom: 0px"><font size="2"><b>（二）常用資料：</b><span class="Apple-converted-space">&nbsp;</span><font color="#333333">會自動記錄，方便以後不用重填</font></font>                          
-	                      <p style="margin-top: 0px; margin-bottom: 0px"></td>
+	                    <td align="left" colspan="5" height="2">
+	                    	<p style="margin-top: 0px; margin-bottom: 0px"><font face="微軟正黑體"></p>
+		                    <p style="margin-top: 0px; margin-bottom: 0px">
+		                    	<font size="2"><b>（二）常用資料：</b><span class="Apple-converted-space">&nbsp;</span><font color="#333333">會自動記錄，方便以後不用重填</font></font>                          
+		                    <p style="margin-top: 0px; margin-bottom: 0px"></td>
                       </tr>
 	                  <tr>
 	                    <td align="left" height="1" width="22"><span style="vertical-align: medium"> <font face="微軟正黑體">
 	                      <input type="checkbox" name="check_msn" value="1" id="check_msn">
-	                      </font></span></td>
-	                    <td align="left" height="1" width="93"><p style="margin-top: 0px; margin-bottom: 0px"> <font color="#0099FF"><span style="vertical-align: medium"><font face="微軟正黑體" size="2">MSN　</font></span></font></td>
-	                    <td align="left" width="17"><span style="margin-top: 0px; margin-bottom: 0px"><font color="#0099FF"><font face="微軟正黑體"><img src="https://encrypted-tbn3.google.com/images?q=tbn:ANd9GcTBZwvwVjMGbhInOthILiljaNLc_AC0AdmBsvlqdC3OLz6RVttG" alt="" width="16" height="16"></font></font></span></td>
-	                    <td align="left" height="1" colspan="2"><span style="vertical-align: medium"> <font face="微軟正黑體" color="#C0C0C0">
-	                      <input name="msn" size="34" style="float: left; color: rgb(192, 192, 192); border: 1px solid rgb(192, 192, 192)">
-	                      </font></span></td>
+	                      </font></span>
+	                    </td>
+	                    <td align="left" height="1" width="93">
+	                    	<p style="margin-top: 0px; margin-bottom: 0px">
+	                    		<font color="#0099FF"><span style="vertical-align: medium"><font face="微軟正黑體" size="2">MSN　</font></span></font>
+	                    	</td>
+	                    <td align="left" width="17">
+	                    	<span style="margin-top: 0px; margin-bottom: 0px"><font color="#0099FF" face="微軟正黑體">
+	                    	<img src="https://encrypted-tbn3.google.com/images?q=tbn:ANd9GcTBZwvwVjMGbhInOthILiljaNLc_AC0AdmBsvlqdC3OLz6RVttG" alt="" width="16" height="16"></font></font></span>
+	                    </td>
+	                    <td align="left" height="1" colspan="2"><span style="vertical-align: medium"><font face="微軟正黑體" color="#C0C0C0">
+	                      	<input name="msn" size="34" style="float: left; color: rgb(0, 0, 0); border: 1px solid rgb(192, 192, 192)" value = "<?php echo $row['msn'];?>"></font></span>
+	                    </td>
                       </tr>
 	                  <tr>
 	                    <td align="left" width="22"><span style="vertical-align: medium"> <font face="微軟正黑體">
-	                      <input type="checkbox" name="check_twitter" value="ON">
-	                      </font></span></td>
-	                    <td align="left"><font color="#0099FF"><span style="vertical-align: medium"><font face="微軟正黑體" size="2">Twitter</font></span></font></td>
-	                    <td align="left"><font color="#0099FF"><font face="微軟正黑體"><img src="https://encrypted-tbn0.google.com/images?q=tbn:ANd9GcRXwLPUkXaduzV_Mna-a74rv4K5w-oirMO4H0hEbjnNMkI9BIbS0A" alt=""></font></font></td>
+	                      <input type="checkbox" name="check_twitter" value="ON"></font></span>
+	                    </td>
+	                    <td align="left">
+	                    	<font color="#0099FF"><span style="vertical-align: medium"><font face="微軟正黑體" size="2">Twitter</font></span></font>
+	                    </td>
+	                    <td align="left">
+	                    	<font color="#0099FF" face="微軟正黑體">
+	                    	<img src="https://encrypted-tbn0.google.com/images?q=tbn:ANd9GcRXwLPUkXaduzV_Mna-a74rv4K5w-oirMO4H0hEbjnNMkI9BIbS0A" alt=""></font></font>
+	                    </td>
+	                    <td align="left" colspan="2">
+	                    	<span style="vertical-align: medium"><font face="微軟正黑體" color="#C0C0C0">
+	                    	<input name="twitter" size="34" style="float: left; color: rgb(0, 0, 0); border: 1px solid rgb(192, 192, 192)" value = "<?php echo $row['twitter'];?>"></font></span>
+	                    </td>
+                      </tr>
+                      
+	                  <tr>
+	                    <td align="left" width="22">
+	                    	<span style="vertical-align: medium"> <font face="微軟正黑體">
+	                      	<input type="checkbox" name="check_plurk" value="ON"></font></span>
+	                    </td>
+	                    <td align="left">
+	                    	<font color="#0099FF"> <span style="vertical-align: medium"><font face="微軟正黑體" size="2">Plurk</font></span></font>
+	                    </td>
+	                    <td align="left">
+	                    	<font color="#0099FF"><span style="vertical-align: medium"><font face="微軟正黑體">
+	                    	<img src="https://encrypted-tbn0.google.com/images?q=tbn:ANd9GcR1JaAOCNgLEWVxxyk8qXiq4otEva94IQbiEAZNeJy7iYP04o7Y" alt=""></font></span></font>
+	                    </td>
 	                    <td align="left" colspan="2"><span style="vertical-align: medium"> <font face="微軟正黑體" color="#C0C0C0">
-	                      <input name="twitter" size="34" style="float: left; color: rgb(192, 192, 192); border: 1px solid rgb(192, 192, 192)">
-	                      </font></span></td>
+	                      	<input name="plurk" size="34" style="float: left; color: rgb(0, 0, 0); border: 1px solid rgb(192, 192, 192)" value = "<?php echo $row['plurk'];?>"></font></span>
+	                    </td>
                       </tr>
+                      
 	                  <tr>
-	                    <td align="left" width="22"><span style="vertical-align: medium"> <font face="微軟正黑體">
-	                      <input type="checkbox" name="check_plurk" value="ON">
-	                      </font></span></td>
-	                    <td align="left"><font color="#0099FF"> <span style="vertical-align: medium"><font face="微軟正黑體" size="2">Plurk</font></span></font></td>
-	                    <td align="left"><font color="#0099FF"><span style="vertical-align: medium"><font face="微軟正黑體"><img src="https://encrypted-tbn0.google.com/images?q=tbn:ANd9GcR1JaAOCNgLEWVxxyk8qXiq4otEva94IQbiEAZNeJy7iYP04o7Y" alt=""></font></span></font></td>
-	                    <td align="left" colspan="2"><span style="vertical-align: medium"> <font face="微軟正黑體" color="#C0C0C0">
-	                      <input name="plurk" size="34" style="float: left; color: rgb(192, 192, 192); border: 1px solid rgb(192, 192, 192)">
-	                      </font></span></td>
+	                    <td align="left" height="1" width="22">
+	                    	<span style="vertical-align: medium"> <font face="微軟正黑體">
+		                    <input type="checkbox" name="check_skype" value="ON"></font></span>
+		                </td>
+	                    <td height="1" align="left">
+	                    	<font color="#0099FF"><span style="vertical-align: medium"><font size="2" face="微軟正黑體">Skype</font></span></font>
+	                    </td>
+	                    <td height="1" align="left">
+	                    	<font color="#0099FF"><font face="微軟正黑體">
+	                    	<img src="https://encrypted-tbn2.google.com/images?q=tbn:ANd9GcTxk19xab9zH7syPeMI7E1uaF5o9CUw0wl0RIIG8zzqH6TyYCPc" alt=""></font></font>
+	                    </td>
+	                    <td align="left" height="1" colspan="2">
+	                    	<span style="vertical-align: medium"> <font face="微軟正黑體" color="#C0C0C0">
+	                    	<input name="skype" size="34" style="float: left; color: rgb(0, 0, 0); border: 1px solid rgb(192, 192, 192)" value = "<?php echo $row['skype'];?>"></font></span>
+	                    </td>
                       </tr>
+                      
 	                  <tr>
-	                    <td align="left" height="1" width="22"><span style="vertical-align: medium"> <font face="微軟正黑體">
-	                      <input type="checkbox" name="check_skype" value="ON">
-	                      </font></span></td>
-	                    <td height="1" align="left"><font color="#0099FF"><span style="vertical-align: medium"><font size="2" face="微軟正黑體">Skype</font></span></font></td>
-	                    <td height="1" align="left"><font color="#0099FF"><font face="微軟正黑體"><img src="https://encrypted-tbn2.google.com/images?q=tbn:ANd9GcTxk19xab9zH7syPeMI7E1uaF5o9CUw0wl0RIIG8zzqH6TyYCPc" alt=""></font></font></td>
-	                    <td align="left" height="1" colspan="2"><span style="vertical-align: medium"> <font face="微軟正黑體" color="#C0C0C0">
-	                      <input name="skype" size="34" style="float: left; color: rgb(192, 192, 192); border: 1px solid rgb(192, 192, 192)">
-	                      </font></span></td>
+	                    <td align="left" width="22">
+	                    	<span style="vertical-align: medium"> <font face="微軟正黑體">
+		                    <input type="checkbox" name="check_phone" value="1" id="check_phone"></font></span>
+		                </td>
+	                    <td colspan="2" align="left">
+	                    	<font size="2" face="微軟正黑體">手　　機</font>
+	                    </td>
+	                    <td align="left" colspan="2">
+	                    	<span style="vertical-align: medium"> <font face="微軟正黑體" color="#C0C0C0">
+	                    	<input name="phone" size="34" style="float: left; color: rgb(0, 0, 0); border: 1px solid rgb(192, 192, 192)" value = "<?php echo $row['phone'];?>"></font></span>
+	                    </td>
                       </tr>
+                      
 	                  <tr>
-	                    <td align="left" width="22"><span style="vertical-align: medium"> <font face="微軟正黑體">
-	                      <input type="checkbox" name="check_phone" value="1" id="check_phone">
-	                      </font></span></td>
-	                    <td colspan="2" align="left"><font size="2" face="微軟正黑體">手　　機</font></td>
-	                    <td align="left" colspan="2"><span style="vertical-align: medium"> <font face="微軟正黑體" color="#C0C0C0">
-	                      <input name="phone" size="34" style="float: left; color: rgb(192, 192, 192); border: 1px solid rgb(192, 192, 192)">
-	                      </font></span></td>
+	                    <td align="left" width="22">
+	                    	<span style="vertical-align: medium"> <font face="微軟正黑體">
+		                    <input type="checkbox" name="check_email" value="1" id="check_email"></font></span>
+		                </td>
+	                    <td colspan="2" align="left">
+	                    	<span style="vertical-align: medium"> <font size="2" face="微軟正黑體">常用信箱</font></span>
+	                    </td>
+	                    <td align="left" colspan="2">
+	                    	<span style="vertical-align: medium"> <font face="微軟正黑體" color="#C0C0C0">
+	                    	<input name="email" size="34" style="float: left; color: rgb(0, 0, 0); border: 1px solid rgb(192, 192, 192)" value = "<?php echo $row['email'];?>"></font></span>
+	                    </td>
                       </tr>
-	                  <tr>
-	                    <td align="left" width="22"><span style="vertical-align: medium"> <font face="微軟正黑體">
-	                      <input type="checkbox" name="check_email" value="1" id="check_email">
-	                      </font></span></td>
-	                    <td colspan="2" align="left"><span style="vertical-align: medium"> <font size="2" face="微軟正黑體">常用信箱</font></span></td>
-	                    <td align="left" colspan="2"><span style="vertical-align: medium"> <font face="微軟正黑體" color="#C0C0C0">
-	                      <input name="email" size="34" style="float: left; color: rgb(192, 192, 192); border: 1px solid rgb(192, 192, 192)">
-	                      </font></span></td>
-                      </tr>
-	                  <tr>
+                      
+	                  <!--tr>
 	                    <td align="left" height="2" width="22"><span style="vertical-align: medium"> <font face="微軟正黑體">
-	                      <input type="checkbox" name="check_clubs" value="1" id="check_clubs">
-	                      </font></span></td>
-	                    <td height="2" colspan="2" align="left"><span style="vertical-align: medium"> <font size="2" face="微軟正黑體">社　　團</font></span></td>
+	                      	<input type="checkbox" name="check_clubs" value="1" id="check_clubs"></font></span>
+	                    </td>
+	                    <td height="2" colspan="2" align="left">
+	                    	<span style="vertical-align: medium"> <font size="2" face="微軟正黑體">社　　團</font></span>
+	                    </td>
 	                    <td align="left" height="2" colspan="2"><font face="微軟正黑體">
 	                      <select size="1" name="club">
 	                        <span class="Apple-converted-space"></span>
@@ -427,7 +577,7 @@ body {
 	                        <span class="Apple-converted-space"></span>
 	                        <option value="美食社">美食社</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="圍棋社">圍棋社</option>
+	                        <option value="圍棋社">圍棋社</option>
 	                        <span class="Apple-converted-space"></span>
 	                        <option value="電影社">電影社</option>
 	                        <span class="Apple-converted-space"></span>
@@ -441,13 +591,17 @@ body {
 	                        <span class="Apple-converted-space"></span>
                           </select>
 	                    </font></td>
-                      </tr>
-	                  <tr>
-	                    <td align="left" height="2" width="22"><span style="vertical-align: medium"> <font face="微軟正黑體">
-	                      <input type="checkbox" name="check_level" value="ON" id="check_level">
-	                      </font></span></td>
-	                    <td height="2" colspan="2" align="left"><span style="vertical-align: medium"> <font size="2" face="微軟正黑體">社團身分</font></span></td>
-	                    <td align="left" height="2" colspan="2"><span style="vertical-align: medium"> <font face="微軟正黑體">
+                      </tr-->
+                      
+	                  <!--tr>
+	                    <td align="left" height="2" width="22">
+	                    	<span style="vertical-align: medium"> <font face="微軟正黑體">
+		                    <input type="checkbox" name="check_level" value="ON" id="check_level"></font></span>
+		                </td>
+	                    <td height="2" colspan="2" align="left">
+	                    	<span style="vertical-align: medium"> <font size="2" face="微軟正黑體">社團身分</font></span>
+	                    </td>
+	                    <td align="left" height="2" colspan="2"><span style="vertical-align: medium"><font face="微軟正黑體">
 	                      <select name="level" size="1">
 	                        <option selected>社團裡的身分？</option>
 	                        <option>會長</option>
@@ -455,33 +609,38 @@ body {
 	                        <option>社團幹部</option>
 	                        <option>社團成員</option>
                           </select>
-	                      </font></span></td>
-                      </tr>
+	                      </font></span>
+	                     </td>
+                      </tr-->
+                      
 	                  <tr>
-	                    <td align="left" height="0" width="22"><span style="vertical-align: medium"> <font face="微軟正黑體">
-	                      <input type="checkbox" name="check_food" value="1" id="check_food">
-	                      </font></span></td>
-	                    <td height="0" colspan="2" align="left"><p style="margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium"> <font size="2" face="微軟正黑體">飲　　食</font></span></td>
+	                    <td align="left" height="0" width="22">
+	                    	<span style="vertical-align: medium"> <font face="微軟正黑體">
+		                    <input type="checkbox" name="check_food" value="1" id="check_food"></font></span>
+		                </td>
+	                    <td height="0" colspan="2" align="left">
+	                    	<p style="margin-top: 0px; margin-bottom: 0px"><span style="vertical-align: medium"><font size="2" face="微軟正黑體">飲　　食</font></span>
+	                    </td>
 	                    <td height="0" colspan="2" align="left"><font face="微軟正黑體">
 	                      <select name="food" size="1">
 	                        <span class="Apple-converted-space"></span>
 	                        <option>有不能吃的嗎？</option>
-	                        <option value="葷食">葷食</option>
+	                        <option value="0" <?php if( $row['food'] == 0 ) { echo "selected"; } ?>>葷食</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="素食">素食</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="不吃牛肉">不吃牛肉</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="不吃豬肉">不吃豬肉</option>
-	                        <span class="Apple-converted-space"></span>
+	                        <option value="1" <?php if( $row['food'] == 1 ) { echo "selected"; }?>>素食</option>
+	                        <span class="Apple-converted-space"></span>	                     
                           </select>
-	                    </font></td>
+                          </font>
+	                    </td>
                       </tr>
-	                  <tr>
+                      
+	                  <!--tr>
 	                    <td align="left" height="1"><font face="微軟正黑體">
-	                      <input type="checkbox" name="check_special" value="1" id="check_special">
-	                    </font></td>
-	                    <td height="1" colspan="2" align="left" class="d">特別身分</td>
+	                      	<input type="checkbox" name="check_special" value="1" id="check_special"></font>
+	                    </td>
+	                    <td height="1" colspan="2" align="left" class="d">
+	                    	特別身分
+	                    </td>
 	                    <td height="1" colspan="2" align="left"><select name="food0" size="1">
 	                      <option selected>其他身分？</option>
 	                      <option>【　中山學生會　】</option>
@@ -505,232 +664,245 @@ body {
 	                      <option>畢業校友</option>
 	                      <option>合作廠商</option>
                         </select></td>
-                      </tr>
+                      </tr-->
+                      
 	                  <tr>
 	                    <td align="left" width="22"><span style="vertical-align: medium"> <font face="微軟正黑體">
-	                      <input type="checkbox" name="check_hometown" value="ON" id="check_hometown">
-	                      </font></span></td>
-	                    <td colspan="2" align="left"><span style="vertical-align: medium"> <font size="2" face="微軟正黑體">家　　鄉</font></span></td>
+	                      	<input type="checkbox" name="check_hometown" value="ON" id="check_hometown"></font></span>
+	                    </td>
+	                    <td colspan="2" align="left">
+	                    	<span style="vertical-align: medium"> <font size="2" face="微軟正黑體">家　　鄉</font></span>
+	                    </td>
 	                    <td align="left" colspan="2"><font face="微軟正黑體">
-	                      <select size="1" name="hometown">
+	                      <select size="1" name="home">
 	                        <span class="Apple-converted-space"></span>
-	                        <option>來至哪裡呀？</option>
+	                        <option selected>來至哪裡呀？</option>
 	                        <option disabled>【台灣】</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="基隆">基隆</option>
+	                        <option value="Keelung" <?php if($row['home'] == "Keelung") echo 'selected';?>>基隆</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="台北">台北</option>
+	                        <option value="Taipei" <?php if($row['home'] == "Taipei") echo 'selected';?>>台北</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="桃園">桃園</option>
+	                        <option value="Taoyuan" <?php if($row['home'] == "Taoyuan") echo 'selected';?>>桃園</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="新竹">新竹</option>
+	                        <option value="Hsinchu" <?php if($row['home'] == "Hsinchu") echo 'selected';?>>新竹</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="宜蘭">宜蘭</option>
+	                        <option value="Ilan" <?php if($row['home'] == "Ilan") echo 'selected';?>>宜蘭</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="苗栗">苗栗</option>
+	                        <option value="Miaoli" <?php if($row['home'] == "Miaoli") echo 'selected';?>>苗栗</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="台中">台中</option>
+	                        <option value="Taichung" <?php if($row['home'] == "Taichung") echo 'selected';?>>台中</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="彰化">彰化</option>
+	                        <option value="Changhua" <?php if($row['home'] == "Changhua") echo 'selected';?>>彰化</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="南投">南投</option>
+	                        <option value="Nantou" <?php if($row['home'] == "Nantou") echo 'selected';?>>南投</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="花蓮">花蓮</option>
+	                        <option value="Hualien" <?php if($row['home'] == "Hualien") echo 'selected';?>>花蓮</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="雲林">雲林</option>
+	                        <option value="Yunlin" <?php if($row['home'] == "Yunlin") echo 'selected';?>>雲林</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="嘉義">嘉義</option>
+	                        <option value="Chiayi" <?php if($row['home'] == "Chiayi") echo 'selected';?>>嘉義</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="台南">台南</option>
+	                        <option value="Tainan" <?php if($row['home'] == "Tainan") echo 'selected';?>>台南</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="高雄">高雄</option>
+	                        <option value="Kaohsiung" <?php if($row['home'] == "Kaohsiung") echo 'selected';?>>高雄</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="台東">台東</option>
+	                        <option value="Taitung" <?php if($row['home'] == "Taitung") echo 'selected';?>>台東</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="屏東">屏東</option>
+	                        <option value="Pingtung" <?php if($row['home'] == "Pingtung") echo 'selected';?>>屏東</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="金門">金門</option>
+	                        <option value="Golden" <?php if($row['home'] == "Golden") echo 'selected';?>>金門</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="澎湖">澎湖</option>
+	                        <option value="Penghu" <?php if($row['home'] == "Penghu") echo 'selected';?>>澎湖</option>
 	                        <span class="Apple-converted-space"></span>
 	                        <option disabled>【海外】</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="馬來西亞">馬來西亞</option>
+	                        <option value="Malaysia" <?php if($row['home'] == "Malaysia") echo 'selected';?>>馬來西亞</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="新加坡">新加坡</option>
+	                        <option value="Singapore" <?php if($row['home'] == "Singapore") echo 'selected';?>>新加坡</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="中國">中國</option>
+	                        <option value="China" <?php if($row['home'] == "China") echo 'selected';?>>中國</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="澳門">澳門</option>
+	                        <option value="Macao" <?php if($row['home'] == "Macao") echo 'selected';?>>澳門</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="香港">香港</option>
+	                        <option value="HongKong" <?php if($row['home'] == "HongKong") echo 'selected';?>>香港</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="菲律賓">菲律賓</option>
+	                        <option value="Philippines" <?php if($row['home'] == "Philippines") echo 'selected';?>>菲律賓</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="越南">越南</option>
+	                        <option value="Vietnam" <?php if($row['home'] == "Vietnam") echo 'selected';?>>越南</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="印度">印度</option>
+	                        <option value="India" <?php if($row['home'] == "India") echo 'selected';?>>印度</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="歐洲">歐洲</option>
+	                        <option value="Europe" <?php if($row['home'] == "Europe") echo 'selected';?>>歐洲</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="澳洲">澳洲</option>
+	                        <option value="Australia" <?php if($row['home'] == "Australia") echo 'selected';?>>澳洲</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option>美洲</option>
-	                        <option>亞洲</option>
+	                        <option value="America" <?php if($row['home'] == "America") echo 'selected';?>>美洲</option>
+	                        <span class="Apple-converted-space"></span>
+	                        <option value="Asia" <?php if($row['home'] == "Asia") echo 'selected';?>>亞洲</option>	                        
                           </select>
 	                    </font></td>
                       </tr>
+                      
 	                  <tr>
-	                    <td align="left" width="22">&nbsp;</td>
-	                    <td colspan="2" align="left"><font face="微軟正黑體"> <span style="vertical-align: medium"> <font size="2">身&nbsp; 分&nbsp; 證</font></span></font></td>
+	                    <td align="left" width="22">&nbsp;
+		                    
+	                    </td>
+	                    <td colspan="2" align="left">
+	                    	<font face="微軟正黑體"><span style="vertical-align: medium"> <font size="2">身&nbsp; 分&nbsp; 證</font></span></font>
+	                    </td>
 	                    <td align="left" colspan="2"><span style="vertical-align: medium"> <font face="微軟正黑體" color="#C0C0C0">
-	                      <input name="id" size="34" style="float: left; color: rgb(192, 192, 192); border: 1px solid rgb(192, 192, 192)">
-	                      </font></span></td>
+	                      	<input name="id" size="34" style="float: left; color: rgb(0, 0, 0); border: 1px solid rgb(192, 192, 192)" value ="<?php echo $row['id'];?>"></font></span>
+	                    </td>
                       </tr>
+                      
 	                  <tr>
-	                    <td align="left" width="22"><font face="微軟正黑體"> <span style="vertical-align: medium">
-	                      <input type="checkbox" name="check_dorm" value="ON" id="check_dorm">
-	                      </span></td>
-	                    <td colspan="2" align="left"><span style="vertical-align: medium"> <font size="2" face="微軟正黑體">宿　　舍</font></span></td>
+	                    <td align="left" width="22"><font face="微軟正黑體"><span style="vertical-align: medium">
+	                      	<input type="checkbox" name="check_dorm" value="ON" id="check_dorm"></span>
+	                    </td>
+	                    <td colspan="2" align="left">
+	                    	<span style="vertical-align: medium"> <font size="2" face="微軟正黑體">宿　　舍</font></span>
+	                    </td>
 	                    <td align="left" colspan="2"><font face="微軟正黑體">
 	                      <select size="1" name="dorm">
 	                        <span class="Apple-converted-space"></span>
 	                        <option selected>住哪一棟呢？</option>
 	                        <option disabled value>【武嶺山莊】</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="武嶺一村">武嶺一村</option>
+	                        <option value="1" <?php if($row['dorm'] == "1") { echo "selected";}?>>武嶺一村</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="武嶺二村">武嶺二村</option>
+	                        <option value="2" <?php if($row['dorm'] == "2") { echo "selected";}?>>武嶺二村</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="武嶺三村">武嶺三村</option>
+	                        <option value="3" <?php if($row['dorm'] == "3") { echo "selected";}?>>武嶺三村</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="武嶺四村">武嶺四村</option>
+	                        <option value="4" <?php if($row['dorm'] == "4") { echo "selected";}?>>武嶺四村</option>
 	                        <span class="Apple-converted-space"></span>
 	                        <option disabled value>【翠亨山莊】</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="A棟">A棟</option>
+	                        <option value="A" <?php if($row['dorm'] == "A" || $row['dorm'] == "a") { echo "selected";}?>>翠亨A棟</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="B棟">B棟</option>
+	                        <option value="B" <?php if($row['dorm'] == "B" || $row['dorm'] == "b") { echo "selected";}?>>翠亨B棟</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="C棟">C棟</option>
+	                        <option value="C" <?php if($row['dorm'] == "C" || $row['dorm'] == "c") { echo "selected";}?>>翠亨C棟</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="D棟">D棟</option>
+	                        <option value="D" <?php if($row['dorm'] == "D" || $row['dorm'] == "d") { echo "selected";}?>>翠亨D棟</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="E棟">E棟</option>
+	                        <option value="E" <?php if($row['dorm'] == "E" || $row['dorm'] == "e") { echo "selected";}?>>翠亨E棟</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="F棟">F棟</option>
+	                        <option value="F" <?php if($row['dorm'] == "F" || $row['dorm'] == "f") { echo "selected";}?>>翠亨F棟</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="G棟">G棟</option>
+	                        <option value="G" <?php if($row['dorm'] == "G" || $row['dorm'] == "g") { echo "selected";}?>>翠亨G棟</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="H棟">H棟-女宿</option>
+	                        <option value="H" <?php if($row['dorm'] == "H" || $row['dorm'] == "h") { echo "selected";}?>>翠亨H棟-女宿</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="L棟">L棟-女宿</option>
+	                        <option value="L" <?php if($row['dorm'] == "L" || $row['dorm'] == "l") { echo "selected";}?>>翠亨L棟-女宿</option>
 	                        <span class="Apple-converted-space"></span>
-                          </select>
-	                      <span class="Apple-converted-space">&nbsp;</span>
-	                      <select size="1" name="floor">
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="1">1</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="2">2</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="3">3</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="4">4</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="5">5</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="6">6</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="7">7</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="8">8</option>
-	                        <span class="Apple-converted-space"></span>
-                          </select>
-	                      <span class="Apple-converted-space">&nbsp;</span><font size="2">樓</font><span class="Apple-converted-space">&nbsp;</span>
-	                      <input type="text" name="room" size="6">
-	                      <span class="Apple-converted-space">&nbsp;</span><font size="2">號</font></font></td>
-                      </tr>
+                          </select>	                     
+	                      <span class="Apple-converted-space">&nbsp;</span><font size="2">房號 -</font><span class="Apple-converted-space">&nbsp;</span>
+	                      <input type="text" name="room" size="2" value = <?php echo $row['room']; ?>>
+	                    </td>
+                      </tr>                     	               
+                      
 	                  <tr>
-	                    <td align="left" width="22"><font face="微軟正黑體"> <span style="vertical-align: medium">&nbsp;</span></td>
-	                    <td colspan="2" align="left"><font face="微軟正黑體"> <span style="vertical-align: medium"> <font size="2">戶　　籍</font></span></font></td>
+	                    <td align="left" width="22"><span style="vertical-align: medium"><font face="微軟正黑體">
+	                      	<input type="checkbox" name="check_address0" value="1"></font></span>
+	                    </td>
+	                    <td colspan="2" align="left">
+	                    	<span style="vertical-align: medium"> <font face="微軟正黑體" size="2">校外住址</font></span>
+	                    </td>
 	                    <td align="left" colspan="2"><span style="vertical-align: medium"> <font face="微軟正黑體" color="#C0C0C0">
-	                      <input name="home_address" size="55" style="float: left; color: rgb(192, 192, 192); border: 1px solid rgb(192, 192, 192)">
-	                      </font></span></td>
+	    	                <input name="outAddr" size="55" style="float: left; color: rgb(192, 192, 192); border: 1px solid rgb(192, 192, 192)"></font></span>
+	    	            </td>
                       </tr>
+                      
 	                  <tr>
 	                    <td align="left" width="22"><span style="vertical-align: medium"> <font face="微軟正黑體">
-	                      <input type="checkbox" name="check_address0" value="1">
-	                      </font></span></td>
-	                    <td colspan="2" align="left"><span style="vertical-align: medium"> <font face="微軟正黑體" size="2">校外住址</font></span></td>
-	                    <td align="left" colspan="2"><span style="vertical-align: medium"> <font face="微軟正黑體" color="#C0C0C0">
-	                      <input name="address0" size="55" style="float: left; color: rgb(192, 192, 192); border: 1px solid rgb(192, 192, 192)">
-	                      </font></span></td>
-                      </tr>
-	                  <tr>
-	                    <td align="left" width="22"><span style="vertical-align: medium"> <font face="微軟正黑體">
-	                      <input type="checkbox" name="check_transport" value="1">
-	                      </font></span></td>
-	                    <td colspan="2" align="left"><span style="vertical-align: medium"> <font size="2" face="微軟正黑體">交通工具</font></span></td>
+	                      	<input type="checkbox" name="check_transport" value="1"></font></span>
+	                    </td>
+	                    <td colspan="2" align="left">
+	                    	<span style="vertical-align: medium"><font size="2" face="微軟正黑體">交通工具</font></span>
+	                    </td>
 	                    <td align="left" colspan="2"><font face="微軟正黑體">
-	                      <select name="transport" size="1">
+	                      <select name="car" size="1">
 	                        <span class="Apple-converted-space"></span>
-	                        <option>有機車嗎？</option>
-	                        <option value="步行">步行</option>
+	                        <option selected>有機車嗎？</option>
+	                        <option value="0" <?php if($row['car'] == "0") { echo "selected"; }?>>步行</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="會騎車,沒機車">會騎車,沒機車</option>
+	                        <option value="1" <?php if($row['car'] == "1") { echo "selected"; }?>>會騎車,沒機車</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="會騎車,有機車">會騎車,有機車</option>
+	                        <option value="2" <?php if($row['car'] == "2") { echo "selected"; }?>>會騎車,有機車</option>
 	                        <span class="Apple-converted-space"></span>
-	                        <option value="汽車">汽車</option>
+	                        <option value="3" <?php if($row['car'] == "3") { echo "selected"; }?>>汽車</option>
 	                        <span class="Apple-converted-space"></span>
                           </select>
-	                    </font></td>
+                          </font>
+	                    </td>
                       </tr>
+                      
 	                  <tr>
-	                    <td align="left" width="22"><span style="vertical-align: medium"> <font face="微軟正黑體">
-	                      <input type="checkbox" name="check_photo" value="1" id="check_photo">
-	                      </font></span></td>
-	                    <td colspan="2" align="left"><font size="2" face="微軟正黑體"> 個人圖像</font></td>
-	                    <td align="left" colspan="2">&nbsp;</td>
+	                    <td align="left" width="22"><span style="vertical-align: medium"><font face="微軟正黑體">
+	                      	<input type="checkbox" name="check_photo" value="1" id="check_photo"></font></span>
+	                    </td>
+	                    <td colspan="2" align="left">
+	                    	<font size="2" face="微軟正黑體"> 個人圖像</font>
+	                    </td>
+	                    <td align="left" colspan="2">&nbsp;
+		                    
+	                    </td>
                       </tr>
+                      
 	                  <tr>
-	                    <td align="left" width="22"><font face="微軟正黑體"> <span style="vertical-align: medium">&nbsp;</span></td>
-	                    <td colspan="2" align="left"><font face="微軟正黑體"> <span style="vertical-align: medium">&nbsp;</span></td>
+	                    <td align="left" width="22">
+	                    	<font face="微軟正黑體"><span style="vertical-align: medium">&nbsp;</span>
+	                    </td>
+	                    <td colspan="2" align="left">
+	                    	<font face="微軟正黑體"><span style="vertical-align: medium">&nbsp;</span>
+	                    </td>
 	                    <td align="left" width="242"><table border="0" width="216" cellspacing="0" cellpadding="0" height="200">
 	                      <tr>
-	                        <td width="216" height="200" bordercolor="#C0C0C0" style="border: 1px solid #C0C0C0" align="center"><img src="jpg/head.jpg" alt="" width="205" height="185" border="0" align="middle"></td>
-	                        </tr>
-	                      </table></td>
-	                    <td align="left" width="248"><font face="微軟正黑體"><font size="2">上傳圖像</font>
-	                      <input type="file" name="photoimg" id="photoimg" placeholder="限jpg檔,大小不可超過1MB">
-	                      </font></td>
+	                        <td width="216" height="200" bordercolor="#C0C0C0" style="border: 1px solid #C0C0C0" align="center">
+	                        	<img src="jpg/head.jpg" alt="" width="205" height="185" border="0" align="middle">
+	                        </td>
+	                    </td>
+	                   </tr>
+	                 </table>
+	                   <td align="left" width="248"><font face="微軟正黑體"><font size="2">上傳圖像</font>
+	                   	  <input type="file" name="photoimg" id="photoimg" placeholder="限jpg檔,大小不可超過1MB"></font>
+	                   </td>
                       </tr>
+                      
+	                  <tr>
+	                    <td align="left" colspan="5">&nbsp;</td>      
+	                    <td width="5"></tr>
 	                  <tr>
 	                    <td align="left" colspan="5">&nbsp;</td>
-	                    
-                      <td width="5"></tr>
-	                  <tr>
-	                    <td align="left" colspan="5">&nbsp;</td>
                       </tr>
+                      
 	                  <tr>
 	                    <td align="left" width="22">&nbsp;</td>
 	                    <td colspan="2" align="left">&nbsp;</td>
 	                    <td align="left" colspan="2"><span style="vertical-align: medium"> <font face="微軟正黑體">
-	                      <input type="submit" value="送出資料">
+	                      <input type="submit" value="修改資料" name = "submit">
 	                      <span class="Apple-converted-space">&nbsp;</span>
-	                      <input type="button" value="取消修改">
-	                      </font></span></td>
+	                  
+	                      </font></span>
+	                    </td>
                       </tr>
                     </table>
-	              </form></td>
+                    
+                    <!-- End of form -->
+	              </form>
+	              
+	            </td>
               </tr>
             </table>
 	        <p><font face="微軟正黑體"><span style="vertical-align: medium">&nbsp;</span></p>
 	        <p><span style="vertical-align: medium">&nbsp;</span></p>
 	        <p><span style="vertical-align: medium">&nbsp;</span>      
-	        </div></td>
+	        </div>
+	      </td>
         </tr>
+        
 	    <tr>
 	      <td height="106" background="../jpg/last.png" valign="top"><div align="right">
 	        <table border="0" width="51%" height="45">

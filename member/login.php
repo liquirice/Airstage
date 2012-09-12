@@ -1,10 +1,7 @@
 <?php 
-	// Last Modified Day : 2012.09.10
+	// Last Modified Day : 2012.09.11
 	header('P3P: CP="NOI ADM DEV COM NAV OUR STP"');
 	session_start(); 
-	
-	echo $_COOKIE['name'];
-	echo $_SESSION['name'];
 	
 	if( isset($_POST['submit']) ) {
 		require_once( "../connectVar.php" );
@@ -16,7 +13,7 @@
 		
 		if( mysqli_num_rows($result) == 0 ) {
 			// NO such account.
-			echo '<script type="text/javascript" language="javascript">alert("登入失敗");location.href="./login.php"</script>';
+			echo '<script type="text/javascript">alert("登入失敗");location.href="./login.php"</script>';
 		} else {
 			// Write user into session to authenticate.
 			$row = mysqli_fetch_array( $result );

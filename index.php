@@ -100,7 +100,7 @@
 
 <!DOCTYPE HTML>
 <html><head>
-<link href="http://www.airstage.com.tw/nsysu/airs/tm2.ico" rel="shortcut icon"/>
+<link href="tm2.ico" rel="shortcut icon"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Language" content="zh-tw">
 <link rel="stylesheet" type="text/css" href="plugin/shadowbox/shadowbox.css">
@@ -184,8 +184,8 @@ $(document).ready(function() {
 </script>
 <script language="JavaScript" fptype="dynamicanimation">
 <!--
-function dynAnimation() {}
-function clickSwapImg() {}
+	function dynAnimation() {}
+	function clickSwapImg() {}
 //-->
 </script>
 <base target="_parent">
