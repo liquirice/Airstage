@@ -3,9 +3,10 @@
 	require_once( "../setSession.php" );
 	
 	if( !isset($_SESSION['stu_id']) || !isset($_SESSION['name']) ) {
-		echo '<script type="text/javascript">alert("請先登入唷～"); location.href="../index2.htm"</script>';
+		echo '<script type="text/javascript">alert("請先登入唷～"); location.href="../index.php"</script>';
 	} else {
 		require_once( "../connectVar.php" );
+		require_once( "uploadPath.php" );
 		$stu_id = $_SESSION['stu_id'];
 		
 		// Upadte the user info.
@@ -30,7 +31,24 @@
 			$room = mysqli_real_escape_string( $conn, trim($_POST['room']) );
 			$outAddr = mysqli_real_escape_string( $conn, trim($_POST['outAddr']) );
 			$car = mysqli_real_escape_string( $conn, trim($_POST['car']) );
-			// TODO : Profile Pic.
+									
+			// Profile Pic.
+			$picName = $_FILES['profile_pic']['name'];
+			$picType = $_FILES['profile_pic']['type'];
+			$picSize = $_FILES['profile_pic']['size'];
+			
+			if( !empty($picName) ) {
+				if( (($picType == 'image/gif') || ($picType == 'image/jpeg') || ($picType == 'image/png')) && ($picSize > 0) && ($picSize <= MAXSIZE) ) {
+					if( $FILES['profile_pic']['error'] == 0 ) {
+						// Move to the target folder.
+						$target = UPLOADPATH . $picName;
+						if( move_uploaded_file( $_FILES['profile_pic']['tmp_name'], $target) ) {
+							$query = "UPDATE member_Info SET profile_pic = '$picName'";
+							$result = mysqli_query( $conn, $query ) or die('Update Error0');
+						}
+					}
+				}
+			}
 			
 			// Update the basic info.
 			$query = "UPDATE Member SET gender = '$gender', department = '$department', grade = '$grade', email = '$email'".
@@ -50,7 +68,7 @@
 		$result = mysqli_query( $conn, $query );
 		
 		if( mysqli_num_rows($result) == 0 ) {
-			echo '<script type="text/javascript">alert("查無此使用者，請重新登入"); location.href="../index2.htm"</script>';
+			echo '<script type="text/javascript">alert("查無此使用者，請重新登入"); location.href="../index.php"</script>';
 		} else {
 			$row = mysqli_fetch_array( $result );	
 		}
@@ -195,7 +213,7 @@ function FP_getObjectByID(id,o) {//v1.0
 	            <td align="center" valign="top" width="70%"><p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">&nbsp;</p>
 	            
 	            <!-- Start of the form -->
-	            <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+	            <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" enctype = "multipart/form-data">
 	              
 	              <table border="0" width="645" cellspacing="1" height="324">
 	                  <tr>
@@ -824,7 +842,7 @@ function FP_getObjectByID(id,o) {//v1.0
 	                    	<span style="vertical-align: medium"> <font face="微軟正黑體" size="2">校外住址</font></span>
 	                    </td>
 	                    <td align="left" colspan="2"><span style="vertical-align: medium"> <font face="微軟正黑體" color="#C0C0C0">
-	    	                <input name="outAddr" size="55" style="float: left; color: rgb(192, 192, 192); border: 1px solid rgb(192, 192, 192)"></font></span>
+	    	                <input name="outAddr" size="55" style="float: left; color: rgb(0, 0, 0); border: 1px solid rgb(192, 192, 192)" value = "<?php echo $row['outAddr']; ?>"></font></span>
 	    	            </td>
                       </tr>
                       
@@ -860,7 +878,7 @@ function FP_getObjectByID(id,o) {//v1.0
 	                    	<font size="2" face="微軟正黑體"> 個人圖像</font>
 	                    </td>
 	                    <td align="left" colspan="2">&nbsp;
-		                    
+		                   
 	                    </td>
                       </tr>
                       
@@ -874,13 +892,13 @@ function FP_getObjectByID(id,o) {//v1.0
 	                    <td align="left" width="242"><table border="0" width="216" cellspacing="0" cellpadding="0" height="200">
 	                      <tr>
 	                        <td width="216" height="200" bordercolor="#C0C0C0" style="border: 1px solid #C0C0C0" align="center">
-	                        	<img src="jpg/head.jpg" alt="" width="205" height="185" border="0" align="middle">
+	                        	<img src="<?php echo UPLOADPATH . $row['profile_pic']; ?>" alt="" width="205" height="185" border="0" align="middle">
 	                        </td>
 	                    </td>
 	                   </tr>
 	                 </table>
 	                   <td align="left" width="248"><font face="微軟正黑體"><font size="2">上傳圖像</font>
-	                   	  <input type="file" name="photoimg" id="photoimg" placeholder="限jpg檔,大小不可超過1MB"></font>
+	                   	  <input type="file" name="profile_pic" id="profile_pic" placeholder="限jpg檔,大小不可超過1MB"></font>
 	                   </td>
                       </tr>
                       
