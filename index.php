@@ -18,82 +18,82 @@
 	$con = 0;
 	
 	$hot1 = mysqli_query($conn, $hot);
-	$hclass = 'align="center" width="14" height="14" bgcolor="#666666" style="color:#FFF; font-size:8px; font:Arial, Helvetica, sans-serif"';
+	$hclass = 'align="center" background="jpg/graybox.png" width="14" height="14" style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat;"';
 	while($hot2 = mysqli_fetch_array($hot1)){
 		if(date('Y-m-d') < $hot2['time']){
 			$h++;
-			$hclass = 'align="center" width="14" height="14" bgcolor="#666666" style="color:#FFF; font-size:8px; font:Arial, Helvetica, sans-serif"';
+			$hclass = 'align="center" width="14" height="14" background="jpg/graybox.png" style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat;"';
 		}
 		else if(date('Y-m-d') == $clubs2['time']){
 			$h++;
-			$hclass = 'align="center" width="14" height="14" bgcolor="#FF00000" style="color:#FFF; font-size:8px; font:Arial, Helvetica, sans-serif"';
+			$hclass = 'align="center" width="14" height="14" background="jpg/redbox.png"  style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat"';
 		}
 		else{
-			$hclass = 'align="center" width="14" height="14" bgcolor="#666666" style="color:#FFF; font-size:8px; font:Arial, Helvetica, sans-serif"';
+			$hclass = 'align="center" width="14" height="14" background="jpg/graybox.png" style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat;"';
 		}
 	}
 	
 	$clubs1 = mysqli_query($conn, $clubs);
-	$cclass = 'align="center" width="14" height="14" bgcolor="#666666" style="color:#FFF; font-size:8px; font:Arial, Helvetica, sans-serif"';
+	$cclass = 'align="center" width="14" height="14" background="jpg/graybox.png" style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat;"';
 	while($clubs2 = mysqli_fetch_array($clubs1)){
 		if(date('Y-m-d') < $clubs2['time']){
 			$c++;
-			$cclass = 'align="center" width="14" height="14" bgcolor="#666666" style="color:#FFF; font-size:8px; font:Arial, Helvetica, sans-serif"';
+			$cclass = 'align="center" width="14" height="14" background="jpg/graybox.png" style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat;"';
 		}
 		else if(date('Y-m-d') == $clubs2['time']){
 			$c++;
-			$cclass = 'align="center" width="14" height="14" bgcolor="#FF00000" style="color:#FFF; font-size:8px; font:Arial, Helvetica, sans-serif"';
+			$cclass = 'align="center" width="14" height="14" background="jpg/redbox.png"  style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat"';
 		}
 		else{
-			$cclass = 'align="center" width="14" height="14" bgcolor="#666666" style="color:#FFF; font-size:8px; font:Arial, Helvetica, sans-serif"';
+			$cclass = 'align="center" width="14" height="14" background="jpg/graybox.png" style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat;"';
 		}
 	}
 	
 	$departments1 = mysqli_query($conn, $departments);
-	$dclass = 'align="center" width="14" height="14" bgcolor="#666666" style="color:#FFF; font-size:8px; font:Arial, Helvetica, sans-serif"';
+	$dclass = 'align="center" width="14" height="14" background="jpg/graybox.png" style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat;"';
 	while($departments2 = mysqli_fetch_array($departments1)){
 		if(date('Y-m-d') < $departments2['time']){
 			$d++;
-			$dclass = 'align="center" width="14" height="14" bgcolor="#666666" style="color:#FFF; font-size:8px; font:Arial, Helvetica, sans-serif"';
+			$dclass = 'align="center" width="14" height="14" background="jpg/graybox.png" style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat;"';
 		}
 		else if(date('Y-m-d') == $departments2['time']){
 			$d++;
-			$dclass = 'align="center" width="14" height="14" bgcolor="#FF00000" style="color:#FFF; font-size:8px; font:Arial, Helvetica, sans-serif"';
+			$dclass = 'align="center" width="14" height="14" background="jpg/redbox.png"  style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat"';
 		}
 		else{
-			$dclass = 'align="center" width="14" height="14" bgcolor="#666666" style="color:#FFF; font-size:8px; font:Arial, Helvetica, sans-serif"';
+			$dclass = 'align="center" width="14" height="14" background="jpg/graybox.png" style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat;"';
 		}
 	}
 	
 	$authorities1 = mysqli_query($conn, $authorities);
-	$aclass = 'align="center" width="14" height="14" bgcolor="#666666" style="color:#FFF; font-size:8px; font:Arial, Helvetica, sans-serif"';
+	$aclass = 'align="center" width="14" height="14" background="jpg/graybox.png" style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat;"';
 	while($authorities2 = mysqli_fetch_array($authorities1)){
 		if(date('Y-m-d') < $authorities2['time']){
 			$a++;
-			$aclass = 'align="center" width="14" height="14" bgcolor="#666666" style="color:#FFF; font-size:8px; font:Arial, Helvetica, sans-serif"';
+			$aclass = 'align="center" width="14" height="14" background="jpg/graybox.png" style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat;"';
 		}
 		else if(date('Y-m-d') == $authorities2['time']){
 			$a++;
-			$aclass = 'align="center" width="14" height="14" bgcolor="#FF00000" style="color:#FFF; font-size:8px; font:Arial, Helvetica, sans-serif"';
+			$aclass = 'align="center" width="14" height="14" background="jpg/redbox.png"  style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat"';
 		}
 		else{
-			$aclass = 'align="center" width="14" height="14" bgcolor="#666666" style="color:#FFF; font-size:8px; font:Arial, Helvetica, sans-serif"';
+			$aclass = 'align="center" width="14" height="14" background="jpg/graybox.png" style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat;"';
 		}
 	}
 	
 	$concerts1 = mysqli_query($conn, $concerts);
-	$conclass = 'align="center" width="14" height="14" bgcolor="#666666" style="color:#FFF; font-size:8px; font:Arial, Helvetica, sans-serif"';
+	$conclass = 'align="center" width="14" height="14" background="jpg/graybox.png" style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat;"';
 	while($concerts2 = mysqli_fetch_array($concerts1)){
 		if(date('Y-m-d') < $concerts2['time']){
 			$con++;
-			$conclass = 'align="center" width="14" height="14" bgcolor="#666666" style="color:#FFF; font-size:8px; font:Arial, Helvetica, sans-serif"';
+			$conclass = 'align="center" width="14" height="14" background="jpg/graybox.png" style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat;"';
 		}
 		else if(date('Y-m-d') == $concerts2['time']){
 			$con++;
-			$conclass = 'align="center" width="14" height="14" bgcolor="#FF00000" style="color:#FFF; font-size:8px; font:Arial, Helvetica, sans-serif"';
+			$conclass = 'align="center" width="14" height="14" background="jpg/redbox.png"  style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat"';
 		}
 		else{
-			$conclass = 'align="center" width="14" height="14" bgcolor="#666666" style="color:#FFF; font-size:8px; font:Arial, Helvetica, sans-serif"';
+			$conclass = 'align="center" width="14" height="14" background="jpg/graybox.png" style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat;"';
 		}
 	}
 ?>
