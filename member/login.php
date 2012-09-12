@@ -21,7 +21,7 @@
 	        $_SESSION['name'] = $row['name']; 
 			setcookie( 'stu_id', $row['stu_id'], time()+(60*60*24*5) );
 			setcookie( 'name', $row['name'], time()+(60*60*24*5) );
-			echo '<script language="javascript">alert("登入成功!"); self.opener.location.reload();</script>';
+			echo 'Page.RegisterClientScriptBlock("sdfs6s6", "<script> parent.location ="../index.php";parent.$.fancybox.close();</script>");';
 			exit();
 		}
 		mysqli_close( $conn );
