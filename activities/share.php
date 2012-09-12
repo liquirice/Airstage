@@ -231,7 +231,7 @@ else if($_SESSION['record'] == 'share'){
     <!--活動簡介-->
     <tr>
     	<td colspan="3" class="type" width="100"><img src="jpg/cub.png" />活動簡介<br /><br />
-        &nbsp;&nbsp;&nbsp;<input type="text" maxlength="80" max="80" size="75" name="description" id="description" placeholder="演出藝人：陳綺貞|盧廣仲|魏如萱|蛋堡|李佳薇|張芸京|玩聲樂團 (host:NONO)" /></td>
+        &nbsp;&nbsp;&nbsp;<input type="text" maxlength="80" size="75" name="description" id="description" placeholder="演出藝人：陳綺貞|盧廣仲|魏如萱|蛋堡|李佳薇|張芸京|玩聲樂團 (host:NONO)" /></td>
     </tr>
     <!--活動名稱-->
     <tr>
