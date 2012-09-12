@@ -12,9 +12,6 @@ if(isset($_GET['action']) == false){
 else if($_GET['action']){
 	$_SESSION['record']=$_GET['action'];
 }
-
-$select = 'SELECT * FROM `Activities` ORDER BY rno DESC LIMIT 1';
-$last = mysqli_query($conn, $select);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -108,9 +105,11 @@ if($_SESSION['record'] === 'submit'){
 		$insert = "INSERT INTO Activities(type, title, description, name, time, extratime, venue, fee, host, url1, url2, stu_id, note, signup) VALUES('$type', '$title', '$description', '$name', '$time', '$extratime', '$venue', '$fee', '$host', '$url1', '$url2', '".$_SESSION['stu_id']."', '$note', '$signup')";
 		
 		if(mysqli_query($conn,$insert)){
+			$select = 'SELECT * FROM `Activities` ORDER BY rno DESC LIMIT 1';
+			$last = mysqli_query($conn, $select);
+			$lastrno = mysqli_fetch_array($last);
+			$_SESSION['rnotemp'] = $lastrno['rno'];
 			if($signup == 'yes' && $url1 != ''){
-				$lastrno = mysqli_fetch_array($last);
-				$_SESSION['rnotemp'] = $lastrno['rno'];
 				$newevent = 'ALTER TABLE `List` ADD `event'.$_SESSION['rnotemp'].'` VARCHAR( 10 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL';
 				$newextra = 'ALTER TABLE `List` ADD `extra'.$_SESSION['rnotemp'].'` VARCHAR( 100 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL';
 				if(mysqli_query($conn, $newevent) && mysqli_query($conn, $newextra)){
@@ -122,8 +121,6 @@ if($_SESSION['record'] === 'submit'){
 				
 			}
 			else{
-				$lastrno = mysqli_fetch_array($last);
-				$_SESSION['rnotemp'] = $lastrno['rno'];
 				header("location:./share.php?action=poster");
 			}
 		}

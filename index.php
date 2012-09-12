@@ -321,7 +321,7 @@ body {
 		echo '
         	<table background="jpg/table.jpg" style="background-repeat:no-repeat">
             	<tr>
-                	<td rowspan="8" class="tdimg" height="224" width="310" align="center" valign="middle"><img class="img" src="activities/poster/'.$hotlist['poster'].'" /></td>
+                	<td rowspan="8" class="tdimg" height="224" width="310" align="center" valign="middle"><img class="img" height="210" width="300"src="activities/poster/'.$hotlist['poster'].'" /></td>
 					<td rowspan="8" width="80px"></td>
                     <td class="title" width="426" valign="top" align="left" colspan="2">'.$hotlist['title'].'</td>';
 					if($_SESSION['stu_id'] == $hotlist['stu_id']){
@@ -397,7 +397,7 @@ body {
 		echo '
         	<table background="jpg/table.jpg" style="background-repeat:no-repeat">
             	<tr>
-                	<td rowspan="8" class="tdimg" height="224" width="310" align="center" valign="middle"><img class="img" src="activities/poster/'.$clubslist["poster"].'" /></td>
+                	<td rowspan="8" class="tdimg" height="224" width="310" align="center" valign="middle"><img class="img" height="210" width="300"src="activities/poster/'.$clubslist["poster"].'" /></td>
 					<td rowspan="8" width="80px"></td>
                     <td class="title" width="426" valign="top" colspan="2">'.$clubslist["title"].'</td>';
 					if($_SESSION['stu_id'] == $clubslist['stu_id']){
@@ -474,7 +474,7 @@ echo'
 		echo '
         	<table background="jpg/table.jpg" style="background-repeat:no-repeat">
             	<tr>
-                	<td rowspan="8" class="tdimg" height="224" width="310" align="center" valign="middle"><img class="img" src="activities/poster/'.$departmentslist["poster"].'" /></td>
+                	<td rowspan="8" class="tdimg" height="224" width="310" align="center" valign="middle"><img class="img" height="210" width="300"src="activities/poster/'.$departmentslist["poster"].'" /></td>
 					<td rowspan="8" width="80px"></td>
                     <td class="title" width="426" valign="top" colspan="2">'.$departmentslist["title"].'</td>';
 					if($_SESSION['stu_id'] == $departmentslist['stu_id']){
@@ -550,7 +550,7 @@ echo'
 		echo '
         	<table background="jpg/table.jpg" style="background-repeat:no-repeat">
             	<tr>
-                	<td rowspan="8" class="tdimg" height="224" width="310" align="center" valign="middle"><img class="img" src="activities/poster/'.$authoritieslist["poster"].'" /></td>
+                	<td rowspan="8" class="tdimg" height="224" width="310" align="center" valign="middle"><img class="img" height="210" width="300"src="activities/poster/'.$authoritieslist["poster"].'" /></td>
 					<td rowspan="8" width="80px"></td>
                     <td class="title" width="426" valign="top" colspan="2">'.$authoritieslist["title"].'</td>';
 					if($_SESSION['stu_id'] == $authoritieslist['stu_id']){
@@ -628,7 +628,7 @@ echo'
 		echo '
         	<table background="jpg/table.jpg" style="background-repeat:no-repeat">
             	<tr>
-                	<td rowspan="8" class="tdimg" height="224" width="310" align="center" valign="middle"><img class="img" src="activities/poster/'.$concertslist["poster"].'" /></td>
+                	<td rowspan="8" class="tdimg" height="224" width="310" align="center" valign="middle"><img class="img" height="210" width="300"src="activities/poster/'.$concertslist["poster"].'" /></td>
 					<td rowspan="8" width="80px"></td>
                     <td class="title" width="426" valign="top" colspan="2">'.$concertslist["title"].'</td>';
 					if($_SESSION['stu_id'] == $concertslist['stu_id']){
