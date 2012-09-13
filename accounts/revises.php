@@ -1,5 +1,5 @@
 <?php
-	// Last Modified Day : 2012.09.12
+	// Last Modified Day : 2012.09.13
 	require_once( "../setSession.php" );
 	
 	if( !isset($_SESSION['stu_id']) || !isset($_SESSION['name']) ) {
@@ -12,6 +12,7 @@
 		// Upadte the user info.
 		if( isset($_POST['submit']) ) {
 			// Basic info.
+			$username = mysqli_real_escape_string( $conn, trim($_POST['username']) );
 			$gender = mysqli_real_escape_string( $conn, trim($_POST['gender']) );
 			$department = mysqli_real_escape_string( $conn, trim($_POST['department']) );
 			$grade = mysqli_real_escape_string( $conn, trim($_POST['grade']) );
@@ -35,6 +36,7 @@
 			// Checkboxes.
 			$stu_id_c = $_POST['stu_id_c'];
 			$name_c = $_POST['name_c'];
+			$username_c = $_POST['username_c'];
 			$gender_c = $_POST['gender_c'];
 			$grade_c = $_POST['grade_c'];
 			$facebook_c = $_POST['facebook_c'];
@@ -57,7 +59,7 @@
 			
 			if( !empty($picName) ) {
 				if( (($picType == 'image/gif') || ($picType == 'image/jpeg') || ($picType == 'image/png') || ($picType == 'image/pjpeg')) && ($picSize > 0) && ($picSize <= MAXSIZE) ) {
-					if( $FILES['profile_pic']['error'] == 0 ) {
+					if( $_FILES['profile_pic']['error'] == 0 ) {
 						// Move to the target folder.
 						$target = UPLOADPATH . $picName;
 						if( move_uploaded_file( $_FILES['profile_pic']['tmp_name'], $target) ) {
@@ -69,7 +71,7 @@
 			}
 			
 			// Update the basic info.
-			$query = "UPDATE Member SET gender = '$gender', department = '$department', grade = '$grade', email = '$email'".
+			$query = "UPDATE Member SET gender = '$gender', department = '$department', grade = '$grade', email = '$email', username = '$username'".
 					 " WHERE stu_id = '$stu_id'";
 			$result = mysqli_query( $conn, $query ) or die('Update Error1');
 			
@@ -82,7 +84,7 @@
 			// Upadte the checkbox.
 			$query = "UPDATE display_check SET stu_id_c = '$stu_id_c', name_c = '$name_c', gender_c = '$gender_c', grade_c = '$grade_c', facebook_c = '$facebook_c'".
 					 " ,msn_c = '$msn_c', twitter_c = '$twitter_c', plurk_c = '$plurk_c', skype_c = '$skype_c', phone_c = '$phone_c', email_c = '$email_c', home_c = '$home_c'".
-					 " ,dorm_c = '$dorm_c', outAddr_c = '$outAddr_c', car_c = '$car_c', profile_pic_c = '$profile_pic_c'";
+					 " ,dorm_c = '$dorm_c', outAddr_c = '$outAddr_c', car_c = '$car_c', profile_pic_c = '$profile_pic_c', username_c = '$username_c'";
 			$result = mysqli_query( $conn, $query ) or die('Upadte Error3');
 			
 			echo '<script type="text/javascript">alert("更新完成！");</script>';
@@ -229,7 +231,7 @@ function FP_getObjectByID(id,o) {//v1.0
 	                  <td height="48" width="81%">
 	                  	<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium"><b> <font size="2">編輯個人資料</font></b></span></p>
 	                    <p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px"> <font color="#C0C0C0" size="2"> 
-	                    <span style="text-decoration: none; vertical-align: medium"> 偏好設定</span></font>
+	                    <span style="text-decoration: none; vertical-align: medium"><a href = "passwordModified.php" style="color: rgb(192, 192, 192);" > 修改密碼</a></span></font><br />
 	                  </td>
 	                </tr>
 	                <tr>
@@ -245,7 +247,7 @@ function FP_getObjectByID(id,o) {//v1.0
 	              
 	              <table border="0" width="645" cellspacing="1" height="324">
 	                  <tr>
-	                    <td align="center" colspan="4" height="28" valign="top"><p align="left" style="margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium"> <font face="微軟正黑體" size="5" color="#1F1F1F" style="font-weight: 700"> ♠</font><font face="微軟正黑體"><span class="Apple-converted-space">&nbsp;</span></font><font face="微軟正黑體" size="4" color="#333333"><b>修改個人資料</b></font></span></p>
+	                    <td align="center" colspan="4" height="28" valign="top"><p align="left" style="margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium"> <font face="微軟正黑體" size="5" color="#1F1F1F" style="font-weight: 700"> ♠</font><font face="微軟正黑體"><span class="Apple-converted-space">&nbsp;</span></font><font face="微軟正黑體" size="4" color="#333333"><b>個人資料編輯</b></font></span></p>
 	                      <p align="left" style="margin-top: 0px; margin-bottom: 0px"> <font face="微軟正黑體"> <span style="vertical-align: medium">&nbsp;</span></td>
                       </tr>
 	                  <tr>
@@ -287,6 +289,20 @@ function FP_getObjectByID(id,o) {//v1.0
 	                    </td>
 	                    <td align="left" height="13" width="502">	
 	                    	<p style="margin-top: 0px; margin-bottom: 0px"><font size="2" face="微軟正黑體"><?php echo $row['name'];?></font></p>
+	                    </td>
+                      </tr>
+                      
+                      <tr>
+	                    <td align="left" height="13" width="22"><span style="vertical-align: medium"> <font face="微軟正黑體">
+	                      <input type="checkbox" name="username_c" id="nick_c" <?php if($check['username_c'] == "on") { echo "checked"; }?>></font></span>
+	                    </td>
+	                    <td height="13" colspan="2" align="left">
+	                    	<p align="left" style="margin-top: 0px; margin-bottom: 0px"> 
+	                    	<span style="vertical-align: medium"> <font size="2" face="微軟正黑體">匿　　稱 </font></span>
+	                    </td>
+	                    <td align="left" height="13" width="502">	
+	                    	<p style="margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium"> <font face="微軟正黑體" color="#C0C0C0">
+	                    	<input name="username" size="50" style="float: left; border: 1px solid rgb(192, 192, 192)" value = <?php echo $row['username'];?>></font></span>
 	                    </td>
                       </tr>
                       

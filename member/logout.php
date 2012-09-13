@@ -1,5 +1,5 @@
 <?php 
-	// Last Modified Day : 2012.09.10
+	// Last Modified Day : 2012.09.13
 	session_start();
 
 	if( isset($_SESSION['stu_id']) || isset($_SESSION['name']) || isset($_SESSION['auth']) ) {
@@ -17,5 +17,5 @@
 	setcookie( 'name', '', time()-3600 );
 	setcookie( 'auth', '', time()-3600 );
 	
-	echo '<script type="text/javascript">location.href = document.referrer;</script>';
+	echo '<script type="text/javascript">alert("Logout Success!"); location.href = document.referrer;</script>';
 ?>

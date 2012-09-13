@@ -8,7 +8,7 @@
 		$stu_id = mysqli_real_escape_string( $conn, trim($_POST['id']) );
 		$pw = mysqli_real_escape_string( $conn, trim($_POST['pw']) );
 		
-		$query = "SELECT * FROM Member WHERE username = '$stu_id' OR stu_id = '$stu_id' AND psw = '$pw'";
+		$query = "SELECT * FROM Member WHERE (username = '$stu_id' OR stu_id = '$stu_id') AND psw = '$pw'";
 		$result = mysqli_query( $conn, $query );
 		
 		if( mysqli_num_rows($result) == 0 ) {
@@ -18,11 +18,20 @@
 			// Write user into session to authenticate.
 			$row = mysqli_fetch_array( $result );
 	        $_SESSION['stu_id'] = $row['stu_id'];
+<<<<<<< HEAD
 	        $_SESSION['name'] = $row['name']; 
 			$_SESSION['auth'] = $row['AUTH'];
 			setcookie( 'stu_id', $row['stu_id'], time()+(60*60*24*5) );
 			setcookie( 'name', $row['name'], time()+(60*60*24*5) );
 			setcookie( 'auth', $row['AUTH'], time()+(60*60*24*5) );
+=======
+	        $_SESSION['name'] = $row['name'];
+	        $_SESSION['nick'] = $row['username']; 
+			setcookie( 'stu_id', $row['stu_id'], time()+(60*60*24*5) );
+			setcookie( 'name', $row['name'], time()+(60*60*24*5) );
+			setcookie( 'nick', $row['nick'], time()+(60*60*24*5) );
+			echo '<script type="text/javascript">alert("歡迎回來！");</script>';
+>>>>>>> Add PEAR Mail package for forgetPassword.php, change upload path
 			echo 'Page.RegisterClientScriptBlock("sdfs6s6", "<script> parent.location ="../index.php";parent.$.fancybox.close();</script>");';
 			exit();
 		}
@@ -40,7 +49,7 @@
 				密碼&nbsp;
 				<input type="password" name="pw" /> <br />
 				
-	            <a href='forgot.php' style="color:#000; font-size:12px; cursor:pointer">忘記密碼?</a>&nbsp;&nbsp;
+	            <a href='forgetPassword.php' style="color:#000; font-size:12px; cursor:pointer">忘記密碼?</a>&nbsp;&nbsp;
 				<input type="submit" name="submit" value="登入" />&nbsp;&nbsp;
 	            <input type="button" onclick="location.href='register.php'" name="register" value="註冊會員" />
 			</form>
