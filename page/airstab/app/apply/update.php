@@ -4,7 +4,7 @@
 		echo '
 		<div id="update">
 		<form action="apply02.php?action=correct" method="post" name="form" target="_self">
-			<table background="jpg/rev_back.png" style="background-repeat:no-repeat" width="947" height="573">
+			<table width="947" height="573">
 				<tr>
 				<td width="507">
 					<table width="507" height="100%" align="left" cellspacing="0" cellpadding="0" style="margin:0; padding:0; border:none" align="center" >

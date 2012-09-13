@@ -77,9 +77,7 @@ td{
 	font-size:12px;
 }
 .ui-datepicker { width: 23em; padding: .2em .2em 0; display: none; font-size: 62.5%; }
-.select a{
-	cursor:pointer;
-}
+
 </style>
 </head>
 
@@ -142,17 +140,17 @@ if($url['stu_id'] != $_SESSION['stu_id'] || $_SESSION['stu_id'] == ''){
 //判定此活動是該使用者分享的
 else if($url['stu_id'] == $_SESSION['stu_id']){
 		echo '
-		<table background="jpg/rev_back.png" style="background-repeat:no-repeat" width="947" height="573">
+		<table background="jpg/rev_back.png" style="background-repeat:no-repeat" width="947" height="573" align="center">
 			<tr>
-				<td>
+				<td align="center">
 					<div id="select">
-						<a class="select" id="rev"><img src="jpg/rev_b1.png" name="rev" onMouseOver="document.rev.src=\'jpg/rev_b2.png\'" /></a>&nbsp;&nbsp;';
+						<a style="cursor:pointer" id="rev"><img src="jpg/rev_b1.png" name="rev" onMouseOver="document.rev.src=\'jpg/rev_b2.png\'" onMouseOut="document.rev.src=\'jpg/rev_b1.png\'" /></a>&nbsp;&nbsp;';
 						if($url['signup'] == 'yes'){
 						echo'
-						<a class="select" id="sek"><img src="jpg/sek_b1.png" name="sek" onMouseOver="document.sek.src=\'jpg/sek_b2.png\'" /></a>&nbsp;&nbsp;';
+						<a style="cursor:pointer" id="sek"><img src="jpg/sek_b1.png" name="sek" onMouseOver="document.sek.src=\'jpg/sek_b2.png\'" onMouseOut="document.sek.src=\'jpg/sek_b1.png\'" /></a>&nbsp;&nbsp;';
 						}
 						echo'
-						<a class="select" id="set"><img src="jpg/set_b1.png" name="set" onMouseOver="document.set.src=\'jpg/set_b2.png\'" /></a>&nbsp;&nbsp;
+						<a style="cursor:pointer" id="set"><img src="jpg/set_b1.png" name="set" onMouseOver="document.set.src=\'jpg/set_b2.png\'" onMouseOut="document.set.src=\'jpg/set_b1.png\'" /></a>&nbsp;&nbsp;
 					</div>';
 					include('update.php');
 					include('adminlist.php');

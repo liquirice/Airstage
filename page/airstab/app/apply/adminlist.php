@@ -1,6 +1,5 @@
 <?php
 session_start();
-include("../../../../conn.php");
 if(empty($_SESSION['rno'])){
 	echo '<script type="text/javascript" language="javascript">alert("請從首頁進入!"); location.href = "http://www.airstage.com.tw/nsysu/airs/index.php"</script>';
 }
