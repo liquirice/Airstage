@@ -1,5 +1,5 @@
 <? 
-	// Last Modiefied Day : 2012.09.12 
+	// Last Modiefied Day : 2012.09.13 
 	require_once( "../connectVar.php" );
 ?>
 <!DOCTYPE HTML> 
@@ -27,11 +27,20 @@ $f.dom.ready(function() {
 			  pattern:/^[A-Za-z0-9]+$/,
 			  rangelength:[10,10],
 		  },
+		  psw:{
+			  required:1
+		  },
+		  psw2:{
+			  required:1,compareTo:"psw",
+		  },
 		  name:{
 			  required:1,
 		  },
-		  id:{
-			  required:1,
+		  department:{
+		 	  required:1,
+		  },
+		  grade:{
+		  	  required:1,
 		  },
 		  gender:{
 			  required:1
@@ -39,36 +48,34 @@ $f.dom.ready(function() {
 		  email:{
 			  required:1,email:1,
 		  },
-		  psw:{
-			  required:1
-		  },
-		  psw2:{
-			  required:1,compareTo:"psw",
-		  },
+
 	  },
 	  messages:{
 		  stu_id:{
 			  required:"此欄位不能為空！",
-			  pattern:"學號格式有誤!",
-			  rangelength:"學號格式有誤!",
-		  },
-		  name:{
-			  required:"此欄位不能為空",
-		  },
-		  id:{
-			  required:"此欄位不能為空",
-		  },
-		  gender:{
-			  required:"此欄位不能為空！",
-		  },
-		  email:{
-			  required:"此欄位不能為空！",email:"email格式不正確!",
+			  pattern:"學號格式有誤！",
+			  rangelength:"學號格式有誤！",
 		  },
 		  psw:{
 			  required:"此欄位不能為空！",
 		  },
 		  psw2:{
 			  required:"此欄位不能為空！", compareTo:"密碼不正確!",
+		  },
+		  name:{
+			  required:"此欄位不能為空！",
+		  },
+		  department:{
+			  required:" "	
+		  },
+		  grade:{
+			  required:" "
+		  },
+		  gender:{
+			  required:"此欄位不能為空！",
+		  },
+		  email:{
+			  required:"此欄位不能為空！",email:"email格式不正確!",
 		  },
 	  },
 	  
@@ -107,13 +114,21 @@ $f.dom.ready(function() {
         <td><input type="text" name="stu_id" id="stu_id" value="" /></td>
     </tr>
     <tr>
+    	<td align="right">密碼</td>
+        <td><input type="password" name="psw" id="psw" value="" /></td>
+    </tr>
+    <tr>
+    	<td align="right">確認密碼</td>
+        <td><input type="password" name="psw2" id="psw2" value="" /></td>
+    </tr>
+    <tr>
     	<td align="right">姓名</td>
         <td><input type="text" name="name" id="name" value="" placeholder="請填入真實姓名" /></td>
     </tr>
     <tr>
-    	<td align="right">帳號</td>
-        <td><input type="text" name="id" id="id" value="" /></td>
-    </tr>
+    	<td align="right">系級</td>
+        <td><input type="text" name="department" id="department" value="" size="8" />系　<input type="text" name="grade" id="grade" value="" maxlength="3" size="4" />級</td>
+    </tr>	
     <tr>
     	<td align="right">性別</td>
         <td><input type="radio" value="男" name="gender" />男&nbsp;&nbsp;<input type="radio" value="女" name="gender" />女</td>
@@ -122,14 +137,7 @@ $f.dom.ready(function() {
     	<td align="right">電子信箱</td>
         <td><input type="text" name="email" /></td>
     </tr>
-    <tr>
-    	<td align="right">密碼</td>
-        <td><input type="password" name="psw" id="psw" value="" /></td>
-    </tr>
-    <tr>
-    	<td align="right">確認密碼</td>
-        <td><input type="password" name="psw2" id="psw2" value="" /></td>
-    </tr>
+
 	<tr>
 		<td align="right">驗證碼</td>
 		<td>
