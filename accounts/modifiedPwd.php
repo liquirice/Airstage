@@ -6,9 +6,9 @@
 		require_once( "../connectVar.php" );
 		
 		$stu_id = $_SESSION['stu_id'];
-		$original = mysqli_real_escape_string( $conn, trim($_POST['original']) );
-		$new_1 = mysqli_real_escape_string( $conn, trim($_POST['new_1']) );
-		$new_2 = mysqli_real_escape_string( $conn, trim($_POST['new_2']) );
+		$original = sha1(mysqli_real_escape_string( $conn, trim($_POST['original']) ));
+		$new_1 = sha1(mysqli_real_escape_string( $conn, trim($_POST['new_1']) ));
+		$new_2 = sha1(mysqli_real_escape_string( $conn, trim($_POST['new_2']) ));
 		
 		
 		$query = "SELECT psw FROM Member WHERE psw = '$original' AND stu_id = '$stu_id'";
