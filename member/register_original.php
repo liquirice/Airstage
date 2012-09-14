@@ -1,5 +1,5 @@
 <? 
-	// Last Modiefied Day : 2012.09.13 
+	// Last Modiefied Day : 2012.09.14
 	require_once( "../connectVar.php" );
 ?>
 <!DOCTYPE HTML> 
@@ -22,10 +22,8 @@ $f.dom.ready(function() {
 	  
   $f("form", {
 	  rules:{
-		  stu_id:{
-			  required:1,
-			  pattern:/^[A-Za-z0-9]+$/,
-			  rangelength:[10,10],
+		  username:{
+			  required:1
 		  },
 		  psw:{
 			  required:1
@@ -35,6 +33,11 @@ $f.dom.ready(function() {
 		  },
 		  name:{
 			  required:1,
+		  },
+		  stu_id:{
+			  required:1,
+			  pattern:/^[A-Za-z0-9]+$/,
+			  rangelength:[10,10],
 		  },
 		  department:{
 		 	  required:1,
@@ -51,10 +54,8 @@ $f.dom.ready(function() {
 
 	  },
 	  messages:{
-		  stu_id:{
+		  username:{
 			  required:"此欄位不能為空！",
-			  pattern:"學號格式有誤！",
-			  rangelength:"學號格式有誤！",
 		  },
 		  psw:{
 			  required:"此欄位不能為空！",
@@ -64,6 +65,11 @@ $f.dom.ready(function() {
 		  },
 		  name:{
 			  required:"此欄位不能為空！",
+		  },
+		  stu_id:{
+			  required:"此欄位不能為空！",
+			  pattern:"學號格式有誤！",
+			  rangelength:"學號格式有誤！",
 		  },
 		  department:{
 			  required:" "	
@@ -110,8 +116,8 @@ $f.dom.ready(function() {
         </td>
     </tr>
 	<tr>
-    	<td align="right">學號</td>
-        <td><input type="text" name="stu_id" id="stu_id" value="" /></td>
+    	<td align="right">帳號</td>
+        <td><input type="text" name="username" id="username" value="" /></td>
     </tr>
     <tr>
     	<td align="right">密碼</td>
@@ -124,6 +130,10 @@ $f.dom.ready(function() {
     <tr>
     	<td align="right">姓名</td>
         <td><input type="text" name="name" id="name" value="" placeholder="請填入真實姓名" /></td>
+    </tr>
+	<tr>
+    	<td align="right">學號</td>
+        <td><input type="text" name="stu_id" id="stu_id" value="" /></td>
     </tr>
     <tr>
     	<td align="right">系級</td>
