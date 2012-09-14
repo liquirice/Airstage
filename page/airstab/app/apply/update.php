@@ -104,7 +104,11 @@
 						echo '
 						<tr>
     						<td colspan="2" align="center"><br /><input type="submit" value="" style="background-image:url(../../../../activities/jpg/bt.png); background-repeat:no-repeat; width:127px; height:41px; cursor:pointer" /></td>
-    					</tr></table>
+    					</tr>
+						<tr>
+							<td align="center"><input type="button" class="back" value="返回上頁" /></td>
+						</tr>
+						</table>
 					</td>
 					</tr>
 				</table>

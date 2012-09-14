@@ -46,19 +46,36 @@ $(function(){
 	$('#private').hide();
 	$(document).ready(function() {
     	$('#rev').click(function(){
-			$('#select').fadeOut('slow',function(){
-				$('#update').fadeIn('slow');
+			$('#select').fadeOut('fast',function(){
+				$('#update').fadeIn('fast');
 			})
 		})
 		$('#sek').click(function(){
-			$('#select').fadeOut('slow',function(){
-				$('#adminlist').fadeIn('slow');
+			$('#select').fadeOut('fast',function(){
+				$('#adminlist').fadeIn('fast');
 			})
 		})
 		$('#set').click(function(){
-			$('#select').fadeOut('slow',function(){
-				$('#private').fadeIn('slow');
+			$('#select').fadeOut('fast',function(){
+				$('#private').fadeIn('fast');
 			})
+		})
+		$('.back').click(function(){
+			if($('#update').css('display') == 'block'){
+				$('#update').fadeOut('fast',function(){
+					$('#select').fadeIn('fast');
+				})
+			}
+			else if($('#adminlist').css('display') == 'block'){
+				$('#adminlist').fadeOut('fast',function(){
+					$('#select').fadeIn('fast');
+				})
+			}
+			else if($('#private').css('display') == 'block'){
+				$('#private').fadeOut('fast',function(){
+					$('#select').fadeIn('fast');
+				})
+			}
 		})
 	});
 });

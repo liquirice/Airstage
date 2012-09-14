@@ -112,6 +112,7 @@ echo '
 			}
 	}
 echo'
+<tr><td><input type="button" class="back" value="返回上頁" /></td></tr>
 </table>
 </div>
 ';
