@@ -48,32 +48,38 @@ $(function(){
     	$('#rev').click(function(){
 			$('#select').fadeOut('fast',function(){
 				$('#update').fadeIn('fast');
+				$('#table').css('background-image','url(jpg/re_back.png)');
 			})
 		})
 		$('#sek').click(function(){
 			$('#select').fadeOut('fast',function(){
 				$('#adminlist').fadeIn('fast');
+				$('#table').css('background-image','url(jpg/sek_back.png)');
 			})
 		})
 		$('#set').click(function(){
 			$('#select').fadeOut('fast',function(){
 				$('#private').fadeIn('fast');
+				$('#table').css('background-image','url(jpg/set_back.png)');
 			})
 		})
 		$('.back').click(function(){
 			if($('#update').css('display') == 'block'){
 				$('#update').fadeOut('fast',function(){
 					$('#select').fadeIn('fast');
+					$('#table').css('background-image','url(jpg/rev_back.png)');
 				})
 			}
 			else if($('#adminlist').css('display') == 'block'){
 				$('#adminlist').fadeOut('fast',function(){
 					$('#select').fadeIn('fast');
+					$('#table').css('background-image','url(jpg/rev_back.png)');
 				})
 			}
 			else if($('#private').css('display') == 'block'){
 				$('#private').fadeOut('fast',function(){
 					$('#select').fadeIn('fast');
+					$('#table').css('background-image','url(jpg/rev_back.png)');
 				})
 			}
 		})
@@ -157,7 +163,7 @@ if($url['stu_id'] != $_SESSION['stu_id'] || $_SESSION['stu_id'] == ''){
 //判定此活動是該使用者分享的
 else if($url['stu_id'] == $_SESSION['stu_id']){
 		echo '
-		<table background="jpg/rev_back.png" style="background-repeat:no-repeat" width="947" height="573" align="center">
+		<table background="jpg/rev_back.png" style="background-repeat:no-repeat" width="947" height="573" align="center" id="table">
 			<tr>
 				<td align="center">
 					<div id="select">
@@ -179,6 +185,6 @@ else if($url['stu_id'] == $_SESSION['stu_id']){
 }
 ?>
 
-
+<table style="background-image:url(jpg/set_b1.png)"
 </body>
 </html>
