@@ -1,0 +1,307 @@
+<?php
+	// Last Modified Day : 2012.09.14
+	require_once( "../setSession.php" );
+	
+	if( isset($_POST['submit']) && isset($_SESSION['stu_id']) ) {
+		require_once( "../connectVar.php" );
+		
+		$stu_id = $_SESSION['stu_id'];
+		$original = mysqli_real_escape_string( $conn, trim($_POST['original']) );
+		$new_1 = mysqli_real_escape_string( $conn, trim($_POST['new_1']) );
+		$new_2 = mysqli_real_escape_string( $conn, trim($_POST['new_2']) );
+		
+		
+		$query = "SELECT psw FROM Member WHERE psw = '$original' AND stu_id = '$stu_id'";
+		$result = mysqli_query( $conn, $query );
+		
+		if( mysqli_num_rows($result) == 0 ) {
+			echo '<script type="text/javascript">alert("Original Password is Wrong!"); location.href="modifiedPwd.php"</script>';	
+		} else {
+			if( $new_1 != $new_2 ) {
+				echo '<script type="text/javascript">alert("New Password Check Erro!"); location.href="modifiedPwd.php"</script>';	
+			} else {
+				$query = "UPDATE Member SET psw = '$new_1' WHERE stu_id = '$stu_id'";
+				$result = mysqli_query( $conn, $query );	
+				echo '<script type="text/javascript">alert("Password Modified Success!"); location.href="modifiedPwd.php"</script>';	
+			}
+		}
+		mysqli_close( $conn );					
+	}
+?>
+<!DOCTYPE HTML>
+<html>
+<head>
+<link href="tm2.ico" rel="shortcut icon"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="zh-tw">
+<title>│Airstage 西灣人│會員中心：修改密碼</title>
+<style fprolloverstyle>
+	A:hover {text-decoration: underline; font-weight: bold}
+	a{text-decoration:none;}
+</style>
+<script language="JavaScript" fptype="dynamicanimation">
+<!--
+	function dynAnimation() {}
+	function clickSwapImg() {}
+//-->
+</script>
+<script language="javascript" type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script language="javascript" type="text/javascript" src="../plugin/shadowbox/shadowbox.js"></script>
+<script language="javascript" type="text/javascript" src="../plugin/jrumble/jquery.jrumble.1.3.min.js"></script>
+<script type="text/javascript">
+	Shadowbox.init({
+		players : ['html'],
+		overlayColor: "#FFFFFF",
+	});
+	$(function(){
+	$('#logo').jrumble({
+		x:2,
+		y:2,
+		rotation:1,
+	});
+	$('#logo').hover(function(){
+		$(this).trigger('startRumble'); 
+	}, function(){
+		$(this).trigger('stopRumble');
+        
+    });
+	});
+</script>
+<link rel="stylesheet" type="text/css" href="../plugin/shadowbox/shadowbox.css">
+<base target="_parent">
+<script language="JavaScript">
+<!--
+function FP_changeProp() {//v1.0
+	 var args=arguments,d=document,i,j,id=args[0],o=FP_getObjectByID(id),s,ao,v,x;
+	 d.$cpe=new Array(); if(o) for(i=2; i<args.length; i+=2) { v=args[i+1]; s="o"; 
+	 ao=args[i].split("."); for(j=0; j<ao.length; j++) { s+="."+ao[j]; if(null==eval(s)) { 
+	  s=null; break; } } x=new Object; x.o=o; x.n=new Array(); x.v=new Array();
+	 x.n[x.n.length]=s; eval("x.v[x.v.length]="+s); d.$cpe[d.$cpe.length]=x;
+	 if(s) eval(s+"=v"); }
+}
+
+function FP_getObjectByID(id,o) {//v1.0
+	 var c,el,els,f,m,n; if(!o)o=document; if(o.getElementById) el=o.getElementById(id);
+	 else if(o.layers) c=o.layers; else if(o.all) el=o.all[id]; if(el) return el;
+	 if(o.id==id || o.name==id) return o; if(o.childNodes) c=o.childNodes; if(c)
+	 for(n=0; n<c.length; n++) { el=FP_getObjectByID(id,c[n]); if(el) return el; }
+	 f=o.forms; if(f) for(n=0; n<f.length; n++) { els=f[n].elements;
+	 for(m=0; m<els.length; m++){ el=FP_getObjectByID(id,els[n]); if(el) return el; } }
+	 return null;
+}
+// -->
+</script>
+<style type="text/css">
+	body,td,th {
+		font-family: "微軟正黑體";
+	}
+	body {
+		background-image: url(../jpg/background.png);
+		background-repeat: repeat-x;
+		background-color: #F2F2F2;
+	}
+	.d {
+		font-size: 13px;
+	}
+</style>
+</head>
+
+<body topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0" marginwidth="0" marginheight="0" onLoad="dynAnimation()" language="Javascript1.2">
+
+<div align="center">
+	<table border="0" width="980" height="75" cellspacing="0" cellpadding="0">
+		<tr>
+        	<td width="38" background="../jpg/topbar001.png"></td>
+        	<td height="43" width="99" background="../jpg/topbar002.png" align="right"><p style="margin-top: 0; margin-bottom: 0"><a href="http://www.airstage.com.tw/"><img src="../page/airstab/app/theater/jpg/logo.png" name="logo" id="logo" align="left" /></a></td>
+			<td height="75" background="../jpg/topbar002.png" width="700" valign="top">
+  			
+			<font color="#FFFFFF">
+      <a onMouseOver="var img=document['fpAnimswapImgFP9'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP9'].src=document['fpAnimswapImgFP9'].imgRolln" target="_parent" href="../index.php"><img border="0" src="../jpg/cal_bot001.png" width="89" height="75" id="fpAnimswapImgFP9" name="fpAnimswapImgFP9" dynamicanimation="fpAnimswapImgFP9" lowsrc="../jpg/cal_bot002.png"></a></font></a><font color="#FFFFFF"><img border="0" src="../jpg/topbar002.png" width="20" height="75"><a href="../page/airstab/index.htm"><img border="0" src="../jpg/air_bot002.png" width="89" height="75"></a></font></td>
+			<td background="../jpg/topbar003.png" width="124" valign="middle"><span style="margin-top: 0; margin-bottom: 0">
+			<?php
+				// Last Modified Day : 2012.09.14
+			 	// Check whether the member is login or not.
+				if( !isset($_SESSION['name']) || !isset($_SESSION['stu_id']) ){
+					echo '<script type="text/javascript">alert("請先登入唷～"); location.href="../index.php"</script>';
+				} else {
+					echo '<a href="revises.php" style="border:0; color:#000000; font-size:14px"><b>'.$_SESSION['name'].
+					'</b></a>&nbsp;&nbsp;|&nbsp;
+					<a href="../member/logout.php" style="border:0; color:#000000; font-size:14px"><b>登出</b></a>';
+				}
+			?>
+			</span></td>
+		</tr>
+	</table>
+    
+			<div align="center">
+				<table border="0" width="980" height="693" cellspacing="0" cellpadding="0">
+	    <tr>
+	      <td background="../jpg/bot.png" valign="top"><div align="center">
+	        <table border="0" width="98%" cellspacing="0" cellpadding="0" height="761">
+	          <tr>
+	            <td align="left" valign="top" height="192" colspan="2" background="jpg/top.jpg" width="960">
+                	<p align="center"><font face="微軟正黑體"><span style="vertical-align: medium">&nbsp;</span>
+                </td>
+              </tr>
+	          <tr>
+	            <td align="left" valign="top" width="30%"><div align="center">
+	              <p align="center"> <font face="微軟正黑體"> <span style="vertical-align: medium">&nbsp;</span></p>
+							<table border="0" width="65%" height="135">
+								<tr>
+									<td height="48" width="4%">
+									<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
+									<span style="vertical-align: medium">
+									<img src="jpg/gray.jpg" alt="" width="6" height="100%" border="0"></span></td>
+									<td height="48" width="8%">
+									<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
+									<span style="vertical-align: medium">&nbsp;</span></td>
+									<td height="48" width="81%">
+									<a href="revises.php" style=" text-decoration:none;">
+                                    <p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
+									<span style="vertical-align: medium; color:#999; "><b>
+									<font size="2">編輯個人資料</font></b></span></p></a>
+									<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
+									<font color="#000000" size="2">
+									<span style="text-decoration: none; vertical-align: medium">
+									修改密碼</span></font></td>
+								</tr>
+								<tr>
+									<td colspan="3" height="6">
+									<p style="margin-top: 0px; margin-bottom: 0px">
+									<font color="#FFFFFF" style="font-size: 1pt; vertical-align: medium">
+									1</font></td>
+								</tr>
+								<tr>
+									<td>
+									<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
+									<span style="vertical-align: medium">
+									<img src="jpg/gray.jpg" alt="" width="6" height="100%" border="0"></span></td>
+									<td><span style="vertical-align: medium">&nbsp;</span></td>
+									<td>
+									<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
+									<span style="vertical-align: medium">
+									<font size="2" color="#C0C0C0">報名系統<br>
+									影音聯播</font></span></p>
+									<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
+									<span style="vertical-align: medium">
+									<font size="2" color="#C0C0C0">專　　欄</font></span></p>
+									<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
+									<span style="vertical-align: medium">
+									<font size="2" color="#C0C0C0">24HR幫幫忙</font></span></p>
+									<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
+									<span style="vertical-align: medium">
+									<font size="2" color="#C0C0C0">報名系統</font></span></td>
+								</tr>
+							</table>
+						</div>
+						</td>
+						<td align="center" valign="top" width="70%">
+						<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
+						<span style="vertical-align: medium">&nbsp;</span></font></font></p>
+						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+							<table border="0" width="645" cellspacing="1" height="150">
+								<tr>
+									<td align="center" colspan="3" height="28" valign="top">
+									<p align="left" style="margin-top: 0px; margin-bottom: 0px">
+									<span style="vertical-align: medium">
+									<font face="微軟正黑體" size="5" color="#1F1F1F" style="font-weight: 700">
+									♠</font><font face="微軟正黑體"><span class="Apple-converted-space">&nbsp;</span></font>
+                                    <font face="微軟正黑體" size="4" color="#333333"><b>修改密碼</b></font></span></p>
+									<p align="left" style="margin-top: 0px; margin-bottom: 0px">
+									<font face="微軟正黑體">
+									<span style="vertical-align: medium">&nbsp;</span></td>
+								</tr>
+								<tr>
+									<td align="center" colspan="3" height="6">
+									<p style="margin-top: 0px; margin-bottom: 0px">
+									<font face="微軟正黑體">
+									<span style="vertical-align: medium">
+									<font size="2">
+									<img src="http://www.airstage.com.tw/nsysu/airs/page/airstab/app/accounts/jpg/line.jpg" alt="" width="630" height="1" border="0" align="left"></font></span></p>
+									<p style="margin-top: 0px; margin-bottom: 0px">
+									<span style="vertical-align: medium">&nbsp;</span></p>
+									<p align="left" style="margin-top: 0px; margin-bottom: 0px">
+									<span style="vertical-align: medium">
+									<font size="2"><b>請完成以下表格以修改密碼:　</b></font></span></p>
+									<p align="left" style="margin-top: 0px; margin-bottom: 0px">
+									<span style="vertical-align: medium">&nbsp;</span></font></font>
+                                    </td>
+								</tr>
+                                
+								<tr>
+									<td align="left" height="14" width="21">
+                                    	<p align="left" style="margin-top: 0px; margin-bottom: 0px">
+										<span style="vertical-align: medium"><font face="微軟正黑體" size="2">
+										1. </font></span>
+                                    </td>
+									<td align="left" height="14" width="98">
+										<p align="left" style="margin-top: 0px; margin-bottom: 0px">
+										<span style="vertical-align: medium">
+										<font size="2" face="微軟正黑體">原始密碼</font></span>
+                                    </td>
+									<td align="left" height="14" width="513">
+										<p style="margin-top: 0px; margin-bottom: 0px">
+                                        <input type = "password" name = "original" id = "original" />
+									</td>
+								</tr>
+                                
+                                <tr>
+									<td align="left" height="14" width="21">
+                                    	<p align="left" style="margin-top: 0px; margin-bottom: 0px">
+										<span style="vertical-align: medium"><font face="微軟正黑體" size="2">
+										2. </font></span>
+                                    </td>
+									<td align="left" height="14" width="98">
+										<p align="left" style="margin-top: 0px; margin-bottom: 0px">
+										<span style="vertical-align: medium">
+										<font size="2" face="微軟正黑體">修改密碼</font></span>
+                                    </td>
+									<td align="left" height="14" width="513">
+										<p style="margin-top: 0px; margin-bottom: 0px">
+                                        <input type = "password" name = "new_1" id = "new_1" />
+									</td>
+								</tr>
+                                
+                                <tr>
+									<td align="left" height="14" width="21">
+                                    	<p align="left" style="margin-top: 0px; margin-bottom: 0px">
+										<span style="vertical-align: medium"><font face="微軟正黑體" size="2">
+										3. </font></span>
+                                    </td>
+									<td align="left" height="14" width="98">
+										<p align="left" style="margin-top: 0px; margin-bottom: 0px">
+										<span style="vertical-align: medium">
+										<font size="2" face="微軟正黑體">確認密碼</font></span>
+                                    </td>
+									<td align="left" height="14" width="513">
+										<p style="margin-top: 0px; margin-bottom: 0px">
+                                        <input type = "password" name = "new_2" id = "new_2" />
+									</td>
+								</tr>
+                                <tr>
+                                	<td></td>
+                                </tr>                          
+                                <tr>
+                                	<td></td>
+                                	<td></td>                                    
+                                	<td>
+                                		<input type = "submit" name = "submit" value = "送出修改" />
+                                    </td>
+                                </tr>
+							</table>
+                        <!-- End of form -->
+						</form>
+						</td>
+					</tr>
+				</table>
+				<p><font face="微軟正黑體"><span style="vertical-align: medium">&nbsp;</span></p>
+				<p><span style="vertical-align: medium">&nbsp;</span></p>
+				<p><span style="vertical-align: medium">&nbsp;</span></div>
+			</td>
+		</tr>
+		</font>
+	</table>
+</div>
+</body>
+
+</html>
