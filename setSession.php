@@ -1,5 +1,5 @@
 <?php
-	// Last Modified Day : 2012.09.10
+	// Last Modified Day : 2012.09.15
 	// If the session doesn't exist, check cookies to get user info.
 	
 	session_start();

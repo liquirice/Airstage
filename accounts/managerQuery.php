@@ -26,7 +26,7 @@
 			$queryFlag = 1;
 		} else if( isset($_POST['department_submit']) ) {
 			$department = mysqli_real_escape_string( $conn, trim($_POST['department']) );
-			$query = "SELECT * FROM Member WHERE grade = '$department'";
+			$query = "SELECT * FROM Member WHERE department = '$department'";
 			$queryFlag = 1;
 		} else if( isset($_POST['facebook_submit']) ) {
 			$facebook = mysqli_real_escape_string( $conn, trim($_POST['facebook']) );
@@ -34,7 +34,7 @@
 			$queryFlag = 1;
 		}
 		
-		$result = @mysqli_query( $conn, $query ) or die(mysqli_error());
+		$result = @mysqli_query( $conn, $query ) /*or die(mysqli_error())*/;
 	}
 ?>
 
@@ -249,6 +249,7 @@ function FP_getObjectByID(id,o) {//v1.0
 										<p style="margin-top: 0px; margin-bottom: 0px">
                                         <input type="text" name="stu_id" id="stu_id" />
                                         <input type="submit" name = "stu_id_submit" id = "stu_id_submit" value="Query" />
+                                        <font color="#CCCCCC">ex : B993040017</font>
                                         </p>
 									</td>
                                 </form>
@@ -272,6 +273,7 @@ function FP_getObjectByID(id,o) {//v1.0
 										<p style="margin-top: 0px; margin-bottom: 0px">
                                         <input type="text" name="name" id="name" />
                                         <input type="submit" name = "name_submit" id = "name_submit" value="Query" />
+                                        <font color="#CCCCCC">ex : 江緯宸</font>
                                         </p>                             
 									</td>
                                 </form>
@@ -295,6 +297,7 @@ function FP_getObjectByID(id,o) {//v1.0
 										<p style="margin-top: 0px; margin-bottom: 0px">
                                         <input type="text" name="email" id="email" />
                                         <input type="submit" name = "email_submit" id = "email_submit" value="Query"/>
+                                        <font color="#CCCCCC">ex : archerwindy@gmail.com</font>
                                         </p>         
 									</td>
                                 </form>
@@ -318,6 +321,7 @@ function FP_getObjectByID(id,o) {//v1.0
 										<p style="margin-top: 0px; margin-bottom: 0px">
                                         <input type="text" name="grade" id="grade" />
                                         <input type="submit" name = "grade_submit" id = "grade_submit" value="Query"/>
+                                        <font color="#CCCCCC">ex : 103</font>
                                         </p>         
 									</td>
                                 </form>
@@ -341,6 +345,7 @@ function FP_getObjectByID(id,o) {//v1.0
 										<p style="margin-top: 0px; margin-bottom: 0px">
                                         <input type="text" name="department" id="department" />
                                         <input type="submit" name = "department_submit" id = "department_submit" value="Query"/>
+                                        <font color="#CCCCCC">ex : 資工系</font>
                                         </p>         
 									</td>
                                 </form>
@@ -364,6 +369,7 @@ function FP_getObjectByID(id,o) {//v1.0
 										<p style="margin-top: 0px; margin-bottom: 0px">
                                         <input type="text" name="facebook" id="facebook" />
                                         <input type="submit" name = "facebook_submit" id = "facebook_submit" value="Query"/>
+                                        <font color="#CCCCCC">ex : facebook URL</font>
                                         </p>         
 									</td>
                                 </form>
@@ -401,7 +407,8 @@ function FP_getObjectByID(id,o) {//v1.0
         		                              </td>
 											  </tr>';	
 									} else {
-										if( isset($_POST['stu_id_submit']) || isset($_POST['name_submit']) || isset($_POST['email_submit']) || isset($_POST['facebook_submit']) ) {
+										if( isset($_POST['stu_id_submit']) || isset($_POST['name_submit']) 
+										  || isset($_POST['email_submit']) || isset($_POST['facebook_submit']) ) {
 											$row = mysqli_fetch_array( $result );
 								?>
                                 	<tr>
@@ -619,13 +626,86 @@ function FP_getObjectByID(id,o) {//v1.0
                                     </tr>
                                     
                                  <?php                                           																			
-										} else if( isset($_POST['grade_submit']) ) {
-											
-										} else if( isset($_POST['department_submit']) ) {
-											
-										}
-									}								
-								 ?>                                                                        
+										} else if( isset($_POST['grade_submit']) || isset($_POST['department_submit']) ) {
+											echo '<table border="0" width="600" cellspacing="1" align="left">';
+											echo '
+											<tr>
+                                    		<td align="center" height="14" width="4">
+                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
+												<span style="vertical-align: medium">* </span></p>
+                                    		</td>
+                                    		<td align="center" height="14" >
+                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
+												<span style="vertical-align: medium">學號</span></p>
+                                    		</td>
+                                            <td align="center" height="14" >                                    
+												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
+												<span style="vertical-align: medium">系所</span></p>
+        		                            </td>
+											<td align="center" height="14" >                                    
+												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
+												<span style="vertical-align: medium">級次</span></p>
+        		                            </td>
+                                            <td align="center" height="14" >                                    
+												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
+												<span style="vertical-align: medium">姓名</span></p>
+        		                            </td>
+											<td align="center" height="14" >                                    
+												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
+												<span style="vertical-align: medium">性別</span></p>
+        		                            </td>
+                                            <td align="center" height="14" >                                    
+												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
+												<span style="vertical-align: medium">Email</span></p>
+        		                            </td>
+                                            <td align="center" height="14" >                                    
+												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
+												<span style="vertical-align: medium">權限</span></p>
+        		                            </td>
+                                   	 		</tr>';
+											while( $row = mysqli_fetch_array( $result ) ) {
+								 ?>                              
+                                 		<tr>
+                                    		<td align="left" height="14" width="4">
+                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
+												<span style="vertical-align: medium">* </span></p>
+                                    		</td>
+                                    		<td align="left" height="14" >
+                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
+												<span style="vertical-align: medium"><?php echo $row['stu_id']; ?></span></p>
+                                    		</td>
+                                            <td align="left" height="14" >                                    
+												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
+												<span style="vertical-align: medium"><?php echo $row['department'];?></span></p>
+        		                            </td>
+											<td align="left" height="14" >                                    
+												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
+												<span style="vertical-align: medium"><?php echo $row['grade'];?></span></p>
+        		                            </td>
+                                            <td align="left" height="14" >                                    
+												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
+												<span style="vertical-align: medium"><?php echo $row['name']; ?></span></p>
+        		                            </td>
+                                            <td align="left" height="14" >                                    
+												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
+												<span style="vertical-align: medium"><?php echo $row['gender'];?></span></p>
+        		                            </td>
+                                            <td align="left" height="14" >                                    
+												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
+												<span style="vertical-align: medium"><?php echo $row['email'];?></span></p>
+        		                            </td>
+                                            <td align="left" height="14" >                                    
+												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
+												<span style="vertical-align: medium"><?php echo $row['AUTH'];?></span></p>
+        		                            </td>
+                                   	 	</tr>
+                                 <?php	
+								 				
+											}
+											//echo '</table>';
+										} 
+									}								 
+								 ?>                                    
 							</table>                                               
 						</td>
 					</tr>
