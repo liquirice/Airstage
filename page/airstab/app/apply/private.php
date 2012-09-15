@@ -19,7 +19,7 @@ echo'
 </form>
 </div>
 ';
-if($_SESSION['action'] == 'private'){
+if($_SESSION['record'] == 'private'){
 	$prirno = $url['rno'];
 	$private = $_POST['private'];
 	$old = $url['stu_id'];

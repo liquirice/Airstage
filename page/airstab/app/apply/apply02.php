@@ -32,6 +32,12 @@ else if($_GET['option']){
 $select = 'SELECT * FROM `Activities` WHERE rno = "'.$_SESSION['rno'].'" LIMIT 1';
 $result = mysqli_query($conn, $select);
 $url = mysqli_fetch_array($result);
+$urltemp = ''.$url['stu_id'].',';
+$i=0;
+$urls = explode(",", $urltemp);
+while($urls[$i] != NULL){
+	$i++;
+}
 ?>
 <html>
 
@@ -118,8 +124,36 @@ td{
 
 <body>
 <?php
+
+while($i != -1){
+//判定此活動是該使用者分享的
+if($urls[$i-1] == $_SESSION['stu_id']){
+		echo '
+		<table background="'; if($_SESSION['record'] == 'poster'){ echo 'jpg/re_back.png';} else if($_SESSION['option'] == 'type'){ echo 'jpg/rev_back.png';} echo'" style="background-repeat:no-repeat" width="947" height="573" align="center" id="table">
+			<tr>
+				<td align="center">';
+				if($_SESSION['option'] == 'type'){
+					echo'
+					<div id="select">
+						<a style="cursor:pointer" id="rev"><img src="jpg/rev_b1.png" name="rev" onMouseOver="document.rev.src=\'jpg/rev_b2.png\'" onMouseOut="document.rev.src=\'jpg/rev_b1.png\'" /></a>&nbsp;&nbsp;';
+						if($url['signup'] == 'yes'){
+						echo'
+						<a style="cursor:pointer" id="sek"><img src="jpg/sek_b1.png" name="sek" onMouseOver="document.sek.src=\'jpg/sek_b2.png\'" onMouseOut="document.sek.src=\'jpg/sek_b1.png\'" /></a>&nbsp;&nbsp;';
+						}
+						echo'
+						<a style="cursor:pointer" id="set"><img src="jpg/set_b1.png" name="set" onMouseOver="document.set.src=\'jpg/set_b2.png\'" onMouseOut="document.set.src=\'jpg/set_b1.png\'" /></a>&nbsp;&nbsp;
+					</div>';
+				}
+					include('update.php');
+					include('adminlist.php');
+					include('private.php');
+				echo'
+				</td>
+			</tr>
+		</table>';
+}
 //判定此活動不是該使用者分享的
-if($url['stu_id'] != $_SESSION['stu_id'] || $_SESSION['stu_id'] == ''){
+else if($urls[$i-1] != $_SESSION['stu_id'] || $_SESSION['stu_id'] == ''){
 	echo '
 <table width="100%" height="100%" align="left" cellspacing="0" cellpadding="0" style="margin:0; padding:0; border:none" >
 	<tr>
@@ -161,7 +195,9 @@ if($url['stu_id'] != $_SESSION['stu_id'] || $_SESSION['stu_id'] == ''){
 		<font color="#FF0000"><span style="font-weight: 700; font-size: 11pt">我要</span></font></span><font color="#FF0000"><span style="vertical-align: medium; font-size: 11pt; font-weight: 700">報名</span></font></a></td>
 		
 		<td align="left" width="3">
-		<img border="0" src="jpg/bl.jpg" width="1" height="20"></td>
+		<img border="0" src="jpg/bl.jpg" width="1" height="20"></td>';
+		}
+		echo'
 		<td align="left" width="70">&nbsp;</td>
 	</tr>
 </table>
@@ -170,36 +206,9 @@ if($url['stu_id'] != $_SESSION['stu_id'] || $_SESSION['stu_id'] == ''){
         </td>
     </tr>
 </table>';
-		}
 }
-//判定此活動是該使用者分享的
-else if($url['stu_id'] == $_SESSION['stu_id']){
-		echo '
-		<table background="'; if($_SESSION['record'] == 'poster'){ echo 'jpg/re_back.png';} else if($_SESSION['option'] == 'type'){ echo 'jpg/rev_back.png';} echo'" style="background-repeat:no-repeat" width="947" height="573" align="center" id="table">
-			<tr>
-				<td align="center">';
-				if($_SESSION['option'] == 'type'){
-					echo'
-					<div id="select">
-						<a style="cursor:pointer" id="rev"><img src="jpg/rev_b1.png" name="rev" onMouseOver="document.rev.src=\'jpg/rev_b2.png\'" onMouseOut="document.rev.src=\'jpg/rev_b1.png\'" /></a>&nbsp;&nbsp;';
-						if($url['signup'] == 'yes'){
-						echo'
-						<a style="cursor:pointer" id="sek"><img src="jpg/sek_b1.png" name="sek" onMouseOver="document.sek.src=\'jpg/sek_b2.png\'" onMouseOut="document.sek.src=\'jpg/sek_b1.png\'" /></a>&nbsp;&nbsp;';
-						}
-						echo'
-						<a style="cursor:pointer" id="set"><img src="jpg/set_b1.png" name="set" onMouseOver="document.set.src=\'jpg/set_b2.png\'" onMouseOut="document.set.src=\'jpg/set_b1.png\'" /></a>&nbsp;&nbsp;
-					</div>';
-				}
-					include('update.php');
-					include('adminlist.php');
-					include('private.php');
-				echo'
-				</td>
-			</tr>
-		</table>';
+$i--;
 }
 ?>
-
-<table style="background-image:url(jpg/set_b1.png)"
 </body>
 </html>
