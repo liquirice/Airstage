@@ -34,6 +34,7 @@ $result = mysqli_query($conn, $select);
 $url = mysqli_fetch_array($result);
 $urltemp = ''.$url['stu_id'].',';
 $i=0;
+$j=0;
 $urls = explode(",", $urltemp);
 while($urls[$i] != NULL){
 	$i++;
@@ -125,9 +126,17 @@ td{
 <body>
 <?php
 
-while($i != -1){
+while($i-1 != -1){
 //判定此活動是該使用者分享的
-if($urls[$i-1] == $_SESSION['stu_id']){
+	if($urls[$i-1] == $_SESSION['stu_id']){
+		$j++;
+		$i--;
+	}
+	else{
+		$i--;
+	}
+}
+if($j != 0){
 		echo '
 		<table background="'; if($_SESSION['record'] == 'poster'){ echo 'jpg/re_back.png';} else if($_SESSION['option'] == 'type'){ echo 'jpg/rev_back.png';} echo'" style="background-repeat:no-repeat" width="947" height="573" align="center" id="table">
 			<tr>
@@ -153,7 +162,7 @@ if($urls[$i-1] == $_SESSION['stu_id']){
 		</table>';
 }
 //判定此活動不是該使用者分享的
-else if($urls[$i-1] != $_SESSION['stu_id'] || $_SESSION['stu_id'] == ''){
+else if($j == 0){
 	echo '
 <table width="100%" height="100%" align="left" cellspacing="0" cellpadding="0" style="margin:0; padding:0; border:none" >
 	<tr>
@@ -206,8 +215,6 @@ else if($urls[$i-1] != $_SESSION['stu_id'] || $_SESSION['stu_id'] == ''){
         </td>
     </tr>
 </table>';
-}
-$i--;
 }
 ?>
 </body>
