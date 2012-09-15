@@ -19,8 +19,10 @@
 			$row = mysqli_fetch_array( $result );
 	        $_SESSION['stu_id'] = $row['stu_id'];
 	        $_SESSION['name'] = $row['name']; 
+			$_SESSION['auth'] = $row['AUTH'];
 			setcookie( 'stu_id', $row['stu_id'], time()+(60*60*24*5) );
 			setcookie( 'name', $row['name'], time()+(60*60*24*5) );
+			setcookie( 'auth', $row['AUTH'], time()+(60*60*24*5) );
 			echo 'Page.RegisterClientScriptBlock("sdfs6s6", "<script> parent.location ="../index.php";parent.$.fancybox.close();</script>");';
 			exit();
 		}

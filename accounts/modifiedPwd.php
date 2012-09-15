@@ -94,6 +94,7 @@ function FP_getObjectByID(id,o) {//v1.0
 <style type="text/css">
 	body,td,th {
 		font-family: "微軟正黑體";
+		font-size: 13px;
 	}
 	body {
 		background-image: url(../jpg/background.png);
@@ -119,15 +120,7 @@ function FP_getObjectByID(id,o) {//v1.0
       <a onMouseOver="var img=document['fpAnimswapImgFP9'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP9'].src=document['fpAnimswapImgFP9'].imgRolln" target="_parent" href="../index.php"><img border="0" src="../jpg/cal_bot001.png" width="89" height="75" id="fpAnimswapImgFP9" name="fpAnimswapImgFP9" dynamicanimation="fpAnimswapImgFP9" lowsrc="../jpg/cal_bot002.png"></a></font></a><font color="#FFFFFF"><img border="0" src="../jpg/topbar002.png" width="20" height="75"><a href="../page/airstab/index.htm"><img border="0" src="../jpg/air_bot002.png" width="89" height="75"></a></font></td>
 			<td background="../jpg/topbar003.png" width="124" valign="middle"><span style="margin-top: 0; margin-bottom: 0">
 			<?php
-				// Last Modified Day : 2012.09.14
-			 	// Check whether the member is login or not.
-				if( !isset($_SESSION['name']) || !isset($_SESSION['stu_id']) ){
-					echo '<script type="text/javascript">alert("請先登入唷～"); location.href="../index.php"</script>';
-				} else {
-					echo '<a href="revises.php" style="border:0; color:#000000; font-size:14px"><b>'.$_SESSION['name'].
-					'</b></a>&nbsp;&nbsp;|&nbsp;
-					<a href="../member/logout.php" style="border:0; color:#000000; font-size:14px"><b>登出</b></a>';
-				}
+				require_once( "loginCheck_account.php" );
 			?>
 			</span></td>
 		</tr>
@@ -140,32 +133,36 @@ function FP_getObjectByID(id,o) {//v1.0
 	        <table border="0" width="98%" cellspacing="0" cellpadding="0" height="761">
 	          <tr>
 	            <td align="left" valign="top" height="192" colspan="2" background="jpg/top.jpg" width="960">
-                	<p align="center"><font face="微軟正黑體"><span style="vertical-align: medium">&nbsp;</span>
+                	<p align="center"><span style="vertical-align: medium">&nbsp;</span>
                 </td>
               </tr>
 	          <tr>
 	            <td align="left" valign="top" width="30%"><div align="center">
-	              <p align="center"> <font face="微軟正黑體"> <span style="vertical-align: medium">&nbsp;</span></p>
+	              <p align="center"><span style="vertical-align: medium">&nbsp;</span></p>
 							<table border="0" width="65%" height="135">
 								<tr>
 									<td height="48" width="4%">
-									<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
-									<span style="vertical-align: medium">
-									<img src="jpg/gray.jpg" alt="" width="6" height="100%" border="0"></span></td>
+										<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
+										<span style="vertical-align: medium">
+											<img src="jpg/gray.jpg" alt="" width="6" height="100%" border="0">
+                                        </span>
+                                    </td>
 									<td height="48" width="8%">
-									<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
-									<span style="vertical-align: medium">&nbsp;</span></td>
+										<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
+										<span style="vertical-align: medium">&nbsp;</span>
+                                    </td>
 									<td height="48" width="81%">
-									<a href="revises.php" style=" text-decoration:none;">
-                                    <p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
-									<span style="vertical-align: medium; color:#999; "><b>
-									<font size="2">編輯個人資料</font></b></span></p></a>
-									<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
-									<font color="#000000" size="2">
-									<span style="text-decoration: none; vertical-align: medium">
-									修改密碼</span></font></td>
+										<a href="revises.php" style=" text-decoration:none;">
+                                    	<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
+											<span style="vertical-align: medium; color:#666; "><b>
+											<font size="2">編輯個人資料</font></b></a>
+                                        	<br />
+										<a href = "modifiedPwd.php" style = "text-decoration:none;">
+											<font color="#666666" size="2">修改密碼</font></span>
+                                        </p></a>
+                                    </td>
 								</tr>
-								<tr>
+                                <tr>
 									<td colspan="3" height="6">
 									<p style="margin-top: 0px; margin-bottom: 0px">
 									<font color="#FFFFFF" style="font-size: 1pt; vertical-align: medium">
@@ -179,18 +176,16 @@ function FP_getObjectByID(id,o) {//v1.0
 									<td><span style="vertical-align: medium">&nbsp;</span></td>
 									<td>
 									<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
-									<span style="vertical-align: medium">
-									<font size="2" color="#C0C0C0">報名系統<br>
-									影音聯播</font></span></p>
-									<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
-									<span style="vertical-align: medium">
-									<font size="2" color="#C0C0C0">專　　欄</font></span></p>
-									<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
-									<span style="vertical-align: medium">
-									<font size="2" color="#C0C0C0">24HR幫幫忙</font></span></p>
-									<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
-									<span style="vertical-align: medium">
-									<font size="2" color="#C0C0C0">報名系統</font></span></td>
+										<span style="vertical-align: medium; text-decoration:none; color:#666;">
+										<font size="2">
+                                            <a href = "#" style="color:#666;">報名系統</a><br />
+											<a href = "#" style="color:#666;">影音聯播</a><br />
+											<a href = "#" style="color:#666;">專　　欄</a><br />
+											<a href = "#" style="color:#666;">24HR幫幫忙</a>
+                                    	</font>
+                                        </span>
+                                    </p>
+									</td>
 								</tr>
 							</table>
 						</div>
@@ -204,78 +199,70 @@ function FP_getObjectByID(id,o) {//v1.0
 									<td align="center" colspan="3" height="28" valign="top">
 									<p align="left" style="margin-top: 0px; margin-bottom: 0px">
 									<span style="vertical-align: medium">
-									<font face="微軟正黑體" size="5" color="#1F1F1F" style="font-weight: 700">
-									♠</font><font face="微軟正黑體"><span class="Apple-converted-space">&nbsp;</span></font>
-                                    <font face="微軟正黑體" size="4" color="#333333"><b>修改密碼</b></font></span></p>
-									<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-									<font face="微軟正黑體">
+									<font size="5" color="#1F1F1F" style="font-weight: 700">
+									♠</font><span class="Apple-converted-space">&nbsp;</span>
+                                    <font size="4" color="#333333"><b>修改密碼</b></font></span></p>
+									<p align="left" style="margin-top: 0px; margin-bottom: 0px">						
 									<span style="vertical-align: medium">&nbsp;</span></td>
 								</tr>
 								<tr>
 									<td align="center" colspan="3" height="6">
 									<p style="margin-top: 0px; margin-bottom: 0px">
-									<font face="微軟正黑體">
-									<span style="vertical-align: medium">
-									<font size="2">
-									<img src="http://www.airstage.com.tw/nsysu/airs/page/airstab/app/accounts/jpg/line.jpg" alt="" width="630" height="1" border="0" align="left"></font></span></p>
+									<span style="vertical-align: medium">							
+									<img src="jpg/line.jpg" alt="" width="630" height="1" border="0" align="left"></span></p>
 									<p style="margin-top: 0px; margin-bottom: 0px">
 									<span style="vertical-align: medium">&nbsp;</span></p>
 									<p align="left" style="margin-top: 0px; margin-bottom: 0px">
 									<span style="vertical-align: medium">
-									<font size="2"><b>請完成以下表格以修改密碼:　</b></font></span></p>
+									<b>請完成以下表格以<font color="#FF0000">修改密碼</font>:　</b></span></p>
 									<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-									<span style="vertical-align: medium">&nbsp;</span></font></font>
+									<span style="vertical-align: medium">&nbsp;</span></font>
                                     </td>
 								</tr>
                                 
 								<tr>
 									<td align="left" height="14" width="21">
                                     	<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium"><font face="微軟正黑體" size="2">
-										1. </font></span>
+										<span style="vertical-align: medium">1. </span></p>
                                     </td>
 									<td align="left" height="14" width="98">
 										<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">
-										<font size="2" face="微軟正黑體">原始密碼</font></span>
+										<span style="vertical-align: medium">原始密碼</span></p>
                                     </td>
 									<td align="left" height="14" width="513">
 										<p style="margin-top: 0px; margin-bottom: 0px">
                                         <input type = "password" name = "original" id = "original" />
+                                        </p>
 									</td>
 								</tr>
                                 
                                 <tr>
 									<td align="left" height="14" width="21">
                                     	<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium"><font face="微軟正黑體" size="2">
-										2. </font></span>
+										<span style="vertical-align: medium">2. </span></p>
                                     </td>
 									<td align="left" height="14" width="98">
 										<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">
-										<font size="2" face="微軟正黑體">修改密碼</font></span>
+										<span style="vertical-align: medium">修改密碼</span></p>
                                     </td>
 									<td align="left" height="14" width="513">
 										<p style="margin-top: 0px; margin-bottom: 0px">
-                                        <input type = "password" name = "new_1" id = "new_1" />
+                                        <input type = "password" name = "new_1" id = "new_1" /></p>
 									</td>
 								</tr>
                                 
                                 <tr>
 									<td align="left" height="14" width="21">
                                     	<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium"><font face="微軟正黑體" size="2">
-										3. </font></span>
+										<span style="vertical-align: medium">3. </span></p>
                                     </td>
 									<td align="left" height="14" width="98">
 										<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">
-										<font size="2" face="微軟正黑體">確認密碼</font></span>
+										<span style="vertical-align: medium">確認密碼</span></p>
                                     </td>
 									<td align="left" height="14" width="513">
 										<p style="margin-top: 0px; margin-bottom: 0px">
-                                        <input type = "password" name = "new_2" id = "new_2" />
+                                        <input type = "password" name = "new_2" id = "new_2" /></p>
 									</td>
 								</tr>
                                 <tr>
@@ -294,12 +281,11 @@ function FP_getObjectByID(id,o) {//v1.0
 						</td>
 					</tr>
 				</table>
-				<p><font face="微軟正黑體"><span style="vertical-align: medium">&nbsp;</span></p>
+				<p><span style="vertical-align: medium">&nbsp;</span></p>
 				<p><span style="vertical-align: medium">&nbsp;</span></p>
 				<p><span style="vertical-align: medium">&nbsp;</span></div>
 			</td>
 		</tr>
-		</font>
 	</table>
 </div>
 </body>
