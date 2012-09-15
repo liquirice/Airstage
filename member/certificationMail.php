@@ -3,6 +3,7 @@
 	require_once( "../connectVar.php" );
 	require_once( "Mail.php" );
 	require_once( "Mail/mime.php" );
+	require_once( "./gmail_setting.php" ); //包含$gmail陣列內容，有關airstage官方信箱的帳密和設定寫在這邊。
 
 	//get Random String function
 	function getRandomStr($returnSize="8",$appendStr="",$Type="1",$RandomStr="")
@@ -38,22 +39,17 @@
 	{
 		$username = $getresult['username'];
 		$name = $getresult['name'];
-		$email = $getresult['email'];
-						
+		$stu_id = strtolower($getresult['stu_id']);
+		
+		//token規則好像不該公開
 		$token = getRandomStr(5, sha1($getresult['stu_id']), 1);
 		
 		//發認證信給未認證會員
-		
-		$gmail["host"] = 'ssl://smtp.gmail.com';
-		$gmail["port"] = '465';
-		$gmail["auth"] = true;
-		$gmail["username"] = 'airstagestudio@gmail.com';
-		$gmail["password"] = '86088608';
 	
-		$recipients = $email;
+		$recipients = $stu_id."@student.nsysu.edu.tw";
 	
 		$headers['From']    = 'Studio Airstage<airstagestudio@gmail.com>';
-		$headers['To']      = $email;
+		$headers['To']      = $recipients;
 		$headers['Subject'] = 'Airstage Studio - 註冊認證信';
 	
 		$msg = "<p>  ** 本電子郵件為自動生成郵件，請勿直接回復。 **<br>";
@@ -83,7 +79,19 @@
 		}
 		else{
 			unset($_SESSION['name']);
-			echo "<script language='javascript'>alert('密碼已發到您的e-mail，請記得去收信哦！');document.location.href = 'login.php'</script>";
+			echo '<html>'.
+				 '<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>會員認證</title></head>'.
+				 '<body>'.
+				 '<p>首先感謝您註冊Airstage。</p>'.
+				 '<p>目前Airstage僅開放給中山大學學生使用。</p>'.
+				 '<p>為確認您為中山大學學生，</p>'.
+				 '<p>系統目前已依照您所填的學號，發送一封認證信至您的中山大學學生信箱。</p>'.
+				 '<p>麻煩您到學生信箱收取認證信，依照信件指示完成最後的註冊動作，</p>'.
+				 '<p>即可成為Airstage的認證會員，就能夠享受完整會員功能及服務囉！</p>'.
+				 '<p>&nbsp;</p>'.
+				 '<p>Airstage - <a href="http://www.airstage.com.tw/">http://www.airstage.com.tw/</a></p>'.
+				 '<p>國立中山大學　學生網路郵局 - <a href="http://student.nsysu.edu.tw/cgi-bin/owmmdir/openwebmail.pl">http://student.nsysu.edu.tw/cgi-bin/owmmdir/openwebmail.pl</a></p>'.
+				 '</body></html>';
 		}
 	}
 	else
