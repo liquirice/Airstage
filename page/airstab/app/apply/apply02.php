@@ -18,7 +18,7 @@ else if(empty($_SESSION['rno']) == false && empty($_GET['rno']) == false){
 }
 
 if(isset($_GET['action']) == false){
-	$_SESSION['record']= 'update';
+	$_SESSION['record']= 'type';
 }
 else if($_GET['action']){
 	$_SESSION['record']=$_GET['action'];
@@ -165,7 +165,9 @@ else if($url['stu_id'] == $_SESSION['stu_id']){
 		echo '
 		<table background="jpg/rev_back.png" style="background-repeat:no-repeat" width="947" height="573" align="center" id="table">
 			<tr>
-				<td align="center">
+				<td align="center">';
+				if($_SESSION['record'] == 'type'){
+					echo'
 					<div id="select">
 						<a style="cursor:pointer" id="rev"><img src="jpg/rev_b1.png" name="rev" onMouseOver="document.rev.src=\'jpg/rev_b2.png\'" onMouseOut="document.rev.src=\'jpg/rev_b1.png\'" /></a>&nbsp;&nbsp;';
 						if($url['signup'] == 'yes'){
@@ -175,6 +177,7 @@ else if($url['stu_id'] == $_SESSION['stu_id']){
 						echo'
 						<a style="cursor:pointer" id="set"><img src="jpg/set_b1.png" name="set" onMouseOver="document.set.src=\'jpg/set_b2.png\'" onMouseOut="document.set.src=\'jpg/set_b1.png\'" /></a>&nbsp;&nbsp;
 					</div>';
+				}
 					include('update.php');
 					include('adminlist.php');
 					include('private.php');
