@@ -2,7 +2,7 @@
 echo'
 <div id="private">
 <form action="apply02.php?action=private" method="post">
-<table align="center" background="jpg/">
+<table align="center" background="jpg/st.png" style="background-repeat:no-repeat">
 	<tr>
 		<td align="center">請輸入欲共同管理此活動者的學號</td>
 	</tr>

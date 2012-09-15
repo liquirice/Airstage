@@ -3,7 +3,6 @@
 	if($_SESSION['record'] == 'update'){
 		echo '
 		<div id="update">
-		<form action="apply02.php?action=correct" method="post" name="form" target="_self">
 			<table width="947" height="573">
 				<tr>
 				<td width="507">
@@ -11,6 +10,7 @@
 						<tr>
 							<td align="center" height="80" colspan="2"></td>
 						</tr>
+						<form action="apply02.php?action=correct" method="post" name="form" target="_self">
 						<tr>
 							<td><img src="../../../../activities/jpg/cub.png" />活動分類</td>
 							<td>
@@ -104,15 +104,15 @@
 						echo '
 						<tr>
     						<td colspan="2" align="center"><br /><input type="submit" value="" style="background-image:url(../../../../activities/jpg/bt.png); background-repeat:no-repeat; width:127px; height:41px; cursor:pointer" /></td>
-    					</tr>
+    					</tr></form>
 						<tr>
-							<td align="center"><input type="button" class="back" value="返回上頁" /></td>
+							<td align="center"><form action="apply02.php?option=type"><input type="submit" class="back" value="返回上頁" /></form></td>
 						</tr>
 						</table>
 					</td>
 					</tr>
 				</table>
-			</form></div>';
+			</div>';
 }
 //提交資料
 	else if($_SESSION['record'] == 'correct'){
@@ -137,7 +137,7 @@
 			if($signup == 'yes'){
 				//如果已經建立好list的報名名單
 				if(mysqli_query($conn, $check)){
-					header("location:./apply02.php?action=poster");
+					header("location:./apply02.php?action=poster&option=none");
 				}
 				//如果尚未建立list的報名名單
 				else{
@@ -145,7 +145,8 @@
 					$newextra = 'ALTER TABLE `List` ADD `extra'.$url['rno'].'` VARCHAR( 100 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL';
 					//如果成功建立list資料表
 					if(mysqli_query($conn, $newevent) && mysqli_query($conn, $newextra)){
-						header("location:./apply02.php?action=poster");
+						$_SESSION['option'] = 'none';
+						header("location:./apply02.php?action=poster&option=none");
 					}
 					//建立list資料表失敗
 					else {
@@ -159,11 +160,11 @@
 				//如果已經建立好資料表就刪除
 				if(mysqli_query($conn, $check)){
 					//刪除資料表
-					header("location:./apply02.php?action=poster");
+					header("location:./apply02.php?action=poster&option=none");
 				}
 				//如果沒有就跳過
 				else{
-					header("location:./apply02.php?action=poster");
+					header("location:./apply02.php?action=poster&option=none");
 				}
 			}
 		}
@@ -173,9 +174,11 @@
 		}
 	}
 	else if($_SESSION['record'] == 'poster'){
+		$_SESSION['option'] = 'none';
 		echo '
+		<div id="img">
 			<!--第三部份-->
-			<table cellspacing="0" background="jpg/box3.png" style="background-repeat:no-repeat" width="918" height="545">
+			<table cellspacing="0" width="918" height="545">
     			<tr>';
 				if($url['poster'] == ''){
 					echo '<td height="423"></td>';
@@ -193,9 +196,9 @@
 					<td align="center"><input type="submit" value="" style="background-image:url(../../../../activities/jpg/bt2.png); background-repeat:no-repeat; width:127px; height:41px; cursor:pointer" /></form></td>
 				</tr>
 				<tr>
-					<td align="center"><input type="button" onClick="top.window.close();" value="不需更新" /></td>
+					<td align="center"><form action="apply02.php?option=type"><input type="submit" class="back" value="不需更新" /></form></td>
 				</tr>
-			</table>';
+			</table></div>';
 	}
 	else if($_SESSION['record'] == 'upload'){
 		$path = "../../../../activities/poster/";
@@ -213,22 +216,22 @@
 						if(move_uploaded_file($tmp, $path.$actual_image_name)){
 							mysqli_query($conn,"UPDATE `Activities`  SET `poster` = '$actual_image_name' WHERE `rno` = '".$url['rno']."'");
 							$_SESSION['record'] = '';
-							echo "<script type='text/javascript' language='javascript'>alert('修改成功!'); top.window.close();</script>";
+							echo "<script type='text/javascript' language='javascript'>alert('修改成功!'); location.href='apply02.php?option=type';</script>";
 						}
 						else{
-							echo "<script type='text/javascript' language='javascript'>alert('上傳失敗'); location.href='apply02.php?action=poster';</script>";
+							echo "<script type='text/javascript' language='javascript'>alert('上傳失敗'); location.href='apply02.php?action=poster&option=none';</script>";
 						}
 					}
 					else{
-						echo "<script type='text/javascript' language='javascript'>alert('圖片不可超過1MB'); location.href='apply02.php?action=poster';</script>";
+						echo "<script type='text/javascript' language='javascript'>alert('圖片不可超過1MB'); location.href='apply02.php?action=poster&option=none';</script>";
 					}
 				}
 				else{
-					echo "<script type='text/javascript' language='javascript'>alert('圖片只限JPG');  location.href='apply02.php?action=poster';</script>";
+					echo "<script type='text/javascript' language='javascript'>alert('圖片只限JPG');  location.href='apply02.php?action=poster&option=none';</script>";
 				}
 			}
 			else{
-				echo "<script type=\"text/javascript\" language=\"javascript\">alert('請選擇圖片'); location.href='apply02.php?action=poster';</script>";
+				echo "<script type=\"text/javascript\" language=\"javascript\">alert('請選擇圖片'); location.href='apply02.php?action=poster&option=none';</script>";
 			}
 			exit;
 		}
