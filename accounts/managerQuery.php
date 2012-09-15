@@ -192,7 +192,9 @@ function FP_getObjectByID(id,o) {//v1.0
                                             <a href = "#" style="color:#666;">報名系統</a><br />
 											<a href = "#" style="color:#666;">影音聯播</a><br />
 											<a href = "#" style="color:#666;">專　　欄</a><br />
-											<a href = "#" style="color:#666;">24HR幫幫忙</a>
+											<a href = "#" style="color:#666;">24HR幫幫忙</a><br /><br />
+                                            目前連線 IP 位置 : <br />
+											<?php echo $_SERVER['SERVER_ADDR'];?>
                                     	</font>
                                         </span>
                                     </p>
@@ -249,7 +251,7 @@ function FP_getObjectByID(id,o) {//v1.0
 										<p style="margin-top: 0px; margin-bottom: 0px">
                                         <input type="text" name="stu_id" id="stu_id" />
                                         <input type="submit" name = "stu_id_submit" id = "stu_id_submit" value="Query" />
-                                        <font color="#CCCCCC">ex : B993040017</font>
+                                        <font color="#999999">ex : B993040017</font>
                                         </p>
 									</td>
                                 </form>
@@ -273,7 +275,7 @@ function FP_getObjectByID(id,o) {//v1.0
 										<p style="margin-top: 0px; margin-bottom: 0px">
                                         <input type="text" name="name" id="name" />
                                         <input type="submit" name = "name_submit" id = "name_submit" value="Query" />
-                                        <font color="#CCCCCC">ex : 江緯宸</font>
+                                        <font color="#999999">ex : 江緯宸</font>
                                         </p>                             
 									</td>
                                 </form>
@@ -297,7 +299,7 @@ function FP_getObjectByID(id,o) {//v1.0
 										<p style="margin-top: 0px; margin-bottom: 0px">
                                         <input type="text" name="email" id="email" />
                                         <input type="submit" name = "email_submit" id = "email_submit" value="Query"/>
-                                        <font color="#CCCCCC">ex : archerwindy@gmail.com</font>
+                                        <font color="#999999">ex : archerwindy@gmail.com</font>
                                         </p>         
 									</td>
                                 </form>
@@ -321,7 +323,7 @@ function FP_getObjectByID(id,o) {//v1.0
 										<p style="margin-top: 0px; margin-bottom: 0px">
                                         <input type="text" name="grade" id="grade" />
                                         <input type="submit" name = "grade_submit" id = "grade_submit" value="Query"/>
-                                        <font color="#CCCCCC">ex : 103</font>
+                                        <font color="#999999">ex : 103</font>
                                         </p>         
 									</td>
                                 </form>
@@ -345,7 +347,7 @@ function FP_getObjectByID(id,o) {//v1.0
 										<p style="margin-top: 0px; margin-bottom: 0px">
                                         <input type="text" name="department" id="department" />
                                         <input type="submit" name = "department_submit" id = "department_submit" value="Query"/>
-                                        <font color="#CCCCCC">ex : 資工系</font>
+                                        <font color="#999999">ex : 資工系</font>
                                         </p>         
 									</td>
                                 </form>
@@ -369,7 +371,7 @@ function FP_getObjectByID(id,o) {//v1.0
 										<p style="margin-top: 0px; margin-bottom: 0px">
                                         <input type="text" name="facebook" id="facebook" />
                                         <input type="submit" name = "facebook_submit" id = "facebook_submit" value="Query"/>
-                                        <font color="#CCCCCC">ex : facebook URL</font>
+                                        <font color="#999999">ex : facebook URL</font>
                                         </p>         
 									</td>
                                 </form>

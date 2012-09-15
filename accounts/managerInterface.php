@@ -161,7 +161,9 @@ function FP_getObjectByID(id,o) {//v1.0
                                             <a href = "#" style="color:#666;">報名系統</a><br />
 											<a href = "#" style="color:#666;">影音聯播</a><br />
 											<a href = "#" style="color:#666;">專　　欄</a><br />
-											<a href = "#" style="color:#666;">24HR幫幫忙</a>
+											<a href = "#" style="color:#666;">24HR幫幫忙</a><br /><br />
+                                            目前連線 IP 位置 : <br />
+											<?php echo $_SERVER['SERVER_ADDR'];?>
                                     	</font>
                                         </span>
                                     </p>
@@ -212,7 +214,7 @@ function FP_getObjectByID(id,o) {//v1.0
 									<td align="left" height="14" width="98">
                                     	<a href = "managerQuery.php" style="text-decoration:none; color:#000;">
 										<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">查詢使用者</span></p></a>
+										<span style="vertical-align: medium">使用者查詢</span></p></a>
                                     </td>
 									<td align="left" height="14" width="513">
 										<p style="margin-top: 0px; margin-bottom: 0px"></p>
@@ -227,6 +229,44 @@ function FP_getObjectByID(id,o) {//v1.0
 									<td align="left" height="14" width="21">
                                     	<p align="left" style="margin-top: 0px; margin-bottom: 0px">
 										<span style="vertical-align: medium">2. </span></p>
+                                    </td>
+									<td align="left" height="14" width="120">
+                                    	<a href = "managerRealTime.php" style="text-decoration:none; color:#000;">
+										<p align="left" style="margin-top: 0px; margin-bottom: 0px">
+										<span style="vertical-align: medium">線上即時資料查詢</span></p></a>
+                                    </td>
+									<td align="left" height="14" width="513">
+										<p style="margin-top: 0px; margin-bottom: 0px"></p>                             
+									</td>
+								</tr>
+                                
+                                <tr>
+                                	<td><p></p></td>
+                                </tr>
+                                
+                                <tr>
+									<td align="left" height="14" width="21">
+                                    	<p align="left" style="margin-top: 0px; margin-bottom: 0px">
+										<span style="vertical-align: medium">3. </span></p>
+                                    </td>
+									<td align="left" height="14" width="120">
+                                    	<a href = "managerTotal.php" style="text-decoration:none; color:#000;">
+										<p align="left" style="margin-top: 0px; margin-bottom: 0px">
+										<span style="vertical-align: medium">整體性資料查詢</span></p></a>
+                                    </td>
+									<td align="left" height="14" width="513">
+										<p style="margin-top: 0px; margin-bottom: 0px"></p>                             
+									</td>
+								</tr>
+                                
+                                <tr>
+                                	<td><p></p></td>
+                                </tr>
+                                
+                                <tr>
+									<td align="left" height="14" width="21">
+                                    	<p align="left" style="margin-top: 0px; margin-bottom: 0px">
+										<span style="vertical-align: medium">4. </span></p>
                                     </td>
 									<td align="left" height="14" width="120">
                                     	<a href = "managerAnnounce.php" style="text-decoration:none; color:#000;">
@@ -245,7 +285,7 @@ function FP_getObjectByID(id,o) {//v1.0
                                 <tr>
 									<td align="left" height="14" width="21">
                                     	<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">3. </span></p>
+										<span style="vertical-align: medium">5. </span></p>
                                     </td>
 									<td align="left" height="14" width="98">
                                     	<a href = "managerNews.php" style="text-decoration:none; color:#000;">

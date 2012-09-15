@@ -144,7 +144,7 @@ function FP_getObjectByID(id,o) {//v1.0
 									<td height="48" width="4%">
 										<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
 										<span style="vertical-align: medium">
-											<img src="jpg/gray.jpg" alt="" width="6" height="100%" border="0">
+											<img src="jpg/gray.jpg" width="6" height="100%" border="0">
                                         </span>
                                     </td>
 									<td height="48" width="8%">
@@ -169,19 +169,25 @@ function FP_getObjectByID(id,o) {//v1.0
 									1</font></td>
 								</tr>
 								<tr>
-									<td>
+									<td height="60">
 									<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
 									<span style="vertical-align: medium">
-									<img src="jpg/gray.jpg" alt="" width="6" height="100%" border="0"></span></td>
-									<td><span style="vertical-align: medium">&nbsp;</span></td>
-									<td>
+									<img src="jpg/gray.jpg" width="6" height="100%" border="0"></span></td>
+									<td height="60"><span style="vertical-align: medium">&nbsp;</span></td>
+									<td height="60">
 									<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
 										<span style="vertical-align: medium; text-decoration:none; color:#666;">
 										<font size="2">
+                                        <?php
+											if( $_SESSION['auth'] == "2" )
+												echo '<a href = "managerInterface.php" style="color:#666;">管理者介面</a><br />';
+										?>
                                             <a href = "#" style="color:#666;">報名系統</a><br />
 											<a href = "#" style="color:#666;">影音聯播</a><br />
 											<a href = "#" style="color:#666;">專　　欄</a><br />
-											<a href = "#" style="color:#666;">24HR幫幫忙</a>
+											<a href = "#" style="color:#666;">24HR幫幫忙</a><br /><br />
+                                            目前連線 IP 位置 : <br />
+											<?php echo $_SERVER['SERVER_ADDR'];?>
                                     	</font>
                                         </span>
                                     </p>
