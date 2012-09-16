@@ -39,7 +39,6 @@
 			// Checkboxes.
 			$stu_id_c = $_POST['stu_id_c'];
 			$name_c = $_POST['name_c'];
-			$username_c = $_POST['username_c'];
 			$gender_c = $_POST['gender_c'];
 			$grade_c = $_POST['grade_c'];
 			$facebook_c = $_POST['facebook_c'];
@@ -87,7 +86,7 @@
 			// Upadte the checkbox.
 			$query = "UPDATE display_check SET stu_id_c = '$stu_id_c', name_c = '$name_c', gender_c = '$gender_c', grade_c = '$grade_c', facebook_c = '$facebook_c'".
 					 " ,msn_c = '$msn_c', twitter_c = '$twitter_c', plurk_c = '$plurk_c', skype_c = '$skype_c', phone_c = '$phone_c', email_c = '$email_c', home_c = '$home_c'".
-					 " ,dorm_c = '$dorm_c', outAddr_c = '$outAddr_c', car_c = '$car_c', profile_pic_c = '$profile_pic_c', username_c = '$username_c'";
+					 " ,dorm_c = '$dorm_c', outAddr_c = '$outAddr_c', car_c = '$car_c', profile_pic_c = '$profile_pic_c'";
 			$result = mysqli_query( $conn, $query ) or die('Upadte Error3');
 			
 			echo '<script type="text/javascript">alert("更新完成！");</script>';
@@ -315,8 +314,8 @@ function FP_getObjectByID(id,o) {//v1.0
                       </tr>
                       
                       <tr>
-	                    <td align="left" height="13" width="22"><span style="vertical-align: medium"> <font face="微軟正黑體">
-	                      <input type="checkbox" name="username_c" id="nick_c" <?php if($check['username_c'] == "on") { echo "checked"; }?>></font></span>
+	                    <td align="left" height="13" width="22"><span style="vertical-align: medium">
+	                    
 	                    </td>
 	                    <td height="13" colspan="2" align="left">
 	                    	<p align="left" style="margin-top: 0px; margin-bottom: 0px"> 
