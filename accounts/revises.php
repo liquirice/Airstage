@@ -252,7 +252,7 @@ function FP_getObjectByID(id,o) {//v1.0
 								<a href = "#" style="color:#666;">專　　欄</a><br />
 								<a href = "#" style="color:#666;">24HR幫幫忙</a><br /><br />
                                 目前連線 IP 位置 : <br />
-								<?php echo $_SERVER['SERVER_ADDR'];?>
+								<?php echo $_SERVER['REMOTE_ADDR'];?>
                         	</font>
                             </span>
                         </p>
