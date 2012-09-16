@@ -196,15 +196,7 @@ function FP_getObjectByID(id,o) {//v1.0
       <a onMouseOver="var img=document['fpAnimswapImgFP9'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP9'].src=document['fpAnimswapImgFP9'].imgRolln" target="_parent" href="../index.php"><img border="0" src="../jpg/cal_bot001.png" width="89" height="75" id="fpAnimswapImgFP9" name="fpAnimswapImgFP9" dynamicanimation="fpAnimswapImgFP9" lowsrc="../jpg/cal_bot002.png"></a></font></a><font color="#FFFFFF"><img border="0" src="../jpg/topbar002.png" width="20" height="75"><a href="../page/airstab/index.htm"><img border="0" src="../jpg/air_bot002.png" width="89" height="75"></a></font></td>
 			<td background="../jpg/topbar003.png" width="124" valign="middle"><span style="margin-top: 0; margin-bottom: 0">
 			<?php
-				// Last Modified Day : 2012.09.11
-			 	// Check whether the member is login or not.
-				if( !isset($_SESSION['name']) || !isset($_SESSION['stu_id']) ){
-					echo '<script type="text/javascript">alert("請先登入唷～"); location.href="../index2.htm"</script>';
-				} else {
-					echo '<a href="revises.php" style="border:0; color:#000000; font-size:14px"><b>'.$_SESSION['name'].
-					'</b></a>&nbsp;&nbsp;|&nbsp;
-					<a href="../member/logout.php" style="border:0; color:#000000; font-size:14px"><b>登出</b></a>';
-				}
+				require_once( "loginCheck_account.php" );
 			?>
 			</span></td>
 		</tr>
@@ -237,6 +229,32 @@ function FP_getObjectByID(id,o) {//v1.0
 	                <tr>
 	                  <td colspan="3" height="6"><p style="margin-top: 0px; margin-bottom: 0px"> <font color="#FFFFFF" style="font-size: 1pt; vertical-align: medium"> 1</font></td>
 	                </tr>
+	                <tr>
+						<td height="60">
+						<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
+						<span style="vertical-align: medium">
+						<img src="jpg/gray.jpg" width="6" height="100%" border="0"></span></td>
+						<td height="60"><span style="vertical-align: medium">&nbsp;</span></td>
+						<td height="60">
+						<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
+							<span style="vertical-align: medium; text-decoration:none; color:#666;">
+							<font size="2">
+                            <?php
+								if( $_SESSION['auth'] == "2" )
+									echo '<a href = "managerInterface.php" style="color:#666;">管理者介面</a><br />';
+							?>
+                                <a href = "#" style="color:#666;">報名系統</a><br />
+								<a href = "#" style="color:#666;">影音聯播</a><br />
+								<a href = "#" style="color:#666;">專　　欄</a><br />
+								<a href = "#" style="color:#666;">24HR幫幫忙</a><br /><br />
+                                目前連線 IP 位置 : <br />
+								<?php echo $_SERVER['SERVER_ADDR'];?>
+                        	</font>
+                            </span>
+                        </p>
+						</td>
+					</tr>
+	                
 	               </table>
 	              </div></td>
 	            

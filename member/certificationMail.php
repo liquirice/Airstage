@@ -62,7 +62,6 @@
 		$msg .= "<p> ** 本電子郵件為自動生成郵件，請勿直接回復。 **</p>";
 //		$msg .= "";
 	
-<<<<<<< HEAD
 		$mime = new Mail_mime();
 		$mime->setHTMLBody($msg);
 	
@@ -94,38 +93,7 @@
 				 '<p>國立中山大學　學生網路郵局 - <a href="http://student.nsysu.edu.tw/cgi-bin/owmmdir/openwebmail.pl">http://student.nsysu.edu.tw/cgi-bin/owmmdir/openwebmail.pl</a></p>'.
 				 '</body></html>';
 		}
-=======
-	/*============subject為寄件標題，email内容由以下開始==================*/
-	$subject = 'Airstage Studio - 密碼通知';
-	
-	$nl = "\r\n";
-	$message = '';
-	$message .= '<html>'.$nl;
-	$message .= '<body style="font-size:13px;">';
-	$message .= '<b>親愛的&nbsp;'.$getname.'：</b><br>'.$nl;
-	$message .= '您的密碼認證已通過<br>'.$nl;
-	$message .= '您的帳號:&nbsp;'.$getid.'<br>'.$nl;
-	$message .= '您的密碼:&nbsp;'.$getpsw.'<br>'.$nl;
-	$message .= '<span style="color:#990000;">本電子郵件爲自動生成郵件，請勿直接回復。<br>'.$nl;
-	$message .= '若有任何有關平台的疑問，請洽平台負責人：&nbsp;郭宇軒&nbsp;|&nbsp;e-mail:&nbsp;<a href="mailto:shdowwings@gmail.com">shdowwings@gmail.com</a><br>'.$nl;
-	$message .= '若有任何有關系統的疑問，請洽系統負責人：&nbsp;甘忠禾&nbsp;|&nbsp;e-mail:&nbsp;<a href="mailto:two_saki@hotmail.com">two_saki@hotmail.com</a><br>'.$nl;
-	$message .= '<br>'.$nl;
-	$message .= '國立中山大學&nbsp;|&nbsp;Airstage&nbsp;Studio&nbsp;|&nbsp;西灣人<br></span>'.$nl;
-	$message .= '</body>'.$nl;
-	$message .= '</html>'.$nl;
-	/*==================email内容至此結束，準備發送email===================*/
-	
-	$headers = array('From'=>$from, 'To'=>$to, 'Subject'=>$subject, 'MIME-Version'=>'1.0', 'Content-Type'=>'text/html; charset=utf-8', 'Content-Transfer-Encoding'=>'8bit');
-	$smtp = Mail::factory('smtp', array('host'=>$host, 'port'=>$port, 'auth'=>true, 'username'=>$user, 'password'=>$pswd));
-	$mail = $smtp->send($to, $headers, $message); //由此發送email
-	
-	/*===================檢查email發送情況，成功與否=======================*/
-	if(PEAR::isError($mail)){
-		echo "<script language='javascript'>alert('email failed!!');</script>";
->>>>>>> Add PEAR Mail package for forgetPassword.php, change upload path
-	}
-	else
-	{
+	} else {
 		//非未認證會員則跳回index頁
 		echo '<script type="text/javascript">alert("您已經是認證會員！"); location.href="../index.php"</script>';
 	}
