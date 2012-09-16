@@ -15,7 +15,7 @@ echo '
 <div id="adminlist">
 <table align="center">
 	<tr>
-    	<td align="center" colspan="4" style="font-weight:bold; font-size:18px">'.$eventname['title'].'&nbsp;&nbsp;|&nbsp;&nbsp;報名名單"; ?></td>
+    	<td align="center" colspan="4" style="font-weight:bold; font-size:18px">'.$eventname['title'].'&nbsp;&nbsp;|&nbsp;&nbsp;報名名單"</td>
     </tr>';
 	if(mysqli_num_rows($result) == 0){
 		echo'
