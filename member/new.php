@@ -25,9 +25,9 @@ if( 1 /*$_SESSION['pass_phrase'] == $_POST['captcha'] && $_POST['captcha'] !=""*
 	}
 
 	$insert = "INSERT INTO `Member`(`username`, `stu_id`, `psw`, `name`, `department`, `grade`, `gender`, `email`) VALUES('{$username}', '{$stu_id}', '{$psw}', '{$name}', '{$department}', '{$grade}', '{$gender}', '{$email}')";
-	$MInfo_insert = "INSERT INTO `member_info` (`stu_id`, `facebook`, `msn`, `twitter`, `plurk`, `skype`, `phone`, `food`, `home`, `id`, `dorm`, `room`, `outAddr`, `car`, `profile_pic`) VALUES ('{$stu_id}', '', '', '', '', '', '', '0', '', '', '', '000', '', '0', '');";
+	$MInfo_insert = "INSERT INTO `member_Info` (`stu_id`, `facebook`, `msn`, `twitter`, `plurk`, `skype`, `phone`, `food`, `home`, `id`, `dorm`, `room`, `outAddr`, `car`, `profile_pic`) VALUES ('{$stu_id}', '', '', '', '', '', '', '0', '', '', '', '000', '', '0', '');";
 	/*display_check這個資料表太聰明了，只要是曾經加入過的學號，就算項目有被刪除，也沒辦法重新註冊*/
-	$DCheck_insert = "INSERT INTO `display_check` (`stu_id`, `stu_id_c`, `name_c`, `gender_c`, `grade_c`, `facebook_c`, `msn_c`, `twitter_c`, `plurk_c`, `skype_c`, `phone_c`, `email_c`, `home_c`, `dorm_c`, `outAddr_c`, `car_c`, `profile_pic_c`) VALUES ('{$stu_id}', 'on', '', '', '', 'on', '', '', '', '', '', '', '', '', '', '', 'on');";
+	$DCheck_insert = "INSERT INTO `display_check` (`stu_id`, `stu_id_c`, `name_c`, `username_c`,`gender_c`, `grade_c`, `facebook_c`, `msn_c`, `twitter_c`, `plurk_c`, `skype_c`, `phone_c`, `email_c`, `home_c`, `dorm_c`, `outAddr_c`, `car_c`, `profile_pic_c`) VALUES ('{$stu_id}', 'on', '', '', '','', 'on', '', '', '', '', '', '', '', '', '', '', 'on');";
 
 	if( mysqli_query($conn,$insert) && mysqli_query($conn,$MInfo_insert) && mysqli_query($conn,$DCheck_insert) ){
 		mkdir("../accounts/images/{$stu_id}");
