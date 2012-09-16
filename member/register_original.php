@@ -155,6 +155,7 @@ $f.dom.ready(function() {
 		<option value="社會系">社會</option>
 		<option value="資工系">資工</option>
 		<option value="電機系">電機</option>
+		<option value="機電系">機電</option>
 		</select>系
 		<select name="grade" id="grade">
 		<option value="">   </option>
