@@ -51,6 +51,7 @@ while($urls[$i] != NULL){
 <script type="text/javascript" language="javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" language="javascript" src="../../../../plugin/jquery-ui/js/jquery-ui-1.8.21.custom.min.js"></script>
 <script type="text/javascript" language="javascript" src="http://jquery-ui.googlecode.com/svn/trunk/ui/i18n/jquery.ui.datepicker-zh-TW.js"></script>
+<script type="text/javascript" language="javascript" src="../../../../plugin/validate/jquery.validate.js"></script>
 <script type="text/javascript" language="javascript">
 $(function(){
 	$('#date').datepicker($.datepicker.regional['zh-TW']);
@@ -58,6 +59,23 @@ $(function(){
 	$('#adminlist').hide();
 	$('#private').hide();
 	$(document).ready(function() {
+		$('#updateform').validate({
+		success: 'valid',
+		rules:{
+			type:{valid:true},
+			title:{required:true},
+			description:{required:true},
+			name:{required:true},
+			time:{required:true},
+			venue:{required:true},
+			host:{required:true},
+			url1:{url:true},
+			url2:{url:true},
+		},
+		errorPlacement: function(error, element) { //指定错误信息位置 
+			error.insertAfter(element);
+		},
+		});
     	$('#rev').click(function(){
 			$('#select').fadeOut('fast',function(){
 				$('#update').fadeIn('fast');
@@ -104,10 +122,13 @@ $(function(){
 		})
 	});
 });
-		
+$.validator.addMethod("valid", function(type, element) {
+        return (this.optional(element) || type != 'null')
+    }, "請選擇活動分類");		
 </script>
 <link href="http://www.airstage.com.tw/nsysu/airs/tm2.ico" rel="shortcut icon"/>
 <link href="../../../../plugin/jquery-ui/css/ui-lightness/jquery-ui-1.8.21.custom.css" rel="stylesheet" type="text/css" />
+<link href="../../../../css/validate.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
 body {
 	margin-left: 0px;

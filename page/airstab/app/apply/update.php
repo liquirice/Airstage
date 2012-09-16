@@ -10,11 +10,11 @@
 						<tr>
 							<td align="center" height="80" colspan="2"></td>
 						</tr>
-						<form action="apply02.php?action=correct" method="post" name="form" target="_self">
+						<form action="apply02.php?action=correct" method="post" name="form" target="_self" id="updateform">
 						<tr>
 							<td><img src="../../../../activities/jpg/cub.png" />活動分類</td>
 							<td>
-								<select name="type">';
+								<select name="type" id="type">';
 								if($url['type'] == 'clubs'){
 									echo'
         								<option value="clubs" selected>社團組織</option>
@@ -49,15 +49,15 @@
 						</tr>
 						<tr>
 							<td><img src="../../../../activities/jpg/cub.png" />大標題</td>
-							<td><input type="text" name="title" value="'.$url['title'].'" placeholder="2012中山校園演唱會" /></td>
+							<td><input type="text" name="title" id="title" value="'.$url['title'].'" placeholder="2012中山校園演唱會" /></td>
 						</tr>
 						<tr>
 							<td colspan="2"><img src="../../../../activities/jpg/cub.png" />活動簡介<br />
-							&nbsp;&nbsp;&nbsp;<textarea rows="4" cols="50" name="description" placeholder="演出藝人：陳綺貞|盧廣仲|魏如萱|蛋堡|李佳薇|張芸京|玩聲樂團 (host:NONO)">'.$url['description'].'</textarea></td>
+							&nbsp;&nbsp;&nbsp;<textarea rows="4" id="description" cols="50" name="description" placeholder="演出藝人：陳綺貞|盧廣仲|魏如萱|蛋堡|李佳薇|張芸京|玩聲樂團 (host:NONO)">'.$url['description'].'</textarea></td>
 						</tr>
 						<tr>
 							<td><img src="../../../../activities/jpg/cub.png" />活動名稱</td>
-							<td><input type="text" name="name" placeholder="活末日之花　奇蹟綻放" value="'.$url['name'].'" /></td>
+							<td><input type="text" name="name" placeholder="活末日之花　奇蹟綻放" id="name" value="'.$url['name'].'" /></td>
 						</tr>
 						<tr>
 							<td><img src="../../../../activities/jpg/cub.png" />時間</td>
@@ -65,15 +65,15 @@
 						</tr>
 						<tr>
 							<td><img src="../../../../activities/jpg/cub.png" />地點</td>
-							<td><input type="text" name="venue" value="'.$url['venue'].'" placeholder="西子灣沙灘海水浴場" /></td>
+							<td><input type="text" name="venue" id="venue" value="'.$url['venue'].'" placeholder="西子灣沙灘海水浴場" /></td>
 						</tr>
 						<tr>
 							<td><img src="../../../../activities/jpg/cub.png" />費用</td>
-							<td><input type="text" size="53" name="fee" value="'.$url['fee'].'" placeholder="貴賓票－免費 校內票－$250 校外票－$400" /></td>
+							<td><input type="text" size="53" id="fee" name="fee" value="'.$url['fee'].'" placeholder="貴賓票－免費 校內票－$250 校外票－$400" /></td>
 						</tr>
 						<tr>
 							<td><img src="../../../../activities/jpg/cub.png" />主辦單位</td>
-							<td><input type="text" size="53" name="host" value="'.$url['host'].'" placeholder="中山大學學生會" /></td>
+							<td><input type="text" size="53" id="host" name="host" value="'.$url['host'].'" placeholder="中山大學學生會" /></td>
 						<tr>
 					</table>
 				</td>
@@ -83,12 +83,16 @@
 							<td height="80" colspan="2"></td>
 						</tr>
 						<tr>
-							<td colspan="2" class="type" width="100"><img src="../../../../activities/jpg/cub.png" />活動主頁<br /><br />&nbsp;&nbsp;&nbsp;<input type="text" size="50" value="'.$url['url1'].'" name="url1" placeholder="Google協作平台、無名小站等,沒有可空白" /><br />&nbsp;&nbsp;&nbsp;<input type="button" onclick="window.open(\'https://sites.google.com/\')" value="申請Google協作平台" /></td>
+							<td colspan="2" class="type" width="100"><img src="../../../../activities/jpg/cub.png" />活動主頁<br /><br />&nbsp;&nbsp;&nbsp;<input type="text" size="50" value="'.$url['url1'].'" id="url1" name="url1" placeholder="Google協作平台、無名小站等,沒有可空白" /><br />&nbsp;&nbsp;&nbsp;<input type="button" onclick="window.open(\'https://sites.google.com/\')" value="申請Google協作平台" /></td>
     					</tr>
     					<!--網址2-->
     					<tr>
-    						<td colspan="2" class="type" width="100"><img src="../../../../activities/jpg/cub.png" />Facebook網址<br /><br />&nbsp;&nbsp;&nbsp;<input type="text" size="50" value="'.$url['url2'].'" name="url2" placeholder="活動資訊的Facebook網址" /></td>
+    						<td colspan="2" class="type" width="100"><img src="../../../../activities/jpg/cub.png" />Facebook網址<br /><br />&nbsp;&nbsp;&nbsp;<input type="text" size="50" id="url2" value="'.$url['url2'].'" name="url2" placeholder="活動資訊的Facebook網址" /></td>
     					</tr>
+						<tr>
+							<td colspan="2" class="type" width="100"><img src="../../../../activities/jpg/cub.png" />附註<br /><br />
+							&nbsp;&nbsp;&nbsp;<textarea name="note" id="note" cols="30" id="note"" placeholder="注意事項" rows="4">'.$url['note'].'</textarea></td>
+						</tr>
 						<tr>
 							<td height="100" align="center" valign="middle" bgcolor="#f1f1f1">是否需要開啟【線上報名】與【有誰參加】的功能?<br /><br />';
 							if($url['signup'] == 'yes'){
@@ -127,9 +131,10 @@
 		$host = $_POST['host'];
 		$url1 = $_POST['url1'];
 		$url2 = $_POST['url2'];
+		$note = $_POST['note'];
 		$signup = $_POST['signup'];
 		
-		$update = "UPDATE Activities SET type = '$type', title = '$title', description = '$description', name = '$name', time = '$time', extratime = '$extratime', venue = '$venue', fee = '$fee', host = '$host', url1 = '$url1', url2 = '$url2', signup = '$signup' WHERE rno = ".$url['rno']."";
+		$update = "UPDATE Activities SET type = '$type', title = '$title', description = '$description', name = '$name', time = '$time', extratime = '$extratime', venue = '$venue', fee = '$fee', host = '$host', url1 = '$url1', url2 = '$url2', note = '$note', signup = '$signup' WHERE rno = ".$url['rno']."";
 		//將資料更新至Activities
 		if(mysqli_query($conn,$update)){
 			$check = "SELECT event".$url['rno']." FROM `List`";
