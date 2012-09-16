@@ -2,9 +2,12 @@
 	// Last Modified Day : 2012.09.13
 	require_once( "../setSession.php" );
 	
-	if( !isset($_SESSION['stu_id']) || !isset($_SESSION['name']) ) {
+	if( !isset($_SESSION['stu_id']) || !isset($_SESSION['name']) || !isset($_SESSION['auth']) ) {
 		echo '<script type="text/javascript">alert("請先登入唷～"); location.href="../index.php"</script>';
 	} else {
+		if( $_SESSION['auth'] == 0 ) {
+			echo '<script type="text/javascript">alert("記得去信箱認證帳號才有權限進來唷"); location.href="../index.php"</script>';
+		} else {
 		require_once( "../connectVar.php" );
 		require_once( "uploadPath.php" );
 		$stu_id = $_SESSION['stu_id'];
@@ -101,6 +104,7 @@
 		} else {
 			$row = mysqli_fetch_array( $result );	
 			$check = mysqli_fetch_array( $checkResult );
+		}
 		}
 	}
 ?>
@@ -223,7 +227,7 @@ function FP_getObjectByID(id,o) {//v1.0
 	                  <td height="48" width="81%">
 	                  	<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium"><b> <font size="2">編輯個人資料</font></b></span></p>
 	                    <p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px"> <font color="#C0C0C0" size="2"> 
-	                    <span style="text-decoration: none; vertical-align: medium"><a href = "passwordModified.php" style="color: rgb(192, 192, 192);" > 修改密碼</a></span></font><br />
+	                    <span style="text-decoration: none; vertical-align: medium"><a href = "modifiedPwd.php" style="color: #666;" > 修改密碼</a></span></font><br />
 	                  </td>
 	                </tr>
 	                <tr>
