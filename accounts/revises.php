@@ -6,104 +6,104 @@
 		echo '<script type="text/javascript">alert("請先登入唷～"); location.href="../index.php"</script>';
 	} else {
 		if( $_SESSION['auth'] == 0 ) {
-			echo '<script type="text/javascript">alert("記得去信箱認證帳號才有權限進來唷"); location.href="../index.php"</script>';
+			echo '<script type="text/javascript">alert("記得去信箱認證帳號才有權限進來唷!"); location.href="../index.php"</script>';
 		} else {
-		require_once( "../connectVar.php" );
-		require_once( "uploadPath.php" );
-		$stu_id = $_SESSION['stu_id'];
-		
-		// Upadte the user info.
-		if( isset($_POST['submit']) ) {
-			// Basic info.
-			$username = mysqli_real_escape_string( $conn, trim($_POST['username']) );
-			$gender = mysqli_real_escape_string( $conn, trim($_POST['gender']) );
-			$department = mysqli_real_escape_string( $conn, trim($_POST['department']) );
-			$grade = mysqli_real_escape_string( $conn, trim($_POST['grade']) );
-			$facebook = mysqli_real_escape_string( $conn, trim($_POST['facebook']) );
+			require_once( "../connectVar.php" );
+			require_once( "uploadPath.php" );
+			$stu_id = $_SESSION['stu_id'];
 			
-			// Common info.
-			$msn = mysqli_real_escape_string( $conn, trim($_POST['msn']) );
-			$twitter = mysqli_real_escape_string( $conn, trim($_POST['twitter']) );
-			$plurk = mysqli_real_escape_string( $conn, trim($_POST['plurk']) );
-			$skype = mysqli_real_escape_string( $conn, trim($_POST['skype']) );
-			$phone = mysqli_real_escape_string( $conn, trim($_POST['phone']) );
-			$email = mysqli_real_escape_string( $conn, trim($_POST['email']) ); 
-			$food = mysqli_real_escape_string( $conn, trim($_POST['food']) );
-			$home = mysqli_real_escape_string( $conn, trim($_POST['home']) );
-			$id = mysqli_real_escape_string( $conn, trim($_POST['id']) );
-			$dorm = mysqli_real_escape_string( $conn, trim($_POST['dorm']) );
-			$room = mysqli_real_escape_string( $conn, trim($_POST['room']) );
-			$outAddr = mysqli_real_escape_string( $conn, trim($_POST['outAddr']) );
-			$car = mysqli_real_escape_string( $conn, trim($_POST['car']) );
-			
-			// Checkboxes.
-			$stu_id_c = $_POST['stu_id_c'];
-			$name_c = $_POST['name_c'];
-			$gender_c = $_POST['gender_c'];
-			$grade_c = $_POST['grade_c'];
-			$facebook_c = $_POST['facebook_c'];
-			$msn_c = $_POST['msn_c'];
-			$twitter_c = $_POST['twitter_c'];
-			$plurk_c = $_POST['plurk_c'];
-			$skype_c = $_POST['skype_c'];
-			$phone_c = $_POST['phone_c'];
-			$email_c = $_POST['email_c'];
-			$home_c = $_POST['home_c'];
-			$dorm_c = $_POST['dorm_c'];
-			$outAddr_c = $_POST['outAddr_c'];
-			$car_c = $_POST['car_c'];
-			$profile_pic_c = $_POST['profile_pic_c'];
+			// Upadte the user info.
+			if( isset($_POST['submit']) ) {
+				// Basic info.
+				$username = mysqli_real_escape_string( $conn, trim($_POST['username']) );
+				$gender = mysqli_real_escape_string( $conn, trim($_POST['gender']) );
+				$department = mysqli_real_escape_string( $conn, trim($_POST['department']) );
+				$grade = mysqli_real_escape_string( $conn, trim($_POST['grade']) );
+				$facebook = mysqli_real_escape_string( $conn, trim($_POST['facebook']) );
 				
-			// Profile Pic.
-			$picName = $_FILES['profile_pic']['name'];
-			$picType = $_FILES['profile_pic']['type'];
-			$picSize = $_FILES['profile_pic']['size'];
-			
-			if( !empty($picName) ) {
-				if( (($picType == 'image/gif') || ($picType == 'image/jpeg') || ($picType == 'image/png') || ($picType == 'image/pjpeg')) && ($picSize > 0) && ($picSize <= MAXSIZE) ) {
-					if( $_FILES['profile_pic']['error'] == 0 ) {
-						// Move to the target folder.
-						$target = UPLOADPATH . $picName;
-						if( move_uploaded_file( $_FILES['profile_pic']['tmp_name'], $target) ) {
-							$query = "UPDATE member_Info SET profile_pic = '$picName'";
-							$result = mysqli_query( $conn, $query ) or die('Update Error0');
+				// Common info.
+				$msn = mysqli_real_escape_string( $conn, trim($_POST['msn']) );
+				$twitter = mysqli_real_escape_string( $conn, trim($_POST['twitter']) );
+				$plurk = mysqli_real_escape_string( $conn, trim($_POST['plurk']) );
+				$skype = mysqli_real_escape_string( $conn, trim($_POST['skype']) );
+				$phone = mysqli_real_escape_string( $conn, trim($_POST['phone']) );
+				$email = mysqli_real_escape_string( $conn, trim($_POST['email']) ); 
+				$food = mysqli_real_escape_string( $conn, trim($_POST['food']) );
+				$home = mysqli_real_escape_string( $conn, trim($_POST['home']) );
+				$id = mysqli_real_escape_string( $conn, trim($_POST['id']) );
+				$dorm = mysqli_real_escape_string( $conn, trim($_POST['dorm']) );
+				$room = mysqli_real_escape_string( $conn, trim($_POST['room']) );
+				$outAddr = mysqli_real_escape_string( $conn, trim($_POST['outAddr']) );
+				$car = mysqli_real_escape_string( $conn, trim($_POST['car']) );
+				
+				// Checkboxes.
+				$stu_id_c = $_POST['stu_id_c'];
+				$name_c = $_POST['name_c'];
+				$gender_c = $_POST['gender_c'];
+				$grade_c = $_POST['grade_c'];
+				$facebook_c = $_POST['facebook_c'];
+				$msn_c = $_POST['msn_c'];
+				$twitter_c = $_POST['twitter_c'];
+				$plurk_c = $_POST['plurk_c'];
+				$skype_c = $_POST['skype_c'];
+				$phone_c = $_POST['phone_c'];
+				$email_c = $_POST['email_c'];
+				$home_c = $_POST['home_c'];
+				$dorm_c = $_POST['dorm_c'];
+				$outAddr_c = $_POST['outAddr_c'];
+				$car_c = $_POST['car_c'];
+				$profile_pic_c = $_POST['profile_pic_c'];
+					
+				// Profile Pic.
+				$picName = $_FILES['profile_pic']['name'];
+				$picType = $_FILES['profile_pic']['type'];
+				$picSize = $_FILES['profile_pic']['size'];
+				
+				if( !empty($picName) ) {
+					if( (($picType == 'image/gif') || ($picType == 'image/jpeg') || ($picType == 'image/png') || ($picType == 'image/pjpeg')) && ($picSize > 0) && ($picSize <= MAXSIZE) ) {
+						if( $_FILES['profile_pic']['error'] == 0 ) {
+							// Move to the target folder.
+							$target = UPLOADPATH . $picName;
+							if( move_uploaded_file( $_FILES['profile_pic']['tmp_name'], $target) ) {
+								$query = "UPDATE member_Info SET profile_pic = '$picName'";
+								$result = mysqli_query( $conn, $query ) or die('Update Error0');
+							}
 						}
 					}
 				}
+				
+				// Update the basic info.
+				$query = "UPDATE Member SET gender = '$gender', department = '$department', grade = '$grade', email = '$email', username = '$username'".
+						 " WHERE stu_id = '$stu_id'";
+				$result = mysqli_query( $conn, $query ) or die('Update Error1');
+				
+				// Upadte the common info.
+				$query = "UPDATE member_Info SET msn = '$msn', twitter = '$twitter', plurk = '$plurk', skype = '$skype', facebook = '$facebook'".
+				 		 " ,phone = '$phone', food = '$food', home = '$home', id = '$id', dorm = '$dorm', room = '$room', outAddr = '$outAddr', car = '$car'".
+				 		 " WHERE stu_id = '$stu_id'";
+				$result = mysqli_query( $conn, $query ) or die('Update Error2');
+				
+				// Upadte the checkbox.
+				$query = "UPDATE display_check SET stu_id_c = '$stu_id_c', name_c = '$name_c', gender_c = '$gender_c', grade_c = '$grade_c', facebook_c = '$facebook_c'".
+						 " ,msn_c = '$msn_c', twitter_c = '$twitter_c', plurk_c = '$plurk_c', skype_c = '$skype_c', phone_c = '$phone_c', email_c = '$email_c', home_c = '$home_c'".
+						 " ,dorm_c = '$dorm_c', outAddr_c = '$outAddr_c', car_c = '$car_c', profile_pic_c = '$profile_pic_c'";
+				$result = mysqli_query( $conn, $query ) or die('Upadte Error3');
+				
+				echo '<script type="text/javascript">alert("更新完成！");</script>';
 			}
+				
+			$query = "SELECT * FROM Member INNER JOIN member_Info Using(stu_id) WHERE Member.stu_id = '$stu_id'";
+			$result = mysqli_query( $conn, $query );
 			
-			// Update the basic info.
-			$query = "UPDATE Member SET gender = '$gender', department = '$department', grade = '$grade', email = '$email', username = '$username'".
-					 " WHERE stu_id = '$stu_id'";
-			$result = mysqli_query( $conn, $query ) or die('Update Error1');
+			$displayCheck = "SELECT * FROM display_check WHERE stu_id = '$stu_id'";
+			$checkResult = mysqli_query( $conn, $displayCheck );
 			
-			// Upadte the common info.
-			$query = "UPDATE member_Info SET msn = '$msn', twitter = '$twitter', plurk = '$plurk', skype = '$skype', facebook = '$facebook'".
-			 		 " ,phone = '$phone', food = '$food', home = '$home', id = '$id', dorm = '$dorm', room = '$room', outAddr = '$outAddr', car = '$car'".
-			 		 " WHERE stu_id = '$stu_id'";
-			$result = mysqli_query( $conn, $query ) or die('Update Error2');
-			
-			// Upadte the checkbox.
-			$query = "UPDATE display_check SET stu_id_c = '$stu_id_c', name_c = '$name_c', gender_c = '$gender_c', grade_c = '$grade_c', facebook_c = '$facebook_c'".
-					 " ,msn_c = '$msn_c', twitter_c = '$twitter_c', plurk_c = '$plurk_c', skype_c = '$skype_c', phone_c = '$phone_c', email_c = '$email_c', home_c = '$home_c'".
-					 " ,dorm_c = '$dorm_c', outAddr_c = '$outAddr_c', car_c = '$car_c', profile_pic_c = '$profile_pic_c'";
-			$result = mysqli_query( $conn, $query ) or die('Upadte Error3');
-			
-			echo '<script type="text/javascript">alert("更新完成！");</script>';
-		}
-			
-		$query = "SELECT * FROM Member INNER JOIN member_Info Using(stu_id) WHERE Member.stu_id = '$stu_id'";
-		$result = mysqli_query( $conn, $query );
-		
-		$displayCheck = "SELECT * FROM display_check WHERE stu_id = '$stu_id'";
-		$checkResult = mysqli_query( $conn, $displayCheck );
-		
-		if( mysqli_num_rows($result) == 0 ) {
-			echo '<script type="text/javascript">alert("查無此使用者，請重新登入"); location.href="../index.php"</script>';
-		} else {
-			$row = mysqli_fetch_array( $result );	
-			$check = mysqli_fetch_array( $checkResult );
-		}
+			if( mysqli_num_rows($result) == 0 ) {
+				echo '<script type="text/javascript">alert("查無此使用者，請重新登入"); location.href="../index.php"</script>';
+			} else {
+				$row = mysqli_fetch_array( $result );	
+				$check = mysqli_fetch_array( $checkResult );
+			}
 		}
 	}
 ?>
@@ -217,16 +217,18 @@ function FP_getObjectByID(id,o) {//v1.0
 	              <p align="center"> <font face="微軟正黑體"> <span style="vertical-align: medium">&nbsp;</span></p>
 	              <table border="0" width="65%" height="60">
 	                <tr>
-	                  <td height="48" width="4%">
+	                  <td height="52" width="4%">
 	                  	<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px"> 
 	                  	<span style="vertical-align: medium">
-	                  	<img src="jpg/gray.jpg" alt="" width="6" height="50" border="0"></span>
+	                  	<img src="jpg/gray.jpg" width="6" height="60" border="0"></span>
 	                  </td>
-	                  <td height="48" width="8%"><p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium">&nbsp;</span></td>
-	                  <td height="48" width="81%">
+	                  <td height="52" width="8%"><p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium">&nbsp;</span></td>
+	                  <td height="52" width="81%">
 	                  	<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium"><b> <font size="2">編輯個人資料</font></b></span></p>
 	                    <p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px"> <font color="#C0C0C0" size="2"> 
-	                    <span style="text-decoration: none; vertical-align: medium"><a href = "modifiedPwd.php" style="color: #666;" > 修改密碼</a></span></font><br />
+	                    <span style="text-decoration: none; vertical-align: medium"><a href = "modifiedPwd.php" style="color: #666; text-decoration:none;" > 修改密碼</a></span><br />
+	                    <span style="text-decoration: none; vertical-align: medium"><a href = "#" style="color: #666; text-decoration:none;" > 我的課表</a></span></font><br />
+	                    </p>
 	                  </td>
 	                </tr>
 	                <tr>

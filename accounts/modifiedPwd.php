@@ -144,7 +144,7 @@ function FP_getObjectByID(id,o) {//v1.0
 									<td height="48" width="4%">
 										<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
 										<span style="vertical-align: medium">
-											<img src="jpg/gray.jpg" width="6" height="100%" border="0">
+											<img src="jpg/gray.jpg" width="6" height="60" border="0">
                                         </span>
                                     </td>
 									<td height="48" width="8%">
@@ -158,8 +158,10 @@ function FP_getObjectByID(id,o) {//v1.0
 											<font size="2">編輯個人資料</font></b></a>
                                         	<br />
 										<a href = "modifiedPwd.php" style = "text-decoration:none;">
-											<font color="#666666" size="2">修改密碼</font></span>
+											<font color="#666666" size="2">修改密碼</font>
                                         </p></a>
+                                        <a href = "#" style="color: #666; text-decoration:none;" > 
+                                        	<font color="#666666" size="2">我的課表</a></font></span><br />
                                     </td>
 								</tr>
                                 <tr>

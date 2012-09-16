@@ -300,8 +300,6 @@ function FP_getObjectByID(id,o) {//v1.0
                                 	<td></td>
                                 </tr>                                                       
 							</table>
-                        <!-- End of form -->
-						</form>
 						</td>
 					</tr>
 				</table>

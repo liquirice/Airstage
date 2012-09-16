@@ -189,6 +189,11 @@ $(document).ready(function() {
 //-->
 </script>
 <base target="_parent">
+
+<script>
+	setTimeout("history.go(0);",60000);
+</script>
+
 <script language="JavaScript">
 <!--
 function FP_changeProp() {//v1.0
