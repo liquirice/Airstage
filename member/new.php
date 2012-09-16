@@ -8,7 +8,7 @@ Session_start();
 if( 1 /*$_SESSION['pass_phrase'] == $_POST['captcha'] && $_POST['captcha'] !=""*/)
 {
 	$username = clean($_POST['username']);
-	$psw = clean($_POST['psw']);//拿掉sha1作測試
+	$psw = sha1(clean($_POST['psw']));
 	$name = clean($_POST['name']);
 	$stu_id = strtoupper(clean($_POST['stu_id']));
 	$department = clean($_POST['department']);
