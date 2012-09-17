@@ -112,6 +112,7 @@
 <html>
 <head>
 <link href="tm2.ico" rel="shortcut icon"/>
+<link href="../css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Language" content="zh-tw">
 <title>│Airstage 西灣人│會員中心：編輯個人資料</title>
@@ -982,7 +983,7 @@ function FP_getObjectByID(id,o) {//v1.0
 	                    <td align="left" width="22">&nbsp;</td>
 	                    <td colspan="2" align="left">&nbsp;</td>
 	                    <td align="left" colspan="2"><span style="vertical-align: medium"> <font face="微軟正黑體">
-	                      <input type="submit" value="修改資料" name = "submit">
+	                      <input type="submit" value="修改資料" name = "submit" class="btn btn-info">
 	                      <span class="Apple-converted-space">&nbsp;</span>
 	                  
 	                      </font></span>
