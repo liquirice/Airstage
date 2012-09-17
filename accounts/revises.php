@@ -224,10 +224,12 @@ function FP_getObjectByID(id,o) {//v1.0
 	                  </td>
 	                  <td height="52" width="8%"><p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium">&nbsp;</span></td>
 	                  <td height="52" width="81%">
-	                  	<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium"><b> <font size="2">編輯個人資料</font></b></span></p>
+	                  	<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium"><b> <font size="2">編輯個人資料</font></b></span>
 	                    <p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px"> <font color="#C0C0C0" size="2"> 
 	                    <span style="text-decoration: none; vertical-align: medium"><a href = "modifiedPwd.php" style="color: #666; text-decoration:none;" > 修改密碼</a></span><br />
-	                    <span style="text-decoration: none; vertical-align: medium"><a href = "#" style="color: #666; text-decoration:none;" > 我的課表</a></span></font><br />
+	                    <span style="text-decoration: none; vertical-align: medium"><a href = "classSchedule.php" style="color: #666; text-decoration:none;" > 我的課表</a></span></font><br />
+	                    <a href = "#" style="color: #666; text-decoration:none;" ><font color="#666666" size="2">Air 行事曆</a></font></span><br />
+	                    </p>
 	                    </p>
 	                  </td>
 	                </tr>

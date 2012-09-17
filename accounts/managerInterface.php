@@ -73,7 +73,7 @@ function FP_getObjectByID(id,o) {//v1.0
 <style type="text/css">
 	body,td,th {
 		font-family: "微軟正黑體";
-		font-size: 13px;
+		font-size: 14px;
 	}
 	body {
 		background-image: url(../jpg/background.png);
@@ -137,8 +137,12 @@ function FP_getObjectByID(id,o) {//v1.0
 											<font size="2">編輯個人資料</font></b></a>
                                         	<br />
 										<a href = "modifiedPwd.php" style = "text-decoration:none;">
-											<font color="#666666" size="2">修改密碼</font></span>
-                                        </p></a>
+											<font color="#666666" size="2">修改密碼</font></span><br />
+                                        </a>
+                                        <a href = "classSchedule.php" style="color: #666; text-decoration:none;" > 
+                                        	<font color="#666666" size="2">我的課表</a></font></span><br />
+                                        <a href = "#" style="color: #666; text-decoration:none;" > 
+                                        	<font color="#666666" size="2">Air 行事曆</a></font></span></p><br />
                                     </td>
 								</tr>
 								<tr>
@@ -211,7 +215,7 @@ function FP_getObjectByID(id,o) {//v1.0
                                     	<p align="left" style="margin-top: 0px; margin-bottom: 0px">
 										<span style="vertical-align: medium">1. </span></p>
                                     </td>
-									<td align="left" height="14" width="98">
+									<td align="left" height="14" width="140">
                                     	<a href = "managerQuery.php" style="text-decoration:none; color:#000;">
 										<p align="left" style="margin-top: 0px; margin-bottom: 0px">
 										<span style="vertical-align: medium">使用者查詢</span></p></a>
@@ -230,7 +234,7 @@ function FP_getObjectByID(id,o) {//v1.0
                                     	<p align="left" style="margin-top: 0px; margin-bottom: 0px">
 										<span style="vertical-align: medium">2. </span></p>
                                     </td>
-									<td align="left" height="14" width="120">
+									<td align="left" height="14" width="140">
                                     	<a href = "managerRealTime.php" style="text-decoration:none; color:#000;">
 										<p align="left" style="margin-top: 0px; margin-bottom: 0px">
 										<span style="vertical-align: medium">線上即時資料查詢</span></p></a>
@@ -249,7 +253,7 @@ function FP_getObjectByID(id,o) {//v1.0
                                     	<p align="left" style="margin-top: 0px; margin-bottom: 0px">
 										<span style="vertical-align: medium">3. </span></p>
                                     </td>
-									<td align="left" height="14" width="120">
+									<td align="left" height="14" width="140">
                                     	<a href = "managerTotal.php" style="text-decoration:none; color:#000;">
 										<p align="left" style="margin-top: 0px; margin-bottom: 0px">
 										<span style="vertical-align: medium">整體性資料查詢</span></p></a>
@@ -268,10 +272,10 @@ function FP_getObjectByID(id,o) {//v1.0
                                     	<p align="left" style="margin-top: 0px; margin-bottom: 0px">
 										<span style="vertical-align: medium">4. </span></p>
                                     </td>
-									<td align="left" height="14" width="120">
+									<td align="left" height="14" width="140">
                                     	<a href = "managerAnnounce.php" style="text-decoration:none; color:#000;">
 										<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">發送全站公告 Email</span></p></a>
+										<span style="vertical-align: medium">發送全站公告</span></p></a>
                                     </td>
 									<td align="left" height="14" width="513">
 										<p style="margin-top: 0px; margin-bottom: 0px"></p>                             

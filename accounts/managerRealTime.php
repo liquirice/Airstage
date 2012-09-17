@@ -184,8 +184,12 @@ function FP_getObjectByID(id,o) {//v1.0
 											<font size="2">編輯個人資料</font></b></a>
                                         	<br />
 										<a href = "modifiedPwd.php" style = "text-decoration:none;">
-											<font color="#666666" size="2">修改密碼</font></span>
-                                        </p></a>
+											<font color="#666666" size="2">修改密碼</font></span><br />
+                                        </a>
+                                        <a href = "#" style="color: #666; text-decoration:none;" > 
+                                        	<font color="#666666" size="2">我的課表</a></font></span><br />
+                                        <a href = "#" style="color: #666; text-decoration:none;" > 
+                                        	<font color="#666666" size="2">Air 行事曆</a></font></span></p><br />
                                     </td>
 								</tr>
 								<tr>
