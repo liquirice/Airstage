@@ -46,6 +46,7 @@
     });
 	});
 </script>
+<link href="../css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="../plugin/shadowbox/shadowbox.css">
 <base target="_parent">
 <script language="JavaScript">
@@ -82,6 +83,9 @@ function FP_getObjectByID(id,o) {//v1.0
 	}
 	.d {
 		font-size: 13px;
+	} 
+	a {
+		text-decoration: none;
 	}
 </style>
 </head>
@@ -89,21 +93,9 @@ function FP_getObjectByID(id,o) {//v1.0
 <body topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0" marginwidth="0" marginheight="0" onLoad="dynAnimation()" language="Javascript1.2">
 
 <div align="center">
-	<table border="0" width="980" height="75" cellspacing="0" cellpadding="0">
-		<tr>
-        	<td width="38" background="../jpg/topbar001.png"></td>
-        	<td height="43" width="99" background="../jpg/topbar002.png" align="right"><p style="margin-top: 0; margin-bottom: 0"><a href="http://www.airstage.com.tw/"><img src="../page/airstab/app/theater/jpg/logo.png" name="logo" id="logo" align="left" /></a></td>
-			<td height="75" background="../jpg/topbar002.png" width="700" valign="top">
-  			
-			<font color="#FFFFFF">
-      <a onMouseOver="var img=document['fpAnimswapImgFP9'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP9'].src=document['fpAnimswapImgFP9'].imgRolln" target="_parent" href="../index.php"><img border="0" src="../jpg/cal_bot001.png" width="89" height="75" id="fpAnimswapImgFP9" name="fpAnimswapImgFP9" dynamicanimation="fpAnimswapImgFP9" lowsrc="../jpg/cal_bot002.png"></a></font></a><font color="#FFFFFF"><img border="0" src="../jpg/topbar002.png" width="20" height="75"><a href="../page/airstab/index.htm"><img border="0" src="../jpg/air_bot002.png" width="89" height="75"></a></font></td>
-			<td background="../jpg/topbar003.png" width="124" valign="middle"><span style="margin-top: 0; margin-bottom: 0">
-			<?php
-				require_once( "loginCheck_account.php" );
-			?>
-			</span></td>
-		</tr>
-	</table>
+	<?php
+		require_once( "memberHeader.php" );
+	?>
     
 	<div align="center">
 		<table border="0" width="980" height="693" cellspacing="0" cellpadding="0">
@@ -118,191 +110,49 @@ function FP_getObjectByID(id,o) {//v1.0
 	          <tr>
 	            <td align="left" valign="top" width="30%"><div align="center">
 	              <p align="center"><span style="vertical-align: medium">&nbsp;</span></p>
-							<table border="0" width="65%" height="135">
-								<tr>
-									<td height="48" width="4%">
-										<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">
-											<img src="jpg/gray.jpg" alt="" width="6" height="100%" border="0">
-                                        </span>
-                                    </td>
-									<td height="48" width="8%">
-										<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">&nbsp;</span>
-                                    </td>
-									<td height="48" width="81%">
-										<a href="revises.php" style=" text-decoration:none;">
-                                    	<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
-											<span style="vertical-align: medium; color:#666; "><b>
-											<font size="2">編輯個人資料</font></b></a>
-                                        	<br />
-										<a href = "modifiedPwd.php" style = "text-decoration:none;">
-											<font color="#666666" size="2">修改密碼</font></span><br />
-                                        </a>
-                                        <a href = "classSchedule.php" style="color: #666; text-decoration:none;" > 
-                                        	<font color="#666666" size="2">我的課表</a></font></span><br />
-                                        <a href = "#" style="color: #666; text-decoration:none;" > 
-                                        	<font color="#666666" size="2">Air 行事曆</a></font></span></p><br />
-                                    </td>
-								</tr>
-								<tr>
-									<td colspan="3" height="6">
-									<p style="margin-top: 0px; margin-bottom: 0px">
-									<font color="#FFFFFF" style="font-size: 1pt; vertical-align: medium">
-									1</font></td>
-								</tr>
-								<tr>
-									<td>
-									<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
-									<span style="vertical-align: medium">
-									<img src="jpg/gray.jpg" alt="" width="6" height="100%" border="0"></span></td>
-									<td><span style="vertical-align: medium">&nbsp;</span></td>
-									<td>
-									<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium; text-decoration:none; color:#666;">
-										<font size="2">
-                                        	<a href = "managerInterface.php" style="color:#666;">管理者介面</a><br />
-                                            <a href = "#" style="color:#666;">報名系統</a><br />
-											<a href = "#" style="color:#666;">影音聯播</a><br />
-											<a href = "#" style="color:#666;">專　　欄</a><br />
-											<a href = "#" style="color:#666;">24HR幫幫忙</a><br /><br />
-                                            目前連線 IP 位置 : <br />
-											<?php echo $_SERVER['REMOTE_ADDR'];?>
-                                    	</font>
-                                        </span>
-                                    </p>
-									</td>
-								</tr>
-							</table>
+						<?php
+							require_once( "memberNavigation.php" );							
+						?>
 						</div>
 						</td>
 						<td align="center" valign="top" width="70%">
 						<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
 						<span style="vertical-align: medium">&nbsp;</span></font></font></p>
+						
+						<h3>♠ Airstage 管理者介面</h3>
+						<h4>請點選功能操作 : </h4><br />
+						
 						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-							<table border="0" width="645" cellspacing="1" height="150">
+							<table border="0" width="645" cellspacing="1" height="150" class="table table-hover">
 								<tr>
-									<td align="center" colspan="3" height="28" valign="top">
-									<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">
-										<font size="5" color="#1F1F1F" style="font-weight: 700">
-										♠</font><span class="Apple-converted-space">&nbsp;</span>
-                                    	<font size="4" color="#333333"><b>Airstage 管理者介面</b></font></span>
-                                    </p>														
-									<span style="vertical-align: medium">&nbsp;</span>
-                                    </td>
-								</tr>
-                                
-								<tr>
-									<td align="center" colspan="3" height="6">
-									<p style="margin-top: 0px; margin-bottom: 0px">										
-										<span style="vertical-align: medium">							
-										<img src="jpg/line.jpg" alt="" width="630" height="1" border="0" align="left"></span></p>
-									<p style="margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">&nbsp;</span>
-                                    </p>
-									<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium"><b>請點選功能操作:</b></span>
-                                    </p>
-									<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">&nbsp;</span>
-                                    </p>
-                                    </td>
-								</tr>
-                                
-								<tr>
-									<td align="left" height="14" width="21">
-                                    	<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">1. </span></p>
-                                    </td>
-									<td align="left" height="14" width="140">
-                                    	<a href = "managerQuery.php" style="text-decoration:none; color:#000;">
-										<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">使用者查詢</span></p></a>
-                                    </td>
-									<td align="left" height="14" width="513">
-										<p style="margin-top: 0px; margin-bottom: 0px"></p>
-									</td>
+									<td> 1. </td>
+									<td><a href = "managerQuery.php" style="text-decoration:none; color:#000;">使用者查詢</a></td>
+									<td></td>
 								</tr>
                                 
                                 <tr>
-                                	<td><p></p></td>
-                                </tr>
-                                
-                                <tr>
-									<td align="left" height="14" width="21">
-                                    	<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">2. </span></p>
-                                    </td>
-									<td align="left" height="14" width="140">
-                                    	<a href = "managerRealTime.php" style="text-decoration:none; color:#000;">
-										<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">線上即時資料查詢</span></p></a>
-                                    </td>
-									<td align="left" height="14" width="513">
-										<p style="margin-top: 0px; margin-bottom: 0px"></p>                             
-									</td>
+									<td> 2. </td>
+									<td><a href = "managerRealTime.php" style="text-decoration:none; color:#000;">線上即時資料查詢</a></td>
+									<td></td>
 								</tr>
                                 
                                 <tr>
-                                	<td><p></p></td>
-                                </tr>
-                                
-                                <tr>
-									<td align="left" height="14" width="21">
-                                    	<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">3. </span></p>
-                                    </td>
-									<td align="left" height="14" width="140">
-                                    	<a href = "managerTotal.php" style="text-decoration:none; color:#000;">
-										<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">整體性資料查詢</span></p></a>
-                                    </td>
-									<td align="left" height="14" width="513">
-										<p style="margin-top: 0px; margin-bottom: 0px"></p>                             
-									</td>
+									<td> 3. </td>
+									<td><a href = "managerTotal.php" style="text-decoration:none; color:#000;">整體性資料查詢</a></td>
+									<td></td>
 								</tr>
-                                
+								
                                 <tr>
-                                	<td><p></p></td>
-                                </tr>
-                                
-                                <tr>
-									<td align="left" height="14" width="21">
-                                    	<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">4. </span></p>
-                                    </td>
-									<td align="left" height="14" width="140">
-                                    	<a href = "managerAnnounce.php" style="text-decoration:none; color:#000;">
-										<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">發送全站公告</span></p></a>
-                                    </td>
-									<td align="left" height="14" width="513">
-										<p style="margin-top: 0px; margin-bottom: 0px"></p>                             
-									</td>
+									<td> 4. </td>
+									<td><a href = "managerAnnounce.php" style="text-decoration:none; color:#000;">發送全站公告</a></td>
+									<td></td>
 								</tr>
-                                
+								
                                 <tr>
-                                	<td><p></p></td>
-                                </tr>
-                                
-                                <tr>
-									<td align="left" height="14" width="21">
-                                    	<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">5. </span></p>
-                                    </td>
-									<td align="left" height="14" width="98">
-                                    	<a href = "managerNews.php" style="text-decoration:none; color:#000;">
-										<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">電子報功能</span></p></a>
-                                    </td>
-									<td align="left" height="14" width="513">
-										<p style="margin-top: 0px; margin-bottom: 0px"></p>         
-									</td>
-								</tr>
-                                <tr>
-                                	<td></td>
-                                </tr>                                                       
+									<td> 5. </td>
+									<td><a href = "managerNews.php" style="text-decoration:none; color:#000;">電子報功能</a></td>
+									<td></td>
+								</tr>                                                                                  
 							</table>
 						</td>
 					</tr>

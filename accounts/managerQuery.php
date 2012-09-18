@@ -77,7 +77,9 @@
     });
 	});
 </script>
+
 <link rel="stylesheet" type="text/css" href="../plugin/shadowbox/shadowbox.css">
+<link href="../css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <base target="_parent">
 <script language="JavaScript">
 <!--
@@ -104,12 +106,12 @@ function FP_getObjectByID(id,o) {//v1.0
 <style type="text/css">
 	body,td,th {
 		font-family: "微軟正黑體";
-		font-size: 13px;
+		font-size: 16px;
 	}
 	body {
-		background-image: url(../jpg/background.png);
-		background-repeat: repeat-x;
-		background-color: #F2F2F2;
+		/*background-image: url(../jpg/background.png);*/
+		/*background-repeat: repeat;*/
+		background-color: #dad9d9;
 	}
 	.d {
 		font-size: 13px;
@@ -117,27 +119,15 @@ function FP_getObjectByID(id,o) {//v1.0
 </style>
 </head>
 
-<body topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0" marginwidth="0" marginheight="0" onLoad="dynAnimation()" language="Javascript1.2">
+<body topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0" marginwidth="0" marginheight="0" onLoad="dynAnimation()">
 
 <div align="center">
-	<table border="0" width="980" height="75" cellspacing="0" cellpadding="0">
-		<tr>
-        	<td width="38" background="../jpg/topbar001.png"></td>
-        	<td height="43" width="99" background="../jpg/topbar002.png" align="right"><p style="margin-top: 0; margin-bottom: 0"><a href="http://www.airstage.com.tw/"><img src="../page/airstab/app/theater/jpg/logo.png" name="logo" id="logo" align="left" /></a></td>
-			<td height="75" background="../jpg/topbar002.png" width="700" valign="top">
-  			
-			<font color="#FFFFFF">
-      <a onMouseOver="var img=document['fpAnimswapImgFP9'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP9'].src=document['fpAnimswapImgFP9'].imgRolln" target="_parent" href="../index.php"><img border="0" src="../jpg/cal_bot001.png" width="89" height="75" id="fpAnimswapImgFP9" name="fpAnimswapImgFP9" dynamicanimation="fpAnimswapImgFP9" lowsrc="../jpg/cal_bot002.png"></a></font></a><font color="#FFFFFF"><img border="0" src="../jpg/topbar002.png" width="20" height="75"><a href="../page/airstab/index.htm"><img border="0" src="../jpg/air_bot002.png" width="89" height="75"></a></font></td>
-			<td background="../jpg/topbar003.png" width="124" valign="middle"><span style="margin-top: 0; margin-bottom: 0">
-			<?php
-				require_once( "loginCheck_account.php" );
-			?>
-			</span></td>
-		</tr>
-	</table>
-    
-	<div align="center">
-		<table border="0" width="980" height="693" cellspacing="0" cellpadding="0">
+	<?php
+		require_once( "memberHeader.php" );
+	?>
+
+	<div align="center" >
+		<table border="0" width="980" height="693" cellspacing="0" cellpadding="0" >
 	    <tr>
 	      <td background="../jpg/bot.png" valign="top"><div align="center">
 	        <table border="0" width="98%" cellspacing="0" cellpadding="0" height="761">
@@ -149,268 +139,98 @@ function FP_getObjectByID(id,o) {//v1.0
 	          <tr>
 	            <td align="left" valign="top" width="30%"><div align="center">
 	              <p align="center"><span style="vertical-align: medium">&nbsp;</span></p>
-							<table border="0" width="65%" height="135">
-								<tr>
-									<td height="48" width="4%">
-										<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">
-											<img src="jpg/gray.jpg" alt="" width="6" height="100%" border="0">
-                                        </span>
-                                    </td>
-									<td height="48" width="8%">
-										<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">&nbsp;</span>
-                                    </td>
-									<td height="48" width="81%">
-										<a href="revises.php" style=" text-decoration:none;">
-                                    	<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
-											<span style="vertical-align: medium; color:#666; "><b>
-											<font size="2">編輯個人資料</font></b></a>
-                                        	<br />
-										<a href = "modifiedPwd.php" style = "text-decoration:none;">
-											<font color="#666666" size="2">修改密碼</font></span><br />
-                                        </a>
-                                        <a href = "classSchedule.php" style="color: #666; text-decoration:none;" > 
-                                        	<font color="#666666" size="2">我的課表</a></font></span><br />
-                                        <a href = "#" style="color: #666; text-decoration:none;" > 
-                                        	<font color="#666666" size="2">Air 行事曆</a></font></span></p><br />
-                                    </td>
-								</tr>
-								<tr>
-									<td colspan="3" height="6">
-									<p style="margin-top: 0px; margin-bottom: 0px">
-									<font color="#FFFFFF" style="font-size: 1pt; vertical-align: medium">
-									1</font></td>
-								</tr>
-								<tr>
-									<td>
-									<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
-									<span style="vertical-align: medium">
-									<img src="jpg/gray.jpg" alt="" width="6" height="100%" border="0"></span></td>
-									<td><span style="vertical-align: medium">&nbsp;</span></td>
-									<td>
-									<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium; text-decoration:none; color:#666;">
-										<font size="2">
-                                        	<a href = "managerInterface.php" style="color:#666;">管理者介面</a><br />
-                                            <a href = "#" style="color:#666;">報名系統</a><br />
-											<a href = "#" style="color:#666;">影音聯播</a><br />
-											<a href = "#" style="color:#666;">專　　欄</a><br />
-											<a href = "#" style="color:#666;">24HR幫幫忙</a><br /><br />
-                                            目前連線 IP 位置 : <br />
-											<?php echo $_SERVER['REMOTE_ADDR'];?>
-                                    	</font>
-                                        </span>
-                                    </p>
-									</td>
-								</tr>
-							</table>
+						<?php
+							require_once( "memberNavigation.php" );							
+						?>
 						</div>
 						</td>
 						<td align="center" valign="top" width="70%">
-						<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
-						<span style="vertical-align: medium">&nbsp;</span></font></font></p>
-							<table border="0" width="645" cellspacing="1" height="150">
+							<h3>♠ Airstage 管理者介面 - 使用者查詢</h3><br />
+							<table class="table table-hover">
+							<tbody>
 								<tr>
-									<td align="center" colspan="3" height="28" valign="top">
-									<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">
-										<font size="5" color="#1F1F1F" style="font-weight: 700">
-										♠</font><span class="Apple-converted-space">&nbsp;</span>
-                                    	<font size="4" color="#333333"><b>Airstage 管理者介面 - 使用者查詢</b></font></span>
-                                    </p>														
-									<span style="vertical-align: medium">&nbsp;</span>
-                                    </td>
+									<td>#</td>
+                                    <td><b>選擇查詢模式:</b></td>
+                                    <td></td>
 								</tr>
                                 
 								<tr>
-									<td align="center" colspan="3" height="6">
-									<p style="margin-top: 0px; margin-bottom: 0px">										
-										<span style="vertical-align: medium">							
-										<img src="jpg/line.jpg" alt="" width="630" height="1" border="0" align="left"></span>
-                                    </p>
-									<p style="margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">&nbsp;</span>
-                                    </p>
-									<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium"><b>請選擇查詢模式:</b></span>
-                                    </p>
-									<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">&nbsp;</span>
-                                    </p>
-                                    </td>
-								</tr>
-                                
-								<tr>
-                                <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-									<td align="left" height="14" width="21">
-                                    	<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">1. </span></p>
-                                    </td>
-									<td align="left" height="14" width="98">                                  
-										<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">學號查詢</span></p>
-                                    </td>
-									<td align="left" height="14" width="60">
-										<p style="margin-top: 0px; margin-bottom: 0px">
-                                        <input type="text" name="stu_id" id="stu_id" />
-                                        <input type="submit" name = "stu_id_submit" id = "stu_id_submit" value="Query" />
-                                        <font color="#999999">ex : B993040017</font>
-                                        </p>
+                                <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="form-inline">
+									<td> 1. </td>
+									<td>學號查詢</td>
+									<td>
+                                        <input type="text" name="stu_id" id="stu_id" class="input-medium search-query" placeholder="B993040017"/>&nbsp;
+                                        <button type="submit" name = "stu_id_submit" id = "stu_id_submit" value="Query" class="btn btn-primary"><i class="icon-search icon-white"></i>uery</button>                                                                              
 									</td>
                                 </form>
 								</tr>
                                 
                                 <tr>
-                                	<td><p></p></td>
-                                </tr>
-                                
+                                <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+									<td> 2. </td>
+									<td>姓名查詢</td>
+									<td>										
+                                        <input type="text" name="name" id="name" class="input-medium search-query" placeholder="江緯宸"/>&nbsp;
+                                        <button type="submit" name = "name_submit" id = "name_submit" class="btn btn-info"><i class="icon-search icon-white"></i>uery</button>                                                                
+									</td>
+                                </form>
+								</tr>
+								
                                 <tr>
                                 <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-									<td align="left" height="14" width="21">
-                                    	<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">2. </span></p>
-                                    </td>
-									<td align="left" height="14" width="120">                                    
-										<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">姓名查詢</span></p>
-                                    </td>
-									<td align="left" height="14" width="513">
-										<p style="margin-top: 0px; margin-bottom: 0px">
-                                        <input type="text" name="name" id="name" />
-                                        <input type="submit" name = "name_submit" id = "name_submit" value="Query" />
-                                        <font color="#999999">ex : 江緯宸</font>
-                                        </p>                             
+									<td> 3. </td>
+									<td>Email查詢</td>
+									<td>										
+                                        <input type="text" name="email" id="email" class="input-medium search-query" placeholder="archerwindy@gmail.com"/>&nbsp;
+                                        <button type="submit" name = "email_submit" id = "email_submit" class="btn btn-success"><i class="icon-search icon-white"></i>uery</button>                                       
 									</td>
                                 </form>
 								</tr>
                                 
                                 <tr>
-                                	<td><p></p></td>
-                                </tr>
+                                <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+									<td> 4. </td>
+									<td>Facebook查詢</td>
+									<td>										
+                                        <input type="text" name="facebook" id="facebook" class="input-medium search-query" placeholder="facebook URL""/>&nbsp;
+                                        <button type="submit" name = "facebook_submit" id = "facebook_submit" class="btn btn-success"><i class="icon-search icon-white"></i>uery</button>                                                                               
+									</td>
+                                </form>                                                              
+								</tr> 
                                 
                                 <tr>
                                 <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-									<td align="left" height="14" width="21">
-                                    	<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">3. </span></p>
-                                    </td>
-									<td align="left" height="14" width="98">                                    
-										<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">Email查詢</span></p>
-                                    </td>
-									<td align="left" height="14" width="513">
-										<p style="margin-top: 0px; margin-bottom: 0px">
-                                        <input type="text" name="email" id="email" />
-                                        <input type="submit" name = "email_submit" id = "email_submit" value="Query"/>
-                                        <font color="#999999">ex : archerwindy@gmail.com</font>
-                                        </p>         
+									<td> 5. </td>
+									<td>級次查詢</td>
+									<td>									
+                                        <input type="text" name="grade" id="grade" class="input-medium search-query" placeholder="103"/>&nbsp;
+                                        <button type="submit" name = "grade_submit" id = "grade_submit" class="btn btn-danger"><i class="icon-search icon-white"></i>uery</button>                                                                            
 									</td>
                                 </form>
 								</tr>
                                 
                                 <tr>
-                                	<td><p></p></td>
-                                </tr>
-                                
-                                <tr>
                                 <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-									<td align="left" height="14" width="21">
-                                    	<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">4. </span></p>
-                                    </td>
-									<td align="left" height="14" width="98">                                    
-										<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">級次查詢</span></p>
-                                    </td>
-									<td align="left" height="14" width="513">
-										<p style="margin-top: 0px; margin-bottom: 0px">
-                                        <input type="text" name="grade" id="grade" />
-                                        <input type="submit" name = "grade_submit" id = "grade_submit" value="Query"/>
-                                        <font color="#999999">ex : 103</font>
-                                        </p>         
+									<td> 6. </td>
+									<td>系所查詢</td>
+									<td>										
+                                        <input type="text" name="department" id="department" class="input-medium search-query" placeholder="資工系"/>&nbsp;
+                                        <button type="submit" name = "department_submit" id = "department_submit" class="btn btn-danger"><i class="icon-search icon-white"></i>uery</button>                                       
 									</td>
                                 </form>
-								</tr>
+								</tr>                                                          
                                 
-                                <tr>
-                                	<td><p></p></td>
-                                </tr>
-                                
-                                <tr>
-                                <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-									<td align="left" height="14" width="21">
-                                    	<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">5. </span></p>
-                                    </td>
-									<td align="left" height="14" width="98">                                    
-										<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">系所查詢</span></p>
-                                    </td>
-									<td align="left" height="14" width="513">
-										<p style="margin-top: 0px; margin-bottom: 0px">
-                                        <input type="text" name="department" id="department" />
-                                        <input type="submit" name = "department_submit" id = "department_submit" value="Query"/>
-                                        <font color="#999999">ex : 資工系</font>
-                                        </p>         
-									</td>
-                                </form>
-								</tr>
-                                
-                                <tr>
-                                	<td><p></p></td>
-                                </tr>
-                                
-                                <tr>
-                                <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-									<td align="left" height="14" width="21">
-                                    	<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">6. </span></p>
-                                    </td>
-									<td align="left" height="14" width="98">                                    
-										<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">Facebook查詢</span></p>
-                                    </td>
-									<td align="left" height="14" width="513">
-										<p style="margin-top: 0px; margin-bottom: 0px">
-                                        <input type="text" name="facebook" id="facebook" />
-                                        <input type="submit" name = "facebook_submit" id = "facebook_submit" value="Query"/>
-                                        <font color="#999999">ex : facebook URL</font>
-                                        </p>         
-									</td>
-                                </form>
-								</tr>  
-                                
-                                <tr>
-                                	<td align="center" colspan="3" height="6">
-									<br />
-                                    <p style="margin-top: 0px; margin-bottom: 0px">										
-										<span style="vertical-align: medium">							
-										<img src="jpg/line.jpg" width="630" height="1" border="0" align="left"></span>
-                                    </p>                                                                   
-                                    </td>                                                           
-                                </tr>
-                                
-                                <tr>
-                                	<td><p></p></td>
-                                </tr>
-                                                               
+                                 		
+							</table>																														
+                                        
+                            <table class="table table-hover"> 
+                            	<tbody>                      
                                 <?php
 									// Fetch the data out.
                                     if( @mysqli_num_rows($result) == 0 && $queryFlag == 1 ) {
 										echo '<tr>
-											  <td align="left" height="14" width="2">
-                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">* </span></p>
-                                    		  </td>
-                                    		  <td align="left" height="14" width="70">
-                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">No Such User!</span></p>
-                                    		  </td>
-											  <td align="left" height="14" width="98">                                    
-												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium"></span></p>
-        		                              </td>
+												  <td> * </td>
+	                                    		  <td> No Such User! </td>											  
 											  </tr>';	
 									} else {
 										if( isset($_POST['stu_id_submit']) || isset($_POST['name_submit']) 
@@ -418,299 +238,115 @@ function FP_getObjectByID(id,o) {//v1.0
 											$row = mysqli_fetch_array( $result );
 								?>
                                 	<tr>
-                                    		<td align="left" height="14" width="2">
-                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">* </span></p>
-                                    		</td>
-                                    		<td align="left" height="14" width="70">
-                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">學號</span></p>
-                                    		</td>
-											<td align="left" height="14" width="98">                                    
-												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium"><?php echo $row['stu_id'];?></span></p>
-        		                            </td>
+                                		<td> * </td>
+                                		<td>學號</td>
+										<td><?php echo $row['stu_id'];?></td>
                                     </tr>
                                     <tr>
-                                    		<td align="left" height="14" width="2">
-                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">* </span></p>
-                                    		</td>
-                                    		<td align="left" height="14" width="70">
-                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">帳號</span></p>
-                                    		</td>
-											<td align="left" height="14" width="98">                                    
-												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium"><?php echo $row['username'];?></span></p>
-        		                            </td>
+                                		<td> * </td>                                		
+                                		<td>帳號</td>
+                                		<td><?php echo $row['username'];?></td>
                                     </tr>
                                     <tr>
-                                    		<td align="left" height="14" width="2">
-                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">* </span></p>
-                                    		</td>
-                                    		<td align="left" height="14" width="70">
-                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">姓名</span></p>
-                                    		</td>
-											<td align="left" height="14" width="98">                                    
-												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">
-												<?php echo $row['name'].'&nbsp;&nbsp;'.$row['gender'];?></span></p>
-        		                            </td>
+                                		<td> * </td>
+                                		<td>姓名</td>                                		
+										<td><?php echo $row['name'].'&nbsp;&nbsp;'.$row['gender'];?></td>
                                     </tr>                                                                
                                     <tr>
-                                    		<td align="left" height="14" width="2">
-                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">* </span></p>
-                                    		</td>
-                                    		<td align="left" height="14" width="70">
-                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">系級</span></p>
-                                    		</td>
-											<td align="left" height="14" width="98">                                    
-												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">
-												<?php echo $row['department'].'&nbsp;&nbsp;'.$row['grade'];?></span></p>
-        		                            </td>
+                                		<td> * </td>
+                                		<td>系級</td>
+										<td><?php echo $row['department'].'&nbsp;&nbsp;'.$row['grade'];?></td>
                                     </tr>
                                     <tr>
-                                    		<td align="left" height="14" width="2">
-                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">* </span></p>
-                                    		</td>
-                                    		<td align="left" height="14" width="70">
-                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">家鄉</span></p>
-                                    		</td>
-											<td align="left" height="14" width="98">                                    
-												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium"><?php echo $row['home'];?></span></p>
-        		                            </td>
+                                		<td> * </td>                                		
+                                		<td>家鄉</td>
+										<td><?php echo $row['home'];?></td>
                                     </tr>
                                     <tr>
-                                    		<td align="left" height="14" width="2">
-                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">* </span></p>
-                                    		</td>
-                                    		<td align="left" height="14" width="70">
-                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">宿舍狀況</span></p>
-                                    		</td>
-											<td align="left" height="14" width="98">                                    
-												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">
-												<?php echo $row['dorm'].'&nbsp;&nbsp;'.$row['room']; ?></span></p>
-        		                            </td>
+                                		<td> * </td>                                		
+                                		<td>宿舍狀況</td>
+										<td><?php echo $row['dorm'].'&nbsp;&nbsp;'.$row['room']; ?></td>
                                     </tr>
                                     <tr>
-                                    		<td align="left" height="14" width="2">
-                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">* </span></p>
-                                    		</td>
-                                    		<td align="left" height="14" width="70">
-                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">校外住址</span></p>
-                                    		</td>
-											<td align="left" height="14" width="98">                                    
-												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium"><?php echo $row['outAddr'];?></span></p>
-        		                            </td>
+                                		<td> * </td>                                		
+                                		<td>校外住址</td>
+										<td><?php echo $row['outAddr'];?></td>
                                     </tr>
                                     <tr>
-                                    		<td align="left" height="14" width="2">
-                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">* </span></p>
-                                    		</td>
-                                    		<td align="left" height="14" width="70">
-                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">Email</span></p>
-                                    		</td>
-											<td align="left" height="14" width="98">                                    
-												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium"><?php echo $row['email'];?></span></p>
-        		                            </td>
+                                		<td> * </td>                                		
+                                		<td>Email</td>
+										<td><?php echo $row['email'];?></td>
                                     </tr>
                                     <tr>
-                                    		<td align="left" height="14" width="2">
-                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">* </span></p>
-                                    		</td>
-                                    		<td align="left" height="14" width="70">
-                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">Facebook</span></p>
-                                    		</td>
-											<td align="left" height="14" width="98">                                    
-												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium"><?php echo $row['facebook'];?></span></p>
-        		                            </td>
+                                		<td> * </td>                                		
+                                		<td>Facebook</td>
+										<td><?php echo $row['facebook'];?></td>
                                     </tr>
                                     <tr>
-                                    		<td align="left" height="14" width="2">
-                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">* </span></p>
-                                    		</td>
-                                    		<td align="left" height="14" width="70">
-                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">MSN</span></p>
-                                    		</td>
-											<td align="left" height="14" width="98">                                    
-												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium"><?php echo $row['msn'];?></span></p>
-        		                            </td>
+                                		<td> * </td>                                		
+                                		<td>MSN</td>
+										<td><?php echo $row['msn'];?></td>
                                     </tr>
                                     <tr>
-                                    		<td align="left" height="14" width="2">
-                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">* </span></p>
-                                    		</td>
-                                    		<td align="left" height="14" width="70">
-                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">Twitter</span></p>
-                                    		</td>
-											<td align="left" height="14" width="98">                                    
-												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium"><?php echo $row['twitter'];?></span></p>
-        		                            </td>
+                                		<td> * </td>                                		
+                                		<td>Twitter</td>
+										<td><?php echo $row['twitter'];?></td>
                                     </tr>
                                     <tr>
-                                    		<td align="left" height="14" width="2">
-                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">* </span></p>
-                                    		</td>
-                                    		<td align="left" height="14" width="70">
-                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">Plurk</span></p>
-                                    		</td>
-											<td align="left" height="14" width="98">                                    
-												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium"><?php echo $row['plurk'];?></span></p>
-        		                            </td>
+                                		<td> * </td>                                		
+                                		<td>Plurk</td>
+										<td><?php echo $row['plurk'];?></td>
                                     </tr>
                                     <tr>
-                                    		<td align="left" height="14" width="2">
-                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">* </span></p>
-                                    		</td>
-                                    		<td align="left" height="14" width="70">
-                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">Skype</span></p>
-                                    		</td>
-											<td align="left" height="14" width="98">                                    
-												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium"><?php echo $row['skype'];?></span></p>
-        		                            </td>
+                                		<td> * </td>                                		
+                                		<td>Skype</td>
+										<td><?php echo $row['skype'];?></td>
                                     </tr>
                                     <tr>
-                                    		<td align="left" height="14" width="2">
-                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">* </span></p>
-                                    		</td>
-                                    		<td align="left" height="14" width="70">
-                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">Phone</span></p>
-                                    		</td>
-											<td align="left" height="14" width="98">                                    
-												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium"><?php echo $row['phone'];?></span></p>
-        		                            </td>
+                                		<td> * </td>                                		
+                                		<td>Phone</td>
+										<td><?php echo $row['phone'];?></td>
                                     </tr>
                                     <tr>
-                                    		<td align="left" height="14" width="2">
-                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">* </span></p>
-                                    		</td>
-                                    		<td align="left" height="14" width="70">
-                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">帳號權限</span></p>
-                                    		</td>
-											<td align="left" height="14" width="98">                                    
-												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium"><?php echo $row['AUTH'];?></span></p>
-        		                            </td>
+                                		<td> * </td>                                		
+                                		<td>Authen</td>
+										<td><?php echo $row['AUTH'];?></td>
                                     </tr>
                                     
                                  <?php                                           																			
 										} else if( isset($_POST['grade_submit']) || isset($_POST['department_submit']) ) {
-											echo '<table border="0" width="600" cellspacing="1" align="left">';
 											echo '
-											<tr>
-                                    		<td align="center" height="14" width="4">
-                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">* </span></p>
-                                    		</td>
-                                    		<td align="center" height="14" >
-                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">學號</span></p>
-                                    		</td>
-                                            <td align="center" height="14" >                                    
-												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">系所</span></p>
-        		                            </td>
-											<td align="center" height="14" >                                    
-												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">級次</span></p>
-        		                            </td>
-                                            <td align="center" height="14" >                                    
-												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">姓名</span></p>
-        		                            </td>
-											<td align="center" height="14" >                                    
-												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">性別</span></p>
-        		                            </td>
-                                            <td align="center" height="14" >                                    
-												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">Email</span></p>
-        		                            </td>
-                                            <td align="center" height="14" >                                    
-												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">權限</span></p>
-        		                            </td>
-                                   	 		</tr>';
+											<thead>
+							                	<tr>
+							                		<th> # </th>
+							                		<th>學號</th>
+							                		<th>系所</th>
+							                		<th>級次</th>
+							                		<th>姓名</th>
+							                		<th>性別</th>
+							                		<th>Email</th>
+							                		<th>權限</th>
+							                	</tr>
+							                </thead>';
 											while( $row = mysqli_fetch_array( $result ) ) {
 								 ?>                              
-                                 		<tr>
-                                    		<td align="left" height="14" width="4">
-                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium">* </span></p>
-                                    		</td>
-                                    		<td align="left" height="14" >
-                                    			<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium"><?php echo $row['stu_id']; ?></span></p>
-                                    		</td>
-                                            <td align="left" height="14" >                                    
-												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium"><?php echo $row['department'];?></span></p>
-        		                            </td>
-											<td align="left" height="14" >                                    
-												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium"><?php echo $row['grade'];?></span></p>
-        		                            </td>
-                                            <td align="left" height="14" >                                    
-												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium"><?php echo $row['name']; ?></span></p>
-        		                            </td>
-                                            <td align="left" height="14" >                                    
-												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium"><?php echo $row['gender'];?></span></p>
-        		                            </td>
-                                            <td align="left" height="14" >                                    
-												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium"><?php echo $row['email'];?></span></p>
-        		                            </td>
-                                            <td align="left" height="14" >                                    
-												<p align="left" style="margin-top: 0px; margin-bottom: 0px">
-												<span style="vertical-align: medium"><?php echo $row['AUTH'];?></span></p>
-        		                            </td>
-                                   	 	</tr>
+                             		<tr>
+                                		<td> * </td>
+                                		<td><?php echo $row['stu_id']; ?></td>
+                                        <td><?php echo $row['department'];?></td>
+										<td><?php echo $row['grade'];?></td>
+                                        <td><?php echo $row['name']; ?></td>
+                                        <td><?php echo $row['gender'];?></td>
+                                        <td><?php echo $row['email'];?></td>
+                                        <td><?php echo $row['AUTH'];?></td>
+                               	 	</tr>
                                  <?php	
 								 				
 											}
 										} 
 									}								 
-								 ?>                                    
+								 ?> 
+							</tbody>                                   
 							</table>                                               
 						</td>
 					</tr>

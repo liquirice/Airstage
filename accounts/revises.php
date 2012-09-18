@@ -112,7 +112,7 @@
 <html>
 <head>
 <link href="tm2.ico" rel="shortcut icon"/>
-<link href="../css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!--link href="../css/bootstrap/css/bootstrap.min.css" rel="stylesheet"-->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Language" content="zh-tw">
 <title>│Airstage 西灣人│會員中心：編輯個人資料</title>
@@ -256,7 +256,7 @@ function FP_getObjectByID(id,o) {//v1.0
 								<a href = "#" style="color:#666;">專　　欄</a><br />
 								<a href = "#" style="color:#666;">24HR幫幫忙</a><br /><br />
                                 目前連線 IP 位置 : <br />
-								<?php echo $_SERVER['REMOTE_ADDR'];?>
+								<?php echo $_SERVER['REMOTE_ADDR']; ?>
                         	</font>
                             </span>
                         </p>
@@ -269,9 +269,11 @@ function FP_getObjectByID(id,o) {//v1.0
 	            <td align="center" valign="top" width="70%"><p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">&nbsp;</p>
 	            
 	            <!-- Start of the form -->
-	            <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" enctype = "multipart/form-data">
+	            <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" enctype = "multipart/form-data" class="form-horizontal">
+	            
+	            
 	              
-	              <table border="0" width="645" cellspacing="1" height="324">
+	              <table border="0" width="645" cellspacing="1" height="324" >
 	                  <tr>
 	                    <td align="center" colspan="4" height="28" valign="top"><p align="left" style="margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium"> <font face="微軟正黑體" size="5" color="#1F1F1F" style="font-weight: 700"> ♠</font><font face="微軟正黑體"><span class="Apple-converted-space">&nbsp;</span></font><font face="微軟正黑體" size="4" color="#333333"><b>個人資料編輯</b></font></span></p>
 	                      <p align="left" style="margin-top: 0px; margin-bottom: 0px"> <font face="微軟正黑體"> <span style="vertical-align: medium">&nbsp;</span></td>
@@ -289,7 +291,7 @@ function FP_getObjectByID(id,o) {//v1.0
 	                    	<font color="#FF0000">勾選</font><span class="Apple-converted-space">&nbsp;</span><font color="#333333">欲讓人看到的項目</font></font></span></p>
 	                    	<p align="left" style="margin-top: 0px; margin-bottom: 0px">&nbsp;</p>
 	                    </td>
-                      </tr>
+                      </tr>                                     
                       
 	                  <tr>
 	                    <td align="left" height="14" width="22"><span style="vertical-align: medium"> 
@@ -297,8 +299,10 @@ function FP_getObjectByID(id,o) {//v1.0
 		                    <input type="checkbox" name="stu_id_c" <?php if($check['stu_id_c'] == "on") { echo 'checked'; } ?>></font></span>
 		                </td>
 	                    <td height="14" colspan="2" align="left">
+	                    	<div class="control-group">
 	                    	<p align="left" style="margin-top: 0px; margin-bottom: 0px" > 
-	                    	<span style="vertical-align: medium"><font size="2" face="微軟正黑體">學　　號 </font></span>
+	                    	<span style="vertical-align: medium"> <font size="2">學　　號</font></span>
+	                    	</div>
 	                    </td>
 	                    <td align="left" height="14" width="502">
 	                    	<p style="margin-top: 0px; margin-bottom: 0px"><font size="2" face="微軟正黑體"><?php echo $row['stu_id'];?></font></p>

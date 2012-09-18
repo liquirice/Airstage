@@ -13,6 +13,7 @@
 <script type="text/javascript" language="javascript" src="../plugin/fancyValidate/fancyValidate.min.js"></script>
 <script type="text/javascript" language="javascript" src="../plugin/fancyValidate/fancyValidate.additional.min.js"></script>
 <script src="../plugin/fancyValidate/external/jquery.qtip/jquery.qtip.min.js"></script>
+<!--link href="../css/bootstrap/css/bootstrap.min.css" rel="stylesheet"-->
 <link rel="stylesheet" type="text/css" href="../plugin/fancyValidate/examples/css/example.css" />
 <link rel="stylesheet" type="text/css" href="../plugin/fancyValidate/css/fancyValidate.css" />
 <link href="../plugin/fancyValidate/external/jquery.qtip/jquery.qtip.min.css" rel="stylesheet" />
@@ -108,6 +109,7 @@ $f.dom.ready(function() {
 })();
 </script>
 </head>
+
 <body>
 <div style="height:400; width:330; background-color:#FFFFFF"><form method="post" action="new.php" id="form">
 <table align="left" width="330" height="400" style="font-size:14px; font-weight:bold; background-repeat:no-repeat" background="img/bgreg.png">
