@@ -23,7 +23,7 @@
 			setcookie( 'stu_id', $row['stu_id'], time()+(60*60*24*5) );
 			setcookie( 'name', $row['name'], time()+(60*60*24*5) );
 			setcookie( 'auth', $row['AUTH'], time()+(60*60*24*5) );
-			echo '<script type="text/javascript">alert("歡迎回來！");</script>';
+			echo '<div class="alert alert-success">Welcome Back</div>';
 			echo 'Page.RegisterClientScriptBlock("sdfs6s6", "<script> parent.location ="../index.php";parent.$.fancybox.close();</script>");';
 			exit();
 		}
@@ -47,7 +47,7 @@
 						密碼&nbsp;
 						<input type="password" name="pw" class="btn"/> <br />
 						<br />
-			            <a href='forgetPassword.php' class = "btn btn-warning">忘記密碼?</a>&nbsp;&nbsp;
+			            <a href='forgetPassword.php' class = "btn btn-danger">忘記密碼?</a>&nbsp;&nbsp;
 						<input type="submit" name="submit" value="登入" class="btn btn-primary"/>&nbsp;&nbsp;
 			            <input type="button" onclick="location.href='register_original.php'" name="register" value="註冊會員" class="btn btn-success"/>			          
 					</form>

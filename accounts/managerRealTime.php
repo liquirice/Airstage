@@ -70,7 +70,7 @@
 <script>
 	setTimeout("history.go(0);",30000);
 </script>
-
+<link href="../css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <script language="javascript" type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script language="javascript" type="text/javascript" src="../plugin/shadowbox/shadowbox.js"></script>
 <script language="javascript" type="text/javascript" src="../plugin/jrumble/jquery.jrumble.1.3.min.js"></script>
@@ -136,21 +136,9 @@ function FP_getObjectByID(id,o) {//v1.0
 <body topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0" marginwidth="0" marginheight="0" onLoad="dynAnimation()" language="Javascript1.2">
 
 <div align="center">
-	<table border="0" width="980" height="75" cellspacing="0" cellpadding="0">
-		<tr>
-        	<td width="38" background="../jpg/topbar001.png"></td>
-        	<td height="43" width="99" background="../jpg/topbar002.png" align="right"><p style="margin-top: 0; margin-bottom: 0"><a href="http://www.airstage.com.tw/"><img src="../page/airstab/app/theater/jpg/logo.png" name="logo" id="logo" align="left" /></a></td>
-			<td height="75" background="../jpg/topbar002.png" width="700" valign="top">
-  			
-			<font color="#FFFFFF">
-      <a onMouseOver="var img=document['fpAnimswapImgFP9'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP9'].src=document['fpAnimswapImgFP9'].imgRolln" target="_parent" href="../index.php"><img border="0" src="../jpg/cal_bot001.png" width="89" height="75" id="fpAnimswapImgFP9" name="fpAnimswapImgFP9" dynamicanimation="fpAnimswapImgFP9" lowsrc="../jpg/cal_bot002.png"></a></font></a><font color="#FFFFFF"><img border="0" src="../jpg/topbar002.png" width="20" height="75"><a href="../page/airstab/index.htm"><img border="0" src="../jpg/air_bot002.png" width="89" height="75"></a></font></td>
-			<td background="../jpg/topbar003.png" width="124" valign="middle"><span style="margin-top: 0; margin-bottom: 0">
-			<?php
-				require_once( "loginCheck_account.php" );
-			?>
-			</span></td>
-		</tr>
-	</table>
+	<?php
+		require_once( "memberHeader.php" );
+	?>
     
 	<div align="center">
 		<table border="0" width="980" height="693" cellspacing="0" cellpadding="0">
@@ -165,62 +153,9 @@ function FP_getObjectByID(id,o) {//v1.0
 	          <tr>
 	            <td align="left" valign="top" width="30%"><div align="center">
 	              <p align="center"><span style="vertical-align: medium">&nbsp;</span></p>
-							<table border="0" width="65%" height="135">
-								<tr>
-									<td height="48" width="4%">
-										<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">
-											<img src="jpg/gray.jpg" alt="" width="6" height="100%" border="0">
-                                        </span>
-                                    </td>
-									<td height="48" width="8%">
-										<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium">&nbsp;</span>
-                                    </td>
-									<td height="48" width="81%">
-										<a href="revises.php" style=" text-decoration:none;">
-                                    	<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
-											<span style="vertical-align: medium; color:#666; "><b>
-											<font size="2">編輯個人資料</font></b></a>
-                                        	<br />
-										<a href = "modifiedPwd.php" style = "text-decoration:none;">
-											<font color="#666666" size="2">修改密碼</font></span><br />
-                                        </a>
-                                        <a href = "#" style="color: #666; text-decoration:none;" > 
-                                        	<font color="#666666" size="2">我的課表</a></font></span><br />
-                                        <a href = "#" style="color: #666; text-decoration:none;" > 
-                                        	<font color="#666666" size="2">Air 行事曆</a></font></span></p><br />
-                                    </td>
-								</tr>
-								<tr>
-									<td colspan="3" height="6">
-									<p style="margin-top: 0px; margin-bottom: 0px">
-									<font color="#FFFFFF" style="font-size: 1pt; vertical-align: medium">
-									1</font></td>
-								</tr>
-								<tr>
-									<td>
-									<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
-									<span style="vertical-align: medium">
-									<img src="jpg/gray.jpg" alt="" width="6" height="100%" border="0"></span></td>
-									<td><span style="vertical-align: medium">&nbsp;</span></td>
-									<td>
-									<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
-										<span style="vertical-align: medium; text-decoration:none; color:#666;">
-										<font size="2">
-                                        	<a href = "managerInterface.php" style="color:#666;">管理者介面</a><br />
-                                            <a href = "#" style="color:#666;">報名系統</a><br />
-											<a href = "#" style="color:#666;">影音聯播</a><br />
-											<a href = "#" style="color:#666;">專　　欄</a><br />
-											<a href = "#" style="color:#666;">24HR幫幫忙</a><br /><br />
-                                            目前連線 IP 位置 : <br />
-											<?php echo $_SERVER['REMOTE_ADDR'];?>
-                                    	</font>
-                                        </span>
-                                    </p>
-									</td>
-								</tr>
-							</table>
+						<?php
+							require_once( "memberNavigation.php" );
+						?>
 						</div>
 						</td>
 						<td align="center" valign="top" width="70%">
