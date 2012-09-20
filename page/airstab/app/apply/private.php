@@ -1,7 +1,7 @@
 <?php
 echo'
 <div id="private">
-<form action="apply02.php?action=private" method="post">
+<form action="apply02.php?action=private" method="post" target="_self">
 <table align="center" background="jpg/st.png" style="background-repeat:no-repeat">
 	<tr>
 		<td>可管理此活動者的學號:</td><td>'.$url['stu_id'].'</td>
@@ -25,17 +25,61 @@ echo'
 </div>
 ';
 if($_SESSION['record'] == 'private'){
-	$prirno = $url['rno'];
-	$private = $_POST['private'];
-	$old = $url['stu_id'];
-	$new = ''.$old.','.$private.'';
-	$updatepri = "UPDATE Activities SET stu_id = '$new' WHERE rno = $prirno";
-	
-	if(mysqli_query($conn, $updatepri)){
-		echo '<script type="text/javascript" language="javascript">alert("設定成功!"); window.reload();</script>';
+	//新增權限部份
+	//如果有輸入新增的學號
+	if($_POST['private'] != ''){
+		$prirno = $url['rno'];
+		$private = $_POST['private'];
+		$old = $url['stu_id'];
+		$new = ''.$old.','.$private.'';
+	}
+	else
+		$new = '';
+	//刪除權限的部份
+	//如果有輸入刪除的學號
+	if($_POST['delete'] != ''){
+		$tempdel = ''.$_POST['delete'].',';
+		$delete = explode(',', $tempdel);
+		$tempexi = ''.$url['stu_id'].',';
+		$exist = explode(',', $tempexi);
+		$exi = 0;
+		$del = 0;
+		while($exist[$exi] != NULL){
+			$exi++;
+		}
+		while($delete[$del] != NULL){
+			$del++;
+		}
+		for($de=0; $de < $del; $de++){
+			for($ex=0; $ex < $exi; $ex++){
+				if($delete[$de] == $exist[$exi]){
+					$new = ''.$new.'';
+				}
+				else if($delete[$de] != $exist[$exi]){
+					if($new == ''){
+						$new = ''.$exist[$exi].'';
+					}
+					else
+						$new = ''.$new.''.$exist[$exi].'';
+				}
+			}
+		}
+		if($new == $url['stu_id']){
+			echo '<script language="javascript" type="text/javascript">alert("您欲刪除之學號並無權限,請再三確認後才輸入,謝謝!"); location.href="apply02.php?option=type";</script>';
+		}
+	}
+	if($new == ''){
+		echo '<script language="javascript" type="text/javascript">alert("不能將所有權限都刪除,請重新操作"); location.href="apply02.php?option=type;"</script>';
 	}
 	else{
-		echo '<script type="text/javascript" language="javascript">alert("設定失敗!請重新再來"); window.reload();</script>';
+		$updatepri = "UPDATE Activities SET stu_id = '$new' WHERE rno = $prirno";
+	
+		if(mysqli_query($conn, $updatepri)){
+			echo '<script type="text/javascript" language="javascript">alert("設定成功!"); location.href="apply02.php?option=type;</script>';
+		}
+		else{
+			echo '<script type="text/javascript" language="javascript">alert("設定失敗!請重新再來"); location.href="apply02.php?option=type;</script>';
+		}
 	}
 }
 ?>
