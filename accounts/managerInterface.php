@@ -19,7 +19,7 @@
 <base target="_parent">
 <style type="text/css">
 	body,td,th {
-		font-family: "微軟正黑體";
+		font-family: "微軟正黑體", "Arial";
 		font-size: 14px;
 	}
 	body {

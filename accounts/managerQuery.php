@@ -178,7 +178,7 @@
 											$row = mysqli_fetch_array( $result );
 								?>                                	 
                     			
-                                	<div class="alert alert-info fade in">
+                                	<div class="alert alert-success fade in">
                                 		<button type=button class="close" data-dismiss="alert">&times;</button><strong>Query Success!</strong>
                                 	</div>
                                 			
@@ -274,7 +274,7 @@
 							                		<th>權限</th>
 							                	</tr>
 							                </thead>
-							                <div class="alert alert-info fade in">Query Success!<button type="button" class="close" data-dismiss="alert">&times;</button></div>';
+							                <div class="alert alert-success fade in">Query Success!<button type="button" class="close" data-dismiss="alert">&times;</button></div>';
 											while( $row = mysqli_fetch_array( $result ) ) {
 								 ?>   
 				                           

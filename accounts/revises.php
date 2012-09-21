@@ -122,6 +122,7 @@
 <style type="text/css">
 	body,td,th {
 		font-family: "微軟正黑體", "Arial";
+		font-size: 15px;
 	}
 	body {
 		background-image: url(../jpg/background.png);
@@ -147,7 +148,7 @@
 	      <td background="../jpg/bot.png" valign="top"><div align="center">
 	        <table border="0" width="98%" cellspacing="0" cellpadding="0" height="761">
 	          <tr>
-	            <td align="left" valign="top" height="192" colspan="2" background="jpg/top.jpg" width="960"><p align="center"><font face="微軟正黑體"> <span style="vertical-align: medium">&nbsp;</span></td>
+	            <td align="left" valign="top" height="192" colspan="2" background="jpg/top.jpg" width="960"></td>
               </tr>
 	          <tr>
 	            <td align="left" valign="top" width="30%"><div align="center">
@@ -165,80 +166,71 @@
 	            <div class="navbar">
 	            	
 	            <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" enctype = "multipart/form-data">
-	            	         
-	              
-	              <table border="0" width="645" cellspacing="1" height="324" >
+	            <h4 style="font-family: Arial;">♠（一）基本資料( 請<font color="#FF7573">勾選</font>欲讓人看到的項目 )</h4>
+	            <!--hr class="bs-docs-separator" /-->
+	              <table width="645" class="table table-hover">
+	              <tbody>
 	                  <tr>
-	                  	<td align="center" colspan="4" height="28" valign="top">♠ 個人資料編輯</td>
-                      </tr>
-	                  <tr>
-	                    <td align="left" colspan="4" height="6">
-		                    <hr class="bs-docs-separator">
-	                    	<h4 style="font-family: Arial;">（一）基本資料 ( 請勾選欲讓人看到的項目 ) </h4>         	
+	                    <td>
+		                    <label class="checkbox">
+		                    	<input type="checkbox" name="stu_id_c" <?php if($check['stu_id_c'] == "on") { echo 'checked'; } ?> />&nbsp;學　　號
+		                    </label>
 	                    </td>
-                      </tr>                                     
-                      
-	                  <tr>
-	                    <td align="left" height="14" width="22">
-	                    	<input type="checkbox" name="stu_id_c" <?php if($check['stu_id_c'] == "on") { echo 'checked'; } ?>>
-		                </td>
-	                    <td height="14" colspan="2" align="left">
-	                    	學　　號
-	                    </td>
-	                    <td align="left" height="14" width="502">
-	                    	<?php echo $row['stu_id'];?>
-	                    </td>
+	                    <td>
+		                    <i class="icon-book"></i>&nbsp;<?php echo $row['stu_id'];?>	                  
+		                </td>	                  
                       </tr>
                       
 	                  <tr>
-	                    <td align="left" height="13" width="22"><span style="vertical-align: medium"> <font face="微軟正黑體">
-	                      <input type="checkbox" name="name_c" id="check_name" <?php if($check['name_c'] == "on") { echo "checked"; }?>></font></span>
+	                    <td>
+	                    <label class="checkbox">
+	                      <input type="checkbox" name="name_c" id="check_name" <?php if($check['name_c'] == "on") { echo "checked"; }?> />&nbsp;姓　　名
+	                    </label>
 	                    </td>
-	                    <td height="13" colspan="2" align="left">
-	                    	<p align="left" style="margin-top: 0px; margin-bottom: 0px"> 
-	                    	<span style="vertical-align: medium"> <font size="2" face="微軟正黑體">姓　　名 </font></span>
-	                    </td>
-	                    <td align="left" height="13" width="502">	
-	                    	<p style="margin-top: 0px; margin-bottom: 0px"><font size="2" face="微軟正黑體"><?php echo $row['name'];?></font></p>
+	                    <td> 
+		                	<i class="icon-user"></i>&nbsp;<?php echo $row['name'];?>
 	                    </td>
                       </tr>
                       
                       <tr>
-	                    <td align="left" height="13" width="22"><span style="vertical-align: medium">
-	                    
+	                    <td>
+	                    <label class="checkbox">
+	                    	<input type="checkbox" disabled checked/>&nbsp;匿　　稱
+	                    </label>
 	                    </td>
-	                    <td height="13" colspan="2" align="left">
-	                    	<p align="left" style="margin-top: 0px; margin-bottom: 0px"> 
-	                    	<span style="vertical-align: medium"> <font size="2" face="微軟正黑體">匿　　稱 </font></span>
-	                    </td>
-	                    <td align="left" height="13" width="502">	
-	                    	<p style="margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium"> <font face="微軟正黑體" color="#C0C0C0">
-	                    	<input name="username" size="50" style="float: left; border: 1px solid rgb(192, 192, 192)" value = <?php echo $row['username'];?>></font></span>
+	                    <td>
+	                    	<div class="controls">
+	                    		<input name="username" class="span3" value = <?php echo $row['username'];?> placeholder="輸入你的匿稱吧"/>
+	                    	</div>
 	                    </td>
                       </tr>
                       
 	                  <tr>
-	                    <td align="left" height="13" width="22"><span style="vertical-align: medium"> <font face="微軟正黑體">
-	                      <input type="checkbox" name="gender_c" id="check_gender" <?php if($check['gender_c'] == "on") { echo "checked"; }?>></font></span>
+	                    <td>
+	                    <label class="checkbox">
+	                      <input type="checkbox" name="gender_c" id="check_gender" <?php if($check['gender_c'] == "on") { echo "checked"; }?> />&nbsp;性　　別
+	                    </label>
 	                    </td>
-	                    <td height="7" colspan="2" align="left">
-	                    	<p style="margin-top: 0px; margin-bottom: 0px"> 
-	                    	<span style="vertical-align: medium"><font size="2" face="微軟正黑體">性　　別</font></span>
-	                    </td>
-	                    <td align="left" height="7" width="502"><p style="margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium"> <font face="微軟正黑體">
-	                      <input type="radio" value="男" name="gender" style="text-shadow: rgba(50, 50, 50, '0.292969) 2px 2px 3px'" <?php if($row['gender'] == "男") { echo "checked"; } ?>>
-	                      <span class="Apple-converted-space">&nbsp;</span><font size="2">男&nbsp;&nbsp;</font><span class="Apple-converted-space">&nbsp;</span>
-	                      <input type="radio" value="女" name="gender" style="text-shadow: rgba(50, 50, 50, '0.292969) 2px 2px 3px'" <?php if($row['gender'] == "女") { echo "checked"; } ?>>
-	                      <span class="Apple-converted-space">&nbsp;</span><font size="2">女</font></font></span></td>
+	                    <td>
+	                    <label class="radio inline">
+	                      <input type="radio" value="男" name="gender" <?php if($row['gender'] == "男") { echo "checked"; } ?> />
+	                      男&nbsp;&nbsp;
+	                    </label>
+	                    <label class="radio inline">
+	                      <input type="radio" value="女" name="gender" <?php if($row['gender'] == "女") { echo "checked"; } ?> />
+	                      女
+	                    </label>
+	                    </td>	                 
                       </tr>
                       
 	                  <tr>
-	                    <td align="left" height="13" width="22"><span style="vertical-align: medium"> <font face="微軟正黑體">
-	                      <input type="checkbox" name="grade_c" id="check_grade" <?php if($check['grade_c'] == "on") { echo "checked"; }?>></font></span>
+	                    <td>
+	                    <label class="checkbox">
+	                      <input type="checkbox" name="grade_c" id="check_grade" <?php if($check['grade_c'] == "on") { echo "checked"; }?> />&nbsp;系　　級
+	                    </label>	
 	                    </td>
-	                    <td height="6" colspan="2" align="left"><span style="vertical-align: medium"> <font size="2" face="微軟正黑體">系　　級</font></span></td>
-	                    <td align="left" height="6" width="502"><font face="微軟正黑體">	        
-	                      <select name="department" size="1">
+	                    <td>                    
+	                      <select name="department" size="1" class="span2">
 							  <option value="<?php if($row['department'] == "") { echo '不知啥系">哪個科系呢？'; } else { echo $row['department'].'">'.$row['department']; } ?></option>
 							  <option disabled>【 　文學院 　】</option>
 							  <option value="中文系">中文系</option>
@@ -284,203 +276,108 @@
 							  <option value="產學營運中心">產學營運中心</option>
 							  <option value="其他單位">其他單位</option>
 						</select>
-						<span class="Apple-converted-space">&nbsp;</span>
-	                    <select size="1" name="grade">	                    	
-	                      	<span class="Apple-converted-space"></span>
+						
+	                    <select size="1" name="grade" class="span2">
 	                        <option selected>第幾級呢？</option>
-	                        <span class="Apple-converted-space"></span>
 	                        <option value="105" <?php if($row['grade'] == '105') { echo "selected"; }?>>105</option>
-	                        <span class="Apple-converted-space"></span>
 	                        <option value="104" <?php if($row['grade'] == '104') { echo "selected"; }?>>104</option>
-	                        <span class="Apple-converted-space"></span>
 	                        <option value="103" <?php if($row['grade'] == '103') { echo "selected"; }?>>103</option>
-	                        <span class="Apple-converted-space"></span>
 	                        <option value="102" <?php if($row['grade'] == '102') { echo "selected"; }?>>102</option>
-	                        <span class="Apple-converted-space"></span>
 	                        <option value="101" <?php if($row['grade'] == '101') { echo "selected"; }?>>101</option>
-	                        <span class="Apple-converted-space"></span>
 	                      </select>
-	                      <span class="Apple-converted-space">&nbsp;</span></font></td>
+	                    </td>
                       </tr>
 	                  <tr>
-	                    <td align="left" height="13" width="22"><span style="vertical-align: medium"><font face="微軟正黑體">
-	                      	<input type="checkbox" name="facebook_c" id="check_facebook" <?php if($check['facebook_c'] == "on") { echo "checked"; }?>></font></span>
+	                    <td>
+	                    <label class="checkbox">
+	                      	<input type="checkbox" name="facebook_c" id="check_facebook" <?php if($check['facebook_c'] == "on") { echo "checked"; }?> />&nbsp;Facebook
+	                    </label>
 	                    </td>
-	                    <td align="left" height="13" width="89">
-	                    	<p style="margin-top: 0px; margin-bottom: 0px"><span style="vertical-align: medium"><font size="2" face="微軟正黑體" color="#0099FF"> Facebook</font></span>
-	                    </td>
-	                    <td align="right" width="19">
-	                    	<span style="margin-top: 0px; margin-bottom: 0px"><font face="微軟正黑體"><img src="http://www.pccillin.com.tw/images/fb.gif" alt=""></font></span>
-	                    </td>
-	                    <td align="left" height="13" width="502">
-	                    	<p style="margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium"> <font face="微軟正黑體" color="#C0C0C0">
-	                    	<input name="facebook" size="80" style="float: left; border: 1px solid rgb(192, 192, 192)" value = <?php echo $row['facebook'];?>></font></span>
-	                    	<div class="input-prepend">
-		                    	<span class="add-on">http://www.facebook.com/</span><input class="span2" id="prependedInput" size="16" type="text" placeholder="Facebook Account">
+	                    <td>
+		                    <div class="controls">
+		                    	<img src="http://www.pccillin.com.tw/images/fb.gif" >
+		                    	<input name="facebook" class="span5" value = <?php echo $row['facebook'];?> placeholder="想分享FB給別人知道嗎？"/>
 		                    </div>
-	                    </td>
-                      </tr>
-                      
-                      <!-- Not good to write here -->
-	                  <!--tr>
-	                    <td align="left" height="13" width="22"></td>
-	                    <td height="13" colspan="2" align="left">
-	                    	<p style="margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium"> <font face="微軟正黑體" size="2" color="#FF0000"> 新的密碼</font></span>
-	                    </td>
-	                    <td align="left" height="13" width="502">
-	                    	<p style="margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium"> <font face="微軟正黑體" color="#C0C0C0">
-	                    	<input name="T4" size="35" style="float: left; color: rgb(192, 192, 192); border: 1px solid rgb(192, 192, 192)">
-	                    	</font></span>
-	                    </td>
-                      </tr>
-                      
-	                  <tr>
-	                    <td align="left" height="13" width="22"></td>
-	                    <td height="13" colspan="2" align="left">
-	                    	<p style="margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium"> <font size="2" face="微軟正黑體" color="#FF0000"> 密碼確認</font></span>
-	                    </td>
-	                    <td align="left" height="13" width="502">
-	                    	<p style="margin-top: 0px; margin-bottom: 0px"> <span style="vertical-align: medium"> <font face="微軟正黑體" color="#C0C0C0">
-	                    	<input name="T5" size="35" style="float: left; color: rgb(192, 192, 192); border: 1px solid rgb(192, 192, 192)">
-	                    	</font></span>
-	                    </td>
-                      </tr-->
-                      
-	                  <tr>
-	                    <td align="left" colspan="3" height="13"><p style="margin-top: 0px; margin-bottom: 0px"></td>
-	                    <td align="left" height="13" width="502"><p style="margin-top: 0px; margin-bottom: 0px"></td>
-                      </tr>
-                      
-	                  <tr>
-	                    <td align="left" colspan="4" height="42">
-	                    	<p style="margin-top: 0px; margin-bottom: 0px"><span style="vertical-align: medium">&nbsp;</span>
-	                    	<span style="vertical-align: medium"><font size="2">
-	                    		<img src="jpg/line.jpg" alt="" width="630" height="1" border="0" align="left"></font></span></p>
-	                    	<p style="margin-top: 0px; margin-bottom: 0px">
-                        </td>
-                      </tr>
+	                    </td>	                  
+                      </tr>   
+                    </tbody>                   
                     </table>
                     
                     <!-- Next Part Start --> 
                     
-            <div class="bs-docs-example" style="padding-bottom: 24px;">
-          <a href="#" class="btn btn-large btn-danger" rel="popover" title="A Title" data-content="And here's some amazing content. It's very engaging. right?">Click to toggle popover</a>
-        </div>
-        
-        <div class="bs-docs-example bs-docs-example-popover">
-          <div class="popover top">
-            <div class="arrow"></div>
-            <h3 class="popover-title">Popover top</h3>
-            <div class="popover-content">
-              <p>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
-            </div>
-          </div>
-        </div>
-                    <!-- Testting-->
+                    <br />
                     
-	                <table border="0" width="646" cellspacing="1" height="357">
+                    <h4>♠（二）常用資料：</h4> 
+	                <table width="645" class="table table-striped">	     
+	                <tbody>           
 	                  <tr>
-	                    <td align="left" colspan="5" height="2">
-	                    	<p style="margin-top: 0px; margin-bottom: 0px"><font face="微軟正黑體"></p>
-		                    <p style="margin-top: 0px; margin-bottom: 0px">
-		                    	<font size="2"><b>（二）常用資料：</b><span class="Apple-converted-space">&nbsp;</span><font color="#333333">會自動記錄，方便以後不用重填</font></font>                          
-		                    <p style="margin-top: 0px; margin-bottom: 0px"></td>
-                      </tr>
-	                  <tr>
-	                    <td align="left" height="1" width="22"><span style="vertical-align: medium"> <font face="微軟正黑體">
-	                      <input type="checkbox" name="msn_c" id="check_msn" <?php if($check['msn_c'] == "on") { echo "checked"; }?>>
-	                      </font></span>
+	                    <td>
+	                    <label class="checkbox">
+	                    	<input type="checkbox" name="msn_c" id="check_msn" "<?php if($check['msn_c'] == "on") { echo "checked"; }?> /> &nbsp;MSN
+	                    </label>
 	                    </td>
-	                    <td align="left" height="1" width="93">
-	                    	<p style="margin-top: 0px; margin-bottom: 0px">
-	                    		<font color="#0099FF"><span style="vertical-align: medium"><font face="微軟正黑體" size="2">MSN　</font></span></font>
-	                    	</td>
-	                    <td align="left" width="17">
-	                    	<span style="margin-top: 0px; margin-bottom: 0px"><font color="#0099FF" face="微軟正黑體">
-	                    	<img src="https://encrypted-tbn3.google.com/images?q=tbn:ANd9GcTBZwvwVjMGbhInOthILiljaNLc_AC0AdmBsvlqdC3OLz6RVttG" alt="" width="16" height="16"></font></font></span>
-	                    </td>
-	                    <td align="left" height="1" colspan="2"><span style="vertical-align: medium"><font face="微軟正黑體" color="#C0C0C0">
-	                      	<input name="msn" size="34" style="float: left; color: rgb(0, 0, 0); border: 1px solid rgb(192, 192, 192)" value = "<?php echo $row['msn'];?>"></font></span>
-	                    </td>
-                      </tr>
-	                  <tr>
-	                    <td align="left" width="22"><span style="vertical-align: medium"> <font face="微軟正黑體">
-	                      <input type="checkbox" name="twitter_c" <?php if($check['twitter_c'] == "on") { echo "checked"; }?>></font></span>
-	                    </td>
-	                    <td align="left">
-	                    	<font color="#0099FF"><span style="vertical-align: medium"><font face="微軟正黑體" size="2">Twitter</font></span></font>
-	                    </td>
-	                    <td align="left">
-	                    	<font color="#0099FF" face="微軟正黑體">
-	                    	<img src="https://encrypted-tbn0.google.com/images?q=tbn:ANd9GcRXwLPUkXaduzV_Mna-a74rv4K5w-oirMO4H0hEbjnNMkI9BIbS0A" alt=""></font></font>
-	                    </td>
-	                    <td align="left" colspan="2">
-	                    	<span style="vertical-align: medium"><font face="微軟正黑體" color="#C0C0C0">
-	                    	<input name="twitter" size="34" style="float: left; color: rgb(0, 0, 0); border: 1px solid rgb(192, 192, 192)" value = "<?php echo $row['twitter'];?>"></font></span>
+	                    <td>
+	                    	<img src="https://encrypted-tbn3.google.com/images?q=tbn:ANd9GcTBZwvwVjMGbhInOthILiljaNLc_AC0AdmBsvlqdC3OLz6RVttG" width="14" height="14">
+	                    	<input name="msn" class="span4" value = "<?php echo $row['msn'];?>" />
 	                    </td>
                       </tr>
                       
 	                  <tr>
-	                    <td align="left" width="22">
-	                    	<span style="vertical-align: medium"> <font face="微軟正黑體">
-	                      	<input type="checkbox" name="plurk_c" <?php if($check['plurk_c'] == "on") { echo "checked"; }?>></font></span>
+	                    <td>
+	                    <label class="checkbox">
+	                      	<input type="checkbox" name="twitter_c" <?php if($check['twitter_c'] == "on") { echo "checked"; }?> />&nbsp;Twitter
+	                    </label>
 	                    </td>
-	                    <td align="left">
-	                    	<font color="#0099FF"> <span style="vertical-align: medium"><font face="微軟正黑體" size="2">Plurk</font></span></font>
-	                    </td>
-	                    <td align="left">
-	                    	<font color="#0099FF"><span style="vertical-align: medium"><font face="微軟正黑體">
-	                    	<img src="https://encrypted-tbn0.google.com/images?q=tbn:ANd9GcR1JaAOCNgLEWVxxyk8qXiq4otEva94IQbiEAZNeJy7iYP04o7Y" alt=""></font></span></font>
-	                    </td>
-	                    <td align="left" colspan="2"><span style="vertical-align: medium"> <font face="微軟正黑體" color="#C0C0C0">
-	                      	<input name="plurk" size="34" style="float: left; color: rgb(0, 0, 0); border: 1px solid rgb(192, 192, 192)" value = "<?php echo $row['plurk'];?>"></font></span>
-	                    </td>
+	                    <td>
+	                    	<img src="https://encrypted-tbn0.google.com/images?q=tbn:ANd9GcRXwLPUkXaduzV_Mna-a74rv4K5w-oirMO4H0hEbjnNMkI9BIbS0A" width="14" height="14">
+	                    	<input name="twitter" class="span4" value = "<?php echo $row['twitter'];?>" />
+	                    </td>	                  
                       </tr>
                       
 	                  <tr>
-	                    <td align="left" height="1" width="22">
-	                    	<span style="vertical-align: medium"> <font face="微軟正黑體">
-		                    <input type="checkbox" name="skype_c" <?php if($check['skype_c'] == "on") { echo "checked"; }?>></font></span>
+	                    <td>
+	                    <label class="checkbox">
+	                      	<input type="checkbox" name="plurk_c" <?php if($check['plurk_c'] == "on") { echo "checked"; }?> />&nbsp;Plurk
+	                    </label>
+	                    </td>
+	                    <td>
+	                    	<img src="https://encrypted-tbn0.google.com/images?q=tbn:ANd9GcR1JaAOCNgLEWVxxyk8qXiq4otEva94IQbiEAZNeJy7iYP04o7Y" width="14" height="14">
+	                    	<input name="plurk" class="span4" value = "<?php echo $row['plurk'];?>" />
+	                    </td>	                   
+                      </tr>
+                      
+	                  <tr>
+	                    <td>
+	                    <label class="checkbox">
+		                    <input type="checkbox" name="skype_c" <?php if($check['skype_c'] == "on") { echo "checked"; }?> />&nbsp;Skype
+	                    </label>
 		                </td>
-	                    <td height="1" align="left">
-	                    	<font color="#0099FF"><span style="vertical-align: medium"><font size="2" face="微軟正黑體">Skype</font></span></font>
-	                    </td>
-	                    <td height="1" align="left">
-	                    	<font color="#0099FF"><font face="微軟正黑體">
-	                    	<img src="https://encrypted-tbn2.google.com/images?q=tbn:ANd9GcTxk19xab9zH7syPeMI7E1uaF5o9CUw0wl0RIIG8zzqH6TyYCPc" alt=""></font></font>
-	                    </td>
-	                    <td align="left" height="1" colspan="2">
-	                    	<span style="vertical-align: medium"> <font face="微軟正黑體" color="#C0C0C0">
-	                    	<input name="skype" size="34" style="float: left; color: rgb(0, 0, 0); border: 1px solid rgb(192, 192, 192)" value = "<?php echo $row['skype'];?>"></font></span>
-	                    </td>
+	                    <td>
+	                    	<img src="https://encrypted-tbn2.google.com/images?q=tbn:ANd9GcTxk19xab9zH7syPeMI7E1uaF5o9CUw0wl0RIIG8zzqH6TyYCPc" width="14" height="14">
+	                    	<input name="skype" class="span4" value = "<?php echo $row['skype'];?>" />
+	                    </td>	                  
                       </tr>
                       
 	                  <tr>
-	                    <td align="left" width="22">
-	                    	<span style="vertical-align: medium"> <font face="微軟正黑體">
-		                    <input type="checkbox" name="phone_c" id="check_phone" <?php if($check['phone_c'] == "on") { echo "checked"; }?>></font></span>
+	                    <td>
+	                    <label class="checkbox">
+		                    <input type="checkbox" name="phone_c" id="check_phone" <?php if($check['phone_c'] == "on") { echo "checked"; }?> />&nbsp;手　　機
+	                    </label>
 		                </td>
-	                    <td colspan="2" align="left">
-	                    	<font size="2" face="微軟正黑體">手　　機</font>
-	                    </td>
-	                    <td align="left" colspan="2">
-	                    	<span style="vertical-align: medium"> <font face="微軟正黑體" color="#C0C0C0">
-	                    	<input name="phone" size="34" style="float: left; color: rgb(0, 0, 0); border: 1px solid rgb(192, 192, 192)" value = "<?php echo $row['phone'];?>"></font></span>
-	                    </td>
+	                    <td>
+	                    	<i class="icon-signal icon"></i>&nbsp;<input name="phone" class="span4" value = "<?php echo $row['phone'];?>" />
+	                    </td>	                    
                       </tr>
                       
 	                  <tr>
-	                    <td align="left" width="22">
-	                    	<span style="vertical-align: medium"> <font face="微軟正黑體">
-		                    <input type="checkbox" name="email_c" id="check_email" <?php if($check['email_c'] == "on") { echo "checked"; }?>></font></span>
+	                    <td>
+	                    <label class="checkbox">
+		                    <input type="checkbox" name="email_c" id="check_email" <?php if($check['email_c'] == "on") { echo "checked"; }?> />&nbsp;常用信箱
+	                    </label>
 		                </td>
-	                    <td colspan="2" align="left">
-	                    	<span style="vertical-align: medium"> <font size="2" face="微軟正黑體">常用信箱</font></span>
-	                    </td>
-	                    <td align="left" colspan="2">
-	                    	<span style="vertical-align: medium"> <font face="微軟正黑體" color="#C0C0C0">
-	                    	<input name="email" size="34" style="float: left; color: rgb(0, 0, 0); border: 1px solid rgb(192, 192, 192)" value = "<?php echo $row['email'];?>"></font></span>
-	                    </td>
+	                    <td>
+	                    	<i class="icon-envelope"></i>&nbsp;<input type = "text "name="email" class="span4" value = "<?php echo $row['email'];?>" placeholder="一定要填喔！"/>
+	                    </td>	                    
                       </tr>
                       
 	                  <!--tr>
@@ -620,157 +517,87 @@
                       </tr-->
                       
 	                  <tr>
-	                    <td align="left" height="0" width="22">
-	                    	<!--span style="vertical-align: medium"> <font face="微軟正黑體">
-		                    <input type="checkbox" name="check_food" value="1" id="check_food"></font></span-->
+	                    <td>
+	                    <label class="checkbox">
+	                    	<input type="checkbox" disabled />&nbsp;飲　　食
+	                    </label>
 		                </td>
-	                    <td height="0" colspan="2" align="left">
-	                    	<p style="margin-top: 0px; margin-bottom: 0px"><span style="vertical-align: medium"><font size="2" face="微軟正黑體">飲　　食</font></span>
-	                    </td>
-	                    <td height="0" colspan="2" align="left"><font face="微軟正黑體">
-	                      <select name="food" size="1">
-	                        <span class="Apple-converted-space"></span>
-	                        <option>有不能吃的嗎？</option>
-	                        <option value="0" <?php if( $row['food'] == 0 ) { echo "selected"; } ?>>葷食</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="1" <?php if( $row['food'] == 1 ) { echo "selected"; }?>>素食</option>
-	                        <span class="Apple-converted-space"></span>	                     
-                          </select>
-                          </font>
-	                    </td>
+	                    <td>
+	                    	<i class="icon-glass"></i>&nbsp;
+	                    	<select name="food" size="1">
+	                        	<option>有不能吃的嗎？</option>
+	                        	<option value="0" <?php if( $row['food'] == 0 ) { echo "selected"; } ?> />葷食</option>
+	                        	<option value="1" <?php if( $row['food'] == 1 ) { echo "selected"; }?> />素食</option>
+	                        </select>
+	                    </td>	                   
                       </tr>
                       
-	                  <!--tr>
-	                    <td align="left" height="1"><font face="微軟正黑體">
-	                      	<input type="checkbox" name="check_special" value="1" id="check_special"></font>
-	                    </td>
-	                    <td height="1" colspan="2" align="left" class="d">
-	                    	特別身分
-	                    </td>
-	                    <td height="1" colspan="2" align="left"><select name="food0" size="1">
-	                      <option selected>其他身分？</option>
-	                      <option>【　中山學生會　】</option>
-	                      <option>會長</option>
-	                      <option>副會長</option>
-	                      <option>活動部</option>
-	                      <option>權益部</option>
-	                      <option>社團部</option>
-	                      <option>財務部</option>
-	                      <option>新聞部</option>
-	                      <option>秘書部</option>
-	                      <option>【　Airstage　】</option>
-	                      <option>營運部</option>
-	                      <option>技術部</option>
-	                      <option>管理員</option>
-	                      <option>【　各類部門　】</option>
-	                      <option>校園大使</option>
-	                      <option>禮儀大使</option>
-	                      <option>宿網委員會</option>
-	                      <option>中山大學教職員</option>
-	                      <option>畢業校友</option>
-	                      <option>合作廠商</option>
-                        </select></td>
-                      </tr-->
-                      
 	                  <tr>
-	                    <td align="left" width="22"><span style="vertical-align: medium"> <font face="微軟正黑體">
-	                      	<input type="checkbox" name="home_c" id="check_hometown" <?php if($check['home_c'] == "on") { echo "checked"; }?>></font></span>
-	                    </td>
-	                    <td colspan="2" align="left">
-	                    	<span style="vertical-align: medium"> <font size="2" face="微軟正黑體">家　　鄉</font></span>
-	                    </td>
-	                    <td align="left" colspan="2"><font face="微軟正黑體">
+	                    <td>
+	                    <label class="checkbox">
+	                      	<input type="checkbox" name="home_c" id="check_hometown" <?php if($check['home_c'] == "on") { echo "checked"; }?> />&nbsp;家　　鄉
+	                    </label>
+	                    </td>	                  
+	                    <td>
+	                    <i class="icon-home"></i>&nbsp;
 	                      <select size="1" name="home">
-	                        <span class="Apple-converted-space"></span>
 	                        <option selected>來至哪裡呀？</option>
 	                        <option disabled>【台灣】</option>
-	                        <span class="Apple-converted-space"></span>
 	                        <option value="Keelung" <?php if($row['home'] == "Keelung") echo 'selected';?>>基隆</option>
-	                        <span class="Apple-converted-space"></span>
 	                        <option value="Taipei" <?php if($row['home'] == "Taipei") echo 'selected';?>>台北</option>
-	                        <span class="Apple-converted-space"></span>
 	                        <option value="Taoyuan" <?php if($row['home'] == "Taoyuan") echo 'selected';?>>桃園</option>
-	                        <span class="Apple-converted-space"></span>
 	                        <option value="Hsinchu" <?php if($row['home'] == "Hsinchu") echo 'selected';?>>新竹</option>
-	                        <span class="Apple-converted-space"></span>
 	                        <option value="Ilan" <?php if($row['home'] == "Ilan") echo 'selected';?>>宜蘭</option>
-	                        <span class="Apple-converted-space"></span>
 	                        <option value="Miaoli" <?php if($row['home'] == "Miaoli") echo 'selected';?>>苗栗</option>
-	                        <span class="Apple-converted-space"></span>
 	                        <option value="Taichung" <?php if($row['home'] == "Taichung") echo 'selected';?>>台中</option>
-	                        <span class="Apple-converted-space"></span>
 	                        <option value="Changhua" <?php if($row['home'] == "Changhua") echo 'selected';?>>彰化</option>
-	                        <span class="Apple-converted-space"></span>
 	                        <option value="Nantou" <?php if($row['home'] == "Nantou") echo 'selected';?>>南投</option>
-	                        <span class="Apple-converted-space"></span>
 	                        <option value="Hualien" <?php if($row['home'] == "Hualien") echo 'selected';?>>花蓮</option>
-	                        <span class="Apple-converted-space"></span>
 	                        <option value="Yunlin" <?php if($row['home'] == "Yunlin") echo 'selected';?>>雲林</option>
-	                        <span class="Apple-converted-space"></span>
 	                        <option value="Chiayi" <?php if($row['home'] == "Chiayi") echo 'selected';?>>嘉義</option>
-	                        <span class="Apple-converted-space"></span>
 	                        <option value="Tainan" <?php if($row['home'] == "Tainan") echo 'selected';?>>台南</option>
-	                        <span class="Apple-converted-space"></span>
 	                        <option value="Kaohsiung" <?php if($row['home'] == "Kaohsiung") echo 'selected';?>>高雄</option>
-	                        <span class="Apple-converted-space"></span>
 	                        <option value="Taitung" <?php if($row['home'] == "Taitung") echo 'selected';?>>台東</option>
-	                        <span class="Apple-converted-space"></span>
 	                        <option value="Pingtung" <?php if($row['home'] == "Pingtung") echo 'selected';?>>屏東</option>
-	                        <span class="Apple-converted-space"></span>
 	                        <option value="Golden" <?php if($row['home'] == "Golden") echo 'selected';?>>金門</option>
-	                        <span class="Apple-converted-space"></span>
 	                        <option value="Penghu" <?php if($row['home'] == "Penghu") echo 'selected';?>>澎湖</option>
-	                        <span class="Apple-converted-space"></span>
 	                        <option disabled>【海外】</option>
-	                        <span class="Apple-converted-space"></span>
 	                        <option value="Malaysia" <?php if($row['home'] == "Malaysia") echo 'selected';?>>馬來西亞</option>
-	                        <span class="Apple-converted-space"></span>
 	                        <option value="Singapore" <?php if($row['home'] == "Singapore") echo 'selected';?>>新加坡</option>
-	                        <span class="Apple-converted-space"></span>
 	                        <option value="China" <?php if($row['home'] == "China") echo 'selected';?>>中國</option>
-	                        <span class="Apple-converted-space"></span>
 	                        <option value="Macao" <?php if($row['home'] == "Macao") echo 'selected';?>>澳門</option>
-	                        <span class="Apple-converted-space"></span>
 	                        <option value="HongKong" <?php if($row['home'] == "HongKong") echo 'selected';?>>香港</option>
-	                        <span class="Apple-converted-space"></span>
 	                        <option value="Philippines" <?php if($row['home'] == "Philippines") echo 'selected';?>>菲律賓</option>
-	                        <span class="Apple-converted-space"></span>
 	                        <option value="Vietnam" <?php if($row['home'] == "Vietnam") echo 'selected';?>>越南</option>
-	                        <span class="Apple-converted-space"></span>
 	                        <option value="India" <?php if($row['home'] == "India") echo 'selected';?>>印度</option>
-	                        <span class="Apple-converted-space"></span>
 	                        <option value="Europe" <?php if($row['home'] == "Europe") echo 'selected';?>>歐洲</option>
-	                        <span class="Apple-converted-space"></span>
 	                        <option value="Australia" <?php if($row['home'] == "Australia") echo 'selected';?>>澳洲</option>
-	                        <span class="Apple-converted-space"></span>
 	                        <option value="America" <?php if($row['home'] == "America") echo 'selected';?>>美洲</option>
-	                        <span class="Apple-converted-space"></span>
 	                        <option value="Asia" <?php if($row['home'] == "Asia") echo 'selected';?>>亞洲</option>	                        
                           </select>
-	                    </font></td>
-                      </tr>
-                      
-	                  <tr>
-	                    <td align="left" width="22">&nbsp;
-		                    
-	                    </td>
-	                    <td colspan="2" align="left">
-	                    	<font face="微軟正黑體"><span style="vertical-align: medium"> <font size="2">身&nbsp; 分&nbsp; 證</font></span></font>
-	                    </td>
-	                    <td align="left" colspan="2"><span style="vertical-align: medium"> <font face="微軟正黑體" color="#C0C0C0">
-	                      	<input name="id" size="34" style="float: left; color: rgb(0, 0, 0); border: 1px solid rgb(192, 192, 192)" value ="<?php echo $row['id'];?>"></font></span>
 	                    </td>
                       </tr>
                       
 	                  <tr>
-	                    <td align="left" width="22"><font face="微軟正黑體"><span style="vertical-align: medium">
-	                      	<input type="checkbox" name="dorm_c" id="check_dorm" <?php if($check['dorm_c'] == "on") { echo "checked"; }?>></span>
+	                    <td>
+	                    <label class="checkbox">
+		                    <input type="checkbox" disabled />&nbsp; 身  分  證	
+	                    </label>
 	                    </td>
-	                    <td colspan="2" align="left">
-	                    	<span style="vertical-align: medium"> <font size="2" face="微軟正黑體">宿　　舍</font></span>
+	                    <td>	                    
+	                    	<i class="icon-pencil"></i>&nbsp;<input name="id" size="34" value ="<?php echo $row['id'];?>" />
+	                    </td>	                    
+                      </tr>
+                      
+	                  <tr>
+	                    <td>
+	                    <label class="checkbox">
+	                      	<input type="checkbox" name="dorm_c" id="check_dorm" <?php if($check['dorm_c'] == "on") { echo "checked"; }?> />&nbsp;宿　　舍
+	                    </label>
 	                    </td>
-	                    <td align="left" colspan="2"><font face="微軟正黑體">
-	                      <select size="1" name="dorm">
+	                    <td>
+	                    <i class="icon-tags"></i>&nbsp;
+	                      <select size="1" name="dorm" class="span2">
 	                        <span class="Apple-converted-space"></span>
 	                        <option selected>住哪一棟呢？</option>
 	                        <option disabled value>【武嶺山莊】</option>
@@ -803,110 +630,76 @@
 	                        <span class="Apple-converted-space"></span>
 	                        <option value="L" <?php if($row['dorm'] == "L" || $row['dorm'] == "l") { echo "selected";}?>>翠亨L棟-女宿</option>
 	                        <span class="Apple-converted-space"></span>
-                          </select>	                     
-	                      <span class="Apple-converted-space">&nbsp;</span><font size="2">房號 -</font><span class="Apple-converted-space">&nbsp;</span>
-	                      <input type="text" name="room" size="2" value = <?php echo $row['room']; ?>>
+                          </select>	   
+                          <div class="controls">                  
+	                      房號 -
+	                      <input type="text" name="room" size="2" class="span1" value = <?php echo $row['room']; ?> />
+                          </div>
 	                    </td>
                       </tr>                     	               
                       
 	                  <tr>
-	                    <td align="left" width="22"><span style="vertical-align: medium"><font face="微軟正黑體">
-	                      	<input type="checkbox" name="outAddr_c" <?php if($check['outAddr_c'] == "on") { echo "checked"; }?>></font></span>
+	                    <td>
+	                    <label class="checkbox">
+	                      	<input type="checkbox" name="outAddr_c" <?php if($check['outAddr_c'] == "on") { echo "checked"; }?> />&nbsp;校外住址
+	                    </label>
 	                    </td>
-	                    <td colspan="2" align="left">
-	                    	<span style="vertical-align: medium"> <font face="微軟正黑體" size="2">校外住址</font></span>
+	                    <td>
+	                    	<i class="icon-flag"></i>&nbsp;<input name="outAddr" class="span4" value = "<?php echo $row['outAddr']; ?>" />
 	                    </td>
-	                    <td align="left" colspan="2"><span style="vertical-align: medium"> <font face="微軟正黑體" color="#C0C0C0">
-	    	                <input name="outAddr" size="55" style="float: left; color: rgb(0, 0, 0); border: 1px solid rgb(192, 192, 192)" value = "<?php echo $row['outAddr']; ?>"></font></span>
-	    	            </td>
                       </tr>
                       
 	                  <tr>
-	                    <td align="left" width="22"><span style="vertical-align: medium"> <font face="微軟正黑體">
-	                      	<input type="checkbox" name="car_c" <?php if($check['car_c'] == "on") { echo "checked"; }?>></font></span>
+	                    <td>
+	                    <label class="checkbox">
+	                      	<input type="checkbox" name="car_c" <?php if($check['car_c'] == "on") { echo "checked"; }?> />&nbsp;交通工具
+	                    </label>
 	                    </td>
-	                    <td colspan="2" align="left">
-	                    	<span style="vertical-align: medium"><font size="2" face="微軟正黑體">交通工具</font></span>
-	                    </td>
-	                    <td align="left" colspan="2"><font face="微軟正黑體">
+	                    <td>
+	                    <i class="icon-road"></i>&nbsp;
 	                      <select name="car" size="1">
-	                        <span class="Apple-converted-space"></span>
 	                        <option selected>有機車嗎？</option>
 	                        <option value="0" <?php if($row['car'] == "0") { echo "selected"; }?>>步行</option>
-	                        <span class="Apple-converted-space"></span>
 	                        <option value="1" <?php if($row['car'] == "1") { echo "selected"; }?>>會騎車,沒機車</option>
-	                        <span class="Apple-converted-space"></span>
 	                        <option value="2" <?php if($row['car'] == "2") { echo "selected"; }?>>會騎車,有機車</option>
-	                        <span class="Apple-converted-space"></span>
 	                        <option value="3" <?php if($row['car'] == "3") { echo "selected"; }?>>汽車</option>
-	                        <span class="Apple-converted-space"></span>
                           </select>
-                          </font>
 	                    </td>
                       </tr>
                       
 	                  <tr>
-	                    <td align="left" width="22"><span style="vertical-align: medium"><font face="微軟正黑體">
-	                      	<input type="checkbox" name="profile_pic_c" id="profile_pic_c" <?php if($check['profile_pic_c'] == "on") { echo "checked"; }?>></font></span>
+	                    <td>
+	                    <label class="checkbox">
+	                      	<input type="checkbox" name="profile_pic_c" id="profile_pic_c" <?php if($check['profile_pic_c'] == "on") { echo "checked"; }?> />&nbsp;個人圖像
+	                    </label>
 	                    </td>
-	                    <td colspan="2" align="left">
-	                    	<font size="2" face="微軟正黑體"> 個人圖像</font>
-	                    </td>
-	                    <td align="left" colspan="2">&nbsp;
-		                   
-	                    </td>
-                      </tr>
-                      
-	                  <tr>
-	                    <td align="left" width="22">
-	                    	<font face="微軟正黑體"><span style="vertical-align: medium">&nbsp;</span>
-	                    </td>
-	                    <td colspan="2" align="left">
-	                    	<font face="微軟正黑體"><span style="vertical-align: medium">&nbsp;</span>
-	                    </td>
-	                    <td align="left" width="242"><table border="0" width="216" cellspacing="0" cellpadding="0" height="200">
-	                      <tr>
-	                        <td width="216" height="200" bordercolor="#C0C0C0" style="border: 1px solid #C0C0C0" align="center">
-	                        	<img src="<?php echo UPLOADPATH . $row['profile_pic']; ?>" alt="" width="205" height="185" border="0" align="middle">
-	                        </td>
-	                    </td>
-	                   </tr>
-	                 </table>
-	                   <td align="left" width="248"><font face="微軟正黑體"><font size="2">上傳圖像</font>
-	                   	  <input type="file" name="profile_pic" id="profile_pic" placeholder="限jpg檔,大小不可超過1MB"></font>
-	                   </td>
-                      </tr>
-                      
-	                  <tr>
-	                    <td align="left" colspan="5">&nbsp;</td>      
-	                    <td width="5"></tr>
-	                  <tr>
-	                    <td align="left" colspan="5">&nbsp;</td>
-                      </tr>
-                      
-	                  <tr>
-	                    <td align="left" width="22">&nbsp;</td>
-	                    <td colspan="2" align="left">&nbsp;</td>
-	                    <td align="left" colspan="2"><span style="vertical-align: medium"> <font face="微軟正黑體">
-	                      <button type="submit" value="" name = "submit" class="btn btn-info"><i class="icon-leaf icon-white"></i> 修改資料</button>
-	                      <span class="Apple-converted-space">&nbsp;</span>
-	                  
-	                      </font></span>
-	                    </td>
-                      </tr>
+	                    <td>
+		                    <ul class="thumbnails">
+		                    	<li class="span5">
+			                    	<a href="" class="thumbnail">
+			                    		<i class="icon-picture"></i>&nbsp; <img src="<?php echo UPLOADPATH . $row['profile_pic']; ?>" class="img-polaroid" />
+			                    	</a>			                    	
+		                    	</li>
+		                    </ul>
+		                    <div class="alert alert-info fade in span4">
+			                    <strong style="font-size: 13px;">檔案大小不可以超過1Mb喔！</strong><br />
+		                    </div>
+		                    <input type="file" name="profile_pic" id="profile_pic" class="btn btn-small" value="上傳檔案" />
+		                    <button type="button" name="cancel_pic" class="btn btn-large" ><i class="icon-refresh"></i>&nbsp;清除圖像</button>
+	                    </td>	                   
+                      </tr>                     	                  
+                    </tbody>                    	               
                     </table>
-                    
+                    <button type="submit" name = "submit" class="btn btn-info"><i class="icon-leaf icon-white"></i> 修改資料</button>
                     <!-- End of form -->
 	              </form>
 	        </div>
-	              
-	              
-	            </td>
-              </tr>
-            </table>
-	        <p><font face="微軟正黑體"><span style="vertical-align: medium">&nbsp;</span></p>
-	        <p><span style="vertical-align: medium">&nbsp;</span></p>
-	        <p><span style="vertical-align: medium">&nbsp;</span>      
+	       </td>
+          </tr>
+        </table>
+        <br />
+        <br /> 
+        <br />   
 	        </div>
 	      </td>
         </tr>
