@@ -25,22 +25,26 @@ echo'
 </div>
 ';
 if($_SESSION['record'] == 'private'){
+	$private = $_POST['private'];
+	$dele = $_POST['delete'];
 	//新增權限部份
 	//如果有輸入新增的學號
-	if($_POST['private'] != ''){
+	if($private != ''){
 		$prirno = $url['rno'];
-		$private = $_POST['private'];
 		$old = $url['stu_id'];
 		$new = ''.$old.','.$private.'';
 	}
-	else
-		$new = '';
+	//如果沒有輸入新增的學號
+	else{
+		$old = $url['stu_id'];
+		$new = ''.$old.'';
+	}
 	//刪除權限的部份
 	//如果有輸入刪除的學號
-	if($_POST['delete'] != ''){
-		$tempdel = ''.$_POST['delete'].',';
+	if($dele != ''){
+		$tempdel = ''.$dele.',';
 		$delete = explode(',', $tempdel);
-		$tempexi = ''.$url['stu_id'].',';
+		$tempexi = ''.$new.',';
 		$exist = explode(',', $tempexi);
 		$exi = 0;
 		$del = 0;
@@ -50,36 +54,42 @@ if($_SESSION['record'] == 'private'){
 		while($delete[$del] != NULL){
 			$del++;
 		}
+		$afterdel = '';
 		for($de=0; $de < $del; $de++){
 			for($ex=0; $ex < $exi; $ex++){
-				if($delete[$de] == $exist[$exi]){
-					$new = ''.$new.'';
+				if($delete[$de] == $exist[$ex]){
+					$afterdel = ''.$afterdel.'';
+					break;
 				}
-				else if($delete[$de] != $exist[$exi]){
-					if($new == ''){
-						$new = ''.$exist[$exi].'';
+				else if($delete[$de] != $exist[$ex]){
+					if($afterdel == ''){
+						$afterdel = ''.$exist[$ex].'';
 					}
 					else
-						$new = ''.$new.''.$exist[$exi].'';
+						$afterdel = ''.$afterdel.','.$exist[$ex].'';
 				}
 			}
 		}
-		if($new == $url['stu_id']){
-			echo '<script language="javascript" type="text/javascript">alert("您欲刪除之學號並無權限,請再三確認後才輸入,謝謝!"); location.href="apply02.php?option=type";</script>';
+		
+		if($afterdel == $url['stu_id']){
+			echo '<script language="javascript" type="text/javascript">alert("您欲刪除之學號並無權限,請再三確認後才輸入,謝謝!"); location.href="apply02.php";</script>';
 		}
-	}
-	if($new == ''){
-		echo '<script language="javascript" type="text/javascript">alert("不能將所有權限都刪除,請重新操作"); location.href="apply02.php?option=type;"</script>';
-	}
-	else{
-		$updatepri = "UPDATE Activities SET stu_id = '$new' WHERE rno = $prirno";
-	
-		if(mysqli_query($conn, $updatepri)){
-			echo '<script type="text/javascript" language="javascript">alert("設定成功!"); location.href="apply02.php?option=type;</script>';
+		else if($afterdel == ''){
+			echo '<script language="javascript" type="text/javascript">alert("不能將所有權限都刪除,請重新操作"); location.href="apply02.php";"</script>';
 		}
 		else{
-			echo '<script type="text/javascript" language="javascript">alert("設定失敗!請重新再來"); location.href="apply02.php?option=type;</script>';
+			$new = $afterdel;
+			echo '<script language="javascript" type="text/javascript">alert("'.$new.'"); location.href="apply02.php";"</script>';
 		}
+	}
+	
+	$updatepri = "UPDATE Activities SET stu_id = '$new' WHERE rno = ".$url['rno']."";
+	
+	if(mysqli_query($conn, $updatepri)){
+		echo '<script type="text/javascript" language="javascript">alert("設定成功!'.$new.'"); location.href="apply02.php";</script>';
+	}
+	else{
+		echo '<script type="text/javascript" language="javascript">alert("設定失敗!請重新再來"); location.href="apply02.php";</script>';
 	}
 }
 ?>
