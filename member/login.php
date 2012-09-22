@@ -20,9 +20,9 @@
 	        $_SESSION['stu_id'] = $row['stu_id'];
 			$_SESSION['name'] = $row['name']; 
 			$_SESSION['auth'] = $row['AUTH'];
-			setcookie( 'stu_id', $row['stu_id'], time()+(60*60*24*5) );
-			setcookie( 'name', $row['name'], time()+(60*60*24*5) );
-			setcookie( 'auth', $row['AUTH'], time()+(60*60*24*5) );
+			setcookie( 'stu_id', $row['stu_id'], time()+(60*60*24*10) );
+			setcookie( 'name', $row['name'], time()+(60*60*24*10) );
+			setcookie( 'auth', $row['AUTH'], time()+(60*60*24*10) );
 			echo '<div class="alert alert-success">Welcome Back</div>';
 			echo 'Page.RegisterClientScriptBlock("sdfs6s6", "<script> parent.location ="../index.php";parent.$.fancybox.close();</script>");';
 			exit();
@@ -33,14 +33,20 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<link href="../css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="bootstrap.css" rel="stylesheet">
+	<style>
+		body, td, th{
+			font-family: "Arial";
+			font-size:16px;
+		}
+	</style>
 </head>
 
 <body>
-	<div style="height:350; width:330; background-color:#FFFFFF;">
-		<table align="center" background="img/bglogin.png" style="background-repeat:no-repeat" width="330" height="350">
+	<div style="height:500; width:330; background-color:#FFFFFF;">
+		<table align="center" background="img/bglogin.png" style="background-repeat:no-repeat" width="330" height="400">
 			<tr>
-				<td style="font-weight:bold; font-size:16px" align="center" valign="middle">
+				<td align="center" valign="middle">
 					<form name="login" method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>" class="form-horizontal">
 						學號&nbsp;
 						<input type="text" name="id" placeholder="請輸入帳號或學號" class="btn"/> <br /><br />

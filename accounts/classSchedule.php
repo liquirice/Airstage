@@ -101,7 +101,7 @@
 								</tr>
 							</table>
                             
-                            <table border="0" width="950" cellspacing="2" cellpadding="8">    
+                            <!--table border="0" width="950" cellspacing="2" cellpadding="8">    
 								<tr>									
 									<td align="center" height="14" width="50">
 										<font size="4"><b>課程時間</b></font>
@@ -638,7 +638,7 @@
 				<p><span style="vertical-align: medium">&nbsp;</span></div>
 			</td>
 		</tr>
-	</table>
+	</table-->
 </div>
 
 <script src="assets/js/bootstrap-alert.js"></script>

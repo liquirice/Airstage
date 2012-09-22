@@ -112,7 +112,7 @@
 <html>
 <head>
 <link href="tm2.ico" rel="shortcut icon"/>
-<link href="../css/bootstrap-Full/docs/assets/css/bootstrap.css" rel="stylesheet">
+<link href="assets/css/bootstrap.css" rel="stylesheet">
 <!--link href="../css/bootstrap-Full/docs/assets/css/bootstrap-responsive.css" rel="stylesheet"-->
 <!--link href="../css/bootstrap-Full/docs/assets/css/docs.css" rel="stylesheet"-->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -166,7 +166,7 @@
 	            <div class="navbar">
 	            	
 	            <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" enctype = "multipart/form-data">
-	            <h4 style="font-family: Arial;">♠（一）基本資料( 請<font color="#FF7573">勾選</font>欲讓人看到的項目 )</h4>
+	            <h4>♠（一）基本資料( 請<font color="#FF7573">勾選</font>欲讓人看到的項目 )</h4>
 	            <!--hr class="bs-docs-separator" /-->
 	              <table width="645" class="table table-hover">
 	              <tbody>
@@ -296,7 +296,7 @@
 	                    <td>
 		                    <div class="controls">
 		                    	<img src="http://www.pccillin.com.tw/images/fb.gif" >
-		                    	<input name="facebook" class="span5" value = <?php echo $row['facebook'];?> placeholder="想分享FB給別人知道嗎？"/>
+		                    	<input name="facebook" class="span5" value = "<?php echo $row['facebook'];?>" placeholder="想分享FB給別人知道嗎？" />
 		                    </div>
 	                    </td>	                  
                       </tr>   
@@ -308,7 +308,7 @@
                     <br />
                     
                     <h4>♠（二）常用資料：</h4> 
-	                <table width="645" class="table table-striped">	     
+	                <table width="645" class="table table-hover">	     
 	                <tbody>           
 	                  <tr>
 	                    <td>

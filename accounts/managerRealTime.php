@@ -56,67 +56,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Language" content="zh-tw">
 <title>│Airstage 西灣人│管理者介面 - 線上即時資料</title>
-<style fprolloverstyle>
-	A:hover {text-decoration: underline; font-weight: bold}
-	a{text-decoration:none;}
-</style>
-<script language="JavaScript" fptype="dynamicanimation">
-<!--
-	function dynAnimation() {}
-	function clickSwapImg() {}
-//-->
-</script>
-
 <script>
 	setTimeout("history.go(0);",30000);
 </script>
-<link href="../css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<script language="javascript" type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script language="javascript" type="text/javascript" src="../plugin/shadowbox/shadowbox.js"></script>
-<script language="javascript" type="text/javascript" src="../plugin/jrumble/jquery.jrumble.1.3.min.js"></script>
-<script type="text/javascript">
-	Shadowbox.init({
-		players : ['html'],
-		overlayColor: "#FFFFFF",
-	});
-	$(function(){
-	$('#logo').jrumble({
-		x:2,
-		y:2,
-		rotation:1,
-	});
-	$('#logo').hover(function(){
-		$(this).trigger('startRumble'); 
-	}, function(){
-		$(this).trigger('stopRumble');
-        
-    });
-	});
-</script>
-<link rel="stylesheet" type="text/css" href="../plugin/shadowbox/shadowbox.css">
-<base target="_parent">
-<script language="JavaScript">
-<!--
-function FP_changeProp() {//v1.0
-	 var args=arguments,d=document,i,j,id=args[0],o=FP_getObjectByID(id),s,ao,v,x;
-	 d.$cpe=new Array(); if(o) for(i=2; i<args.length; i+=2) { v=args[i+1]; s="o"; 
-	 ao=args[i].split("."); for(j=0; j<ao.length; j++) { s+="."+ao[j]; if(null==eval(s)) { 
-	  s=null; break; } } x=new Object; x.o=o; x.n=new Array(); x.v=new Array();
-	 x.n[x.n.length]=s; eval("x.v[x.v.length]="+s); d.$cpe[d.$cpe.length]=x;
-	 if(s) eval(s+"=v"); }
-}
-
-function FP_getObjectByID(id,o) {//v1.0
-	 var c,el,els,f,m,n; if(!o)o=document; if(o.getElementById) el=o.getElementById(id);
-	 else if(o.layers) c=o.layers; else if(o.all) el=o.all[id]; if(el) return el;
-	 if(o.id==id || o.name==id) return o; if(o.childNodes) c=o.childNodes; if(c)
-	 for(n=0; n<c.length; n++) { el=FP_getObjectByID(id,c[n]); if(el) return el; }
-	 f=o.forms; if(f) for(n=0; n<f.length; n++) { els=f[n].elements;
-	 for(m=0; m<els.length; m++){ el=FP_getObjectByID(id,els[n]); if(el) return el; } }
-	 return null;
-}
-// -->
-</script>
+<link href="assets/css/bootstrap.css" rel="stylesheet">
 <style type="text/css">
 	body,td,th {
 		font-family: "微軟正黑體";
