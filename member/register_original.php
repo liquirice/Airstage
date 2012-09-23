@@ -1,5 +1,5 @@
 <? 
-	// Last Modiefied Day : 2012.09.15
+	// Last Modiefied Day : 2012.09.23
 	require_once( "../connectVar.php" );
 ?>
 <!DOCTYPE HTML> 
@@ -40,12 +40,6 @@ $f.dom.ready(function() {
 			  pattern:/^[A-Za-z0-9]+$/,
 			  rangelength:[10,10],
 		  },
-		  department:{
-		 	  required:1,
-		  },
-		  grade:{
-		  	  required:1,
-		  },
 		  gender:{
 			  required:1
 		  },
@@ -71,12 +65,6 @@ $f.dom.ready(function() {
 			  required:"此欄位不能為空！",
 			  pattern:"學號格式有誤！",
 			  rangelength:"學號格式有誤！",
-		  },
-		  department:{
-			  required:" "	
-		  },
-		  grade:{
-			  required:" "
 		  },
 		  gender:{
 			  required:"此欄位不能為空！",
@@ -135,47 +123,14 @@ $f.dom.ready(function() {
     </tr>
 	<tr>
     	<td align="right">學號</td>
-        <td><input type="text" name="stu_id" id="stu_id" value="" /></td>
-    </tr>
-    <tr>
-		<!--系級選項有點問題，碩班分類的話？還有似乎沒有機電系，資料表需要修改-->
-    	<td align="right">系級</td>
-		<td>
-		<select name="department" id="department">
-		<option value="">　　</option>
-		<option value="中文系">中文</option>
-		<option value="外文系">外文</option>
-		<option value="音樂系">音樂</option>
-		<option value="劇藝系">劇藝</option>
-		<option value="應數系">應數</option>
-		<option value="物理系">物理</option>
-		<option value="化學系">化學</option>
-		<option value="生科系">生科</option>
-		<option value="財管系">財管</option>
-		<option value="企管系">企管</option>
-		<option value="資管系">資管</option>
-		<option value="社會系">社會</option>
-		<option value="資工系">資工</option>
-		<option value="電機系">電機</option>
-		<option value="機電系">機電</option>
-		</select>系
-		<select name="grade" id="grade">
-		<option value="">   </option>
-		<option value="100">100</option>
-		<option value="101">101</option>
-		<option value="102">102</option>
-		<option value="103">103</option>
-		<option value="104">104</option>
-		<option value="105">105</option>
-		</select>級
-		</td>
+        <td><input type="text" name="stu_id" id="stu_id" value=""  placeholder="認證依據，請據實填寫" /></td>
     </tr>	
     <tr>
     	<td align="right">性別</td>
         <td><input type="radio" value="男" name="gender" />男&nbsp;&nbsp;<input type="radio" value="女" name="gender" />女</td>
     </tr>
     <tr>
-    	<td align="right">電子信箱</td>
+    	<td align="right">備用信箱</td>
         <td><input type="text" name="email" /></td>
     </tr>
 <!--

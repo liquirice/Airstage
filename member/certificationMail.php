@@ -68,14 +68,15 @@
 		$param['html_charset'] = 'utf-8';
 		$param['head_charset'] = 'utf-8';
 		$body = $mime->get($param);
-		$headers = $mime->headers($headers);
+		$hrs = $mime->headers($headers);
 
 		$smtp = Mail::factory('smtp', $gmail);
-		$mail = $smtp->send($recipients, $headers, $body);
+		$mail = $smtp->send($recipients, $hrs, $body);
 		
 		if(PEAR::isError($mail)){
-			unset($_SESSION['name']);
+			//unset($_SESSION['name']);
 			echo "<script language='javascript'>alert('email failed!!');</script>";
+			echo PEAR::isError($mail);
 		}
 		else{
 			unset($_SESSION['name']);
