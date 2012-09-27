@@ -1,5 +1,5 @@
 <?php
-	// Last Modified Day : 2012.09.13
+	// Last Modified Day : 2012.09.27
 	require_once( "../setSession.php" );
 	
 	if( !isset($_SESSION['stu_id']) || !isset($_SESSION['name']) || !isset($_SESSION['auth']) ) {
@@ -11,6 +11,13 @@
 			require_once( "../connectVar.php" );
 			require_once( "uploadPath.php" );
 			$stu_id = $_SESSION['stu_id'];
+			
+			// Clean the profile picture.
+			if( isset($_POST['clean_pic']) ) {
+				$query = "UPDATE member_Info SET profile_pic = ''";
+				$result = mysqli_query( $conn, $query ) or die( 'Clean Error' );
+				echo '<script type="text/javascript">alert("清除完成！");</script>';
+			}
 			
 			// Upadte the user info.
 			if( isset($_POST['submit']) ) {
@@ -122,7 +129,7 @@
 <style type="text/css">
 	body,td,th {
 		font-family: "微軟正黑體", "Arial";
-		font-size: 15px;
+		font-size: 14px;
 	}
 	body {
 		background-image: url(../jpg/background.png);
@@ -131,6 +138,9 @@
 	}
 	.d {
 		font-size: 13px;
+	}
+	h5 {
+		text-align: left;
 	}
 </style>
 </head>
@@ -166,7 +176,7 @@
 	            <div class="navbar">
 	            	
 	            <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" enctype = "multipart/form-data">
-	            <h4>♠（一）基本資料( 請<font color="#FF7573">勾選</font>欲讓人看到的項目 )</h4>
+	            <h5>♠（一）基本資料( 請<font color="#FF7573">勾選</font>欲讓人看到的項目 )</h5>
 	            <!--hr class="bs-docs-separator" /-->
 	              <table width="645" class="table table-hover">
 	              <tbody>
@@ -307,7 +317,7 @@
                     
                     <br />
                     
-                    <h4>♠（二）常用資料：</h4> 
+                    <h5>♠（二）常用資料：</h5> 
 	                <table width="645" class="table table-hover">	     
 	                <tbody>           
 	                  <tr>
@@ -685,12 +695,12 @@
 			                    <strong style="font-size: 13px;">檔案大小不可以超過1Mb喔！</strong><br />
 		                    </div>
 		                    <input type="file" name="profile_pic" id="profile_pic" class="btn btn-small" value="上傳檔案" />
-		                    <button type="button" name="cancel_pic" class="btn btn-large" ><i class="icon-refresh"></i>&nbsp;清除圖像</button>
+		                    <button type = "submit" name = "clean_pic" id = "clean_pic" class="btn btn-large"><i class="icon-refresh"></i> 清除圖像</button>
 	                    </td>	                   
                       </tr>                     	                  
                     </tbody>                    	               
                     </table>
-                    <button type="submit" name = "submit" class="btn btn-info"><i class="icon-leaf icon-white"></i> 修改資料</button>
+                    <button type = "submit" name = "submit" class="btn btn-info"><i class="icon-leaf icon-white"></i> 修改資料</button>
                     <!-- End of form -->
 	              </form>
 	        </div>

@@ -54,8 +54,6 @@
 		font-size: 14px;
 	}
 	body {
-		/*background-image: url(../jpg/background.png);*/
-		/*background-repeat: repeat;*/
 		background-color: #dad9d9;
 	}
 	.d {
