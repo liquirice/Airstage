@@ -2,7 +2,6 @@
 	// Last Modified Day : 2012.09.26
 	// No need to login to browse the products.
 	session_start();
-	
 ?>
 
 <!DOCTYPE HTML>
@@ -17,9 +16,11 @@
 
 <body>
 
+<font face="微軟正黑體">
 <?php
 	require_once( "marketNavi.php" );
 ?>
+</font>
 
 <?php
 	require_once( "marketAnnouce.php" );
@@ -27,7 +28,7 @@
 
 <!-- Container Start -->
 <div class = "container">
-
+<font face="微軟正黑體">
     <?php
 	    require_once( "memberStateLine.php" );
 	?>
@@ -36,10 +37,10 @@
 		<ul class="thumbnails">
 			<li class="span4">
 				<div class="thumbnail">
-					<img src="http://placehold.it/300x200" alt="">
+					<img src="http://placehold.it/300x300" alt="">
 					<div class="caption">
-						<h3>Thumbnail label</h3>
-						<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+						<h3>二手交易市場</h3>
+						<p>Description</p>
 						<p>
 							<!-- Rule Button of Second Hand Board -->
 							<div id="ruleSecond" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -51,17 +52,14 @@
 									1.<br />
 									2.<br />
 									3.<br />
-									4.<br />
-									5.<br />
-									6.<br />
-									7.<br />
+									Will Complete Soon...
 								</div>
 								<div class="modal-footer">
 								  	<button class="btn btn-primary" data-dismiss="modal">了解</button>
 								</div>
 							</div>
-							<a href="#" class="btn btn-primary btn-large">進入市場</a>
-							<a data-toggle="modal" href="#ruleSecond" class="btn btn-danger btn-large">二手交易規則</a>
+							<a href="#" class="btn btn-primary btn-large"><i class = "icon-globe icon-white"></i> 進入市場</a>
+							<a data-toggle="modal" href="#ruleSecond" class="btn btn-danger btn-large"><i class = "icon-ok icon-white"></i> 二手交易規則</a>
 							
 						</p>
 					</div>
@@ -69,10 +67,10 @@
 			</li>
 			<li class="span4">
 				<div class="thumbnail">
-					<img src="http://placehold.it/300x200" alt="">
+					<img src="http://placehold.it/300x300" alt="">
 					<div class="caption">
-						<h3>Thumbnail label</h3>
-						<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+						<h3>限時競標</h3>
+						<p>Description</p>
 						<p>
 							<!-- Rule Button of Contention Market -->
 							<div id="ruleContention" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -84,17 +82,14 @@
 									1.<br />
 									2.<br />
 									3.<br />
-									4.<br />
-									5.<br />
-									6.<br />
-									7.<br />
+									Will Complete Soon...
 								</div>
 								<div class="modal-footer">
 								  	<button class="btn btn-primary" data-dismiss="modal">了解</button>
 								</div>
 							</div>
-							<a href="#" class="btn btn-primary btn-large">進入市場</a>
-							<a data-toggle="modal" href="#ruleContention" class="btn btn-danger btn-large">競標市場規則</a>
+							<a href="#" class="btn btn-primary btn-large"><i class = "icon-briefcase icon-white"></i> 進入競標</a>
+							<a data-toggle="modal" href="#ruleContention" class="btn btn-danger btn-large"><i class = "icon-ok icon-white"></i> 競標市場規則</a>
 							
 						</p>
 					</div>
@@ -102,10 +97,10 @@
 			</li>
 			<li class="span4">
 				<div class="thumbnail">
-					<img src="http://placehold.it/300x200" alt="">
+					<img src="http://placehold.it/300x300" alt="">
 					<div class="caption">
-						<h3>Thumbnail label</h3>
-						<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+						<h3>校園團購</h3>
+						<p>Description</p>
 						<p>
 							<!-- Rule Button of Group Market -->
 							<div id="ruleGroup" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -114,20 +109,14 @@
 								 	<h3 id="myModalLabel">校園團購規則</h3>
 								</div>
 								<div class="modal-body">
-									1.<br />
-									2.<br />
-									3.<br />
-									4.<br />
-									5.<br />
-									6.<br />
-									7.<br />
+									Not Complete Yet
 								</div>
 								<div class="modal-footer">
 								  	<button class="btn btn-primary" data-dismiss="modal">了解</button>
 								</div>
 							</div>
-							<a href="#" class="btn btn-primary btn-large">進入市場</a>
-							<a data-toggle="modal" href="#ruleGroup" class="btn btn-danger btn-large">校園團購規則</a>
+							<a href="#" class="btn btn-info btn-large"><i class = "icon-lock icon-white"></i> 進入團購</a>
+							<a data-toggle="modal" href="#ruleGroup" class="btn btn-danger btn-large"><i class = "icon-align-right icon-white"></i> 校園團購規則</a>
 							
 						</p>
 					</div>
@@ -140,7 +129,7 @@
 	<!-- Warning Area -->
 	<div class="alert alert-danger fade in">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Attention!</strong> 請務必閱讀市場規則再進入消費唷！
+        <strong>Attention!</strong> &nbsp;請務必閱讀市場規則再進入唷！
     </div>
 		
 		
@@ -160,7 +149,7 @@
 <?php
 	require_once( "marketFooter.php" );
 ?>
-
+</font>
 
 <script src = "js/bootstrap-modal.js"></script>
 <script src = "js/jquery.js"></script>

@@ -7,7 +7,11 @@
         <span class="icon-bar"></span>
       </a>
       
-      <a class="brand" href="../accounts/revises.php"><?php echo 'Arwindy'; ?></a>
+	<?php
+		if( isset($_SESSION['stu_id']) ) {
+	?>
+	  
+      <a class="brand" href="../accounts/revises.php"><?php echo $_SESSION['nick']; ?></a>
       <div class="nav-collapse">
         <ul class="nav">
         	<li class="divider-vertical"></li>
@@ -23,8 +27,48 @@
               <li><a href="#">賣方總管理</a></li>
             </ul>
           </li>
+		  <li><a href = "../member/logout.php">登出</a></li>
         </ul>
-        
+    <?php
+		} else {
+	?>			
+		<div class="nav-collapse">
+			<ul class="nav">
+				<li><a data-toggle="modal" href="#login">登入</a></li>  
+			</ul>
+		
+		<div id="login" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h3 id="myModalLabel">會員登入</h3>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal" action = "marketLogin.php" method = "post">
+					<div class="control-group">
+						<label class="control-label">帳號</label>
+						<div class="controls">
+							<input type="text" name = "username" id="inputEmail" placeholder="B993040017 / 帳號">
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label">密碼</label>
+						<div class="controls">
+							<input type="password" name = "password" id="inputPassword" placeholder="Password">
+						</div>
+					</div>
+					<div class="control-group">
+						<div class="controls">
+							<button type="submit" name = "loginSubmit" class="btn">登入</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		
+		
+	<?php
+		}
+	?>
         <ul class="nav pull-right">
           <form class="navbar-search pull-left" action="<?php echo $_SERVER['PHP_SELF']; ?>">
           	<input type="text" class="search-query span2" placeholder="搜尋商品">

@@ -1,4 +1,4 @@
-<footer class="footer" style = "background-color: #ccc;">
+<footer class="footer" style = "background-color: #DDD;">
 	<div class="container">
     	<p class="pull-right"><a href="#">Back To Top</a></p>
     	<p>
