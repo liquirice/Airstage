@@ -210,7 +210,7 @@
 	                    </td>
 	                    <td>
 	                    	<div class="controls">
-	                    		<input name="username" class="span3" value = <?php echo $row['username'];?> placeholder="輸入你的匿稱吧"/>
+	                    		<input name="username" class="span3" value = "<?php echo $row['username'];?> " placeholder="輸入你的匿稱吧"/>
 	                    	</div>
 	                    </td>
                       </tr>
