@@ -10,25 +10,20 @@
 	<link href = "../tm2.ico" rel = "shortcut icon" />
 	<link href = "css/bootstrap.css" rel = "stylesheet" />
 	<link href = "css/baseCss.css" rel = "stylesheet" />
+	<link href="css/docs.css" rel="stylesheet">
 	<meta http-equiv = "Content-Type" content = "text/html; charset = utf8" />
 	<meta http-equiv = "Content-Language" content = "zh-tw" />
 </head>
 
 <body>
 
-<font face="微軟正黑體">
 <?php
 	require_once( "marketNavi.php" );
-?>
-</font>
-
-<?php
 	require_once( "marketAnnouce.php" );
 ?>
 
 <!-- Container Start -->
 <div class = "container">
-<font face="微軟正黑體">
     <?php
 	    require_once( "memberStateLine.php" );
 	?>
@@ -41,8 +36,6 @@
 					<div class="caption">
 						<h3>二手交易市場</h3>
 						<p>Description</p>
-						
-						
 						
 						<p>
 							<!-- Rule Button of Second Hand Board -->
@@ -69,7 +62,7 @@
 										<span class="caret"></span>
 									</button>
 									<ul class="dropdown-menu">
-										<li><a href = "#"><i class = "icon-folder-open"></i> 全部分類</a></li>
+										<li><a href = "sellC.php"><i class = "icon-folder-open"></i> 全部分類</a></li>
 										<li><a href = "#"><i class = "icon-globe"></i> 二手書區</a></li>
 										<li><a href = "#"><i class = "icon-eye-open"></i> 雜物區</a></li>
 									</ul>
@@ -110,9 +103,9 @@
 										<span class="caret"></span>
 									</button>
 									<ul class="dropdown-menu">
-										<li><a href = "#"><i class = "icon-folder-open"></i> 全部分類</a></li>
-										<li><a href = "#"><i class = "icon-globe"></i> 二手書區</a></li>
-										<li><a href = "#"><i class = "icon-eye-open"></i> 雜物區</a></li>
+										<li><a href = "contentionBoard.php"><i class = "icon-folder-open"></i> 全部分類</a></li>
+										<li><a href = "bookC.php"><i class = "icon-globe"></i> 二手書區</a></li>
+										<li><a href = "trivialC.php"><i class = "icon-eye-open"></i> 雜物區</a></li>
 									</ul>
 								</div>
 								<a data-toggle="modal" href="#ruleContention" class="btn btn-danger btn-large"><i class = "icon-ok icon-white"></i> 競標規則</a>
@@ -161,12 +154,6 @@
 		
 </div>
 
-
-	
-<div class = "container">
-		
-	
-</div>
 <!-- End Container -->
 
 
@@ -175,7 +162,7 @@
 <?php
 	require_once( "marketFooter.php" );
 ?>
-</font>
+
 
 <script src = "js/bootstrap-modal.js"></script>
 <script src = "js/jquery.js"></script>

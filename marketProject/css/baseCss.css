@@ -1,8 +1,12 @@
 body {
-	font-family: "∑L≥n•ø∂¬≈È≈È", "Arial";
+	font-family: "Arial";
 	font-size: 14px;
 	background-color: #EEE;
 	margin: 0px auto;
+}
+
+div {
+	font-family: "Arial";
 }
 
 
