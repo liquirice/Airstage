@@ -41,12 +41,15 @@
 					<div class="caption">
 						<h3>二手交易市場</h3>
 						<p>Description</p>
+						
+						
+						
 						<p>
 							<!-- Rule Button of Second Hand Board -->
 							<div id="ruleSecond" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 								<div class="modal-header">
 								 	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-								 	<h3 id="myModalLabel">二手交易市場規則</h3>
+								 	<h3 id="myModalLabel">二手交易規則</h3>
 								</div>
 								<div class="modal-body">
 									1.<br />
@@ -58,9 +61,21 @@
 								  	<button class="btn btn-primary" data-dismiss="modal">了解</button>
 								</div>
 							</div>
-							<a href="#" class="btn btn-primary btn-large"><i class = "icon-globe icon-white"></i> 進入市場</a>
-							<a data-toggle="modal" href="#ruleSecond" class="btn btn-danger btn-large"><i class = "icon-ok icon-white"></i> 二手交易規則</a>
-							
+	
+							<div class="btn-toolbar">
+								<div class="btn-group">
+									<button class="btn btn-primary btn-large"><i class = "icon-globe icon-white"></i> 市場分類</button>
+									<button class="btn btn-primary dropdown-toggle btn-large" data-toggle="dropdown">
+										<span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu">
+										<li><a href = "#"><i class = "icon-folder-open"></i> 全部分類</a></li>
+										<li><a href = "#"><i class = "icon-globe"></i> 二手書區</a></li>
+										<li><a href = "#"><i class = "icon-eye-open"></i> 雜物區</a></li>
+									</ul>
+								</div>
+								<a data-toggle="modal" href="#ruleSecond" class="btn btn-danger btn-large"><i class = "icon-ok icon-white"></i> 交易規則</a>
+							</div>
 						</p>
 					</div>
 				</div>
@@ -88,9 +103,20 @@
 								  	<button class="btn btn-primary" data-dismiss="modal">了解</button>
 								</div>
 							</div>
-							<a href="#" class="btn btn-primary btn-large"><i class = "icon-briefcase icon-white"></i> 進入競標</a>
-							<a data-toggle="modal" href="#ruleContention" class="btn btn-danger btn-large"><i class = "icon-ok icon-white"></i> 競標市場規則</a>
-							
+							<div class="btn-toolbar">
+								<div class="btn-group">
+									<button class="btn btn-primary btn-large"><i class = "icon-hand-up icon-white"></i> 競標分類</button>
+									<button class="btn btn-primary dropdown-toggle btn-large" data-toggle="dropdown">
+										<span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu">
+										<li><a href = "#"><i class = "icon-folder-open"></i> 全部分類</a></li>
+										<li><a href = "#"><i class = "icon-globe"></i> 二手書區</a></li>
+										<li><a href = "#"><i class = "icon-eye-open"></i> 雜物區</a></li>
+									</ul>
+								</div>
+								<a data-toggle="modal" href="#ruleContention" class="btn btn-danger btn-large"><i class = "icon-ok icon-white"></i> 競標規則</a>
+							</div>
 						</p>
 					</div>
 				</div>
