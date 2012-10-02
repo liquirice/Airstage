@@ -40,22 +40,6 @@ $(function(){
                     	{ type: 'push', label: 'Italic', value: 'italic' },
                     	{ type: 'push', label: 'Underline', value: 'underline' },
                     	{ type: 'separator' },
-                    	{ type: 'select', label: 'Arial', value: 'fontname', disabled: true,
-                        	menu: [
-                            	{ text: 'Arial', checked: true },
-                            	{ text: 'Arial Black' },
-                            	{ text: 'Comic Sans MS' },
-                            	{ text: 'Courier New' },
-                            	{ text: 'Lucida Console' },
-                            	{ text: 'Tahoma' },
-                            	{ text: 'Times New Roman' },
-                            	{ text: 'Trebuchet MS' },
-                            	{ text: 'Verdana' }
-                        	]
-                    	},
-						{ type: 'separator' },
-                    	{ type: 'spin', label: '12', value: 'fontsize', range: [ 9,75 ], disabled: true },
-						{ type : 'separator'},
 						{ type: 'push', label: '請輸入網址', value: 'createlink', disabled: true },
                 	]
             	}
@@ -79,17 +63,30 @@ $(function(){
 		$(this).trigger('stopRumble');
 	});
 	
-	YAHOO.util.Event.on('post1', 'click', function() {
+	YAHOO.util.Event.on('post', 'click', function() {
     	//Put the HTML back into the text area
-    	myEditor.saveHTML();
+    	content.saveHTML();
  
     	//The var html will now have the contents of the textarea
-    	var html = myEditor.get('element').value;
+    	var html = content.get('element').value;
 		
 		if(html == ''){
 			alert('內容不能為空!!!');
-			windows.reload();
 		}
+		else{
+			$('#realcontent').val(html);
+			$('form').attr('action', 'post.php').submit();
+		}
+	});
+	YAHOO.util.Event.on('save', 'click', function() {
+    	//Put the HTML back into the text area
+    	content.saveHTML();
+ 
+    	//The var html will now have the contents of the textarea
+    	var html = content.get('element').value;
+		
+		$('#realcontent').val(html);
+		$('form').attr('action', 'save.php').submit();
 	});
 	
 })
@@ -148,7 +145,7 @@ function clickSwapImg() {}
 					</tr>
 					<tr>
 						<td height="666" align="center" colspan="2" valign="top">
-                        	<form method="post">
+                        	<form method="post" name="form" action="">
 										<table border="0" width="88%" cellspacing="0" cellpadding="0" style="font-family: PMingLiU; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; " height="312">
 											<tr>
 												<td width="80%" valign="top">
@@ -158,23 +155,23 @@ function clickSwapImg() {}
 												寫篇新文章</font></b></font></p><br><br><br>
 												<font face="微軟正黑體">
 												<select size="1" name="type">
-												<option selected value="null">文章分類</option>
-												<option value="專欄文章">專欄文章</option>
-												<option value="新聞時事">新聞時事</option>
-												<option value="校園話題">校園話題</option>
-												<option value="藝文創作">藝文創作</option>
+													<option selected value="null">文章分類</option>
+													<option value="column">專欄文章</option>
+													<option value="news">新聞時事</option>
+													<option value="school">校園話題</option>
+													<option value="concerts">藝文創作</option>
 												</select> </font>
-												<font face="微軟正黑體" color="#C0C0C0">&nbsp;<input type="text" name="T1" size="61" style="color: #C0C0C0; border: 1px solid #C0C0C0" placeholder="文章標題">　　　　　　　</font><input type="radio" value="small" checked name="display"><font size="2" color="#808080" face="微軟正黑體">顯示小檔案</font><input type="radio" value="username" name="display"><font face="微軟正黑體" size="2" color="#808080">僅用暱稱</font><input type="radio" value="clubs" name="display"><font face="微軟正黑體" size="2" color="#808080">社團名義</font></p>
+												<font face="微軟正黑體" color="#C0C0C0">&nbsp;<input type="text" name="title" size="61" style="color: #C0C0C0; border: 1px solid #C0C0C0" placeholder="文章標題" />　　　　　　　</font><input type="radio" value="small" checked name="display"><font size="2" color="#808080" face="微軟正黑體">顯示小檔案</font><input type="radio" value="username" name="display"><font face="微軟正黑體" size="2" color="#808080">僅用暱稱</font><input type="radio" value="clubs" name="display"><font face="微軟正黑體" size="2" color="#808080">社團名義</font></p>
 												<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
 												<table border="1" width="100%" cellspacing="0" cellpadding="5" height="560" bordercolor="#C0C0C0">
 													<tr>
 														<td style="border-style: solid; border-width: 0px" bgcolor="#E7E7E7" valign="top">
 														<p align="right">
-														<input type="button" id="post1" value="" style="width:48px; height:29px; background:url(jpg/bt01.png); background-repeat:no-repeat; border:0; cursor:pointer" />&nbsp;
+														<input type="button" id="post" value="" style="width:48px; height:29px; background:url(jpg/bt01.png); background-repeat:no-repeat; border:0; cursor:pointer" />&nbsp;
 														<input type="button" id="save" value="" style="width:72px; height:29px; background:url(jpg/bt02.png); background-repeat:no-repeat; border:0; cursor:pointer" /></p></td>
 													</tr>
 													<tr>
-														<td style="border-style: solid; border-width: 0px" colspan="2"><textarea cols="120" rows="40" name="content" id="content" style="border:0; resize:none"></textarea></td>
+														<td style="border-style: solid; border-width: 0px" colspan="2"><textarea cols="120" rows="40" name="content" id="content" style="border:0; resize:none"></textarea><input type="hidden" name="realcontent" value="" id="realcontent" /></td>
 													</tr>
 												</table>
 												</td>
