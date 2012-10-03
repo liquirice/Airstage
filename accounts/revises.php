@@ -72,7 +72,7 @@
 							// Move to the target folder.
 							$target = UPLOADPATH . $picName;
 							if( move_uploaded_file( $_FILES['profile_pic']['tmp_name'], $target) ) {
-								$query = "UPDATE member_Info SET profile_pic = '$picName'";
+								$query = "UPDATE member_Info SET profile_pic = '$picName' WHERE stu_id = '$stu_id'";
 								$result = mysqli_query( $conn, $query ) or die('Update Error0');
 							}
 						}
