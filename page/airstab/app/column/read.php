@@ -28,6 +28,7 @@ if($_COOKIE['temprno'.$rno.''] == 0){
 		echo '<script language="javascript" type="text/javascript">alert("有問題")</script>';
 }
 ?>
+<!DOCTYPE HTML>
 <html>
 
 <head>

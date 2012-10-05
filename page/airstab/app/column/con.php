@@ -11,10 +11,10 @@
 														<td style="border: 1px solid #C0C0C0" valign="top" align="center">
 															<p align="center">
                                                             <div class="abgne-yahoo-slide abgne_tip_gallery_block2">
-															<a target="_top" href="read.php?rno=<?php echo ''.$topnew['rno'].''; ?>"><img border="0" src="jpg/p1.jpg" width="349" height="232"></a>
-                                                        	<div class="title"><h3><a href="read.php?rno=<?php echo ''.$topnew['rno'].''; ?>" title=<?php echo '"'.$topnew['title'].'">'.$topnew['title'].'';?> </a></h3></div>
+															<a target="_top" href="read.php?rno=<?php echo ''.$topcon['rno'].''; ?>"><img border="0" src="jpg/p1.jpg" width="349" height="232"></a>
+                                                        	<div class="title"><h3><a href="read.php?rno=<?php echo ''.$topcon['rno'].''; ?>" title=<?php echo '"'.$topcon['title'].'">'.$topcon['title'].'';?> </a></h3></div>
 															<div class="desc">
-																<a href="read.php?rno=<?php echo ''.$topnew['rno'].''; ?>" target="_blank" style="cursor:pointer"><p><?php echo left_string($topnew['realcontent'],15,"..."); ?><a href="read.php?rno=<?php echo ''.$topnew['rno'].''; ?>" target="_blank" style="cursor:pointer">更多»</a></p></a>
+																<a href="read.php?rno=<?php echo ''.$topcon['rno'].''; ?>" target="_blank" style="cursor:pointer"><p><?php echo left_string($topcon['realcontent'],15,"..."); ?><a href="read.php?rno=<?php echo ''.$topcon['rno'].''; ?>" target="_blank" style="cursor:pointer">更多»</a></p></a>
 															</div>
                                                             </div></p>
         												</td>
@@ -33,8 +33,8 @@
 												<p align="left" style="line-height: 150%"><br/>
 												<font color="#666666" face="微軟正黑體" style="font-size: 9pt">
                                                 <?php
-												while($news = mysqli_fetch_array($new)){
-													echo '● <a style="color:#666666" style="font-size:9pt;" href="read.php?rno='.$news['rno'].'" target="_blank">'.$news['title'].'</a><br>';
+												while($concerts = mysqli_fetch_array($con)){
+													echo '● <a style="color:#666666" style="font-size:9pt;" href="read.php?rno='.$concerts['rno'].'" target="_blank">'.$concerts['title'].'</a><br>';
 												}
 												
 												?></font></td>

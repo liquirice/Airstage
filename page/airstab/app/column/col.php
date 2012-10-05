@@ -1,20 +1,20 @@
-<table border="0" width="99%" height="286" cellspacing="0" cellpadding="0">
+<table border="0" width="99%" cellspacing="0" cellpadding="0">
 					<tr>
-						<td background="jpg/whitecolumn.png" height="286" align="center" style="background-repeat:no-repeat">
-										<table border="0" width="892" cellpadding="5" height="256">
+						<td background="jpg/whitecolumn.png" align="center" style="background-repeat:no-repeat" valign="top">
+										<table border="0" width="892" cellpadding="5">
 											<tr>
 												<td width="84" align="center" rowspan="2">
 												<img border="0" src="jpg/t1.jpg" width="61" height="52" align="middle"></td>
-												<td align="center" width="359" rowspan="2">
-												<table border="0" width="359" height="100%" cellspacing="0" cellpadding="0">
+												<td align="center" width="359" rowspan="2" valign="top">
+												<table border="0" width="359" cellspacing="0" cellpadding="0">
 													<tr>
-														<td style="border: 1px solid #C0C0C0">
+														<td style="border: 1px solid #C0C0C0" valign="top" align="center">
 															<p align="center">
                                                             <div class="abgne-yahoo-slide abgne_tip_gallery_block2">
-															<a target="_top" href="read.htm"><img border="0" src="jpg/p1.jpg" width="349" height="232"></a>
+															<a target="_top" href="read.php?rno=<?php echo ''.$topcol['rno'].''; ?>"><img border="0" src="jpg/p1.jpg" width="349" height="232"></a>
                                                         	<div class="title"><h3><a href="read.php?rno=<?php echo ''.$topcol['rno'].''; ?>" title=<?php echo '"'.$topcol['title'].'">'.$topcol['title'].'';?> </a></h3></div>
 															<div class="desc">
-																<p><?php echo left_string($topcol['realcontent'],15,"..."); ?><a href="read.php?rno=<?php echo ''.$topcol['rno'].''; ?>" target="_blank" style="cursor:pointer">更多»</a></p>
+																<a href="read.php?rno=<?php echo ''.$topcol['rno'].''; ?>" target="_blank" style="cursor:pointer"><p><?php echo left_string($topcol['realcontent'],15,"..."); ?><a href="read.php?rno=<?php echo ''.$topcol['rno'].''; ?>" target="_blank" style="cursor:pointer">更多»</a></p></a>
 															</div>
                                                             </div></p>
         												</td>
@@ -25,7 +25,6 @@
 												<table border="0" width="93%" cellspacing="0" height="113">
 													<tr>
 														<td style="border: 1px solid #C0C0C0">
-														<p align="center">
 														<img border="0" src="jpg/t2.jpg" width="161" height="104"></td>
 													</tr>
 												</table>
@@ -45,7 +44,6 @@
 												<table border="0" width="94%" cellspacing="0" height="113">
 													<tr>
 														<td style="border: 1px solid #C0C0C0">
-														<p align="center">
 														<img border="0" src="jpg/t2.jpg" width="161" height="104"></td>
 													</tr>
 												</table>

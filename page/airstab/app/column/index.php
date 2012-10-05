@@ -41,6 +41,7 @@ function left_string($s,$m,$symbol)
    return $s2;
 }
 ?>
+<!DOCTYPE HTML>
 <html>
 
 <head>
@@ -209,7 +210,7 @@ function clickSwapImg() {}
 		<tr>
 			<td background="../../../../jpg/bot.png" valign="top" height="65" colspan="4">
 			<div align="center">
-				<table border="0" width="98%" height="1659" cellspacing="0" cellpadding="0">
+				<table border="0" width="98%" cellspacing="0" cellpadding="0">
 					<tr>
 						<td valign="top" height="170" colspan="2">
 						<div align="center">
@@ -233,7 +234,7 @@ function clickSwapImg() {}
 						<img border="0" src="jpg/line3.jpg" width="875" height="30" align="top"></td>
 					</tr>
 					<tr>
-						<td height="285" align="center" colspan="2">
+						<td align="center" colspan="2">
 										<?php include('col.php'); ?><br />
 										<?php include('sch.php'); ?><br />
 										<?php include('news.php'); ?><br />
