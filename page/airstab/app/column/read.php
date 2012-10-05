@@ -7,7 +7,8 @@ $result = mysqli_query($conn, $get);
 $getresult = mysqli_fetch_array($result);
 $time = explode(' ', ''.$getresult['uploadtime'].'');
 $member = 'SELECT * FROM `Member` WHERE stu_id = "'.$getresult['stu_id'].'" LIMIT 1';
-$getmember = mysqli_fetch_array(mysqli_query($conn, $member));
+$membertemp = mysqli_query($conn, $member);
+$getmember = mysqli_fetch_array($membertemp);
 ?>
 <html>
 
@@ -15,7 +16,29 @@ $getmember = mysqli_fetch_array(mysqli_query($conn, $member));
 <link href="http://www.airstage.com.tw/nsysu/airs/tm2.ico" rel="shortcut icon"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Language" content="zh-tw">
+<link rel="stylesheet" type="text/css" href="../../../../plugin/shadowbox/shadowbox.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../../../../plugin/jrumble/jquery.jrumble.1.3.min.js"></script>
+<script type="text/javascript" src="../../../../plugin/shadowbox/shadowbox.js"></script>
 <title>│Airstage 西灣人│Airs專欄：從校園影響力開始！</title>
+<script language="javascript" type="text/javascript">
+$(function(){
+	Shadowbox.init({
+		players : ['html'],
+		overlayColor: "#FFFFFF",
+	});
+	$('#logo').jrumble({
+		x:2,
+		y:2,
+		rotation:1,
+	});
+	$('#logo').hover(function(){
+		$(this).trigger('startRumble'); 
+	}, function(){
+		$(this).trigger('stopRumble');
+	});
+})
+</script>
 <style fprolloverstyle>A:hover {text-decoration: underline; font-weight: bold}
 </style>
 <script language="JavaScript" fptype="dynamicanimation">
@@ -32,13 +55,19 @@ function clickSwapImg() {}
 <div align="center">
 	<table border="0" width="980" height="693" cellspacing="0" cellpadding="0">
   <tr>
-			<td height="75" background="jpg/top_test.jpg" width="980">
-			<p>&nbsp;</td>
+			<td width="38" background="../../../../jpg/topbar001.png"></td>
+        	<td height="43" width="99" background="../../../../jpg/topbar002.png" align="right"><p style="margin-top: 0; margin-bottom: 0"><a href="../../../../index.php"><img src="../theater/jpg/logo.png" name="logo" id="logo" align="left" /></a></td>
+			<td height="75" background="../../../../jpg/topbar002.png" width="700" valign="top"><font color="#FFFFFF"><a onMouseOver="var img=document['fpAnimswapImgFP9'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP9'].src=document['fpAnimswapImgFP9'].imgRolln" target="_parent" href="../../../../index.php"><img border="0" src="../../../../jpg/cal_bot001.png" width="89" height="75" alt="" name="fpAnimswapImgFP9" lowsrc="../../../../jpg/cal_bot002.png" id="fpAnimswapImgFP" dynamicanimation="fpAnimswapImgFP9"></a><img border="0" src="../../../../jpg/topbar002.png" width="20" height="75"><a href="../../index.htm"><img src="../../../../jpg/air_bot002.png" width="89" height="75" border="0"></a></font></td>
+			<td background="../../../../jpg/topbar003.png" width="124" valign="middle"><span style="margin-top: 0; margin-bottom: 0">
+			<?php
+			 	require_once( "loginCheck.php" );
+			?>
+			</span></td>
 		</tr>
 		<tr>
-			<td background="../../../../jpg/bot.png" valign="top" height="65">
+			<td background="../../../../jpg/bot.png" valign="top" height="65" colspan="4">
 			<div align="center">
-				<table border="0" width="98%" height="1547" cellspacing="0" cellpadding="0">
+				<table border="0" width="98%" cellspacing="0" cellpadding="0">
 					<tr>
 						<td valign="top" height="151" colspan="2">
 						<div align="center">
@@ -62,7 +91,7 @@ function clickSwapImg() {}
 						<img border="0" src="jpg/line3.jpg" width="875" height="30" align="top"></td>
 					</tr>
 					<tr>
-						<td height="1255" align="center" colspan="2">
+						<td align="center" colspan="2">
 										<table border="0" width="88%" cellspacing="0" cellpadding="0" style="font-family: PMingLiU; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; ">
 											<tr>
 												<td width="80%">
@@ -75,7 +104,7 @@ function clickSwapImg() {}
 												<td width="10%" valign="bottom">
 												&nbsp;<div class="fb-like" data-href="http://www.airstage.com.tw/nsysu/airs/page/airstab/app/column/read.php?rno=<?php echo ''.$rno.''; ?>" data-send="false" data-layout="button_count" data-width="50" data-show-faces="false"></div></td>
 												<td width="10%">
-												<img border="0" src="jpg/share.png" width="66" height="67"></td>
+												<a href="https://www.facebook.com/dialog/feed?app_id=209856362473286&link=http://www.airstage.com.tw/nsysu/airs/page/airstab/app/column/read.php?rno=<?php echo ''.$rno.''; ?>&picture=http://www.airstage.com.tw/nsysu/airs/page/airstab/jpg/b301.jpg&name=<?php echo ''.$getresult['title'].''; ?>&caption=Airstage&nbsp;西灣人|Airs專欄：從校園影響力開始&redirect_uri=http://www.airstage.com.tw/nsysu/airs/page/airstab/app/column/read.php?rno=<?php echo ''.$rno.''; ?>"><img border="0" src="jpg/share.png" width="66" height="67"></a></td>
 											</tr>
 											<tr>
 												<td background="http://www.airstage.com.tw/nsysu/airs/page/airstab/app/column/jpg/gline.png" colspan="3">&nbsp;
@@ -148,7 +177,7 @@ function clickSwapImg() {}
 			</td>
 		</tr>
 		<tr>
-			<td height="106" background="../../../../jpg/last.png" valign="top">
+			<td height="106" background="../../../../jpg/last.png" valign="top" colspan="4">
 			<div align="right">
 				<table border="0" width="51%" height="45">
 					<tr>

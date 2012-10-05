@@ -1,6 +1,12 @@
 <?php
 session_start();
-?><html>
+include('../../../../conn.php');
+$col = mysqli_query($conn, 'SELECT * FROM `Col` WHERE class = "column" LIMIT 8');
+$new = mysqli_query($conn, 'SELECT * FROM `Col` WHERE class = "news" LIMIT 8');
+$sch = mysqli_query($conn, 'SELECT * FROM `Col` WHERE class = "school" LIMIT 8');
+$con = mysqli_query($conn, 'SELECT * FROM `Col` WHERE class = "concerts" LIMIT 8');
+?>
+<html>
 
 <head>
 <link href="http://www.airstage.com.tw/nsysu/airs/tm2.ico" rel="shortcut icon"/>
@@ -11,10 +17,9 @@ session_start();
 <script type="text/javascript" src="../../../../plugin/jrumble/jquery.jrumble.1.3.min.js"></script>
 <script type="text/javascript" src="../../../../plugin/shadowbox/shadowbox.js"></script>
 <title>│Airstage 西灣人│Airs專欄：從校園影響力開始！</title>
-<style fprolloverstyle>A:hover {text-decoration: underline; font-weight: bold}
-</style>
-<script type="text/javascript" language="javascript">
+<script language="javascript" type="text/javascript">
 $(function(){
+	$('a').css('text-decoration', 'none');
 	Shadowbox.init({
 		players : ['html'],
 		overlayColor: "#FFFFFF",
@@ -31,6 +36,8 @@ $(function(){
 	});
 })
 </script>
+<style fprolloverstyle>A:hover {text-decoration: underline; font-weight: bold}
+</style>
 <script language="JavaScript" fptype="dynamicanimation">
 <!--
 function dynAnimation() {}
@@ -40,14 +47,14 @@ function clickSwapImg() {}
 
 </head>
 
-<body topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0" marginwidth="0" marginheight="0" onLoad="dynAnimation()" language="Javascript1.2">
+<body topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0" marginwidth="0" marginheight="0" onLoad="dynAnimation()" language="Javascript1.2" background="../../../../jpg/bgbank/basic.png" style="background-attachment: fixed">
 
 <div align="center">
 	<table border="0" width="980" height="693" cellspacing="0" cellpadding="0">
-		<tr>
+  <tr>
 			<td width="38" background="../../../../jpg/topbar001.png"></td>
         	<td height="43" width="99" background="../../../../jpg/topbar002.png" align="right"><p style="margin-top: 0; margin-bottom: 0"><a href="../../../../index.php"><img src="../theater/jpg/logo.png" name="logo" id="logo" align="left" /></a></td>
-			<td height="75" background="../../../../jpg/topbar002.png" width="700" valign="top"><font color="#FFFFFF"><a href="../../../../index.php"><img border="0" src="../../../../jpg/cal_bot002.png" width="89" height="75"></a><img border="0" src="../../../../jpg/topbar002.png" width="20" height="75"><a onMouseOver="var img=document['fpAnimswapImgFP9'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP9'].src=document['fpAnimswapImgFP9'].imgRolln" target="_parent" href="../../index.htm"><img src="../../../../jpg/air_bot001.png" alt="" name="fpAnimswapImgFP9" width="89" height="75" lowsrc="../../../../jpg/air_bot002.png" id="fpAnimswapImgFP" border="0" dynamicanimation="fpAnimswapImgFP9"></a></font></td>
+			<td height="75" background="../../../../jpg/topbar002.png" width="700" valign="top"><font color="#FFFFFF"><a onMouseOver="var img=document['fpAnimswapImgFP9'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP9'].src=document['fpAnimswapImgFP9'].imgRolln" target="_parent" href="../../../../index.php"><img border="0" src="../../../../jpg/cal_bot001.png" width="89" height="75" alt="" name="fpAnimswapImgFP9" lowsrc="../../../../jpg/cal_bot002.png" id="fpAnimswapImgFP" dynamicanimation="fpAnimswapImgFP9"></a><img border="0" src="../../../../jpg/topbar002.png" width="20" height="75"><a href="../../index.htm"><img src="../../../../jpg/air_bot002.png" width="89" height="75" border="0"></a></font></td>
 			<td background="../../../../jpg/topbar003.png" width="124" valign="middle"><span style="margin-top: 0; margin-bottom: 0">
 			<?php
 			 	require_once( "loginCheck.php" );
@@ -55,263 +62,49 @@ function clickSwapImg() {}
 			</span></td>
 		</tr>
 		<tr>
-			<td background="../../../../jpg/bot.jpg" valign="top" height="50" colspan="4">
+			<td background="../../../../jpg/bot.png" valign="top" height="65" colspan="4">
 			<div align="center">
-				<table border="0" width="98%" height="469" cellspacing="0" cellpadding="0">
+				<table border="0" width="98%" height="1659" cellspacing="0" cellpadding="0">
 					<tr>
-						<td valign="top">
+						<td valign="top" height="170" colspan="2">
 						<div align="center">
 							<p align="center" style="margin-top: 0; margin-bottom: 0">
 							<font size="2">
-							<iframe name="I1" src="main.htm" scrolling="no" border="0" frameborder="0" marginwidth="1" marginheight="1" width="100%" height="460">
+							<iframe name="I1" src="main.htm" scrolling="no" border="0" frameborder="0" marginwidth="1" marginheight="1" width="963" height="330">
 							您的瀏覽器不支援內置框架或目前的設定為不顯示內置框架。</iframe></font></p>
 						</div>
 						</td>
 					</tr>
 					<tr>
-						<td background="jpg/bgdown.jpg" valign="top">
-			<p style="margin-top: 0; margin-bottom: 0">
-			<font size="2">
-			<img border="0" src="jpg/ban.jpg" width="963" height="34" align="middle"></font></td>
+						<td valign="bottom" height="78" width="75%">
+						<img border="0" src="jpg/cry01.png" width="20" height="50"><a onMouseOver="var img=document['fpAnimswapImgFP26'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP26'].src=document['fpAnimswapImgFP26'].imgRolln" href="javascript:void(0)"><img border="0" src="jpg/b1.jpg" id="fpAnimswapImgFP26" name="fpAnimswapImgFP26" dynamicanimation="fpAnimswapImgFP26" lowsrc="jpg/b102.jpg"></a><a onMouseOver="var img=document['fpAnimswapImgFP27'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP27'].src=document['fpAnimswapImgFP27'].imgRolln" href="javascript:void(0)"><img border="0" src="jpg/b2.jpg" width="106" height="58" id="fpAnimswapImgFP27" name="fpAnimswapImgFP27" dynamicanimation="fpAnimswapImgFP27" lowsrc="jpg/b202.jpg"></a><a onMouseOver="var img=document['fpAnimswapImgFP28'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP28'].src=document['fpAnimswapImgFP28'].imgRolln" href="javascript:void(0)"><img border="0" src="jpg/b3.jpg" id="fpAnimswapImgFP28" name="fpAnimswapImgFP28" dynamicanimation="fpAnimswapImgFP28" lowsrc="jpg/b302.jpg"></a><a onMouseOver="var img=document['fpAnimswapImgFP29'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP29'].src=document['fpAnimswapImgFP29'].imgRolln" href="javascript:void(0)"><img border="0" src="jpg/b4.jpg" id="fpAnimswapImgFP29" name="fpAnimswapImgFP29" dynamicanimation="fpAnimswapImgFP29" lowsrc="jpg/b402.jpg"></a><a onMouseOver="var img=document['fpAnimswapImgFP30'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP30'].src=document['fpAnimswapImgFP30'].imgRolln" href="javascript:void(0)"><img border="0" src="jpg/b5.jpg" id="fpAnimswapImgFP30" name="fpAnimswapImgFP30" dynamicanimation="fpAnimswapImgFP30" lowsrc="jpg/b502.jpg"></a><a onMouseOver="var img=document['fpAnimswapImgFP31'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP31'].src=document['fpAnimswapImgFP31'].imgRolln" href="javascript:void(0)"><img border="0" src="jpg/b6.jpg" id="fpAnimswapImgFP31" name="fpAnimswapImgFP31" dynamicanimation="fpAnimswapImgFP31" lowsrc="jpg/b602.jpg"></a></td>
+						<td height="78" width="25%">
+						<a onMouseOver="var img=document['fpAnimswapImgFP32'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP32'].src=document['fpAnimswapImgFP32'].imgRolln" href="new.php">
+						<img border="0" src="jpg/bb1.png" width="54" height="54" id="fpAnimswapImgFP32" name="fpAnimswapImgFP32" dynamicanimation="fpAnimswapImgFP32" lowsrc="jpg/bb102.png"></a><a onMouseOver="var img=document['fpAnimswapImgFP33'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP33'].src=document['fpAnimswapImgFP33'].imgRolln" href="javascript:void(0)"><img border="0" src="jpg/bb2.png" width="54" height="54" id="fpAnimswapImgFP33" name="fpAnimswapImgFP33" dynamicanimation="fpAnimswapImgFP33" lowsrc="jpg/bb202.png"></a><a onMouseOver="var img=document['fpAnimswapImgFP34'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP34'].src=document['fpAnimswapImgFP34'].imgRolln" href="javascript:void(0)"><img border="0" src="jpg/bb3.png" width="54" height="54" id="fpAnimswapImgFP34" name="fpAnimswapImgFP34" dynamicanimation="fpAnimswapImgFP34" lowsrc="jpg/bb302.png"></a><a onMouseOver="var img=document['fpAnimswapImgFP35'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP35'].src=document['fpAnimswapImgFP35'].imgRolln" href="javascript:void(0)"><img border="0" src="jpg/bb4.png" width="54" height="54" id="fpAnimswapImgFP35" name="fpAnimswapImgFP35" dynamicanimation="fpAnimswapImgFP35" lowsrc="jpg/bb402.png"></a></td>
 					</tr>
 					<tr>
-						<td background="jpg/bgdown.jpg" valign="top" align="center">
-						<table border="0" width="100%" cellpadding="10" height="385">
-							<tr>
-								<td height="578%">
-								<table border="0" width="933" background="jpg/whitecolumn.png" height="295">
-									<tr>
-										<td>
-										<table border="0" width="100%" cellpadding="5" height="256">
-											<tr>
-												<td width="84" align="center" rowspan="2">
-												<img border="0" src="jpg/t1.jpg" width="61" height="52" align="right"></td>
-												<td align="center" width="240" rowspan="2">
-												<table border="0" width="359" height="100%" cellspacing="0" cellpadding="0">
-													<tr>
-														<td style="border: 1px solid #C0C0C0">
-														<p align="center">
-														<img border="0" src="jpg/p1.jpg" width="349" height="232"></td>
-													</tr>
-												</table>
-												</td>
-												<td align="center" width="182" valign="top">
-												<table border="0" width="93%" cellspacing="0" height="113">
-													<tr>
-														<td style="border: 1px solid #C0C0C0">
-														<p align="center">
-														<img border="0" src="jpg/t2.jpg" width="161" height="104"></td>
-													</tr>
-												</table>
-												</td>
-												<td align="center" rowspan="2">
-												<p align="left" style="line-height: 150%">
-												<font size="2" color="#666666" face="微軟正黑體">
-												● 一個新加坡外勞爸爸的卑微夢想<br>
-												● 老智慧新生命，放置洗衣板的洗衣機<br>
-												● 自己壞規矩　必然養出驕縱兒女<br>
-												● 在中國 一個生意人的一天<br>
-												● 喝水度日窮小子，賣水成<br>
-												● 再吃不到蘋果 台積電就頭大了<br>
-												● 一個新加坡外勞爸爸的卑微夢想<br>
-												● 老智慧新生命，放置洗衣板的洗衣機</font></td>
-											</tr>
-											<tr>
-												<td align="center" width="182" valign="bottom">
-												<table border="0" width="94%" cellspacing="0" height="113">
-													<tr>
-														<td style="border: 1px solid #C0C0C0">
-														<p align="center">
-														<img border="0" src="jpg/t2.jpg" width="161" height="104"></td>
-													</tr>
-												</table>
-												</td>
-											</tr>
-										</table>
-										</td>
-									</tr>
-								</table>
-								</td>
-							</tr>
-							<tr>
-								<td height="193%">
-								<table border="0" width="933" background="jpg/whitecolumn.png" height="295">
-									<tr>
-										<td>
-										<table border="0" width="100%" cellpadding="5" height="256">
-											<tr>
-												<td width="84" align="center" rowspan="2">
-												<img border="0" src="jpg/t02.jpg" align="right"></td>
-												<td align="center" width="240" rowspan="2">
-												<table border="0" width="359" height="100%" cellspacing="0" cellpadding="0">
-													<tr>
-														<td style="border: 1px solid #C0C0C0">
-														<p align="center">
-														<img border="0" src="jpg/p1.jpg" width="349" height="232"></td>
-													</tr>
-												</table>
-												</td>
-												<td align="center" width="182" valign="top">
-												<table border="0" width="93%" cellspacing="0" height="113">
-													<tr>
-														<td style="border: 1px solid #C0C0C0">
-														<p align="center">
-														<img border="0" src="jpg/t2.jpg" width="161" height="104"></td>
-													</tr>
-												</table>
-												</td>
-												<td align="center" rowspan="2">
-												<p align="left" style="line-height: 150%">
-												<font size="2" color="#666666" face="微軟正黑體">
-												● 一個新加坡外勞爸爸的卑微夢想<br>
-												● 老智慧新生命，放置洗衣板的洗衣機<br>
-												● 自己壞規矩　必然養出驕縱兒女<br>
-												● 在中國 一個生意人的一天<br>
-												● 喝水度日窮小子，賣水成<br>
-												● 再吃不到蘋果 台積電就頭大了<br>
-												● 一個新加坡外勞爸爸的卑微夢想<br>
-												● 老智慧新生命，放置洗衣板的洗衣機</font></td>
-											</tr>
-											<tr>
-												<td align="center" width="182" valign="bottom">
-												<table border="0" width="94%" cellspacing="0" height="113">
-													<tr>
-														<td style="border: 1px solid #C0C0C0">
-														<p align="center">
-														<img border="0" src="jpg/t2.jpg" width="161" height="104"></td>
-													</tr>
-												</table>
-												</td>
-											</tr>
-										</table>
-										</td>
-									</tr>
-								</table>
-								</td>
-							</tr>
-							<tr>
-								<td height="192%">
-								<table border="0" width="933" background="jpg/whitecolumn.png" height="295">
-									<tr>
-										<td>
-										<table border="0" width="100%" cellpadding="5" height="256">
-											<tr>
-												<td width="84" align="center" rowspan="2">
-												<img border="0" src="jpg/t03.jpg" width="59" height="50" align="right"></td>
-												<td align="center" width="240" rowspan="2">
-												<table border="0" width="359" height="100%" cellspacing="0" cellpadding="0">
-													<tr>
-														<td style="border: 1px solid #C0C0C0">
-														<p align="center">
-														<img border="0" src="jpg/p1.jpg" width="349" height="232"></td>
-													</tr>
-												</table>
-												</td>
-												<td align="center" width="182" valign="top">
-												<table border="0" width="93%" cellspacing="0" height="113">
-													<tr>
-														<td style="border: 1px solid #C0C0C0">
-														<p align="center">
-														<img border="0" src="jpg/t2.jpg" width="161" height="104"></td>
-													</tr>
-												</table>
-												</td>
-												<td align="center" rowspan="2">
-												<p align="left" style="line-height: 150%">
-												<font size="2" color="#666666" face="微軟正黑體">
-												● 一個新加坡外勞爸爸的卑微夢想<br>
-												● 老智慧新生命，放置洗衣板的洗衣機<br>
-												● 自己壞規矩　必然養出驕縱兒女<br>
-												● 在中國 一個生意人的一天<br>
-												● 喝水度日窮小子，賣水成<br>
-												● 再吃不到蘋果 台積電就頭大了<br>
-												● 一個新加坡外勞爸爸的卑微夢想<br>
-												● 老智慧新生命，放置洗衣板的洗衣機</font></td>
-											</tr>
-											<tr>
-												<td align="center" width="182" valign="bottom">
-												<table border="0" width="94%" cellspacing="0" height="113">
-													<tr>
-														<td style="border: 1px solid #C0C0C0">
-														<p align="center">
-														<img border="0" src="jpg/t2.jpg" width="161" height="104"></td>
-													</tr>
-												</table>
-												</td>
-											</tr>
-										</table>
-										</td>
-									</tr>
-								</table>
-								</td>
-							</tr>
-							<tr>
-								<td height="192%">
-								<table border="0" width="933" background="jpg/whitecolumn.png" height="295">
-									<tr>
-										<td>
-										<table border="0" width="100%" cellpadding="5" height="256">
-											<tr>
-												<td width="84" align="center" rowspan="2">
-												<img border="0" src="jpg/t04.jpg" width="63" height="51" align="right"></td>
-												<td align="center" width="240" rowspan="2">
-												<table border="0" width="359" height="100%" cellspacing="0" cellpadding="0">
-													<tr>
-														<td style="border: 1px solid #C0C0C0">
-														<p align="center">
-														<img border="0" src="jpg/p1.jpg" width="349" height="232"></td>
-													</tr>
-												</table>
-												</td>
-												<td align="center" width="182" valign="top">
-												<table border="0" width="93%" cellspacing="0" height="113">
-													<tr>
-														<td style="border: 1px solid #C0C0C0">
-														<p align="center">
-														<img border="0" src="jpg/t2.jpg" width="161" height="104"></td>
-													</tr>
-												</table>
-												</td>
-												<td align="center" rowspan="2">
-												<p align="left" style="line-height: 150%">
-												<font size="2" color="#666666" face="微軟正黑體">
-												● 一個新加坡外勞爸爸的卑微夢想<br>
-												● 老智慧新生命，放置洗衣板的洗衣機<br>
-												● 自己壞規矩　必然養出驕縱兒女<br>
-												● 在中國 一個生意人的一天<br>
-												● 喝水度日窮小子，賣水成<br>
-												● 再吃不到蘋果 台積電就頭大了<br>
-												● 一個新加坡外勞爸爸的卑微夢想<br>
-												● 老智慧新生命，放置洗衣板的洗衣機</font></td>
-											</tr>
-											<tr>
-												<td align="center" width="182" valign="bottom">
-												<table border="0" width="94%" cellspacing="0" height="113">
-													<tr>
-														<td style="border: 1px solid #C0C0C0">
-														<p align="center">
-														<img border="0" src="jpg/t2.jpg" width="161" height="104"></td>
-													</tr>
-												</table>
-												</td>
-											</tr>
-										</table>
-										</td>
-									</tr>
-								</table>
-								</td>
-							</tr>
-						</table>
-						<p>&nbsp;</p>
-						<p>&nbsp;</td>
+						<td valign="top" height="40" colspan="2">
+						<p align="center">
+						<img border="0" src="jpg/line3.jpg" width="875" height="30" align="top"></td>
 					</tr>
-				</table>
+					<tr>
+						<td height="285" align="center" colspan="2">
+										<?php include('col.php'); ?><br />
+										<?php include('sch.php'); ?><br />
+										<?php include('news.php'); ?><br />
+                                        <?php include('con.php') ?>
+										</td>
+					</tr>
+					<tr>
+						<td height="17" align="center" colspan="2">
+						</td>
+					</tr>
+					</table>
 			</div>
-			<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
 			</td>
 		</tr>
 		<tr>
-			<td height="106" background="../../../../mo/jpg/last.jpg" valign="top" colspan="4">
+			<td height="106" background="../../../../jpg/last.png" valign="top" colspan="4">
 			<div align="right">
 				<table border="0" width="51%" height="45">
 					<tr>

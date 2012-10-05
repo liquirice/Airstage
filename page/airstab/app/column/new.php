@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(empty($_SESSION['name']) || empty($_SESSION['stu_id'])){
+		echo '<script type="text/javascript" language="javascript">alert("請先登入!"); location.href="../../../../member/login.php";</script>';
+}
 ?>
 <html>
 
@@ -8,11 +11,14 @@ session_start();
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Language" content="zh-tw">
 <link rel="stylesheet" type="text/css" href="../../../../plugin/shadowbox/shadowbox.css">
+<link href="../../../../css/validate.css" rel="stylesheet" type="text/css" />
 <!-- Skin CSS file -->
 <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.9.0/build/assets/skins/sam/skin.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="../../../../plugin/jrumble/jquery.jrumble.1.3.min.js"></script>
 <script type="text/javascript" src="../../../../plugin/shadowbox/shadowbox.js"></script>
+<script type="text/javascript" src="../../../../plugin/validate/jquery.validate.js"></script>
+
 <!-- Utility Dependencies -->
 <script src="http://yui.yahooapis.com/2.9.0/build/yahoo-dom-event/yahoo-dom-event.js"></script> 
 <script src="http://yui.yahooapis.com/2.9.0/build/element/element-min.js"></script> 
@@ -23,6 +29,23 @@ session_start();
 <title>│Airstage 西灣人│Airs專欄：從校園影響力開始！</title>
 <style fprolloverstyle>A:hover {text-decoration: underline; font-weight: bold}
 </style>
+<script type="text/javascript" language="javascript">
+$(document).ready(function() {
+    $('#form').validate({
+		success: 'valid',
+		rules:{
+			type:{valid:true},
+			title:{required:true},
+		},
+		errorPlacement: function(error, element) { //指定错误信息位置 
+			error.insertAfter(element);
+		},
+	});
+});
+$.validator.addMethod("valid", function(type, element) {
+        return (this.optional(element) || type != 'null')
+    }, "請選擇文章分類");
+</script>
 <script type="text/javascript" language="javascript">
 $(function(){
 	$('a').css('cursor', 'pointer');
@@ -145,7 +168,7 @@ function clickSwapImg() {}
 					</tr>
 					<tr>
 						<td height="666" align="center" colspan="2" valign="top">
-                        	<form method="post" name="form" action="">
+                        	<form method="post" name="form" action="" id="form">
 										<table border="0" width="88%" cellspacing="0" cellpadding="0" style="font-family: PMingLiU; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; " height="312">
 											<tr>
 												<td width="80%" valign="top">
@@ -154,14 +177,14 @@ function clickSwapImg() {}
 												<font face="微軟正黑體" size="5" color="#333333">♠</font><font color="#333333" face="微軟正黑體" size="4">&nbsp; 
 												寫篇新文章</font></b></font></p><br><br><br>
 												<font face="微軟正黑體">
-												<select size="1" name="type">
+												<select size="1" name="type" id="type">
 													<option selected value="null">文章分類</option>
 													<option value="column">專欄文章</option>
 													<option value="news">新聞時事</option>
 													<option value="school">校園話題</option>
 													<option value="concerts">藝文創作</option>
 												</select> </font>
-												<font face="微軟正黑體" color="#C0C0C0">&nbsp;<input type="text" name="title" size="61" style="color: #C0C0C0; border: 1px solid #C0C0C0" placeholder="文章標題" />　　　　　　　</font><input type="radio" value="small" checked name="display"><font size="2" color="#808080" face="微軟正黑體">顯示小檔案</font><input type="radio" value="username" name="display"><font face="微軟正黑體" size="2" color="#808080">僅用暱稱</font><input type="radio" value="clubs" name="display"><font face="微軟正黑體" size="2" color="#808080">社團名義</font></p>
+												<font face="微軟正黑體" color="#C0C0C0">&nbsp;<input type="text" name="title" id="title" size="61" style="color: #C0C0C0; border: 1px solid #C0C0C0" placeholder="文章標題" />　　　　　　　</font><input type="radio" value="small" checked name="display"><font size="2" color="#808080" face="微軟正黑體">顯示小檔案</font><input type="radio" value="username" name="display"><font face="微軟正黑體" size="2" color="#808080">僅用暱稱</font><input type="radio" value="clubs" name="display"><font face="微軟正黑體" size="2" color="#808080">社團名義</font></p>
 												<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
 												<table border="1" width="100%" cellspacing="0" cellpadding="5" height="560" bordercolor="#C0C0C0">
 													<tr>
