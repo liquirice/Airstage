@@ -14,7 +14,7 @@
 			
 			// Clean the profile picture.
 			if( isset($_POST['clean_pic']) ) {
-				$query = "UPDATE member_Info SET profile_pic = ''";
+				$query = "UPDATE member_Info SET profile_pic = '' WHERE stu_id = '$stu_id'";
 				$result = mysqli_query( $conn, $query ) or die( 'Clean Error' );
 				echo '<script type="text/javascript">alert("清除完成！");</script>';
 			}
