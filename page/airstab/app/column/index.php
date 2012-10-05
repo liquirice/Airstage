@@ -5,6 +5,41 @@ $col = mysqli_query($conn, 'SELECT * FROM `Col` WHERE class = "column" LIMIT 8')
 $new = mysqli_query($conn, 'SELECT * FROM `Col` WHERE class = "news" LIMIT 8');
 $sch = mysqli_query($conn, 'SELECT * FROM `Col` WHERE class = "school" LIMIT 8');
 $con = mysqli_query($conn, 'SELECT * FROM `Col` WHERE class = "concerts" LIMIT 8');
+
+$topcol = mysqli_fetch_array(mysqli_query($conn, 'SELECT * FROM `Col` WHERE class = "column" ORDER BY view DESC LIMIT 1'));
+$topnew = mysqli_fetch_array(mysqli_query($conn, 'SELECT * FROM `Col` WHERE class = "news" ORDER BY view DESC LIMIT 1'));
+$topsch = mysqli_fetch_array(mysqli_query($conn, 'SELECT * FROM `Col` WHERE class = "school" ORDER BY view DESC LIMIT 1'));
+$topcon = mysqli_fetch_array(mysqli_query($conn, 'SELECT * FROM `Col` WHERE class = "concerts" ORDER BY view DESC LIMIT 1'));
+
+function left_string($s,$m,$symbol)
+{
+   $n=strlen($s);
+   $e=explode('<', $s);
+   $ne=strlen($e[0]);
+   if($ne <= $m){
+   for($i=0;$i<$n;$i++)
+   {
+      $t=ord(substr($s,$i,1));   
+      if($t>=128)
+      {
+        $s1=substr($s,$i,3);
+        $i=$i+2;
+      }
+      else
+        $s1=substr($s,$i,1);
+      
+       $c=$c+1;
+       if($c<=$m)
+         $s2=$s2.$s1;
+       else
+         $i=$n+1;
+   }
+   }
+   else if($ne > $m){
+	   $s2=$e[0];
+   }
+   return $s2;
+}
 ?>
 <html>
 
@@ -35,6 +70,116 @@ $(function(){
 		$(this).trigger('stopRumble');
 	});
 })
+</script>
+<style type="text/css">
+	.abgne_tip_gallery_block2 {
+		margin: 0;
+		padding: 0;
+		width: 349px;
+		height: 232px;
+		overflow: hidden;
+		position: relative;
+		border: 1px solid #ccc;
+	}
+	.abgne-yahoo-slide img {
+		border: 0;
+	}
+	.abgne-yahoo-slide  a {
+		text-decoration: none;
+		color: #fff; 
+	}
+	.abgne-yahoo-slide  a:hover {
+		color: #fc6;
+	}
+	.abgne-yahoo-slide ul, .abgne-yahoo-slide li {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		z-index: 1000;
+	}
+	.abgne-yahoo-slide .title {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		margin: 0;
+		width: 100%;
+		height: 50px;
+		line-height: 50px;
+	}
+	.abgne-yahoo-slide .title h3 {
+		margin: 0;
+		padding: 0 0 0 20px;
+		position: absolute;
+		z-index: 1000;
+	}
+	.abgne-yahoo-slide .desc {
+		position: absolute;
+		bottom: 50px;
+		left: 0;
+		width: 100%;
+		z-index: 999;
+		display: none;
+		overflow: hidden;
+		color: #fff;
+	}
+	.abgne-yahoo-slide .desc p {
+		padding: 10px 10px 0;
+		font-size: 12px;
+		color: #ccc;
+		z-index: 998;
+	}
+	/* 用來當透明背景用的 */
+	.maskCss {
+		width: 100%;
+		background-color: #000;
+		position: absolute;
+		z-index: 997;
+	}
+</style>
+<script type="text/javascript">
+	// 背景區塊的透明度	
+	var _opacity = .6;
+	$(function(){
+		// 把每一個 abgne-yahoo-slide 取出做處理
+		$('.abgne-yahoo-slide').each(function(){
+			// 取得標題及說明描述的高度
+			var $this = $(this), 
+				$title = $this.find('.title'), 
+				_titleHeight = $title.outerHeight(true),
+				$desc = $this.find('.desc'),
+				_descHeight = $desc.outerHeight(true),
+				_speed = 400;
+			
+			// 設定 $desc 的高度為 0 並顯示
+			// 接著插入一個當做背景用的區塊
+			$desc.css({
+				height: 0,
+				display: 'block'
+			}).append($('<div></div>').css({
+				height: _descHeight,
+				opacity: _opacity
+			}).addClass('maskCss')).find('p').css('position', 'absolute');
+			
+			// 插入一個當做背景用的區塊
+			$title.append($('<div></div>').css({
+				height: _titleHeight,
+				opacity: _opacity
+			}).addClass('maskCss'));
+			
+			// 當滑鼠移到區塊上時
+			$this.hover(function(){
+				// 改變 $desc 的高度為原本高度
+				$desc.stop().animate({
+					height: _descHeight
+				}, _speed);
+			}, function(){
+				// 改變 $desc 的高度為 0
+				$desc.stop().animate({
+					height: 0
+				}, _speed);
+			});
+		});
+	});
 </script>
 <style fprolloverstyle>A:hover {text-decoration: underline; font-weight: bold}
 </style>

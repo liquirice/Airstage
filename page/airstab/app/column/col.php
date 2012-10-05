@@ -9,9 +9,15 @@
 												<table border="0" width="359" height="100%" cellspacing="0" cellpadding="0">
 													<tr>
 														<td style="border: 1px solid #C0C0C0">
-														<p align="center">
-														<a target="_top" href="read.htm">
-														<img border="0" src="jpg/p1.jpg" width="349" height="232"></a></td>
+															<p align="center">
+                                                            <div class="abgne-yahoo-slide abgne_tip_gallery_block2">
+															<a target="_top" href="read.htm"><img border="0" src="jpg/p1.jpg" width="349" height="232"></a>
+                                                        	<div class="title"><h3><a href="read.php?rno=<?php echo ''.$topcol['rno'].''; ?>" title=<?php echo '"'.$topcol['title'].'">'.$topcol['title'].'';?> </a></h3></div>
+															<div class="desc">
+																<p><?php echo left_string($topcol['realcontent'],15,"..."); ?><a href="read.php?rno=<?php echo ''.$topcol['rno'].''; ?>" target="_blank" style="cursor:pointer">更多»</a></p>
+															</div>
+                                                            </div></p>
+        												</td>
 													</tr>
 												</table>
 												</td>
