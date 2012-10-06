@@ -133,7 +133,9 @@ function clickSwapImg() {}
 											</tr>
 											<tr>
 												<td colspan="3" style="font-size:15px; font:微軟正黑體; font-family: '微軟正黑體'; color: #333;">
+                                                <article style="line-height:28px">
                                                 <?php echo ''.$getresult['realcontent'].''; ?><br />
+                                                </article>
 												<table border="0" width="48%" height="146">
 													<tr>
 														<td background="jpg/box_writer.png" width="402" height="187" align="right">
@@ -147,7 +149,7 @@ function clickSwapImg() {}
                                                                         <?php if($getmemberpic['profile_pic'] == '')
 																				echo '本人無頭像';
 																			else
-																				echo '<img src="'.$getmemberpic['profile_pic'].'" />'; ?>
+																				echo '<img width="120" height="130" src="../../../../accounts/images/'.$getmember['stu_id'].'/'.$getmemberpic['profile_pic'].'" />'; ?>
 </td>
 																	</tr>
 																</table>
