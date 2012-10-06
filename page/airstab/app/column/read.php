@@ -114,18 +114,18 @@ function clickSwapImg() {}
 					<tr>
 						<td align="center" colspan="2">
 		  <table border="0" width="88%" cellspacing="0" cellpadding="0" style="font-family: PMingLiU; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; ">
-											<tr>
+											<tr><header>
 												<td width="80%">
 												<p align="left">
 												<b>
 												<font face="微軟正黑體" color="#830B0B" style="font-size: 15pt">
 												<?php echo ''.$getresult['title'].'';?></font></b><p align="left">
 												<span style="color: rgb(116, 116, 116); font-family: 微軟正黑體; font-size: 12px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: 20px; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; display: inline !important; float: none; background-color: rgb(255, 255, 255); ">
-												<?php echo ''.$time[0].''; ?>　</span><span style="color: rgb(116, 116, 116); font-family: 微軟正黑體; font-size: 12px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: 20px; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); display: inline !important; float: none; ">撰文者：<?php echo ''.$getmember['department'].''.$getmember['grade'].'級  '.$getmember['name'].''; ?></span></td>
+												<time datetime="<?php echo ''.$time[0].''; ?>"><?php echo ''.$time[0].''; ?></time></span><span style="color: rgb(116, 116, 116); font-family: 微軟正黑體; font-size: 12px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: 20px; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); display: inline !important; float: none; ">撰文者：<?php echo ''.$getmember['department'].''.$getmember['grade'].'級  '.$getmember['name'].''; ?></span></td>
 												<td width="10%" valign="bottom">
 											  &nbsp;<div class="fb-like" data-href="http://www.airstage.com.tw/nsysu/airs/page/airstab/app/column/read.php?rno=<?php echo ''.$rno.''; ?>" data-send="false" data-layout="button_count" data-width="50" data-show-faces="false"></div></td>
 												<td width="10%" valign="bottom">
-											    <p><a href="https://www.facebook.com/dialog/feed?app_id=209856362473286&link=http://www.airstage.com.tw/nsysu/airs/page/airstab/app/column/read.php?rno=<?php echo ''.$rno.''; ?>&picture=http://www.airstage.com.tw/nsysu/airs/page/airstab/jpg/b301.jpg&name=<?php echo ''.$getresult['title'].''; ?>&caption=Airstage&nbsp;西灣人|Airs專欄：從校園影響力開始&redirect_uri=http://www.airstage.com.tw/nsysu/airs/page/airstab/app/column/read.php?rno=<?php echo ''.$rno.''; ?>"><img src="jpg/share.png" width="61" height="19" border="0" align="absbottom"></a></p></td>
+											    <p><a href="https://www.facebook.com/dialog/feed?app_id=209856362473286&link=http://www.airstage.com.tw/nsysu/airs/page/airstab/app/column/read.php?rno=<?php echo ''.$rno.''; ?>&picture=http://www.airstage.com.tw/nsysu/airs/page/airstab/jpg/b301.jpg&name=<?php echo ''.$getresult['title'].''; ?>&caption=Airstage&nbsp;西灣人|Airs專欄：從校園影響力開始&redirect_uri=http://www.airstage.com.tw/nsysu/airs/page/airstab/app/column/read.php?rno=<?php echo ''.$rno.''; ?>"><img src="jpg/share.png" width="61" height="19" border="0" align="absbottom"></a></p></td></header>
 											</tr>
 											<tr>
 												<td background="http://www.airstage.com.tw/nsysu/airs/page/airstab/app/column/jpg/gline.png" colspan="3">&nbsp;
@@ -139,6 +139,7 @@ function clickSwapImg() {}
 												<table border="0" width="48%" height="146">
 													<tr>
 														<td background="jpg/box_writer.png" width="402" height="187" align="right">
+                                                        <footer>
 														<table border="0" width="100%" cellspacing="0" cellpadding="0" height="157">
 															<tr>
 																<td width="50%" align="center" rowspan="2">
@@ -175,6 +176,7 @@ function clickSwapImg() {}
 														</td>
 													</tr>
 												</table>
+                                                </footer>
 												<p>&nbsp;</td>
 										  </tr>
 											<tr>
