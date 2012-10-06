@@ -9,7 +9,6 @@ if(empty($_COOKIE['temprno'.$rno.''])){
 	setcookie('temprno'.$rno.'', 0, time()+(60*60*24*10));
 }
 
-
 $get = 'SELECT * FROM `Col` WHERE rno = '.$rno.' LIMIT 1';
 $result = mysqli_query($conn, $get);
 $getresult = mysqli_fetch_array($result);
@@ -17,6 +16,9 @@ $time = explode(' ', ''.$getresult['uploadtime'].'');
 $member = 'SELECT * FROM `Member` WHERE stu_id = "'.$getresult['stu_id'].'" LIMIT 1';
 $membertemp = mysqli_query($conn, $member);
 $getmember = mysqli_fetch_array($membertemp);
+$memberpic = 'SELECT profile_pic FROM `member_Info` WHERE stu_id = "'.$getresult['stu_id'].'" LIMIT 1';
+$memberpictemp = mysqli_query($conn, $memberpic);
+$getmemberpic = mysqli_fetch_array($memberpictemp);
 
 if($_COOKIE['temprno'.$rno.''] == 0){
 	$view = $getresult['view'] + 1;
@@ -69,9 +71,8 @@ function clickSwapImg() {}
 
 </head>
 
-<body topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0" marginwidth="0" marginheight="0" onLoad="dynAnimation()" language="Javascript1.2" background="../../../../jpg/bgbank/basic.png" style="background-attachment: fixed">
+<body topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0" marginwidth="0" marginheight="0" onLoad="dynAnimation()" language="Javascript1.2" background="../../../../jpg/bgbank/basic.png" style="background-attachment: fixed; font-family: '微軟正黑體';">
 
-<form action="view.php" method="post" id="viewform"><input type="hidden" value="" id="view" name="view" /></form>
 <div align="center">
 	<table border="0" width="980" height="693" cellspacing="0" cellpadding="0">
   <tr>
@@ -100,10 +101,10 @@ function clickSwapImg() {}
 					</tr>
 					<tr>
 						<td valign="bottom" height="84" width="75%">
-						<img border="0" src="jpg/cry01.png" width="35" height="50"><a onMouseOver="var img=document['fpAnimswapImgFP26'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP26'].src=document['fpAnimswapImgFP26'].imgRolln" href="javascript:void(0)"><img border="0" src="jpg/b1.jpg" id="fpAnimswapImgFP26" name="fpAnimswapImgFP26" dynamicanimation="fpAnimswapImgFP26" lowsrc="jpg/b102.jpg"></a><a onMouseOver="var img=document['fpAnimswapImgFP27'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP27'].src=document['fpAnimswapImgFP27'].imgRolln" href="javascript:void(0)"><img border="0" src="jpg/b202.jpg" width="106" height="58" id="fpAnimswapImgFP27" name="fpAnimswapImgFP27" dynamicanimation="fpAnimswapImgFP27" lowsrc="jpg/b202.jpg"></a><a onMouseOver="var img=document['fpAnimswapImgFP28'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP28'].src=document['fpAnimswapImgFP28'].imgRolln" href="javascript:void(0)"><img border="0" src="jpg/b3.jpg" id="fpAnimswapImgFP28" name="fpAnimswapImgFP28" dynamicanimation="fpAnimswapImgFP28" lowsrc="jpg/b302.jpg"></a><a onMouseOver="var img=document['fpAnimswapImgFP29'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP29'].src=document['fpAnimswapImgFP29'].imgRolln" href="javascript:void(0)"><img border="0" src="jpg/b4.jpg" id="fpAnimswapImgFP29" name="fpAnimswapImgFP29" dynamicanimation="fpAnimswapImgFP29" lowsrc="jpg/b402.jpg"></a><a onMouseOver="var img=document['fpAnimswapImgFP30'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP30'].src=document['fpAnimswapImgFP30'].imgRolln" href="javascript:void(0)"><img border="0" src="jpg/b5.jpg" id="fpAnimswapImgFP30" name="fpAnimswapImgFP30" dynamicanimation="fpAnimswapImgFP30" lowsrc="jpg/b502.jpg"></a><a onMouseOver="var img=document['fpAnimswapImgFP31'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP31'].src=document['fpAnimswapImgFP31'].imgRolln" href="javascript:void(0)"><img border="0" src="jpg/b6.jpg" id="fpAnimswapImgFP31" name="fpAnimswapImgFP31" dynamicanimation="fpAnimswapImgFP31" lowsrc="jpg/b602.jpg"></a></td>
+						<img border="0" src="jpg/cry01.png" width="35" height="50"><a onMouseOver="var img=document['fpAnimswapImgFP26'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP26'].src=document['fpAnimswapImgFP26'].imgRolln" href="index.php"><img border="0" src="jpg/b1.jpg" id="fpAnimswapImgFP26" name="fpAnimswapImgFP26" dynamicanimation="fpAnimswapImgFP26" lowsrc="jpg/b102.jpg"></a><a onMouseOver="var img=document['fpAnimswapImgFP27'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP27'].src=document['fpAnimswapImgFP27'].imgRolln" href="javascript:void(0)"><img border="0" src="jpg/b202.jpg" width="106" height="58" id="fpAnimswapImgFP27" name="fpAnimswapImgFP27" dynamicanimation="fpAnimswapImgFP27" lowsrc="jpg/b202.jpg"></a><a onMouseOver="var img=document['fpAnimswapImgFP28'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP28'].src=document['fpAnimswapImgFP28'].imgRolln" href="javascript:void(0)"><img border="0" src="jpg/b3.jpg" id="fpAnimswapImgFP28" name="fpAnimswapImgFP28" dynamicanimation="fpAnimswapImgFP28" lowsrc="jpg/b302.jpg"></a><a onMouseOver="var img=document['fpAnimswapImgFP29'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP29'].src=document['fpAnimswapImgFP29'].imgRolln" href="javascript:void(0)"><img border="0" src="jpg/b4.jpg" id="fpAnimswapImgFP29" name="fpAnimswapImgFP29" dynamicanimation="fpAnimswapImgFP29" lowsrc="jpg/b402.jpg"></a><a onMouseOver="var img=document['fpAnimswapImgFP30'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP30'].src=document['fpAnimswapImgFP30'].imgRolln" href="javascript:void(0)"><img border="0" src="jpg/b5.jpg" id="fpAnimswapImgFP30" name="fpAnimswapImgFP30" dynamicanimation="fpAnimswapImgFP30" lowsrc="jpg/b502.jpg"></a><a onMouseOver="var img=document['fpAnimswapImgFP31'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP31'].src=document['fpAnimswapImgFP31'].imgRolln" href="javascript:void(0)"><img border="0" src="jpg/b6.jpg" id="fpAnimswapImgFP31" name="fpAnimswapImgFP31" dynamicanimation="fpAnimswapImgFP31" lowsrc="jpg/b602.jpg"></a></td>
 						<td height="84" width="25%">
 						<a onMouseOver="var img=document['fpAnimswapImgFP32'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP32'].src=document['fpAnimswapImgFP32'].imgRolln" href="new.php">
-						<img border="0" src="jpg/bb1.png" width="54" height="54" id="fpAnimswapImgFP32" name="fpAnimswapImgFP32" dynamicanimation="fpAnimswapImgFP32" lowsrc="jpg/bb102.png"></a><a onMouseOver="var img=document['fpAnimswapImgFP33'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP33'].src=document['fpAnimswapImgFP33'].imgRolln" href="javascript:void(0)"><img border="0" src="jpg/bb2.png" width="54" height="54" id="fpAnimswapImgFP33" name="fpAnimswapImgFP33" dynamicanimation="fpAnimswapImgFP33" lowsrc="jpg/bb202.png"></a><a onMouseOver="var img=document['fpAnimswapImgFP34'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP34'].src=document['fpAnimswapImgFP34'].imgRolln" href="javascript:void(0)"><img border="0" src="jpg/bb3.png" width="54" height="54" id="fpAnimswapImgFP34" name="fpAnimswapImgFP34" dynamicanimation="fpAnimswapImgFP34" lowsrc="jpg/bb302.png"></a><a onMouseOver="var img=document['fpAnimswapImgFP35'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP35'].src=document['fpAnimswapImgFP35'].imgRolln" href="javascript:void(0)"><img border="0" src="jpg/bb4.png" width="54" height="54" id="fpAnimswapImgFP35" name="fpAnimswapImgFP35" dynamicanimation="fpAnimswapImgFP35" lowsrc="jpg/bb402.png"></a></td>
+						<img border="0" src="jpg/bb1.png" width="54" height="54" id="fpAnimswapImgFP32" name="fpAnimswapImgFP32" dynamicanimation="fpAnimswapImgFP32" lowsrc="jpg/bb102.png"></a><a onMouseOver="var img=document['fpAnimswapImgFP33'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP33'].src=document['fpAnimswapImgFP33'].imgRolln" href="javascript:void(0)"><img border="0" src="jpg/bb2.png" width="54" height="54" id="fpAnimswapImgFP33" name="fpAnimswapImgFP33" dynamicanimation="fpAnimswapImgFP33" lowsrc="jpg/bb202.png"></a><a onMouseOver="var img=document['fpAnimswapImgFP34'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP34'].src=document['fpAnimswapImgFP34'].imgRolln" href="clubs.htm"><img border="0" src="jpg/bb3.png" width="54" height="54" id="fpAnimswapImgFP34" name="fpAnimswapImgFP34" dynamicanimation="fpAnimswapImgFP34" lowsrc="jpg/bb302.png"></a><a onMouseOver="var img=document['fpAnimswapImgFP35'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP35'].src=document['fpAnimswapImgFP35'].imgRolln" href="javascript:void(0)"><img border="0" src="jpg/bb4.png" width="54" height="54" id="fpAnimswapImgFP35" name="fpAnimswapImgFP35" dynamicanimation="fpAnimswapImgFP35" lowsrc="jpg/bb402.png"></a></td>
 					</tr>
 					<tr>
 						<td valign="top" height="45" colspan="2">
@@ -112,7 +113,7 @@ function clickSwapImg() {}
 					</tr>
 					<tr>
 						<td align="center" colspan="2">
-										<table border="0" width="88%" cellspacing="0" cellpadding="0" style="font-family: PMingLiU; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; ">
+		  <table border="0" width="88%" cellspacing="0" cellpadding="0" style="font-family: PMingLiU; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; ">
 											<tr>
 												<td width="80%">
 												<p align="left">
@@ -122,27 +123,32 @@ function clickSwapImg() {}
 												<span style="color: rgb(116, 116, 116); font-family: 微軟正黑體; font-size: 12px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: 20px; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; display: inline !important; float: none; background-color: rgb(255, 255, 255); ">
 												<?php echo ''.$time[0].''; ?>　</span><span style="color: rgb(116, 116, 116); font-family: 微軟正黑體; font-size: 12px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: 20px; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); display: inline !important; float: none; ">撰文者：<?php echo ''.$getmember['department'].''.$getmember['grade'].'級  '.$getmember['name'].''; ?></span></td>
 												<td width="10%" valign="bottom">
-												&nbsp;<div class="fb-like" data-href="http://www.airstage.com.tw/nsysu/airs/page/airstab/app/column/read.php?rno=<?php echo ''.$rno.''; ?>" data-send="false" data-layout="button_count" data-width="50" data-show-faces="false"></div></td>
-												<td width="10%">
-												<a href="https://www.facebook.com/dialog/feed?app_id=209856362473286&link=http://www.airstage.com.tw/nsysu/airs/page/airstab/app/column/read.php?rno=<?php echo ''.$rno.''; ?>&picture=http://www.airstage.com.tw/nsysu/airs/page/airstab/jpg/b301.jpg&name=<?php echo ''.$getresult['title'].''; ?>&caption=Airstage&nbsp;西灣人|Airs專欄：從校園影響力開始&redirect_uri=http://www.airstage.com.tw/nsysu/airs/page/airstab/app/column/read.php?rno=<?php echo ''.$rno.''; ?>"><img border="0" src="jpg/share.png" width="66" height="67"></a></td>
+											  &nbsp;<div class="fb-like" data-href="http://www.airstage.com.tw/nsysu/airs/page/airstab/app/column/read.php?rno=<?php echo ''.$rno.''; ?>" data-send="false" data-layout="button_count" data-width="50" data-show-faces="false"></div></td>
+												<td width="10%" valign="bottom">
+											    <p><a href="https://www.facebook.com/dialog/feed?app_id=209856362473286&link=http://www.airstage.com.tw/nsysu/airs/page/airstab/app/column/read.php?rno=<?php echo ''.$rno.''; ?>&picture=http://www.airstage.com.tw/nsysu/airs/page/airstab/jpg/b301.jpg&name=<?php echo ''.$getresult['title'].''; ?>&caption=Airstage&nbsp;西灣人|Airs專欄：從校園影響力開始&redirect_uri=http://www.airstage.com.tw/nsysu/airs/page/airstab/app/column/read.php?rno=<?php echo ''.$rno.''; ?>"><img src="jpg/share.png" width="61" height="19" border="0" align="absbottom"></a></p></td>
 											</tr>
 											<tr>
 												<td background="http://www.airstage.com.tw/nsysu/airs/page/airstab/app/column/jpg/gline.png" colspan="3">&nbsp;
 												</td>
 											</tr>
 											<tr>
-												<td colspan="3" style="font-size:13px; font:微軟正黑體">
-                                                <?php echo ''.$getresult['realcontent'].''; ?>
+												<td colspan="3" style="font-size:15px; font:微軟正黑體; font-family: '微軟正黑體'; color: #333;">
+                                                <?php echo ''.$getresult['realcontent'].''; ?><br />
 												<table border="0" width="48%" height="146">
 													<tr>
 														<td background="jpg/box_writer.png" width="402" height="187" align="right">
-														<table border="0" width="100%" cellspacing="0" cellpadding="0" height="93">
+														<table border="0" width="100%" cellspacing="0" cellpadding="0" height="157">
 															<tr>
 																<td width="50%" align="center" rowspan="2">
 																<table border="0" width="56%" cellpadding="4" cellspacing="4">
 																	<tr>
 																		<td style="border: 1px solid #CCCCCC">
-																		<img border="0" src="jpg/head.jpg" width="143" height="143"></td>
+																		<!--圖片放置處--->
+                                                                        <?php if($getmemberpic['profile_pic'] == '')
+																				echo '本人無頭像';
+																			else
+																				echo '<img src="'.$getmemberpic['profile_pic'].'" />'; ?>
+</td>
 																	</tr>
 																</table>
 																</td>
@@ -155,19 +161,12 @@ function clickSwapImg() {}
 																<b>
 																<font face="微軟正黑體" color="#484848" style="font-size: 10pt">
 																<?php echo ''.$getmember['department'].''.$getmember['grade'].'級'; ?></font></b></p>
-																<p style="line-height: 150%; margin-top: 0; margin-bottom: 0">
-																<b>
-																<font face="微軟正黑體" color="#484848" style="font-size: 10pt">
-																中山颺韻合唱團團長</font></b></p>
-																<p style="line-height: 150%; margin-top: 0; margin-bottom: 0">
-																<b>
-																<font face="微軟正黑體" color="#484848" style="font-size: 10pt">
-																中山大學學生會權益部次長</font></b></td>
+																</td>
 															</tr>
 															<tr>
-																<td height="10" align="right" valign="bottom" width="46%">
+																<td height="51" align="right" valign="bottom" width="46%">
 																<img border="0" src="jpg/more.png" width="40" height="10" align="right"></td>
-																<td height="10" align="right" valign="bottom" width="4%">
+																<td height="51" align="right" valign="bottom" width="4%">
 																</td>
 															</tr>
 														</table>
@@ -175,7 +174,7 @@ function clickSwapImg() {}
 													</tr>
 												</table>
 												<p>&nbsp;</td>
-											</tr>
+										  </tr>
 											<tr>
 												<td colspan="3" background="http://www.airstage.com.tw/nsysu/airs/page/airstab/app/column/jpg/gline.png" height="30">&nbsp;
 												</td>

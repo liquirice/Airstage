@@ -4,7 +4,7 @@
 										<table border="0" width="892" cellpadding="5">
 											<tr>
 												<td width="84" align="center" rowspan="2">
-												<img border="0" src="jpg/t1.jpg" width="61" height="52" align="middle"></td>
+												<img border="0" src="jpg/t02.jpg" width="54" height="53" align="middle"></td>
 												<td align="center" width="359" rowspan="2" valign="top">
 												<table border="0" width="359" cellspacing="0" cellpadding="0">
 													<tr>
@@ -13,8 +13,8 @@
                                                             <div class="abgne-yahoo-slide abgne_tip_gallery_block2">
 															<a target="_top" href="read.php?rno=<?php echo ''.$topsch['rno'].''; ?>"><img border="0" src="jpg/p1.jpg" width="349" height="232"></a>
                                                         	<div class="title"><h3><a href="read.php?rno=<?php echo ''.$topsch['rno'].''; ?>" title=<?php echo '"'.$topsch['title'].'">'.$topsch['title'].'';?> </a></h3></div>
-															<div class="desc">
-																<a href="read.php?rno=<?php echo ''.$topsch['rno'].''; ?>" target="_blank" style="cursor:pointer"><p><?php echo left_string($topsch['realcontent'],15,"..."); ?><a href="read.php?rno=<?php echo ''.$topsch['rno'].''; ?>" target="_blank" style="cursor:pointer">更多»</a></p></a>
+															<div class="desc" style="background-color:#000; opacity:0.6; font-size:14px">
+																<p><span style="color:#FFF"><?php echo left_string($topsch['realcontent'],15,"..."); ?></span><a href="read.php?rno=<?php echo ''.$topsch['rno'].''; ?>" target="_blank" style="cursor:pointer">更多»</a></p>
 															</div>
                                                             </div></p>
         												</td>

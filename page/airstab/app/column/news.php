@@ -4,7 +4,7 @@
 										<table border="0" width="892" cellpadding="5">
 											<tr>
 												<td width="84" align="center" rowspan="2">
-												<img border="0" src="jpg/t1.jpg" width="61" height="52" align="middle"></td>
+												<img border="0" src="jpg/t03.jpg" width="59" height="50" align="middle"></td>
 												<td align="center" width="359" rowspan="2" valign="top">
 												<table border="0" width="359" cellspacing="0" cellpadding="0">
 													<tr>
@@ -14,7 +14,7 @@
 															<a target="_top" href="read.php?rno=<?php echo ''.$topnew['rno'].''; ?>"><img border="0" src="jpg/p1.jpg" width="349" height="232"></a>
                                                         	<div class="title"><h3><a href="read.php?rno=<?php echo ''.$topnew['rno'].''; ?>" title=<?php echo '"'.$topnew['title'].'">'.$topnew['title'].'';?> </a></h3></div>
 															<div class="desc">
-																<a href="read.php?rno=<?php echo ''.$topnew['rno'].''; ?>" target="_blank" style="cursor:pointer"><p><?php echo left_string($topnew['realcontent'],15,"..."); ?><a href="read.php?rno=<?php echo ''.$topnew['rno'].''; ?>" target="_blank" style="cursor:pointer">更多»</a></p></a>
+																<p><span style="color:#FFF"><?php echo left_string($topnew['realcontent'],15,"..."); ?></span><a href="read.php?rno=<?php echo ''.$topnew['rno'].''; ?>" target="_blank" style="cursor:pointer">更多»</a></p>
 															</div>
                                                             </div></p>
         												</td>

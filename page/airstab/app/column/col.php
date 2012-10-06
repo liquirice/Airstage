@@ -14,7 +14,7 @@
 															<a target="_top" href="read.php?rno=<?php echo ''.$topcol['rno'].''; ?>"><img border="0" src="jpg/p1.jpg" width="349" height="232"></a>
                                                         	<div class="title"><h3><a href="read.php?rno=<?php echo ''.$topcol['rno'].''; ?>" title=<?php echo '"'.$topcol['title'].'">'.$topcol['title'].'';?> </a></h3></div>
 															<div class="desc">
-																<a href="read.php?rno=<?php echo ''.$topcol['rno'].''; ?>" target="_blank" style="cursor:pointer"><p><?php echo left_string($topcol['realcontent'],15,"..."); ?><a href="read.php?rno=<?php echo ''.$topcol['rno'].''; ?>" target="_blank" style="cursor:pointer">更多»</a></p></a>
+																<p><span style="color:#FFF"><?php echo left_string($topcol['realcontent'],15,"..."); ?></span><a href="read.php?rno=<?php echo ''.$topcol['rno'].''; ?>" target="_blank" style="cursor:pointer">更多»</a></p>
 															</div>
                                                             </div></p>
         												</td>

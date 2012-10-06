@@ -65,6 +65,7 @@ $(function(){
                     	{ type: 'push', label: 'Underline', value: 'underline' },
                     	{ type: 'separator' },
 						{ type: 'push', label: '請輸入網址', value: 'createlink', disabled: true },
+						{ type: 'push', label: '請選擇圖片', value: 'insertimage', disabled: false },
                 	]
             	}
         	]
