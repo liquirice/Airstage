@@ -71,7 +71,7 @@
 		          <td>1</td>
 		          <td><button type="button" class="btn btn-link">Adobe Photoshop CS6</button></td>
 		          <td>       
-			      	<a href="#">Archerwind</a>          	
+			      	<a href="#" rel="popover" title="Archerwind" data-content="And here's some amazing content. It's very engaging. right?">Archerwind</a>          	
 		          </td>
 		          <td>金錢</td>
 		          <td>NT$1500</td>
@@ -81,7 +81,9 @@
 		        <tr>
 		          <td>2</td>
 		          <td><button type="button" class="btn btn-link">Adobe Fireworks CS6</button></td>
-		          <td><a href="#">Archerwind</a></td>
+		          <td>
+			          <a href="#" rel="popover" title="Archerwind" data-content="And here's some amazing content. It's very engaging. right?">Archerwind	</a>
+		          </td>
 		          <td>以物易物</td>
 		          <td>兩隻泰迪熊</td>
 		          <td>2012 / 10 / 10</td>
@@ -122,7 +124,7 @@
 		          <td>1</td>
 		          <td><button type="button" class="btn btn-link">Adobe Photoshop CS6</button></td>
 		          <td>       
-			      	<a href="#">Archerwind</a>          	
+			      	<a href="#" rel="popover" title="Archerwind" data-content="And here's some amazing content. It's very engaging. right?">Archerwind</a>          	
 		          </td>
 		          <td>NT$1500</td>
 		          <td>2012 / 10 / 10</td>
@@ -132,7 +134,9 @@
 		        <tr>
 		          <td>2</td>
 		          <td><button type="button" class="btn btn-link">Adobe Fireworks CS6</button></td>
-		          <td><a href="#">Archerwind</a></td>
+		          <td>
+			          <a href="#" rel="popover" title="Archerwind" data-content="And here's some amazing content. It's very engaging. right?">Archerwind</a>
+		          </td>
 		          <td>NT$5600</td>
 		          <td>2012 / 10 / 10</td>
 		          <td><a href="#"><i class="icon-ok"></i> 查看回饋</a></td>
@@ -171,7 +175,7 @@
 		          <td>1</td>
 		          <td><button type="button" class="btn btn-link">Adobe Photoshop CS6</button></td>
 		          <td>       
-			      	<a href="#">Archerwind</a>          	
+			      	<a href="#" rel="popover" title="Archerwind" data-content="And here's some amazing content. It's very engaging. right?">Archerwind</a>          	
 		          </td>
 		          <td>NT$1500</td>
 		          <td>2012 / 10 / 10</td>
@@ -181,7 +185,9 @@
 		        <tr>
 		          <td>2</td>
 		          <td><button type="button" class="btn btn-link">Adobe Fireworks CS6</button></td>
-		          <td><a href="#">Archerwind</a></td>
+		          <td>
+			          <a href="#" rel="popover" title="Archerwind" data-content="And here's some amazing content. It's very engaging. right?">Archerwind</a>
+		          </td>
 		          <td>NT$5600</td>
 		          <td>2012 / 10 / 10</td>
 		          <td><a href="#"><i class="icon-ok"></i> 查看回饋</a></td>

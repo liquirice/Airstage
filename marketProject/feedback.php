@@ -36,7 +36,7 @@
 	<ul class="breadcrumb">
 		<li><a href="marketIndex.php">市場首頁</a> <span class="divider">/</span></li>
 		<li>交易管理介面 <span class="divider">/</span></li>
-		<li>成交記錄 <span class="divider">/</span></li>
+		<li><a href="tradeHistory.php">成交記錄</a> <span class="divider">/</span></li>
 		<li class="active">交易回饋單填寫</li>
 	</ul>
 	
@@ -68,7 +68,9 @@
         <br />
         
         <dt><i class="icon-user"></i> 賣方資料</dt>
-        <dd><a href="#">Archerwind</a></dd>     
+        <dd>
+        	<a href="#" rel="popover" title="Archerwind" data-content="And here's some amazing content. It's very engaging. right?">Archerwind	</a>
+        </dd>     
         
         <br />
         

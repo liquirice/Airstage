@@ -9,6 +9,10 @@ table, th, td {
 	vertical-align:-webkit-baseline-middle;
 }
 
+textarea {
+	width: 730px;
+}
+
 div {
 	font-family: "Arial";
 }
