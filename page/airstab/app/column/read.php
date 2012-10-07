@@ -44,6 +44,7 @@ if($_COOKIE['temprno'.$rno.''] == 0){
 <title>│Airstage 西灣人│Airs專欄：從校園影響力開始！</title>
 <script language="javascript" type="text/javascript">
 $(function(){
+	$('#article b').css('color', '#F16522');
 	Shadowbox.init({
 		players : ['html'],
 		overlayColor: "#FFFFFF",
@@ -121,7 +122,7 @@ function clickSwapImg() {}
 												<font face="微軟正黑體" color="#830B0B" style="font-size: 15pt">
 												<?php echo ''.$getresult['title'].'';?></font></b><p align="left">
 												<span style="color: rgb(116, 116, 116); font-family: 微軟正黑體; font-size: 12px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: 20px; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; display: inline !important; float: none; background-color: rgb(255, 255, 255); ">
-												<time datetime="<?php echo ''.$time[0].''; ?>"><?php echo ''.$time[0].''; ?></time></span><span style="color: rgb(116, 116, 116); font-family: 微軟正黑體; font-size: 12px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: 20px; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); display: inline !important; float: none; ">撰文者：<?php echo ''.$getmember['department'].''.$getmember['grade'].'級  '.$getmember['name'].''; ?></span></td>
+												<time datetime="<?php echo ''.$time[0].''; ?>"><?php echo ''.$time[0].''; ?></time></span><span style="color: rgb(116, 116, 116); font-family: 微軟正黑體; font-size: 12px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: 20px; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); display: inline !important; float: none; ">&nbsp;&nbsp;撰文者：<?php echo ''.$getmember['department'].''.$getmember['grade'].'級  '.$getmember['name'].''; ?></span></td>
 												<td width="10%" valign="bottom">
 											  &nbsp;<div class="fb-like" data-href="http://www.airstage.com.tw/nsysu/airs/page/airstab/app/column/read.php?rno=<?php echo ''.$rno.''; ?>" data-send="false" data-layout="button_count" data-width="50" data-show-faces="false"></div></td>
 												<td width="10%" valign="bottom">
@@ -133,7 +134,7 @@ function clickSwapImg() {}
 											</tr>
 											<tr>
 												<td colspan="3" style="font-size:15px; font:微軟正黑體; font-family: '微軟正黑體'; color: #333;">
-                                                <article style="line-height:28px">
+                                                <article style="line-height:28px" id="article">
                                                 <?php echo ''.$getresult['realcontent'].''; ?><br />
                                                 </article>
 												<table border="0" width="48%" height="146">
