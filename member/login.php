@@ -55,7 +55,7 @@
 						密碼&nbsp;
 						<input type="password" name="pw" class="btn"/> <br />
 						<br />
-			            <a href='forgetPassword.php' class = "btn btn-danger">忘記密碼?</a>&nbsp;&nbsp;
+			            <!--a href='forgetPassword.php' class = "btn btn-danger">忘記密碼?</a-->&nbsp;&nbsp;
 						<input type="submit" name="submit" value="登入" class="btn btn-primary"/>&nbsp;&nbsp;
 			            <input type="button" onclick="location.href='register_original.php'" name="register" value="註冊會員" class="btn btn-success"/>			          
 					</form>

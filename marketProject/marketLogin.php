@@ -23,7 +23,7 @@
 			setcookie( 'name', $row['name'], time()+(60*60*24*10) );
 			setcookie( 'auth', $row['AUTH'], time()+(60*60*24*10) );
 			setcookie( 'nick', $row['username'], time()+(60*60*24*10) );
-			echo '<script type="text/javascript">alert("Welcome Back!");location.href="marketIndex.php"</script>';
+			echo '<script type="text/javascript">location.href="marketIndex.php"</script>';
 			exit();
 		}
 		mysqli_close( $conn );

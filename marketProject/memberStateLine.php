@@ -15,25 +15,59 @@
       <div class="nav-collapse">
         <ul class="nav">
         	<li class="divider-vertical"></li>
-          	<li><a href="#">我的評分</a></li>         
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">交易管理介面 <b class="caret"></b></a>
-            <ul class="dropdown-menu">           
-              <li><a href="#">成交記錄</a></li>
-              <li><a href="#">追蹤清單</a></li>
-              <li class="divider"></li>
-              <li class="nav-header">進階管理</li>
-              <li><a href="#">買方總管理</a></li>
-              <li><a href="#">賣方總管理</a></li>
-            </ul>
-          </li>
-		  <li><a href = "../member/logout.php">登出</a></li>
+        	<li class="dropdown">
+	        	<a href="" class="dropdown-toggle" data-toggle="dropdown">前往 <b class="caret"></b></a>
+	            <ul class="dropdown-menu">    
+	              <li class="nav-header">二手市場</li>       
+	              <li><a href="#">全部分類</a></li>
+	              <li><a href="#">二手書區</a></li>
+	              <li><a href="#">雜物區</a></li>
+	              <li class="divider"></li>
+	              <li class="nav-header">限時競標</li>
+	              <li><a href="#">二手書區</a></li>
+	              <li><a href="#">雜物區</a></li>
+	              <li class="divider"></li>
+	              <li class="nav-header">校園團購</li>
+	              <li><a href="#">教課書區</a></li>
+	              <li><a href="#">飲食區</a></li>
+	            </ul>
+	        </li>         
+	        <li class="dropdown">
+	        	<a href="" class="dropdown-toggle" data-toggle="dropdown">交易管理介面 <b class="caret"></b></a>
+	            <ul class="dropdown-menu">           
+	              <li><a href="#">成交記錄</a></li>
+	              <li><a href="onChasing.php">追蹤清單</a></li>
+	              <li><a href="#">我的評分</a></li>
+	              <li class="divider"></li>
+	              <li class="nav-header">進階管理</li>
+	              <li><a href="#">買方總管理</a></li>
+	              <li><a href="#">賣方總管理</a></li>	          
+	            </ul>
+	        </li>
+	        <li><a href = "../member/logout.php">登出</a></li>
         </ul>
     <?php
 		} else {
 	?>			
 		<div class="nav-collapse">
 			<ul class="nav">
+				<li class="dropdown">
+		        	<a href="" class="dropdown-toggle" data-toggle="dropdown">前往 <b class="caret"></b></a>
+		            <ul class="dropdown-menu">    
+		              <li class="nav-header">二手市場</li>       
+		              <li><a href="#">全部分類</a></li>
+		              <li><a href="#">二手書區</a></li>
+		              <li><a href="#">雜物區</a></li>
+		              <li class="divider"></li>
+		              <li class="nav-header">限時競標</li>
+		              <li><a href="#">二手書區</a></li>
+		              <li><a href="#">雜物區</a></li>
+		              <li class="divider"></li>
+		              <li class="nav-header">校園團購</li>
+		              <li><a href="#">教課書區</a></li>
+		              <li><a href="#">飲食區</a></li>
+		            </ul>
+		        </li> 
 				<li><a data-toggle="modal" href="#login">登入</a></li>  
 			</ul>
 		
