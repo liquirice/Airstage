@@ -18,8 +18,9 @@
         	<li class="dropdown">
 	        	<a href="" class="dropdown-toggle" data-toggle="dropdown">前往 <b class="caret"></b></a>
 	            <ul class="dropdown-menu">    
+	              <li><a href="marketIndex.php">市場首頁</a></li>
+	              <li class="divider"></li>
 	              <li class="nav-header">二手市場</li>       
-	              <li><a href="#">全部分類</a></li>
 	              <li><a href="#">二手書區</a></li>
 	              <li><a href="#">雜物區</a></li>
 	              <li class="divider"></li>
@@ -27,7 +28,7 @@
 	              <li><a href="#">二手書區</a></li>
 	              <li><a href="#">雜物區</a></li>
 	              <li class="divider"></li>
-	              <li class="nav-header">校園團購</li>
+	              <li class="nav-header">校園團購</li>	           
 	              <li><a href="#">教課書區</a></li>
 	              <li><a href="#">飲食區</a></li>
 	            </ul>
@@ -35,7 +36,7 @@
 	        <li class="dropdown">
 	        	<a href="" class="dropdown-toggle" data-toggle="dropdown">交易管理介面 <b class="caret"></b></a>
 	            <ul class="dropdown-menu">           
-	              <li><a href="#">成交記錄</a></li>
+	              <li><a href="tradeHistory.php">成交記錄</a></li>
 	              <li><a href="onChasing.php">追蹤清單</a></li>
 	              <li><a href="#">我的評分</a></li>
 	              <li class="divider"></li>
@@ -53,9 +54,10 @@
 			<ul class="nav">
 				<li class="dropdown">
 		        	<a href="" class="dropdown-toggle" data-toggle="dropdown">前往 <b class="caret"></b></a>
-		            <ul class="dropdown-menu">    
-		              <li class="nav-header">二手市場</li>       
-		              <li><a href="#">全部分類</a></li>
+		            <ul class="dropdown-menu"> 
+		              <li><a href="marketIndex.php">市場首頁</a></li>
+	                  <li class="divider"></li>   
+		              <li class="nav-header">二手市場</li>
 		              <li><a href="#">二手書區</a></li>
 		              <li><a href="#">雜物區</a></li>
 		              <li class="divider"></li>

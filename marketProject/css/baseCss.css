@@ -5,6 +5,10 @@ body {
 	margin: 0px auto;
 }
 
+table, th, td {
+	vertical-align:-webkit-baseline-middle;
+}
+
 div {
 	font-family: "Arial";
 }

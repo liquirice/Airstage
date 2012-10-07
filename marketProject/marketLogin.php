@@ -11,7 +11,7 @@
 		
 		if( mysqli_num_rows($result) == 0 ) {
 			// NO such account.
-			echo '<script type="text/javascript">alert("µn§J•¢±—");location.href="marketIndex.php"</script>';
+			echo '<script type="text/javascript">alert("Ë≥áÊñôÈåØË™§ÔºÅ");location.href="marketIndex.php"</script>';
 		} else {
 			// Write user into session to authenticate.
 			$row = mysqli_fetch_array( $result );
@@ -23,7 +23,7 @@
 			setcookie( 'name', $row['name'], time()+(60*60*24*10) );
 			setcookie( 'auth', $row['AUTH'], time()+(60*60*24*10) );
 			setcookie( 'nick', $row['username'], time()+(60*60*24*10) );
-			echo '<script type="text/javascript">location.href="marketIndex.php"</script>';
+			echo '<script type="text/javascript">location.href = document.referrer</script>';
 			exit();
 		}
 		mysqli_close( $conn );
