@@ -8,7 +8,7 @@
       </a>
       
 	<?php
-		if( isset($_SESSION['stu_id']) ) {
+		if( isset($_SESSION['stu_id']) && isset($_SESSION['nick']) ) {
 	?>
 	  
       <a class="brand" href="../accounts/revises.php"><?php echo $_SESSION['nick']; ?></a>
@@ -23,14 +23,16 @@
 	              <li class="nav-header">二手市場</li>       
 	              <li><a href="#">二手書區</a></li>
 	              <li><a href="#">雜物區</a></li>
+	              <li><a href="#">求物區</a></li>
 	              <li class="divider"></li>
 	              <li class="nav-header">限時競標</li>
-	              <li><a href="#">二手書區</a></li>
+	              <li><a href="#">書本區</a></li>
 	              <li><a href="#">雜物區</a></li>
 	              <li class="divider"></li>
 	              <li class="nav-header">校園團購</li>	           
 	              <li><a href="#">教課書區</a></li>
 	              <li><a href="#">飲食區</a></li>
+	              <li><a href="#">求物區</a></li>
 	            </ul>
 	        </li>         
 	        <li class="dropdown">
@@ -41,8 +43,8 @@
 	              <li><a href="#">我的評分</a></li>
 	              <li class="divider"></li>
 	              <li class="nav-header">進階管理</li>
-	              <li><a href="#">買方總管理</a></li>
-	              <li><a href="#">賣方總管理</a></li>	          
+	              <li><a href="buyerInterface.php">買方總管理</a></li>
+	              <li><a href="sellerInterface.php">賣方總管理</a></li>	          
 	            </ul>
 	        </li>
 	        <li><a href = "../member/logout.php">登出</a></li>
@@ -60,19 +62,23 @@
 		              <li class="nav-header">二手市場</li>
 		              <li><a href="#">二手書區</a></li>
 		              <li><a href="#">雜物區</a></li>
+		              <li><a href="#">求物區</a></li>
 		              <li class="divider"></li>
 		              <li class="nav-header">限時競標</li>
-		              <li><a href="#">二手書區</a></li>
+		              <li><a href="#">書本區</a></li>
 		              <li><a href="#">雜物區</a></li>
 		              <li class="divider"></li>
 		              <li class="nav-header">校園團購</li>
 		              <li><a href="#">教課書區</a></li>
 		              <li><a href="#">飲食區</a></li>
+		              <li><a href="#">求物區</a></li>
 		            </ul>
 		        </li> 
 				<li><a data-toggle="modal" href="#login">登入</a></li>  
 			</ul>
 		
+		
+		<!-- Login Popframe -->
 		<div id="login" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

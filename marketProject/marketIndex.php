@@ -31,12 +31,12 @@
 	<div class="row-fluid">
 		<ul class="thumbnails">
 			<li class="span4" style = "background-color: #FBFBFB;">
-				<div class="thumbnail">
+				<div class="thumbnail" style="height: 510px;">
 					<!--img src="http://placehold.it/300x300" alt=""-->
 					<div class="tooltip-demo">
 						<ul class="bs-docs-tooltip-examples">
 							<li>
-								<a href="#" class="thumbnail" rel="tooltip" data-placement="top" title="Second Hand Trade Market">
+								<a href="#" class="thumbnail" rel="tooltip" data-placement="top" title="Click Me">
 									<img src="img/secondHand_300x300.jpg" alt="二手交易市場" />
 								</a>
 								<div class="bs-docs-example-popover">
@@ -71,8 +71,9 @@
 											</button>
 											<ul class="dropdown-menu">
 												<li><a href = "sellC.php"><i class = "icon-folder-open"></i> 全部分類</a></li>
-												<li><a href = "#"><i class = "icon-globe"></i> 二手書區</a></li>
+												<li><a href = "#"><i class = "icon-book"></i> 二手書</a></li>
 												<li><a href = "#"><i class = "icon-eye-open"></i> 雜物區</a></li>
+												<li><a href = "#"><i class = "icon-search"></i> 求物區</a></li>
 											</ul>
 										</div>
 										<a data-toggle="modal" href="#ruleSecond" class="btn btn-danger btn-large"><i class = "icon-ok icon-white"></i> 交易規則</a>
@@ -86,12 +87,12 @@
 			
 			
 			<li class="span4" style = "background-color: #FBFBFB;">
-				<div class="thumbnail">
+				<div class="thumbnail" style="height: 510px;">
 					<!--img src="http://placehold.it/300x300" alt=""-->
 					<div class="tooltip-demo">
 						<ul class="bs-docs-tooltip-examples">
 							<li>
-								<a href="contentionBoard.php" class="thumbnail" rel="tooltip" data-placement="top" title="Contention Market">
+								<a href="contentionBoard.php" class="thumbnail" rel="tooltip" data-placement="top" title="Click Me">
 									<img src="img/contention_300x300.jpg" alt="限時競標" />
 								</a>
 								<div class="bs-docs-example-popover">
@@ -126,8 +127,8 @@
 											</button>
 											<ul class="dropdown-menu">
 												<li><a href = "contentionBoard.php"><i class = "icon-folder-open"></i> 全部分類</a></li>
-												<li><a href = "bookC.php"><i class = "icon-globe"></i> 二手書區</a></li>
-												<li><a href = "trivialC.php"><i class = "icon-eye-open"></i> 雜物區</a></li>
+												<li><a href = "bookC.php"><i class = "icon-book"></i> 書本區</a></li>
+												<li><a href = "trivialC.php"><i class = "icon-eye-open"></i> 雜物區</a></li>											
 											</ul>
 										</div>
 										<a data-toggle="modal" href="#ruleContention" class="btn btn-danger btn-large"><i class = "icon-ok icon-white"></i> 競標規則</a>
@@ -141,12 +142,12 @@
 			
 			
 			<li class="span4" style = "background-color: #FBFBFB;">
-				<div class="thumbnail">
+				<div class="thumbnail" style="height: 510px;">
 					<!--img src="http://placehold.it/300x300" alt=""-->
 					<div class="tooltip-demo">
 						<ul class="bs-docs-tooltip-examples">
 							<li>
-								<a href="#" class="thumbnail" rel="tooltip" data-placement="top" title="Group Shop Market">
+								<a href="#" class="thumbnail" rel="tooltip" data-placement="top" title="Click Me	">
 									<img src="img/groupShop_300x300.jpg" alt="校園團購" />
 								</a>
 								<div class="bs-docs-example-popover">
@@ -178,8 +179,9 @@
 											</button>
 											<ul class="dropdown-menu">
 												<li><a href = "#"><i class = "icon-folder-open"></i> 全部分類</a></li>
-												<li><a href = "#"><i class = "icon-globe"></i> 教課書區</a></li>
+												<li><a href = "#"><i class = "icon-book"></i> 教課書區</a></li>
 												<li><a href = "#"><i class = "icon-eye-open"></i> 飲食區</a></li>
+												<li><a href = "#"><i class = "icon-search"></i> 求物區</a></li>
 											</ul>
 										</div>
 										<a data-toggle="modal" href="#ruleGroup" class="btn btn-danger btn-large"><i class = "icon-align-right icon-white"></i> 團購規則</a>

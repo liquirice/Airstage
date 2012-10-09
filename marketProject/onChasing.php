@@ -67,7 +67,7 @@
       <tbody>
         <tr>
           <td>1</td>
-          <td><button type="button" class="btn btn-link">Adobe Photoshop CS6</button></td>
+          <td><a href = "#">Adobe Photoshop CS6</a></td>
           <td>       
 	      	<a href="#" rel="popover" title="Archerwind" data-content="And here's some amazing content. It's very engaging. right?">Archerwind</a>          	
           </td>
@@ -87,7 +87,7 @@
         </tr>
         <tr>
           <td>2</td>
-          <td><button type="button" class="btn btn-link">Adobe Fireworks CS6</button></td>
+          <td><a href = "#">Adobe Photoshop CS6</a></td>
           <td>
 	          <a href="#" rel="popover" title="Archerwind" data-content="And here's some amazing content. It's very engaging. right?">Archerwind</a>
           </td>
@@ -108,7 +108,7 @@
         
         <tr>
           <td>3</td>
-          <td><button type="button" class="btn btn-link">Adobe Dreamweaver CS6</button></td>
+          <td><a href = "#">Adobe Photoshop CS6</a></td>
           <td>
 	          <a href="#" rel="popover" title="Archerwind" data-content="And here's some amazing content. It's very engaging. right?">Archerwind</a>
           </td>
@@ -148,7 +148,7 @@
       <tbody>
         <tr>
           <td>1</td>
-          <td><button type="button" class="btn btn-link">Adobe Photoshop CS6</button></td>
+          <td><a href = "#">Adobe Photoshop CS6</a></td>
           <td>NT$200000</td>
           <td>已結案</td>
           <td>2012 / 10 / 10</td>
@@ -166,7 +166,7 @@
         </tr>
         <tr>
           <td>2</td>
-          <td><button type="button" class="btn btn-link">Adobe Fireworks CS6</button></td>
+          <td><a href = "#">Adobe Photoshop CS6</a></td>
           <td>NT$200000</td>
           <td><font color="red">競標中</font></td>
           <td></td>
@@ -185,7 +185,7 @@
         
         <tr>
           <td>3</td>
-          <td><button type="button" class="btn btn-link">Adobe Dreamweaver CS6</button></td>
+          <td><a href = "#">Adobe Photoshop CS6</a></td>
           <td>NT$200000</td>
           <td>已結案</td>
           <td></td>
@@ -223,7 +223,7 @@
       <tbody>
         <tr>
           <td>1</td>
-          <td><button type="button" class="btn btn-link">Adobe Photoshop CS6</button></td>
+          <td><a href = "#">Adobe Photoshop CS6</a></td>
           <td>NT$200000</td>
           <td>已結案</td>
           <td>2012 / 10 / 10</td>
@@ -241,7 +241,7 @@
         </tr>
         <tr>
           <td>2</td>
-          <td><button type="button" class="btn btn-link">Adobe Fireworks CS6</button></td>
+          <td><a href = "#">Adobe Photoshop CS6</a></td>
           <td>NT$200000</td>
           <td><font color="red">揪團中(20人	)</font></td>
           <td></td>
@@ -260,7 +260,7 @@
         
         <tr>
           <td>3</td>
-          <td><button type="button" class="btn btn-link">Adobe Dreamweaver CS6</button></td>
+          <td><a href = "#">Adobe Photoshop CS6</a></td>
           <td>NT$200000</td>
           <td>已結案</td>
           <td></td>
