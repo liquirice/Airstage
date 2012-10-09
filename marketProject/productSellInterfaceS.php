@@ -47,95 +47,85 @@
 	<!-- Warning Area -->
 	<div class="alert alert-info fade in">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Airstage 提醒：</strong>
+        <strong>Airstage 提醒：</strong>結標之後如果追蹤者有把商品加入標記就會持續顯示再追蹤名單中唷！
     </div>
 	
 	
 	<!-- Second Hand Area -->
-	<h3>二手市場</h3>
+	<h3>Adobe Photoshop CS6</h3>
+	<h4><font color="red">得標者 - Eric Kuo - 兩隻泰迪熊</font></h4>
+	<br />
+	
+	<h4>出價記錄</h4>	
 	<table class="table table-striped">
       <thead>
         <tr>
           <th>#</th>
-          <th>商品名稱 <i class="icon-chevron-down"></i></th>
-          <th>出價金額 <i class="icon-chevron-down"></i></th>
-          <th>出價人數 <i class="icon-chevron-down"></i></th>
-          <th>追蹤人數 <i class="icon-chevron-down"></i></th>
-          <th>出價時間 <i class="icon-chevron-down"></i></th>
-          <th>狀態 <i class="icon-chevron-down"></i></th>
+          <th>出價帳號 <i class="icon-chevron-down"></i></th>
+          <th>出價方式 <i class="icon-chevron-down"></i></th>
+          <th>交易條件 <i class="icon-chevron-down"></i></th>       
+          <th>出價時間 <i class="icon-chevron-down"></i></th>     
           <th>買賣管理</th>          
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>1</td>
-          <td><a href = "#">Adobe Photoshop CS6</a></td>
-          <td>       
-	      	NT$2400          	
-          </td>
-          <td>20 人</td>
-          <td>2 人</td>
-          <td>2012 / 10 / 10</td>
-          <td><font color="red">拍賣中</font></td>
           <td>
-          	<a href=""><button class="btn btn-info">前往 <i class="icon-edit icon-white"></i></button></a>
+          	<a href="#" rel="popover" title="Archerwind" data-content="And here's some amazing content. It's very engaging. right?">Archerwind</a>
+          </td>
+          <td>金錢</td>
+          <td>       
+	      	NT$70000          	
+          </td>
+          <td>2012 / 10 / 10</td>         
+          <td>
+          	<a href=""><button class="btn btn-info"><i class="icon-edit icon-white"></i> 賣給此人</i></button></a>
           </td>       
         </tr>
         <tr>
           <td>2</td>
-          <td><a href = "#">Adobe Photoshop CS6</a></td>
           <td>
-	          NT$5000          
-	      </td>
-          <td>100 人</td>
-          <td>72 人</td>
-          <td>2012 / 10 / 10</td>
-          <td>已結案</td>
+	          <a href="#" rel="popover" title="Archerwind" data-content="And here's some amazing content. It's very engaging. right?">Eric Kuo</a>
+          </td>
+          <td>以物易物</td>
           <td>
-	      	<a href=""><button class="btn btn-info">前往 <i class="icon-edit icon-white"></i></button></a>
+	          兩隻泰迪熊          
+	      </td>        
+          <td>2012 / 10 / 10</td>         
+          <td>
+	      	<a href=""><button class="btn btn-info"><i class="icon-edit icon-white"></i> 賣給此人 </button></a>
           </td>
         </tr>
       </tbody>
     </table>
-    
+	
     
     <hr class="bs-docs-separator">
     <!-- Contention Area -->
-    <h3>追蹤名單</h3>
-    <table class="table table-striped">
+    <h4>追蹤名單</h4>
+    <table class="table table-striped" style="width: 300px;">
       <thead>
         <tr>
           <th>#</th>
-          <th>商品名稱 <i class="icon-chevron-down"></i></th>
-          <th>目前價格 <i class="icon-chevron-down"></i></th>
-          <th>出價人數 <i class="icon-chevron-down"></i></th>
-          <th>追蹤人數 <i class="icon-chevron-down"></i></th>
-          <th>剩餘時間 <i class="icon-chevron-down"></i></th>          
-          <th>買賣管理</th>          
+          <th>追蹤帳號 <i class="icon-chevron-down"></i></th>
+          <th>追蹤日期 <i class="icon-chevron-down"></i></th>                 
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>1</td>
-          <td><a href = "#">Adobe Photoshop CS6</a></td>
-          <td>NT$200000</td>
-          <td>40 人</td>
-          <td>21 人</td>
-          <td><a href="">00:00:03</a></td>          
           <td>
-	        <a href=""><button class="btn btn-info">前往 <i class="icon-edit icon-white"></i></button></a>
-          </td>       
+	          <a href="#" rel="popover" title="Archerwind" data-content="And here's some amazing content. It's very engaging. right?">Eric Kuo</a>
+          </td>
+          <td>2012 / 10 / 10</td>                 
         </tr>
         <tr>
           <td>2</td>
-          <td><a href = "#">Adobe Photoshop CS6</a></td>
-          <td>NT$200000</td>
-          <td>52 人</td>
-          <td>45 人</td>          
-          <td>已結標</td>
           <td>
-	      	<a href=""><button class="btn btn-info">前往 <i class="icon-edit icon-white"></i></button></a>
+	          <a href="#" rel="popover" title="Archerwind" data-content="And here's some amazing content. It's very engaging. right?">Archerwind</a>
           </td>
+          <td>2012 / 10 / 10</td>          
         </tr>               
       </tbody>
     </table>
