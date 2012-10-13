@@ -5,11 +5,39 @@
 	if( !isset($_SESSION['stu_id']) || !isset($_SESSION['name']) || !isset($_SESSION['auth']) || !isset($_SESSION['nick']) ) {
 		echo '<script type="text/javascript">alert("請先登入!"); location.href="marketIndex.php"</script>';
 	} else {
-		/*require_once( "../connectVar.php" );
+		require_once( "../connectVar.php" );
 		$stu_id = $_SESSION['stu_id'];
 		
-		$query = "SELECT * FROM chasing_list INNER JOIN marketContention_trade Using(stu_id) WHERE chasing_list.stu_id = '$stu_id'";
-		$result = mysqli_query( $conn, $query );*/
+		if( isset($_GET['permute']) ) {
+			$permute = mysqli_real_escape_string( $conn, trim($_GET['permute']) );
+			@$priority = mysqli_real_escape_string( $conn, trim($_GET['priority']) );
+			
+			if( $priority == 'u' ) {
+				$query = "SELECT * FROM chasing_list " .
+						 "LEFT JOIN marketContention_trade ON chasing_list.trade_id = marketContention_trade.trade_id " .
+						 "LEFT JOIN product_info ON marketContention_trade.product_id = product_info.product_id " .
+						 "WHERE chasing_list.stu_id = '$stu_id' " .
+						 "ORDER BY $permute DESC";
+			} else if( $priority == 'd' ) {
+				$query = "SELECT * FROM chasing_list " .
+						 "LEFT JOIN marketContention_trade ON chasing_list.trade_id = marketContention_trade.trade_id " .
+						 "LEFT JOIN product_info ON marketContention_trade.product_id = product_info.product_id " .
+						 "WHERE chasing_list.stu_id = '$stu_id' " .
+						 "ORDER BY $permute ASC";
+			}	
+		} else {
+			$permute = '';
+			$query = "SELECT * FROM chasing_list " .
+					 "LEFT JOIN marketContention_trade ON chasing_list.trade_id = marketContention_trade.trade_id " .
+					 "LEFT JOIN product_info ON marketContention_trade.product_id = product_info.product_id " .
+					 "WHERE chasing_list.stu_id = '$stu_id'";
+		}
+		
+		$result = mysqli_query( $conn, $query ) or die('query Error');
+		
+		/*while( $row = mysqli_fetch_array( $result ) ) {
+			// Use trade_id start word to spearate category.
+		}*/
 	}
 ?>
 
@@ -46,7 +74,7 @@
 	<!-- Warning Area -->
 	<div class="alert alert-info fade in">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Airstage 提醒：</strong>已由他人結案的物品會自動從追蹤清單中移除喔！
+        <strong>Airstage 提醒：</strong>可以由標記功能去標出自己特別中意的物品唷！
     </div>
 	
 	
@@ -65,7 +93,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <!--tr>
           <td>1</td>
           <td><a href = "#">Adobe Photoshop CS6</a></td>
           <td>       
@@ -79,10 +107,9 @@
                 <button class="btn btn-info dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
                 <ul class="dropdown-menu">
                   <li><a href="#"><i class="icon-star"></i> 加入標記</a></li>
-                  <li><a href="#"><i class="icon-trash"></i> 刪除選項</a></li>                  
-                  <!--li class="divider"></li-->               
+                  <li><a href="#"><i class="icon-trash"></i> 刪除選項</a></li>         
                 </ul>
-              </div><!-- /btn-group -->
+              </div>
           </td>       
         </tr>
         <tr>
@@ -99,10 +126,9 @@
                 <button class="btn btn-info dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
                 <ul class="dropdown-menu">
                   <li><a href="#"><i class="icon-star"></i> 加入標記</a></li>
-                  <li><a href="#"><i class="icon-trash"></i> 刪除選項</a></li>                  
-                  <!--li class="divider"></li-->               
+                  <li><a href="#"><i class="icon-trash"></i> 刪除選項</a></li>
                 </ul>
-              </div><!-- /btn-group -->
+              </div>
           </td>
         </tr>
         
@@ -120,87 +146,133 @@
                 <button class="btn btn-info dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
                 <ul class="dropdown-menu">
                   <li><a href="#"><i class="icon-star"></i> 加入標記</a></li>
-                  <li><a href="#"><i class="icon-trash"></i> 刪除選項</a></li>                  
-                  <!--li class="divider"></li-->               
+                  <li><a href="#"><i class="icon-trash"></i> 刪除選項</a></li>               
                 </ul>
-              </div><!-- /btn-group -->
+              </div>
           </td>
-        </tr>
+        </tr-->
       </tbody>
     </table>
     
     
     <hr class="bs-docs-separator">
+	
     <!-- Contention Area -->
     <h3>限時競標</h3>
     <table class="table table-striped">
       <thead>
         <tr>
           <th>#</th>
-          <th>商品名稱 <i class="icon-chevron-down"></i></th>
-          <th>目前價格 <i class="icon-chevron-down"></i></th>
-          <th>商品狀態 <i class="icon-chevron-down"></i></th>
-          <th>追蹤時間 <i class="icon-chevron-down"></th>
-          <th>標記 <i class="icon-chevron-down"></i></th>
+          <th>
+			商品名稱
+			<?php
+				if( @$permute == '' || $priority == 'u' ) echo '<a href="onChasing.php?permute=title&priority=d">';
+				else echo '<a href="onChasing.php?permute=title&priority=u">';
+				
+				if( @$permute == 'title' && @$priority == 'd' ) echo '<i class="icon-chevron-up"></i></a>';
+				else echo '<i class="icon-chevron-down"></i></a>';	
+			?>
+		  </th>
+          <th>
+			目前價格 
+			<?php
+				if( @$permute == '' || $priority == 'u' ) echo '<a href="onChasing.php?permute=current_price&priority=d">';
+				else echo '<a href="onChasing.php?permute=current_price&priority=u">';
+				
+				if( @$permute == 'current_price' && @$priority == 'd' ) echo '<i class="icon-chevron-up"></i></a>';
+				else echo '<i class="icon-chevron-down"></i></a>';	
+			?>
+			</a>
+		  </th>
+          <th>
+			商品狀態
+			<?php
+				if( @$permute == '' || $priority == 'u' ) echo '<a href="onChasing.php?permute=exist&priority=d">';
+				else echo '<a href="onChasing.php?permute=exist&priority=u">';
+				
+				if( @$permute == 'exist' && @$priority == 'd' ) echo '<i class="icon-chevron-up"></i></a>';
+				else echo '<i class="icon-chevron-down"></i></a>';	
+			?>
+		  </th>
+          <th>
+			追蹤時間
+			<?php
+				if( @$permute == '' || $priority == 'u' ) echo '<a href="onChasing.php?permute=markTime&priority=d">';
+				else echo '<a href="onChasing.php?permute=markTime&priority=u">';
+				
+				if( @$permute == 'markTime' && @$priority == 'd' ) echo '<i class="icon-chevron-up"></i></a>';
+				else echo '<i class="icon-chevron-down"></i></a>';	
+			?>
+		  </th>
+          <th>
+			標記
+			<?php
+				if( @$permute == '' || $priority == 'u' ) echo '<a href="onChasing.php?permute=star&priority=d">';
+				else echo '<a href="onChasing.php?permute=star&priority=u">';
+				
+				if( @$permute == 'star' && @$priority == 'd' ) echo '<i class="icon-chevron-up"></i></a>';
+				else echo '<i class="icon-chevron-down"></i></a>';	
+			?>
+		  </th>
           <th>操作選項</th>          
         </tr>
       </thead>
+	  
       <tbody>
+	  <?php
+		$counter = 1;
+		while( $row = mysqli_fetch_array( $result )  ) {
+	  ?>
         <tr>
-          <td>1</td>
-          <td><a href = "#">Adobe Photoshop CS6</a></td>
-          <td>NT$200000</td>
-          <td>已結案</td>
-          <td>2012 / 10 / 10</td>
-          <td><i class="icon-star"></i></td>
+          <td>
+			<?php echo $counter; ?>
+		  </td>
+          <td>
+			<a href = "#"><?php echo $row['title']; ?></a>
+		  </td>
+          <td>
+			<?php echo $row['current_price']; ?>
+		  </td>
+          <td>
+			<?php
+				if( $row['exist'] == 1 ) echo '<font color="red">競標中</font>';
+				else echo '已結案';			
+		    ?>
+		  </td>
+          <td>
+			<?php echo $row['markTime']; ?>
+		  </td>
+          <td>
+			<?php
+				if( $row['star'] == 1 ) echo '<i class="icon-star"></i>';
+			?>
+		  </td>
           <td>
 	          <div class="btn-group">
                 <button class="btn btn-info dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
                 <ul class="dropdown-menu">
-                  <li><a href="#"><i class="icon-star"></i> 加入標記</a></li>
-                  <li><a href="#"><i class="icon-trash"></i> 刪除選項</a></li>                  
+				<?php
+					if( $row['star'] == 0 ) {
+				?>
+					<li><a href="addChasingStar.php?trade=<?php echo $row['trade_id']; ?>"><i class="icon-star"></i> 加入標記</a></li>
+				<?php	
+					} else {
+				?>
+					<li><a href="deleteChasingStar.php?trade=<?php echo $row['trade_id']; ?>"><i class="icon-fire"></i> 移除標記</a></li>
+				<?php
+					} // End else.
+                ?>  
+				  <li><a href="deleteChasing.php?trade=<?php echo $row['trade_id']; ?>"><i class="icon-trash"></i> 刪除選項</a></li>                  
                   <!--li class="divider"></li-->               
                 </ul>
               </div><!-- /btn-group -->
           </td>       
         </tr>
-        <tr>
-          <td>2</td>
-          <td><a href = "#">Adobe Photoshop CS6</a></td>
-          <td>NT$200000</td>
-          <td><font color="red">競標中</font></td>
-          <td></td>
-          <td></td>
-          <td>
-	          <div class="btn-group">
-                <button class="btn btn-info dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                  <li><a href="#"><i class="icon-star"></i> 加入標記</a></li>
-                  <li><a href="#"><i class="icon-trash"></i> 刪除選項</a></li>                  
-                  <!--li class="divider"></li-->               
-                </ul>
-              </div><!-- /btn-group -->
-          </td>
-        </tr>
-        
-        <tr>
-          <td>3</td>
-          <td><a href = "#">Adobe Photoshop CS6</a></td>
-          <td>NT$200000</td>
-          <td>已結案</td>
-          <td></td>
-          <td></td>
-          <td>
-	          <div class="btn-group">
-                <button class="btn btn-info dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                  <li><a href="#"><i class="icon-star"></i> 加入標記</a></li>
-                  <li><a href="#"><i class="icon-trash"></i> 刪除選項</a></li>                  
-                  <!--li class="divider"></li-->               
-                </ul>
-              </div><!-- /btn-group -->
-          </td>
-        </tr>
+		
+	<?php
+			$counter++;
+		} // End while.
+	?>
       </tbody>
     </table>
     
@@ -221,7 +293,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <!--tr>
           <td>1</td>
           <td><a href = "#">Adobe Photoshop CS6</a></td>
           <td>NT$200000</td>
@@ -233,10 +305,9 @@
                 <button class="btn btn-info dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
                 <ul class="dropdown-menu">
                   <li><a href="#"><i class="icon-star"></i> 加入標記</a></li>
-                  <li><a href="#"><i class="icon-trash"></i> 刪除選項</a></li>                  
-                  <!--li class="divider"></li-->               
+                  <li><a href="#"><i class="icon-trash"></i> 刪除選項</a></li>                                          
                 </ul>
-              </div><!-- /btn-group -->
+              </div>
           </td>       
         </tr>
         <tr>
@@ -251,10 +322,9 @@
                 <button class="btn btn-info dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
                 <ul class="dropdown-menu">
                   <li><a href="#"><i class="icon-star"></i> 加入標記</a></li>
-                  <li><a href="#"><i class="icon-trash"></i> 刪除選項</a></li>                  
-                  <!--li class="divider"></li-->               
+                  <li><a href="#"><i class="icon-trash"></i> 刪除選項</a></li>                                               
                 </ul>
-              </div><!-- /btn-group -->
+              </div>
           </td>
         </tr>
         
@@ -270,12 +340,11 @@
                 <button class="btn btn-info dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
                 <ul class="dropdown-menu">
                   <li><a href="#"><i class="icon-star"></i> 加入標記</a></li>
-                  <li><a href="#"><i class="icon-trash"></i> 刪除選項</a></li>                  
-                  <!--li class="divider"></li-->               
+                  <li><a href="#"><i class="icon-trash"></i> 刪除選項</a></li>                                                 
                 </ul>
-              </div><!-- /btn-group -->
+              </div>
           </td>
-        </tr>
+        </tr-->
       </tbody>
     </table>
 	
