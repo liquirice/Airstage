@@ -5,11 +5,34 @@
 	if( !isset($_SESSION['stu_id']) || !isset($_SESSION['name']) || !isset($_SESSION['auth']) || !isset($_SESSION['nick']) ) {
 		echo '<script type="text/javascript">alert("請先登入!"); location.href="marketIndex.php"</script>';
 	} else {
-		/*require_once( "../connectVar.php" );
+		require_once( "../connectVar.php" );
 		$stu_id = $_SESSION['stu_id'];
 		
-		$query = "SELECT * FROM chasing_list INNER JOIN marketContention_trade Using(stu_id) WHERE chasing_list.stu_id = '$stu_id'";
-		$result = mysqli_query( $conn, $query );*/
+		function getWinnerInfo( $userID, $conn ) {
+			$query = "SELECT username, stu_id, name, profile_pic, department FROM Member INNER JOIN member_info Using(stu_id) WHERE Member.stu_id = '$userID'";
+			$result = mysqli_query( $conn, $query ) or die('User Query Error');
+			$detail = mysqli_fetch_array( $result );
+			echo $detail['stu_id'] . '<br />';
+			echo $detail['name'] . '<br />';
+			echo $detail['department'];
+		}
+		
+		function getSellerInfo( $userID, $conn ) {
+			$query = "SELECT username, stu_id, name, profile_pic, department FROM Member INNER JOIN member_info Using(stu_id) WHERE Member.username = '$userID'";
+			$result = mysqli_query( $conn, $query ) or die('User Query Error');
+			$detail = mysqli_fetch_array( $result );
+			echo $detail['stu_id'] . '<br />';
+			echo $detail['name'] . '<br />';
+			echo $detail['department'];
+		}
+		
+		$query = "SELECT * FROM marketContention_history " .
+		         "LEFT JOIN marketContention_trade ON  marketContention_history.trade_id = marketContention_trade.trade_id " .
+				 "LEFT JOIN product_info ON marketContention_trade.product_id = product_info.product_id " .
+				 "LEFT JOIN Member ON marketContention_trade.stu_id = Member.stu_id " .
+				 "LEFT JOIN member_info ON Member.stu_id = member_info.stu_id " .
+				 "WHERE marketContention_history.stu_id = '$stu_id'";
+		$result = mysqli_query( $conn, $query );
 	}
 ?>
 
@@ -57,7 +80,7 @@
           <h3>二手市場</h3>
         </a>
       </div>
-      <div id="collapseOne" class="accordion-body collapse in">
+      <div id="collapseOne" class="accordion-body collapse">
         <div class="accordion-inner">
         <form action="" method="post">
           <table class="table table-striped">
@@ -121,7 +144,7 @@
           <h3>限時競標</h3>
         </a>
       </div>
-      <div id="collapseTwo" class="accordion-body collapse">
+      <div id="collapseTwo" class="accordion-body collapse in">
         <div class="accordion-inner">
         <form action="" method="post">
           <table class="table table-striped">
@@ -139,40 +162,45 @@
 		        </tr>
 		      </thead>
 		      <tbody>
+			  <?php
+				$counter = 1;
+				while( $row = mysqli_fetch_array($result) ) {
+			  ?>
 		        <tr>
-		          <td>1</td>
-		          <td><a href = "#">Adobe Photoshop CS6</a></td>
-		          <td>       
-			      	<a href="#" rel="popover" title="Archerwind" data-content="And here's some amazing content. It's very engaging. right?">Archerwind</a>          	
-		          </td>
-		          <td>NT$1500</td>
+		          <td><?php echo $counter; ?></td>
 		          <td>
-			        <a href="#" rel="popover" title="Eric Kuo" data-content="And here's some amazing content. It's very engaging. right?">Eric Kuo</a>
+					<a href = "#"><?php echo $row['title']; ?></a>
+				  </td>
+		          <td>       
+			      	<a href="#" rel="popover" title="<?php echo $row['username']; ?>" data-content="<?php getSellerInfo($row['username'], $conn); ?>"><?php echo $row['username']; ?></a>          	
 		          </td>
-		          <td><a href="#"><i class="icon-repeat"></i> 00:00:30s</a></td>
-		          <td><a href="#"><i class="icon-shopping-cart"></i> 50人</a></td>   
-		          <td><i class="icon-ok"></i></td>   
+		          <td>NT$<?php echo $row['current_price']; ?></td>
+		          <td>
+			        <a href="#" rel="popover" title="<?php echo "<font color='red'>得標者</font>"; ?>" data-content="<?php getWinnerInfo($row['get_stu_id'], $conn); ?>"><?php echo $row['get_stu_id']; ?></a>
+		          </td>
+		          <td>
+				  <?php
+					if( $row['exist'] != 0 ) echo '<a href="#"><i class="icon-repeat"></i> 00:00:30s</a>';
+					else echo '<i class="icon-ban-circle"></i> 已結標';
+				  ?>
+				  </td>
+		          <td>
+					<a href="#"><i class="icon-shopping-cart"></i> 50人</a>
+				  </td>   
+		          <td>
+					<?php
+						if( $row['get_stu_id'] == $stu_id ) echo '<i class="icon-ok"></i>';
+						else echo '<i class="icon-thumbs-down"></i>';
+					?>
+				  </td>   
 		          <td>
 				  	<input type="checkbox" id="inlineCheckbox1" value="option1" name="">
 		          </td> 		          
 		        </tr>
-		        <tr>
-		          <td>2</td>
-		          <td><a href = "#">Adobe Photoshop CS6</a></td>
-		          <td>
-			          <a href="#" rel="popover" title="Archerwind" data-content="And here's some amazing content. It's very engaging. right?">Archerwind</a>
-		          </td>
-		          <td>NT$5600</td>
-		          <td>
-			          <a href="#" rel="popover" title="Eric Kuo" data-content="And here's some amazing content. It's very engaging. right?">Eric Kuo</a>
-		          </td>
-		          <td><a href="#"><i class="icon-repeat"></i> 已結標</a></td>
-		          <td><a href="#"><i class="icon-shopping-cart"></i> 2人</a></td>
-		          <td><i class="icon-thumbs-down"></i></td>
-		          <td>
-				  	<input type="checkbox" id="inlineCheckbox1" value="option1" name="">
-		          </td>
-		        </tr>
+			<?php
+					$counter++;
+				} // End while.
+			?>
 		      </tbody>
 		    </table>
 		    <button type="submit" name = "delete" class="btn btn-danger "><i class="icon-trash icon-white"></i> 刪除勾選資料</button> 

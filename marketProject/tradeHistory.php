@@ -1,17 +1,20 @@
-<?php
+﻿<?php
 	// Last Modified Day : 2012.10.07
 	session_start();
 	
 	if( !isset($_SESSION['stu_id']) || !isset($_SESSION['name']) || !isset($_SESSION['auth']) || !isset($_SESSION['nick']) ) {
 		echo '<script type="text/javascript">alert("請先登入!"); location.href="marketIndex.php"</script>';
 	} else {
-			
+		require_once( "../connectVar.php" );
+		$stu_id = $_SESSION['stu_id'];
+		
+		//$query = "SELECT * FROM "
 	}
 ?>
 
 <!DOCTYPE HTML>
 <head>
-	<title>Airstage - Student Market - Entrance</title>
+	<title>Airstage - 市場成交紀錄</title>
 	<link href = "../tm2.ico" rel = "shortcut icon" />
 	<link href = "css/bootstrap.css" rel = "stylesheet" />
 	<link href = "css/baseCss.css" rel = "stylesheet" />
@@ -52,7 +55,7 @@
           <h3>二手市場</h3>
         </a>
       </div>
-      <div id="collapseOne" class="accordion-body collapse in">
+      <div id="collapseOne" class="accordion-body collapse">
         <div class="accordion-inner">
           <table class="table table-striped">
 		      <thead>
@@ -105,7 +108,7 @@
           <h3>限時競標</h3>
         </a>
       </div>
-      <div id="collapseTwo" class="accordion-body collapse">
+      <div id="collapseTwo" class="accordion-body collapse in">
         <div class="accordion-inner">
           <table class="table table-striped">
 		      <thead>
