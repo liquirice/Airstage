@@ -13,6 +13,34 @@
 	<link href="css/docs.css" rel="stylesheet">
 	<meta http-equiv = "Content-Type" content = "text/html; charset = utf8" />
 	<meta http-equiv = "Content-Language" content = "zh-tw" />
+	<style>
+		.span2 {
+			text-align:right;
+			vertical-align:center;
+			background-color:;
+		}
+		#myTabContent {
+			border-left-color:#ff0000;
+		}
+		ul.vertical_list {
+			display:inline;
+			list-style:inside;
+			
+		}
+		ul.vertical_list li {
+			float:left;
+			margin-left:5px;
+			margin-bottom:5px;
+			width:140px;
+		}
+		.tab-content {
+			padding-left:20px;
+			padding-right:10px;
+		}
+	</style>
+	<script>
+	
+	</script>
 </head>
 
 <body>
@@ -24,76 +52,115 @@
 
 <!-- Container Start -->
 <div class = "container">
+
+	<!--進度條-->
+	<div class="progress progress-striped active">
+		<div class="bar bar-primary" style="width: 5%;"></div>
+	</div>
+	
+	<!--market bar-->
     <?php
 	    require_once( "memberStateLine.php" );
 	?>
-	<div class="bs-docs-example">
-		<ul class="nav nav-tabs">
-			<li ><a href="contentionBoard.php">全部分類</a></li>
-			<li class="active"><a href="#">二手書區</a></li>
-			<!--li class="dropdown ">
-		    	<a class="dropdown-toggle" data-toggle="dropdown" href="#">Dropdown <b class="caret"></b></a>
-		        <ul class="dropdown-menu">
-		          <li><a href="#">Action</a></li>
-		          <li><a href="#">Another action</a></li>
-		          <li><a href="#">Something else here</a></li>
-		          <li class="divider"></li>
-		          <li><a href="#">Separated link</a></li>
-		        </ul>
-		     </li-->
-	      <li><a href="trivialC.php">雜物區</a></li>
-	    </ul>
-	    
-	    <!-- Product Info -->
-		<div class="mini-layout fluid">
-	    	<div class="mini-layout-sidebar">
-		    	<div class="bs-docs-grid">
-		            <div class="row show-grid">
-		              <div class="span1">1</div>
-		            </div>
-		    	</div>
-	    	</div>
-	    	<div class="mini-layout-body">
-		    	
-	    	</div>
-	    </div>
-	    
-	    <div class="bs-docs-grid">
-	        <div class="row show-grid">
-	          <div class="span1">1</div>
-	          <div class="span1">1</div>
-	          <div class="span1">1</div>
-	          <div class="span1">1</div>
-	          <div class="span1">1</div>
-	          <div class="span1">1</div>
-	          <div class="span1">1</div>
-	          <div class="span1">1</div>
-	          <div class="span1">1</div>
-	        </div>
-	        <div class="row show-grid">
-	          <div class="span2">2</div>
-	          <div class="span3">3</div>
-	          <div class="span4">4</div>
-	        </div>
-	        <div class="row show-grid">
-	          <div class="span4">4</div>
-	          <div class="span5">5</div>
-	        </div>
-	        <div class="row show-grid">
-	          <div class="span9">9</div>
-	        </div>
-	        <div class="row show-grid">
-	          <div class="span11">11</div>
-	        </div>
-	    </div>   
-    </div>
+	
+	<!--路徑欄-->
+	<ul class="breadcrumb">
+		<li><a href="marketIndex.php">市場首頁</a> <span class="divider">/</span></li>
+		<li><a href="contentionBoard.php">限時競標</a> <span class="divider">/</span></li>
+		<!--li><a href="contentionBoard.php">分類搜尋</a> <span class="divider">/</span></li-->
+		<li class="active">書籍雜誌</li>
+	</ul>
+	
+	<!--次分類與其次次分類項目-->
+	<!--目標: 滑鼠移上次分類可以看到次次分類，點次分類or次次分類皆可以看到該分類全部商品(javascript)-->
+	<div class="row-fluid" >
+		<div class="span2">
+			<h4>書籍雜誌</h4>
+		</div>
+		<div class="span10">
+			<ul class="nav nav-tabs" id="myTab">
+				<li class="active"><a data-toggle="tab" href="#textbook">校內課程用書</a></li>
+				<li><a data-toggle="tab" href="#books">一般書籍</a></li>
+				<li><a data-toggle="tab" href="#">次分類</a></li>
+			</ul>
+			<div class="tab-content" id="myTabContent">
+				<div id="textbook" class="tab-pane fade in active">
+					<ul class="vertical_list">
+						<li><a href="#">文學院</a></li>
+						<li><a href="#">理學院</a></li>
+						<li><a href="#">工學院</a></li>
+						<li><a href="#">管理學院</a></li>
+						<li><a href="#">海洋科學院</a></li>
+						<li><a href="#">社會科學院</a></li>
+						<li><a href="#">通識課程</a></li>
+						<li><a href="#">其他課程</a></li>
+					</ul>
+				</div>
+				<div id="books" class="tab-pane fade">
+					<p>content</p>
+				</div>
+				<div id="" class="tab-pane fade">
+					<p>次次分類</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<hr/>
 		
 	<!-- Warning Area -->
 	<div class="alert alert-info fade in">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <strong>Attention!</strong> &nbsp;請看清楚商品說明再進行出價唷！
     </div>
-		
+	
+	<!--商品廣告列-->
+	<div>
+	<div class="row-fluid">
+		<div class="carousel slide" id="myCarousel">
+			<div class="carousel-inner">
+				<div class="item active">
+					<img alt="" src="tpic/01.png" />
+					<div class="carousel-caption" style="height:30px;">
+						<h4>First Thumbnail label</h4>
+						<p>content</p>
+					</div>
+				</div>
+				<div class="item">
+					<img alt="" src="tpic/02.png">
+					<div class="carousel-caption" style="height:30px;">
+						<h4>First Thumbnail label</h4>
+						<p>content</p>
+					</div>
+				</div>
+				<div class="item">
+					<img alt="" src="tpic/03.png">
+					<div class="carousel-caption" style="height:30px;">
+						<h4>Third Thumbnail label</h4>
+						<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+					</div>
+				</div>
+			</div>
+			<a data-slide="prev" href="#myCarousel" class="left carousel-control">‹</a>
+			<a data-slide="next" href="#myCarousel" class="right carousel-control">›</a>
+		</div>
+	</div>
+	</div>
+	
+	<div class="accordion" id="accordion2">
+		<div class="accordion-group span5">
+			<div class="accordion-heading">
+				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+					Collapsible Group Item #2
+				</a>
+			</div>
+			<div id="collapseTwo" class="accordion-body collapse">
+				<div class="accordion-inner">
+					Anim pariatur cliche...
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 	
 	<!-- Page Button -->
 	<div class="pagination pagination-centered">

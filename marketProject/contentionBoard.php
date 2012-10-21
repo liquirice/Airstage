@@ -1,6 +1,8 @@
+<!--設計時千萬記得改utf8編碼-->
+
 <?php
-	// Last Modified Day : 2012.10.01
-	// No need to login to browse the products.
+	// Last Modified Day : 
+	// 
 	session_start();
 ?>
 
@@ -13,52 +15,55 @@
 	<link href="css/docs.css" rel="stylesheet">
 	<meta http-equiv = "Content-Type" content = "text/html; charset = utf8" />
 	<meta http-equiv = "Content-Language" content = "zh-tw" />
+	<style>
+	</style>
 </head>
 
 <body>
 
+<!--header-->
 <?php
 	require_once( "marketNavi.php" );
 	require_once( "marketAnnouce.php" );
 ?>
 
-<!-- Container Start -->
-<div class = "container">
-    <?php
-	    require_once( "memberStateLine.php" );
-	?>
+<!--整頁內容包container裡面-->
+<div class = "container" >
+
+	<!--進度條-->
+	<div class="progress progress-striped active">
+		<div class="bar bar-primary" style="width: 60%;"></div>
+	</div>
 	
-	<ul class="nav nav-tabs nav-stacked">
-		<div class="progress progress-striped active">
-			<div class="bar bar-primary" style="width: 20%;"></div>
-		</div>
-		<li class="active"><a href="#">全部分類</a></li>
-		<li><a href="bookC.php">二手書區</a></li>
-		<li><a href="trivialC.php">雜物區</a></li>
-    </ul>
-	
+	<!--路徑欄-->
+	<ul class="breadcrumb">
+		<li><a href="marketIndex.php">市場首頁</a> <span class="divider">/</span></li>
+		<!--li>子目錄 <span class="divider">/</span></li-->
+		<li class="active">當前頁面</li>
+	</ul>
+
 	<!-- Warning Area -->
 	<div class="alert alert-danger fade in">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Attention!</strong> &nbsp;請務必閱讀競標規則再進入唷！
-    </div>
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<strong>Attention!</strong> &nbsp;請務必閱讀競標規則再進入唷！
+	</div>
 	
-	<!-- Page Button -->
-	<div class="pagination pagination-centered">
-      <ul>
-        <li class="disabled"><a href="#">&laquo;</a></li>
-        <li class="active"><a href="#">1</a></li>
-        <!--li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li-->
-        <li class="disabled"><a href="#">&raquo;</a></li>
-     </ul>
-    </div>
-
+	<!--每個橫段有row、row-fluid(稍擠)二種選擇-->
+	<div class="row">
+		<!-- 空間內由一至數個span*組成，*=1~12 -->
+		<!-- 數量不限，*的總合<=12，12為最佳狀態剛好填滿。以下為範例-->
+		<div class="span6"></div>
+		<div class="span6"></div>
+	</div>
+	<div class="row-fluid">
+		<div class="span2"></div>
+		<div class="span4"></div>
+		<div class="span3"></div>
+		<div class="span3"></div>
+	</div>
 </div>
 
-
+<!--Footer-->
 <?php
 	require_once( "marketFooter.php" );
 ?>
@@ -81,3 +86,5 @@
 <script src = "js/bootstrap-affix.js"></script>
 </body>
 </html>
+
+
