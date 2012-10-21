@@ -15,14 +15,14 @@
 			@$priority = mysqli_real_escape_string( $conn, trim($_GET['priority']) );
 			
 			if( $priority == 'u' ) {
-				$query = "SELECT * FROM marketSecondHand_chasingList " .
+				$query = "SELECT marketSecondHand_trade.trade_id, title, Member.username, exist, markTime, star FROM marketSecondHand_chasingList " .
 						 "LEFT JOIN marketSecondHand_trade ON marketSecondHand_chasingList.trade_id = marketSecondHand_trade.trade_id " .
 						 "LEFT JOIN marketSecondHand_productInfo ON marketSecondHand_trade.product_id = marketSecondHand_productInfo.product_id " .
 						 "LEFT JOIN Member ON marketSecondHand_trade.stu_id = Member.stu_id " .
 						 "WHERE marketSecondHand_chasingList.stu_id = '$stu_id'" .
 						 "ORDER BY $permute DESC";
 			} else if( $priority == 'd' ) {
-				$query = "SELECT * FROM marketSecondHand_chasingList " .
+				$query = "SELECT marketSecondHand_trade.trade_id, title, Member.username, exist, markTime, star FROM marketSecondHand_chasingList " .
 						 "LEFT JOIN marketSecondHand_trade ON marketSecondHand_chasingList.trade_id = marketSecondHand_trade.trade_id " .
 						 "LEFT JOIN marketSecondHand_productInfo ON marketSecondHand_trade.product_id = marketSecondHand_productInfo.product_id " .
 						 "LEFT JOIN Member ON marketSecondHand_trade.stu_id = Member.stu_id " .
@@ -31,14 +31,15 @@
 			}	
 		} else {
 			$permute = '';
-			$query = "SELECT * FROM marketSecondHand_chasingList " .
+			$query = "SELECT marketSecondHand_trade.trade_id, title, Member.username, exist, markTime, star FROM marketSecondHand_chasingList " .
 					 "LEFT JOIN marketSecondHand_trade ON marketSecondHand_chasingList.trade_id = marketSecondHand_trade.trade_id " .
 					 "LEFT JOIN marketSecondHand_productInfo ON marketSecondHand_trade.product_id = marketSecondHand_productInfo.product_id " .
 					 "LEFT JOIN Member ON marketSecondHand_trade.stu_id = Member.stu_id " .
-					 "WHERE marketSecondHand_chasingList.stu_id = '$stu_id'";
+					 "WHERE marketSecondHand_chasingList.stu_id = '$stu_id'" .
+					 "ORDER BY markTime DESC";
 		}
 		
-		$result = mysqli_query( $conn, $query ) or die('query Error');
+		$resultSecondHand = mysqli_query( $conn, $query ) or die('query Error');
 	}
 ?>
 
@@ -135,7 +136,7 @@
       </tbody>
       <?php
       	$counter = 1;
-      	while( $row = mysqli_fetch_array($result) ) {
+      	while( $row = mysqli_fetch_array($resultSecondHand) ) {
       ?>
         <tr>
           <td><?php echo $counter; ?></td>

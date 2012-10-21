@@ -1,5 +1,4 @@
 <?php
-	// Last Modified Day : 2012.10.07
 	session_start();
 	
 	if( !isset($_SESSION['stu_id']) || !isset($_SESSION['name']) || !isset($_SESSION['auth']) || !isset($_SESSION['nick']) ) {
@@ -8,13 +7,15 @@
 		require_once( "../connectVar.php" );
 		$stu_id = $_SESSION['stu_id'];
 		
-		$query = "SELECT COUNT(markTime), * FROM Member " .
-				 "LEFT JOIN marketSecondHand_trade ON Member.stu_id = marketSecondHand_trade.stu_id " .
-				 "LEFT JOIN marketSecondHand_bidList ON marketSecondHand_trade.trade_id = marketSecondHand_bidList.trade_id " .
-				 "LEFT JOIN marketSecondHand_time ON marketSecondHand_trade.trade_id = marketSecondHand_time.trade_id " .
-				 "LEFT JOIN marketSecondHand_chasingList ON marketSecondHand_trade.trade_id = marketSecondHand_chasingList.trade_id " .
-				 "WHERE Member.stu_id = '$stu_id'";
+		$query = "SELECT trade_id, title, start_date, exist, " . 
+				 "( SELECT COUNT(bidder_id) FROM marketSecondHand_bidList WHERE marketSecondHand_trade.trade_id = marketSecondHand_bidList.trade_id ) AS BuyNum, " . 
+				 "( SELECT COUNT(markTime) FROM marketSecondHand_chasingList WHERE marketSecondHand_trade.trade_id = marketSecondHand_chasingList.trade_id ) AS Chase " .
+				 "FROM marketSecondHand_trade " .		
+				 "LEFT JOIN marketSecondHand_productInfo ON marketSecondHand_trade.product_id = marketSecondHand_productInfo.product_id " .					 
+				 "LEFT JOIN marketSecondHand_time ON marketSecondHand_trade.time_id = marketSecondHand_time.time_id " .				 
+				 "WHERE marketSecondHand_trade.stu_id = '$stu_id'";
 		$resultSecondHand = mysqli_query( $conn, $query ) or die('Query Error');
+		
 	}
 ?>
 
@@ -64,11 +65,10 @@
       <div id="collapseOne" class="accordion-body collapse in">
         <div class="accordion-inner">
           <table class="table table-striped">
-		      <thead>
+		      <thead>		   
 		        <tr>
 		          <th>#</th>
-		          <th>商品名稱 <i class="icon-chevron-down"></i></th>
-		          <th>出價金額 <i class="icon-chevron-down"></i></th>
+		          <th>商品名稱 <i class="icon-chevron-down"></i></th>		      
 		          <th>出價人數 <i class="icon-chevron-down"></i></th>
 		          <th>追蹤人數 <i class="icon-chevron-down"></i></th>
 		          <th>出價時間 <i class="icon-chevron-down"></i></th>
@@ -77,34 +77,39 @@
 		        </tr>
 		      </thead>
 		      <tbody>
+		      <?php
+		      	$counter = 1;
+		      	
+		      	while( $row = mysqli_fetch_array($resultSecondHand) ) {
+		      ?>
 		        <tr>
-		          <td>1</td>
-		          <td><a href = "#">Adobe Photoshop CS6</a></td>
-		          <td>       
-			      	NT$2400          	
-		          </td>
-		          <td>20 人</td>
-		          <td>2 人</td>
-		          <td>2012 / 10 / 10</td>
-		          <td><font color="red">拍賣中</font></td>
+		          <td><?php echo $counter; ?></td>
 		          <td>
-		          	<a href="productSellInterfaceS.php"><button class="btn btn-info">前往 <i class="icon-edit icon-white"></i></button></a>
+		          	<a href = "#"><?php echo $row['title']; ?></a>
+		          </td>		         
+		          <td>
+			        <?php echo $row['BuyNum']; ?>  
+		          </td>
+		          <td>
+		          	<?php echo $row['Chase']; ?>	
+		          </td>
+		          <td>
+		          	<?php echo $row['start_date']; ?>
+		          </td>		       			        
+		          <td>
+			          <?php
+			          	if( $row['exist'] == 1 ) echo '<font color="red">拍賣中</font>';
+			          	else echo '已結案';
+			          ?>
+		          </td>
+		          <td>
+		          	<a href="productSellInterfaceS.php?trade=<?php echo $row['trade_id']; ?>"><button class="btn btn-info">前往 <i class="icon-edit icon-white"></i></button></a>
 		          </td>       
 		        </tr>
-		        <tr>
-		          <td>2</td>
-		          <td><a href = "#">Adobe Photoshop CS6</a></td>
-		          <td>
-			          NT$5000          
-			      </td>
-		          <td>100 人</td>
-		          <td>72 人</td>
-		          <td>2012 / 10 / 10</td>
-		          <td>已結案</td>
-		          <td>
-			      	<a href=""><button class="btn btn-info">前往 <i class="icon-edit icon-white"></i></button></a>			   
-		          </td>
-		        </tr>
+		      <?php
+		      		$counter++;
+		      	}
+		      ?>		     
 		      </tbody>
 		   </table>
         </div>

@@ -5,11 +5,46 @@
 	if( !isset($_SESSION['stu_id']) || !isset($_SESSION['name']) || !isset($_SESSION['auth']) || !isset($_SESSION['nick']) ) {
 		echo '<script type="text/javascript">alert("請先登入!"); location.href="marketIndex.php"</script>';
 	} else {
-		/*require_once( "../connectVar.php" );
+		require_once( "../connectVar.php" );
 		$stu_id = $_SESSION['stu_id'];
+		$trade_id = mysqli_real_escape_string( $conn, trim($_GET['trade']) );
 		
-		$query = "SELECT * FROM chasing_list INNER JOIN marketContention_trade Using(stu_id) WHERE chasing_list.stu_id = '$stu_id'";
-		$result = mysqli_query( $conn, $query );*/
+		require_once( "UserQueryFunction.php" );
+		
+		// Get title Info.
+		$query = "SELECT marketSecondHand_productInfo.title FROM marketSecondHand_trade " .
+				 "INNER JOIN marketSecondHand_productInfo Using(product_id) " .
+				 "WHERE marketSecondHand_trade.trade_id = '$trade_id' AND marketSecondHand_trade.stu_id = '$stu_id' AND marketSecondHand_productInfo.product_id = marketSecondHand_trade.product_id ";
+		
+		$resultTitle = mysqli_query( $conn, $query );
+		$title = mysqli_fetch_array( $resultTitle ) or die('Title Error');
+		
+		// Get Current Winner Info.
+		$query = "SELECT marketSecondHand_bidList.exchange_info, Member.username " .
+				 "FROM marketSecondHand_trade " .
+				 "LEFT JOIN marketSecondHand_bidList ON marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id " .
+				 "LEFT JOIN Member ON marketSecondHand_bidList.bidder_id = Member.stu_id " .
+				 "WHERE marketSecondHand_trade.trade_id = '$trade_id' AND marketSecondHand_trade.stu_id = '$stu_id' AND marketSecondHand_bidList.buy_list = 1";
+		
+		$resultWinner = mysqli_query( $conn, $query ) or die('Winner Error'); 
+			
+		// Get the whole bid list.
+		$query = "SELECT Member.username, marketSecondHand_trade.*, marketSecondHand_productInfo.*, marketSecondHand_bidList.* " .
+				 "FROM marketSecondHand_trade " . 
+				 "LEFT JOIN marketSecondHand_productInfo ON marketSecondHand_productInfo.product_id = marketSecondHand_trade.product_id " .
+				 "LEFT JOIN marketSecondHand_bidList ON marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id " .				
+				 "LEFT JOIN Member ON Member.stu_id = marketSecondHand_bidList.bidder_id " .		
+				 "WHERE marketSecondHand_trade.trade_id = '$trade_id' AND marketSecondHand_trade.stu_id = '$stu_id' ";
+				 
+		$resultSecondHand = mysqli_query( $conn, $query ) or die('Query Error');
+		
+		// Get chasing list.
+		$query = "SELECT Member.username, marketSecondHand_chasingList.markTime FROM marketSecondHand_trade " .
+				 "LEFT JOIN marketSecondHand_chasingList ON marketSecondHand_chasingList.trade_id = marketSecondHand_trade.trade_id " .
+				 "LEFT JOIN Member ON marketSecondHand_chasingList.stu_id = Member.stu_id " .
+				 "WHERE marketSecondHand_trade.trade_id = '$trade_id' AND marketSecondHand_trade.stu_id = '$stu_id'";
+
+		$resultChasing = mysqli_query( $conn, $query ) or die('Chasing Error');
 	}
 ?>
 
@@ -41,19 +76,27 @@
 		<li><a href="marketIndex.php">市場首頁</a> <span class="divider">/</span></li>
 		<li>交易管理介面 <span class="divider">/</span></li>
 		<li><a href="sellerInterface.php">賣方總管理</a> <span class="divider">/</span></li>
-		<li class="active">二手市場 - Adobe Photoshop CS6</li>
+		<li class="active">二手交易 - <?php echo $title['title']; ?></li>
 	</ul>
 	
 	<!-- Warning Area -->
 	<div class="alert alert-info fade in">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Airstage 提醒：</strong>結標之後如果追蹤者有把商品加入標記就會持續顯示再追蹤名單中唷！
+        <strong>Airstage 提醒：</strong><br />
+        成交後系統會自動發信給其他出價者關於商品已經賣出的訊息，<br />
+        如果剩餘的商品數量為零時則結標，不然仍會繼續拍賣，並告知其他出價者剩餘商品數量。
     </div>
 	
 	
 	<!-- Second Hand Area -->
-	<h3>Adobe Photoshop CS6</h3>
-	<h4><font color="red">得標者 - Eric Kuo - 兩隻泰迪熊</font></h4>
+	<h3><?php echo $title['title']; ?></h3>
+	<?php
+		while( $winner = mysqli_fetch_array($resultWinner) ) {
+	?>
+			<h4><font color="red">得標者 - <?php echo $winner['username']; ?> - <?php echo $winner['exchange_info']; ?></font></h4>
+	<?php
+		}	
+	?>
 	<br />
 	
 	<h4>出價記錄</h4>	
@@ -64,39 +107,53 @@
           <th>出價帳號 <i class="icon-chevron-down"></i></th>
           <th>出價方式 <i class="icon-chevron-down"></i></th>
           <th>交易條件 <i class="icon-chevron-down"></i></th>       
-          <th>出價時間 <i class="icon-chevron-down"></i></th>     
-          <th>買賣管理</th>          
+          <th>出價時間 <i class="icon-chevron-down"></i></th>
+          <th>得標 <i class="icon-chevron-down"></i></th>     
+          <th>交易管理</th>          
         </tr>
       </thead>
       <tbody>
+      <?php
+      	$counter = 1;
+      	while( $row = mysqli_fetch_array($resultSecondHand) ) {
+      ?>
         <tr>
-          <td>1</td>
+          <td><?php echo $counter; ?></td>
           <td>
-          	<a href="#" rel="popover" title="Archerwind" data-content="And here's some amazing content. It's very engaging. right?">Archerwind</a>
+          	<a href="#" rel="popover" title="<?php echo $row['username']; ?>" data-content="<?php getSellerInfo($row['username'], $conn); ?>"><?php echo $row['username']; ?></a>
           </td>
-          <td>金錢</td>
+          <td>
+	        <?php 
+	        	if( $row['exchange_type'] == 0 ) echo '金錢';
+	        	else if( $row['exchange_type'] == 1 ) echo '以物易物';
+	        	else echo '其他';
+	        ?>
+          </td>
           <td>       
-	      	NT$70000          	
+          	<?php echo $row['exchange_info']; ?>
           </td>
-          <td>2012 / 10 / 10</td>         
           <td>
-          	<a href=""><button class="btn btn-info"><i class="icon-edit icon-white"></i> 賣給此人</i></button></a>
+	        <?php echo $row['update_time']; ?>
+          </td> 
+          <td>
+          	<?php
+          		if( $row['buy_list'] == 1 ) echo "<i class='icon-ok'></i>";          		
+          	?>
+          </td>        
+          <td>          	
+          	<div class="btn-group">
+                <button class="btn btn-info dropdown-toggle" data-toggle="dropdown">Action <i class="icon-edit icon-white"></i></button>
+                <ul class="dropdown-menu">			
+					<li><a href="#"><i class="icon-ok"></i> 成交此筆</a></li>				
+					<li><a href="#"><i class="icon-envelope"></i> 回覆出價</a></li>				  			                                             
+                </ul>
+              </div>
           </td>       
         </tr>
-        <tr>
-          <td>2</td>
-          <td>
-	          <a href="#" rel="popover" title="Archerwind" data-content="And here's some amazing content. It's very engaging. right?">Eric Kuo</a>
-          </td>
-          <td>以物易物</td>
-          <td>
-	          兩隻泰迪熊          
-	      </td>        
-          <td>2012 / 10 / 10</td>         
-          <td>
-	      	<a href=""><button class="btn btn-info"><i class="icon-edit icon-white"></i> 賣給此人 </button></a>
-          </td>
-        </tr>
+      <?php
+      		$counter++;
+      	}
+      ?>
       </tbody>
     </table>
 	
@@ -113,20 +170,23 @@
         </tr>
       </thead>
       <tbody>
+      <?php
+      	$counter = 1;
+      	while( $chasing = mysqli_fetch_array($resultChasing) ) {
+      ?>
         <tr>
-          <td>1</td>
+          <td><?php echo $counter; ?></td>
           <td>
-	          <a href="#" rel="popover" title="Archerwind" data-content="And here's some amazing content. It's very engaging. right?">Eric Kuo</a>
+	          <a href="#" rel="popover" title="<?php echo $chasing['username']; ?>" data-content="<?php getSellerInfo($chasing['username'], $conn); ?>"><?php echo $chasing['username']; ?></a>
           </td>
-          <td>2012 / 10 / 10</td>                 
-        </tr>
-        <tr>
-          <td>2</td>
           <td>
-	          <a href="#" rel="popover" title="Archerwind" data-content="And here's some amazing content. It's very engaging. right?">Archerwind</a>
-          </td>
-          <td>2012 / 10 / 10</td>          
-        </tr>               
+          	<?php echo $chasing['markTime']; ?>
+          </td>                 
+        </tr>                   
+      <?php
+      		$counter++;
+      	}
+      ?>
       </tbody>
     </table>
 	
