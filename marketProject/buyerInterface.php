@@ -8,31 +8,15 @@
 		require_once( "../connectVar.php" );
 		$stu_id = $_SESSION['stu_id'];
 		
-		function getWinnerInfo( $userID, $conn ) {
-			$query = "SELECT username, stu_id, name, profile_pic, department FROM Member INNER JOIN member_info Using(stu_id) WHERE Member.stu_id = '$userID'";
-			$result = mysqli_query( $conn, $query ) or die('User Query Error');
-			$detail = mysqli_fetch_array( $result );
-			echo $detail['stu_id'] . '<br />';
-			echo $detail['name'] . '<br />';
-			echo $detail['department'];
-		}
+		require_once( "UserQueryFunction.php" );
 		
-		function getSellerInfo( $userID, $conn ) {
-			$query = "SELECT username, stu_id, name, profile_pic, department FROM Member INNER JOIN member_info Using(stu_id) WHERE Member.username = '$userID'";
-			$result = mysqli_query( $conn, $query ) or die('User Query Error');
-			$detail = mysqli_fetch_array( $result );
-			echo $detail['stu_id'] . '<br />';
-			echo $detail['name'] . '<br />';
-			echo $detail['department'];
-		}
-		
-		$query = "SELECT * FROM marketContention_history " .
+		/*$query = "SELECT * FROM marketContention_history " .
 		         "LEFT JOIN marketContention_trade ON  marketContention_history.trade_id = marketContention_trade.trade_id " .
 				 "LEFT JOIN product_info ON marketContention_trade.product_id = product_info.product_id " .
 				 "LEFT JOIN Member ON marketContention_trade.stu_id = Member.stu_id " .
 				 "LEFT JOIN member_info ON Member.stu_id = member_info.stu_id " .
 				 "WHERE marketContention_history.stu_id = '$stu_id'";
-		$result = mysqli_query( $conn, $query );
+		$result = mysqli_query( $conn, $query );*/
 	}
 ?>
 
