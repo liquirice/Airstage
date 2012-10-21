@@ -46,6 +46,12 @@ $f.dom.ready(function() {
 		  email:{
 			  required:1,email:1,
 		  },
+		  department:{
+			  required:1
+		  },
+		  grade:{
+			  required:1
+		  },
 
 	  },
 	  messages:{
@@ -70,7 +76,13 @@ $f.dom.ready(function() {
 			  required:"此欄位不能為空！",
 		  },
 		  email:{
-			  required:"此欄位不能為空！",email:"email格式不正確!",
+			  required:"此欄位不能為空！",
+		  },
+		  department:{
+			  required:" ",
+		  },
+		  grade:{
+			  required:" ",
 		  },
 	  },
 	  
@@ -128,8 +140,8 @@ $f.dom.ready(function() {
 	<tr>
 		<td align="right">系級</td>
         <td>
-			<select name="department">
-				<option>請選擇</option>
+			<select name="department" id="department">
+				<option value="">請選擇</option>
 				<option value="中文系">中文系</option>
 				<option value="外文系">外文系</option>
 				<option value="音樂系">音樂系</option>
@@ -147,8 +159,8 @@ $f.dom.ready(function() {
 				<option value="機電系">機電系</option>
 				<option value="政經系">政經系</option>
 			</select>　
-			<select name="grade">
-				<option>請選擇</option>
+			<select name="grade" id="grade">
+				<option value="">請選擇</option>
 				<option value="100">100</option>
 				<option value="101">101</option>
 				<option value="102">102</option>
