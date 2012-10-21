@@ -42,103 +42,12 @@ if( 1 /*$_SESSION['pass_phrase'] == $_POST['captcha'] && $_POST['captcha'] !=""*
 		}
 	}
 
-	$psw = sha1(clean($_POST['psw']));
-	$name = clean($_POST['name']);
-	/*系級按學號自動判斷*/
-	switch(substr($stu_id, 3, 3))
-	{
-		case 101:
-			$department = "中文系";
-			break;
-		case 102:
-			$department = "外文系";
-			break;
-		case 103:
-			$department = "音樂系";
-			break;
-		case 106:
-			$department = "劇藝系";
-			break;
-		case 201:
-			$department = "生科系";
-			break;
-		case 202:
-			$department = "化學系";
-			break;
-		case 203:
-			$department = "物理系";
-			break;
-		case 204:
-			$department = "應數系";
-			break;
-		case 301:
-			$department = "電機系";
-			break;
-		case 302:
-			$department = "機電系";
-			break;
-		case 304:
-			$department = "資工系";
-			break;
-		case 308:
-			$department = "材光系";
-			break;
-		case 309:
-			$department = "光電系";
-			break;
-		case 310:
-			$department = "材光系";
-			break;
-		case 401:
-			$department = "企管系";
-			break;
-		case 402:
-			$department = "資管系";
-			break;
-		case 403:
-			$department = "財管系";
-			break;
-		case 502:
-			$department = "海資系";
-			break;
-		case 504:
-			$department = "海工系";
-			break;
-/*			
-		case :
-			$department = "";
-			break;
-*/
-		default:
-			echo "<script type='text/javascript' language='javascript'>alert('註冊失敗！無法判別的學號！如有問題請洽管理人員。'); location.href='../index.php'</script>;";
-			exit();
-	}
-	switch(substr($stu_id, 1, 2))
-	{
-		case '96':
-			$grade = 100;
-			break;
-		case '97':
-			$grade = 101;
-			break;
-		case '98':
-			$grade = 102;
-			break;
-		case '99':
-			$grade = 103;
-			break;
-		case '00':
-			$grade = 104;
-			break;
-		case '01':
-			$grade = 105;
-			break;
-		default :
-			echo "<script type='text/javascript' language='javascript'>alert('註冊失敗！目前僅開放在校生註冊！如有問題請洽管理人員。'); location.href='../index.php'</script>;";
-			exit();
-	}
-	$gender = clean($_POST['gender']);
-	$email = clean($_POST['email']);
+	$psw = sha1(mysqli_real_escape_string( $conn, trim( $_POST['psw']) ));
+	$name = mysqli_real_escape_string( $conn, trim( $_POST['name']) );
+	$department = mysqli_real_escape_string( $conn, trim( $_POST['department']) );
+	$grade = mysqli_real_escape_string( $conn, trim( $_POST['grade']) );
+	$gender = mysqli_real_escape_string( $conn, trim( $_POST['gender']) );
+	$email = mysqli_real_escape_string( $conn, trim( $_POST['email']) );
 
 	$insert = "INSERT INTO `Member`(`username`, `stu_id`, `psw`, `name`, `department`, `grade`, `gender`, `email`) VALUES('{$username}', '{$stu_id}', '{$psw}', '{$name}', '{$department}', '{$grade}', '{$gender}', '{$email}')";
 	$MInfo_insert = "INSERT INTO `member_Info` (`stu_id`, `facebook`, `msn`, `twitter`, `plurk`, `skype`, `phone`, `food`, `home`, `id`, `dorm`, `room`, `outAddr`, `car`, `profile_pic`) VALUES ('{$stu_id}', '', '', '', '', '', '', '0', '', '', '', '000', '', '0', '');";

@@ -124,7 +124,42 @@ $f.dom.ready(function() {
 	<tr>
     	<td align="right">學號</td>
         <td><input type="text" name="stu_id" id="stu_id" value=""  placeholder="認證依據，請據實填寫" /></td>
-    </tr>	
+    </tr>
+	<tr>
+		<td align="right">系級</td>
+        <td>
+			<select name="department">
+				<option>請選擇</option>
+				<option value="中文系">中文系</option>
+				<option value="外文系">外文系</option>
+				<option value="音樂系">音樂系</option>
+				<option value="劇藝系">劇藝系</option>
+				<option value="應數系">應數系</option>
+				<option value="物理系">物理系</option>
+				<option value="化學系">化學系</option>
+				<option value="生科系">生科系</option>
+				<option value="財管系">財管系</option>
+				<option value="企管系">企管系</option>
+				<option value="資管系">資管系</option>
+				<option value="社會系">社會系</option>
+				<option value="資工系">資工系</option>
+				<option value="電機系">電機系</option>
+				<option value="機電系">機電系</option>
+				<option value="政經系">政經系</option>
+			</select>　
+			<select name="grade">
+				<option>請選擇</option>
+				<option value="100">100</option>
+				<option value="101">101</option>
+				<option value="102">102</option>
+				<option value="103">103</option>
+				<option value="104">104</option>
+				<option value="105">105</option>
+			</select>級
+			
+		</td>
+		
+	</tr>
     <tr>
     	<td align="right">性別</td>
         <td><input type="radio" value="男" name="gender" />男&nbsp;&nbsp;<input type="radio" value="女" name="gender" />女</td>
