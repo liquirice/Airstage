@@ -17,7 +17,11 @@
 				 "WHERE marketSecondHand_trade.trade_id = '$trade_id' AND marketSecondHand_trade.stu_id = '$stu_id' AND marketSecondHand_productInfo.product_id = marketSecondHand_trade.product_id ";
 		
 		$resultTitle = mysqli_query( $conn, $query );
-		$title = mysqli_fetch_array( $resultTitle ) or die('Title Error');
+		$title = mysqli_fetch_array( $resultTitle );
+		
+		if( mysqli_num_rows($resultTitle) == 0 ) {
+			echo '<script type="text/javascript">alert("You hace no rights to access this page!"); location.href="marketIndex.php"</script>';
+		}
 		
 		// Get Current Winner Info.
 		$query = "SELECT marketSecondHand_bidList.exchange_info, Member.username " .
@@ -26,7 +30,7 @@
 				 "LEFT JOIN Member ON marketSecondHand_bidList.bidder_id = Member.stu_id " .
 				 "WHERE marketSecondHand_trade.trade_id = '$trade_id' AND marketSecondHand_trade.stu_id = '$stu_id' AND marketSecondHand_bidList.buy_list = 1";
 		
-		$resultWinner = mysqli_query( $conn, $query ) or die('Winner Error'); 
+		$resultWinner = mysqli_query( $conn, $query ) or die('Forbidden!'); 
 			
 		// Get the whole bid list.
 		$query = "SELECT Member.username, marketSecondHand_trade.*, marketSecondHand_productInfo.*, marketSecondHand_bidList.* " .
@@ -36,7 +40,7 @@
 				 "LEFT JOIN Member ON Member.stu_id = marketSecondHand_bidList.bidder_id " .		
 				 "WHERE marketSecondHand_trade.trade_id = '$trade_id' AND marketSecondHand_trade.stu_id = '$stu_id' ";
 				 
-		$resultSecondHand = mysqli_query( $conn, $query ) or die('Query Error');
+		$resultSecondHand = mysqli_query( $conn, $query ) or die('Forbidden!');
 		
 		// Get chasing list.
 		$query = "SELECT Member.username, marketSecondHand_chasingList.markTime FROM marketSecondHand_trade " .
@@ -44,7 +48,7 @@
 				 "LEFT JOIN Member ON marketSecondHand_chasingList.stu_id = Member.stu_id " .
 				 "WHERE marketSecondHand_trade.trade_id = '$trade_id' AND marketSecondHand_trade.stu_id = '$stu_id'";
 
-		$resultChasing = mysqli_query( $conn, $query ) or die('Chasing Error');
+		$resultChasing = mysqli_query( $conn, $query ) or die('Forbidden!');
 	}
 ?>
 
@@ -144,8 +148,8 @@
           	<div class="btn-group">
                 <button class="btn btn-info dropdown-toggle" data-toggle="dropdown">Action <i class="icon-edit icon-white"></i></button>
                 <ul class="dropdown-menu">			
-					<li><a href="#"><i class="icon-ok"></i> 成交此筆</a></li>				
-					<li><a href="#"><i class="icon-envelope"></i> 回覆出價</a></li>				  			                                             
+					<li><a href="<?php echo 'dealSuccess.php?trade=' . $row['trade_id'] . '&buyer=' . $row['bidder_id']; ?>"><i class="icon-ok"></i> 成交此筆</a></li>				
+					<li><a href="<?php echo 'replyOffer.php?trade=' . $row['trade_id'] . '&buyer=' . $row['bidder_id']; ?>"><i class="icon-envelope"></i> 回覆出價</a></li>				  			                                             
                 </ul>
               </div>
           </td>       

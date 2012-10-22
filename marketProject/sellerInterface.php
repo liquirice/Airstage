@@ -52,7 +52,7 @@
 	<!-- Warning Area -->
 	<div class="alert alert-info fade in">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Airstage 提醒：</strong>記得用點案的方式打開各個市場的清單唷！
+        <strong>Airstage 提醒：</strong>記得用點案的方式收合各個市場的清單唷！
     </div>
     
     <!-- Second Hand Area -->
