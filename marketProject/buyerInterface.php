@@ -10,13 +10,15 @@
 		
 		require_once( "UserQueryFunction.php" );
 		
-		/*$query = "SELECT * FROM marketContention_history " .
-		         "LEFT JOIN marketContention_trade ON  marketContention_history.trade_id = marketContention_trade.trade_id " .
-				 "LEFT JOIN product_info ON marketContention_trade.product_id = product_info.product_id " .
-				 "LEFT JOIN Member ON marketContention_trade.stu_id = Member.stu_id " .
-				 "LEFT JOIN member_info ON Member.stu_id = member_info.stu_id " .
-				 "WHERE marketContention_history.stu_id = '$stu_id'";
-		$result = mysqli_query( $conn, $query );*/
+		$query = "SELECT marketSecondHand_productInfo.title, Member.stu_id, marketSecondHand_trade.exist, marketSecondHand_time.start_date, marketSecondHand_bidList.*, " .
+				 "( SELECT COUNT(trade_id) FROM marketSecondHand_trade INNER JOIN marketSecondHand_bidList Using(trade_id) WHERE marketSecondHand_trade.trade_id = marketSecondHand_bidList.trade_id AND marketSecondHand_bidList.bidder_id = '$stu_id' ) AS BidNum " .
+				 "FROM marketSecondHand_trade " .
+		         "LEFT JOIN marketSecondHand_bidList ON marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id " .
+				 "LEFT JOIN marketSecondHand_productInfo ON marketSecondHand_productInfo.product_id = marketSecondHand_trade.product_id " .
+				 "LEFT JOIN Member ON marketSecondHand_trade.stu_id = Member.stu_id " .
+				 "LEFT JOIN marketSecondHand_time ON marketSecondHand_time.time_id = marketSecondHand_trade.time_id " .
+				 "WHERE marketSecondHand_bidList.bidder_id = '$stu_id'";
+		$resultSecond = mysqli_query( $conn, $query ) or die('Second Die!');
 	}
 ?>
 
@@ -26,7 +28,7 @@
 	<link href = "../tm2.ico" rel = "shortcut icon" />
 	<link href = "css/bootstrap.css" rel = "stylesheet" />
 	<link href = "css/baseCss.css" rel = "stylesheet" />
-	<link href="css/docs.css" rel="stylesheet">
+	<link href = "css/docs.css" rel="stylesheet">
 	<meta http-equiv = "Content-Type" content = "text/html; charset = utf8" />
 	<meta http-equiv = "Content-Language" content = "zh-tw" />
 </head>
@@ -64,7 +66,7 @@
           <h3>二手市場</h3>
         </a>
       </div>
-      <div id="collapseOne" class="accordion-body collapse">
+      <div id="collapseOne" class="accordion-body collapse in">
         <div class="accordion-inner">
         <form action="" method="post">
           <table class="table table-striped">
@@ -82,36 +84,53 @@
 		        </tr>
 		      </thead>
 		      <tbody>
+		      <?php
+		      	$counter = 1;
+		      	while( $row = mysqli_fetch_array($resultSecond) ) {
+		      ?>
 		        <tr>
-		          <td>1</td>
-		          <td><a href = "#">Adobe Photoshop CS6</a></td>
+		          <td><?php echo $counter; ?></td>
+		          <td>
+		          	<a href = "#"><?php echo $row['title']; ?></a>
+		          </td>
 		          <td>       
 			      	<a href="#" rel="popover" title="Archerwind" data-content="And here's some amazing content. It's very engaging. right?">Archerwind</a>          	
 		          </td>
-		          <td>金錢</td>
-		          <td><font color="red">拍賣中</font></td>
-		          <td>40人</td>
-		          <td>2012 / 10 / 10</td>	
-		          <td><i class="icon-ok"></i></td>
 		          <td>
-				  	<input type="checkbox" id="inlineCheckbox1" value="option1" name="">
+			          <?php 
+			          	if( $row['exchange_type'] == 0 ) echo '金錢';
+			          	else if( $row['exchange_type'] == 1 ) echo'以物易物';
+			          	else echo '其他'; 
+			          ?>
+		          </td>
+		          <td>
+		          	<?php
+		          		if( $row['exist'] == 1 ) echo '<font color="red">拍賣中</font>';
+		          		else echo '已結標';
+		          	?>
+		          </td>
+		          <td>
+			          <?php echo $row['BidNum']; ?>
+		          </td>
+		          <td>
+		          	<?php echo $row['start_date']; ?>
+		          </td>	
+		          <td>
+		          	<?php
+		          		if( $row['buy_list'] == $stu_id ) echo '<i class="icon-ok"></i>'; 
+		          		else echo '<i class="icon-thumbs-down"></i>';
+		          	?>
+		          </td>
+		          <td>
+		          	<?php
+				  		if( $row['exist'] == 0 ) echo '<input type="checkbox" id="inlineCheckbox1" value="option1" name="">';
+				  	?>
 		          </td>	             
 		        </tr>
-		        <tr>
-		          <td>2</td>
-		          <td><a href = "#">Adobe Photoshop CS6</a></td>
-		          <td>
-			          <a href="#" rel="popover" title="Archerwind" data-content="And here's some amazing content. It's very engaging. right?">Archerwind</a>
-		          </td>
-		          <td>以物易物</td>
-		          <td>已結案</td>
-		          <td>170人</td>
-		          <td>2012 / 10 / 10</td>	
-		          <td><i class="icon-thumbs-down"></i></td>	 
-		          <td>
-				  	<input type="checkbox" id="inlineCheckbox1" value="option1" name="">
-		          </td>        
-		        </tr>
+		      <?php
+		      		$counter++;
+		      	}
+		      ?>		   
 		      </tbody>
 		    </table>
 		    <button type="submit" name = "delete" class="btn btn-danger "><i class="icon-trash icon-white"></i> 刪除勾選資料</button> 
@@ -128,7 +147,7 @@
           <h3>限時競標</h3>
         </a>
       </div>
-      <div id="collapseTwo" class="accordion-body collapse in">
+      <div id="collapseTwo" class="accordion-body collapse">
         <div class="accordion-inner">
         <form action="" method="post">
           <table class="table table-striped">
@@ -147,25 +166,25 @@
 		      </thead>
 		      <tbody>
 			  <?php
-				$counter = 1;
-				while( $row = mysqli_fetch_array($result) ) {
+				//$counter = 1;
+				//while( $row = mysqli_fetch_array($result) ) {
 			  ?>
-		        <tr>
-		          <td><?php echo $counter; ?></td>
+		        <!--tr>
+		          <td><?php //echo $counter; ?></td>
 		          <td>
-					<a href = "#"><?php echo $row['title']; ?></a>
+					<a href = "#"><?php //echo $row['title']; ?></a>
 				  </td>
 		          <td>       
-			      	<a href="#" rel="popover" title="<?php echo $row['username']; ?>" data-content="<?php getSellerInfo($row['username'], $conn); ?>"><?php echo $row['username']; ?></a>          	
+			      	<a href="#" rel="popover" title="<?php //echo $row['username']; ?>" data-content="<?php //getSellerInfo($row['username'], $conn); ?>"><?php //echo $row['username']; ?></a>          	
 		          </td>
-		          <td>NT$<?php echo $row['current_price']; ?></td>
+		          <td>NT$<?php //echo $row['current_price']; ?></td>
 		          <td>
-			        <a href="#" rel="popover" title="<?php echo "<font color='red'>得標者</font>"; ?>" data-content="<?php getWinnerInfo($row['get_stu_id'], $conn); ?>"><?php echo $row['get_stu_id']; ?></a>
+			        <a href="#" rel="popover" title="<?php //echo "<font color='red'>得標者</font>"; ?>" data-content="<?php //getWinnerInfo($row['get_stu_id'], $conn); ?>"><?php //echo $row['get_stu_id']; ?></a>
 		          </td>
 		          <td>
 				  <?php
-					if( $row['exist'] != 0 ) echo '<a href="#"><i class="icon-repeat"></i> 00:00:30s</a>';
-					else echo '<i class="icon-ban-circle"></i> 已結標';
+					//if( $row['exist'] != 0 ) echo '<a href="#"><i class="icon-repeat"></i> 00:00:30s</a>';
+					//else echo '<i class="icon-ban-circle"></i> 已結標';
 				  ?>
 				  </td>
 		          <td>
@@ -173,21 +192,21 @@
 				  </td>   
 		          <td>
 					<?php
-						if( $row['get_stu_id'] == $stu_id ) echo '<i class="icon-ok"></i>';
-						else echo '<i class="icon-thumbs-down"></i>';
+						//if( $row['get_stu_id'] == $stu_id ) echo '<i class="icon-ok"></i>';
+						//else echo '<i class="icon-thumbs-down"></i>';
 					?>
 				  </td>   
 		          <td>
 				  	<input type="checkbox" id="inlineCheckbox1" value="option1" name="">
 		          </td> 		          
-		        </tr>
+		        </tr-->
 			<?php
-					$counter++;
-				} // End while.
+					//$counter++;
+				//} // End while.
 			?>
 		      </tbody>
 		    </table>
-		    <button type="submit" name = "delete" class="btn btn-danger "><i class="icon-trash icon-white"></i> 刪除勾選資料</button> 
+		    <!--button type="submit" name = "delete" class="btn btn-danger "><i class="icon-trash icon-white"></i> 刪除勾選資料</button--> 
         </form>    
         </div>
       </div>
@@ -219,7 +238,7 @@
 		        </tr>
 		      </thead>
 		      <tbody>
-		        <tr>
+		        <!--tr>
 		          <td>1</td>
 		          <td><a href = "#">Adobe Photoshop CS6</a></td>
 		          <td>       
@@ -248,10 +267,10 @@
 		          <td>
 				  	<input type="checkbox" id="inlineCheckbox1" value="option1" name="">
 		          </td>
-		        </tr>
+		        </tr-->
 		      </tbody>
 		    </table>
-		    <button type="submit" name = "delete" class="btn btn-danger "><i class="icon-trash icon-white"></i> 刪除勾選資料</button> 
+		    <!--button type="submit" name = "delete" class="btn btn-danger "><i class="icon-trash icon-white"></i> 刪除勾選資料</button--> 
         </form>
         </div>
       </div>

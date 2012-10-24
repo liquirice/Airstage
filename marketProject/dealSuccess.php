@@ -1,12 +1,14 @@
 <?php
 	session_start();
 	
-	function winnerNotification() {
-		
+	function winnerNotification( $id, $conn ) {
+		// Send email to the winner about the trading result and the remnants.
+		echo $id . '<br />';
 	}
 	
-	function loserNotification() {
-		
+	function loserNotification( $id, $conn ) {
+		// Send email to the loser about the remaining numbers and change their bidList.
+		echo $id . '<br />';
 	}
 	
 	if( !isset($_SESSION['stu_id']) || !isset($_SESSION['name']) || !isset($_SESSION['auth']) || !isset($_SESSION['nick']) ) {
@@ -25,21 +27,23 @@
 		
 		$result = mysqli_query( $conn, $query ) or die('Forbidden!');
 		
+		// Mark the winner.
+		$query = "UPDATE marketSecondHand_bidList SET buy_list = 1 WHERE bidder_id = '$buyer_id'";
+		$setWinner = mysqli_query( $conn, $query ) or die('setWinner Error!');
+		
+		// Update the product number.
+		$left = $row['number'] - $row['wanted_number'];
+		$query = "UPDATE marketSecondHand_trade SET number = '$left' WHERE marketSecondHand_trade.trade_id = '$trade_id'";
+		$updateNum = mysqli_query( $conn, $query ) or die('updateNum Error!');
+		
 		// Give all the commit user notifications about the product dealing info.
 		while( $line = mysqli_fetch_array($result) ) {
 			if( $line['bidder_id'] == $buyer_id ) {
-				// Mark the winner.
-				$query = "UPDATE marketSecondHand_bidList SET buy_list = 1 WHERE bidder_id = '$buyer_id'";
-				$setWinner = mysqli_query( $conn, $query ) or die('setWinner Error!');
-				
-				//
-				$left = $row['number'] - $row['wanted_number'];
-				$query = "UPDATE marketSecondHand_trade SET number = '$left' WHERE marketSecondHand_trade.trade_id = '$trade_id'";
-				$updateNum = mysqli_query( $conn, $query ) or die('updateNum Error!');
-				
 				// The winner condition.
+				winnerNotification( $line['bidder_id'], $conn );
 			} else {
 				// The common condition.
+				loserNotification( $line['bidder_id'], $conn );
 			}
 		}
 	}

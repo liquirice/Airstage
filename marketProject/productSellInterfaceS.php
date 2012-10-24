@@ -95,11 +95,16 @@
 	<!-- Second Hand Area -->
 	<h3><?php echo $title['title']; ?></h3>
 	<?php
-		while( $winner = mysqli_fetch_array($resultWinner) ) {
+		if( mysqli_num_rows($resultWinner) == 0 ) {
+			echo '<h4>尚未有得標者</h4>';
+		} else {
+			while( $winner = mysqli_fetch_array($resultWinner) ) {
+		
 	?>
 			<h4><font color="red">得標者 - <?php echo $winner['username']; ?> - <?php echo $winner['exchange_info']; ?></font></h4>
 	<?php
-		}	
+			}	
+		}
 	?>
 	<br />
 	
