@@ -10,8 +10,9 @@
 		
 		require_once( "UserQueryFunction.php" );
 		
-		$query = "SELECT marketSecondHand_productInfo.title, Member.stu_id, marketSecondHand_trade.exist, marketSecondHand_time.start_date, marketSecondHand_bidList.*, " .
-				 "( SELECT COUNT(trade_id) FROM marketSecondHand_trade INNER JOIN marketSecondHand_bidList Using(trade_id) WHERE marketSecondHand_trade.trade_id = marketSecondHand_bidList.trade_id AND marketSecondHand_bidList.bidder_id = '$stu_id' ) AS BidNum " .
+		$query = "SELECT marketSecondHand_productInfo.title, Member.username, marketSecondHand_trade.exist, marketSecondHand_time.start_date, marketSecondHand_bidList.*, " .
+				 "( SELECT COUNT(bidder_id) " . 
+				 "FROM marketSecondHand_bidList WHERE marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id ) AS BidNum " . 
 				 "FROM marketSecondHand_trade " .
 		         "LEFT JOIN marketSecondHand_bidList ON marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id " .
 				 "LEFT JOIN marketSecondHand_productInfo ON marketSecondHand_productInfo.product_id = marketSecondHand_trade.product_id " .
@@ -94,7 +95,7 @@
 		          	<a href = "#"><?php echo $row['title']; ?></a>
 		          </td>
 		          <td>       
-			      	<a href="#" rel="popover" title="Archerwind" data-content="And here's some amazing content. It's very engaging. right?">Archerwind</a>          	
+			      	<a href="#" rel="popover" title="<?php echo $row['username']; ?>" data-content="<?php getSellerInfo($row['username'], $conn); ?>"><?php echo $row['username']; ?></a>          	
 		          </td>
 		          <td>
 			          <?php 
