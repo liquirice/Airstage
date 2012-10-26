@@ -6,7 +6,7 @@
 
 <!DOCTYPE HTML>
 <head>
-	<title>Airstage - Student Market - Entrance</title>
+	<title>Airstage - Student Market</title>
 	<link href = "../tm2.ico" rel = "shortcut icon" />
 	<link href = "css/bootstrap.css" rel = "stylesheet" />
 	<link href = "css/baseCss.css" rel = "stylesheet" />

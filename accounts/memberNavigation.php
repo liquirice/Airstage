@@ -17,9 +17,8 @@
 								echo '<li><a href = "managerInterface.php">管理者介面</a></li>';
 						?>
 					    	<li><a href="#">報名系統</a></li>
-							<li><a href="#">影音聯播</a></li>
-							<li><a href="#">專　　欄</a></li>
-							<li><a href="#">24HR幫幫忙</a></li>
+							<li><a href="../marketProject/marketIndex.php">學生市集</a></li>
+							<li><a href="#">專　　欄</a></li>			
 					    </ul>
 					</li>
 	              </ul>

@@ -60,6 +60,9 @@
       <div class="accordion-heading">
         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
           <h3>二手市場</h3>
+          <blockquote>
+          	<small>Second-Hand Market</small>
+          </blockquote>
         </a>
       </div>
       <div id="collapseOne" class="accordion-body collapse in">
@@ -123,6 +126,9 @@
       <div class="accordion-heading">
         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
           <h3>限時競標</h3>
+          <blockquote>
+          	<small>Contention Market</small>
+          </blockquote>
         </a>
       </div>
       <div id="collapseTwo" class="accordion-body collapse">
@@ -174,6 +180,9 @@
       <div class="accordion-heading">
         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
           <h3>校園團購</h3>
+          <blockquote>
+          	<small>Group-Shop Market</small>
+          </blockquote>
         </a>
       </div>
       <div id="collapseThree" class="accordion-body collapse">

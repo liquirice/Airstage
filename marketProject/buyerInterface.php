@@ -20,6 +20,14 @@
 				 "LEFT JOIN marketSecondHand_time ON marketSecondHand_time.time_id = marketSecondHand_trade.time_id " .
 				 "WHERE marketSecondHand_bidList.bidder_id = '$stu_id'";
 		$resultSecond = mysqli_query( $conn, $query ) or die('Second Die!');
+		
+		if( isset($_POST['deleteSecond']) ) {
+			// Delete the buyer info from the bidList.
+			
+			
+			$query = "DELETE FROM marketSecondHand_bidList WHERE bidder_id = '$stu_id' AND ";
+			$result = mysqli_query( $conn, $query ) or ('delete second error!');
+		}
 	}
 ?>
 
@@ -29,7 +37,7 @@
 	<link href = "../tm2.ico" rel = "shortcut icon" />
 	<link href = "css/bootstrap.css" rel = "stylesheet" />
 	<link href = "css/baseCss.css" rel = "stylesheet" />
-	<link href = "css/docs.css" rel="stylesheet">
+	<link href = "css/docs.css" rel = "stylesheet" />
 	<meta http-equiv = "Content-Type" content = "text/html; charset = utf8" />
 	<meta http-equiv = "Content-Language" content = "zh-tw" />
 </head>
@@ -39,6 +47,7 @@
 <?php
 	require_once( "marketNavi.php" );
 	require_once( "marketAnnouce.php" );
+	//require_once( "sideBarNavi.php" );	
 ?>
 
 <!-- Container Start -->
@@ -65,11 +74,13 @@
       <div class="accordion-heading">
         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
           <h3>二手市場</h3>
+          <blockquote>
+          	<small>Second-Hand Market</small>
+          </blockquote>
         </a>
       </div>
       <div id="collapseOne" class="accordion-body collapse in">
         <div class="accordion-inner">
-        <form action="" method="post">
           <table class="table table-striped">
 		      <thead>
 		        <tr>
@@ -118,13 +129,13 @@
 		          </td>	
 		          <td>
 		          	<?php
-		          		if( $row['buy_list'] == $stu_id ) echo '<i class="icon-ok"></i>'; 
+		          		if( $row['buy_list'] == 1 ) echo '<i class="icon-ok"></i>'; 
 		          		else echo '<i class="icon-thumbs-down"></i>';
 		          	?>
 		          </td>
 		          <td>
 		          	<?php
-				  		if( $row['exist'] == 0 ) echo '<input type="checkbox" id="inlineCheckbox1" value="option1" name="">';
+				  		if( $row['exist'] == 0 || $row['buy_list'] == 0 ) echo '<a href="deleteBuyList.php?trade=' . $row['trade_id'] . '"><i class="icon-trash"></i> 刪除</a>';
 				  	?>
 		          </td>	             
 		        </tr>
@@ -134,8 +145,6 @@
 		      ?>		   
 		      </tbody>
 		    </table>
-		    <button type="submit" name = "delete" class="btn btn-danger "><i class="icon-trash icon-white"></i> 刪除勾選資料</button> 
-        </form>
         </div>
       </div>
     </div>
@@ -146,6 +155,9 @@
       <div class="accordion-heading">
         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
           <h3>限時競標</h3>
+          <blockquote>
+          	<small>Contention Market</small>
+          </blockquote>
         </a>
       </div>
       <div id="collapseTwo" class="accordion-body collapse">
@@ -219,6 +231,9 @@
       <div class="accordion-heading">
         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
           <h3>校園團購</h3>
+          <blockquote>
+          	<small>Group-Shop Market</small>
+          </blockquote>
         </a>
       </div>
       <div id="collapseThree" class="accordion-body collapse">
@@ -276,7 +291,6 @@
         </div>
       </div>
     </div>
-	
 </div>
 <!-- End Container -->
 

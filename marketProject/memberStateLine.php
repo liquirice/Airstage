@@ -293,7 +293,7 @@
           </li>
         </ul>
       </div><!-- /.nav-collapse -->
-    </div>
+    </div><!-- /container -->
   </div><!-- /navbar-inner -->
 </div><!-- /navbar -->
 	
