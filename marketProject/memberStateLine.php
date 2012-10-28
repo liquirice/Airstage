@@ -53,63 +53,7 @@
         </ul>
 		
 		<!-- newProduct Popframe -->
-		<div id="newProduct" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h3 id="myModalLabel">刊登物品</h3>
-			</div>
-			<div class="modal-body">
-				<form class="form-horizontal" action = "sellS.php" method = "post">
-					<div class="control-group">
-						<label class="control-label">選擇分類</label>
-						<div class="controls">
-							<select class="input-small" name="categoryS" id="categoryS">
-								<option value="0202001">test</option>
-							</select>
-						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label">物品圖片</label>
-						<div class="controls">
-							<input class="span3" type="file" name="product_pic" id="product_pic" class="btn btn-small" value="上傳圖片" />
-						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label">商品標題</label>
-						<div class="controls">
-							<input class="span4" type="text" name = "title" id="title" placeholder="">
-						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label">價格數量</label>
-						<div class="controls">
-							每個 <input class="span1" type="text" name="least_price" id="least_price" placeholder=""> 元　/　
-							共有 <input class="span1" type="text" name="number" id="number" placeholder=""> 個
-						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label">刊登時間</label>
-						<div class="controls">
-							<input class="input-mini" type="text" name="end_day" id="end_day" maxlength="2" placeholder="0~29"> 天 又 
-							<input class="input-mini" type="text" name="end_hr" id="end_hr" maxlength="2" placeholder="0~23"> 小時 
-						</div>
-						<!--//date("Y-m-d H:i:s");-->
-					</div>
-					<div class="control-group">
-						<label class="control-label">物品說明</label>
-						<div class="controls">
-							<textarea class="span4" name="product_detail" id="product_detail">
-							</textarea>
-						</div>
-					</div>					
-					<div class="control-group">
-						<div class="controls">
-							<button type="submit" name="loginSubmit" class="btn">登入</button>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>	
+		<?php require_once("newProduct_Popframe.php"); ?>
 
 		<!-- test buyS Popframe -->
 		<div id="buyS" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -130,13 +74,6 @@
 			<div class="modal-body">
 				<form class="form-horizontal" action = "buyS.php" method = "post">
 					<div class="control-group">
-						<label class="control-label">價格數量</label>
-						<div class="controls">
-							每個 <input class="span1" type="text" name="least_price" id="least_price" placeholder=""> 元　/　
-							共有 <input class="span1" type="text" name="number" id="number" placeholder=""> 個
-						</div>
-					</div>
-					<div class="control-group">
 						<label class="control-label">商品編號</label>
 						<div class="controls">
 							<?php echo $trade_id.'<input type="hidden" name="trad_id" id="trad_id" value="'.$trade_id.'" >'; ?>
@@ -155,6 +92,7 @@
 							?>
 						</div>
 					</div>
+					<hr/>
 					<div class="control-group">
 						<label class="control-label">我要用</label>
 						<div class="controls">
@@ -293,7 +231,7 @@
           </li>
         </ul>
       </div><!-- /.nav-collapse -->
-    </div><!-- /container -->
+    </div>
   </div><!-- /navbar-inner -->
 </div><!-- /navbar -->
 	
