@@ -5,7 +5,24 @@
 	if( !isset($_SESSION['stu_id']) || !isset($_SESSION['name']) || !isset($_SESSION['auth']) || !isset($_SESSION['nick']) ) {
 		echo '<script type="text/javascript">alert("請先登入!"); location.href="marketIndex.php"</script>';
 	} else {
-			
+		require_once( "../connectVar.php" );
+		require_once( "UserQueryFunction.php" );
+		
+		$stu_id = $_SESSION['stu_id'];
+		$trade_id = 4;//mysqli_real_escape_string( $conn, trim($_GET['trade']) );
+		
+		$query = "SELECT marketSecondHand_bidList.*, Member.username, marketSecondHand_productInfo.title " . 
+				 "FROM marketSecondHand_bidList " . 
+				 "LEFT JOIN marketSecondHand_trade ON marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id " .
+				 "LEFT JOIN marketSecondHand_productInfo ON marketSecondHand_trade.product_id = marketSecondHand_productInfo.product_id " .
+				 "LEFT JOIN Member ON Member.stu_id = marketSecondHand_trade.stu_id " .
+				 "WHERE marketSecondHand_bidList.trade_id = '$trade_id' AND marketSecondHand_bidList.bidder_id = '$stu_id' AND marketSecondHand_bidList.buy_list = 1";
+		$result = mysqli_query( $conn, $query ) or die('Feedback Error!');
+		$row = mysqli_fetch_array( $result );
+		
+		if( isset($_POST['send']) ) {
+			// Insert the feedback to the comment table.
+		}
 	}
 ?>
 
@@ -61,35 +78,41 @@
     	<div class="control-group">
 		  <label class="control-label"><i class="icon-bookmark"></i> 商品名稱</label>
 		  <div class="controls">
-		  	<span class="input-xlarge uneditable-input"><?php //echo ; ?></span>
+		  	<span class="input-xlarge uneditable-input"><?php echo $row['title']; ?></span>
 		  </div>
 		</div>
 		
 		<div class="control-group">
 		  <label class="control-label"><i class="icon-resize-small"></i> 成交方式</label>
 		  <div class="controls">
-		  	<span class="input-xlarge uneditable-input"><?php //echo ; ?></span>
-		  </div>
-		</div>
-		
-		<div class="control-group">
-		  <label class="control-label"><i class="icon-globe"></i> 交易地點</label>
-		  <div class="controls">
-		    <input type="text" name="tradePlace" placeholder="在哪邊交易的呢？" class="input-xlarge"/>
+		  	<span class="input-xlarge uneditable-input">
+		  		<?php 
+			  		if( $row['exchange_type'] == 0 ) echo '金錢';
+			  		else if( $row['exchange_type'] == 1 ) echo '以物易物';
+			  		else echo '其他';
+		  		?>
+		  	</span>
 		  </div>
 		</div>
 		
 		<div class="control-group">
 		  <label class="control-label"><i class="icon-shopping-cart"></i> 成交條件</label>
 		  <div class="controls">
-		    <span class="input-xlarge uneditable-input"><?php //echo ; ?></span>
+		    <span class="input-xlarge uneditable-input"><?php echo $row['exchange_info']; ?></span>
+		  </div>
+		</div>
+		
+		<div class="control-group">
+		  <label class="control-label"><i class="icon-globe"></i> 成交數量</label>
+		  <div class="controls">
+		    <span class="input-xlarge uneditable-input"><?php echo $row['wanted_number']; ?></span>
 		  </div>
 		</div>
 		
 		<div class="control-group">
 		  <label class="control-label"><i class="icon-user"></i> 賣方資料</label>
 		  <div class="controls">
-		    <a href="#" rel="popover" title="<?php //echo $row['username']; ?>" data-content="<?php //getSellerInfo($row['username'], $conn); ?>"><?php //echo $row['username']; ?></a>
+		    <a href="#" rel="popover" title="<?php echo $row['username']; ?>" data-content="<?php getSellerInfo($row['username'], $conn); ?>"><?php echo $row['username']; ?></a>
 		  </div>
 		</div>
 		

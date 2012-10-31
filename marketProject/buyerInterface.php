@@ -16,7 +16,9 @@
 			if( $priority == 'u' ) {
 				$query = "SELECT marketSecondHand_productInfo.title, Member.username, marketSecondHand_trade.exist, marketSecondHand_time.start_date, marketSecondHand_bidList.*, " .
 						 "( SELECT COUNT(bidder_id) " . 
-						 "FROM marketSecondHand_bidList WHERE marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id ) AS BidNum " . 
+						 "FROM marketSecondHand_bidList WHERE marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id ) AS BidNum, " . 
+						 "( SELECT COUNT(buyer_id) FROM marketSecondHand_comment INNER JOIN marketSecondHand_bidList Using(trade_id) " . 
+						 "WHERE marketSecondHand_comment.buyer_id = '$stu_id' AND marketSecondHand_bidList.trade_id = marketSecondHand_comment.trade_id ) AS FeedBack " .
 						 "FROM marketSecondHand_trade " .
 				         "LEFT JOIN marketSecondHand_bidList ON marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id " .
 						 "LEFT JOIN marketSecondHand_productInfo ON marketSecondHand_productInfo.product_id = marketSecondHand_trade.product_id " .
@@ -27,7 +29,9 @@
 			} else if( $priority == 'd' ) {
 				$query = "SELECT marketSecondHand_productInfo.title, Member.username, marketSecondHand_trade.exist, marketSecondHand_time.start_date, marketSecondHand_bidList.*, " .
 						 "( SELECT COUNT(bidder_id) " . 
-						 "FROM marketSecondHand_bidList WHERE marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id ) AS BidNum " . 
+						 "FROM marketSecondHand_bidList WHERE marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id ) AS BidNum, " . 
+						 "( SELECT COUNT(buyer_id) FROM marketSecondHand_comment INNER JOIN marketSecondHand_bidList Using(trade_id) " . 
+						 "WHERE marketSecondHand_comment.buyer_id = '$stu_id' AND marketSecondHand_bidList.trade_id = marketSecondHand_comment.trade_id ) AS FeedBack " .
 						 "FROM marketSecondHand_trade " .
 				         "LEFT JOIN marketSecondHand_bidList ON marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id " .
 						 "LEFT JOIN marketSecondHand_productInfo ON marketSecondHand_productInfo.product_id = marketSecondHand_trade.product_id " .
@@ -40,7 +44,9 @@
 			$permute = '';
 			$query = "SELECT marketSecondHand_productInfo.title, Member.username, marketSecondHand_trade.exist, marketSecondHand_time.start_date, marketSecondHand_bidList.*, " .
 					 "( SELECT COUNT(bidder_id) " . 
-					 "FROM marketSecondHand_bidList WHERE marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id ) AS BidNum " . 
+					 "FROM marketSecondHand_bidList WHERE marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id ) AS BidNum, " . 
+					 "( SELECT COUNT(buyer_id) FROM marketSecondHand_comment INNER JOIN marketSecondHand_bidList Using(trade_id) " . 
+					 "WHERE marketSecondHand_comment.buyer_id = '$stu_id' AND marketSecondHand_bidList.trade_id = marketSecondHand_comment.trade_id ) AS FeedBack " .
 					 "FROM marketSecondHand_trade " .
 			         "LEFT JOIN marketSecondHand_bidList ON marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id " .
 					 "LEFT JOIN marketSecondHand_productInfo ON marketSecondHand_productInfo.product_id = marketSecondHand_trade.product_id " .
@@ -50,14 +56,6 @@
 		}
 		
 		$resultSecond = mysqli_query( $conn, $query ) or die('Second Die!');
-		
-		if( isset($_POST['deleteSecond']) ) {
-			// Delete the buyer info from the bidList.
-			
-			
-			$query = "DELETE FROM marketSecondHand_bidList WHERE bidder_id = '$stu_id' AND ";
-			$result = mysqli_query( $conn, $query ) or ('delete second error!');
-		}
 	}
 ?>
 
@@ -95,7 +93,7 @@
 	<!-- Warning Area -->
 	<div class="alert alert-info fade in">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Airstage 提醒：</strong>得標的物品無法刪除記錄唷！ 目前賣方資料排序功能暫不開放。
+        <strong>Airstage 提醒：</strong>得標的物品無法刪除記錄唷！ 只有得標的物品才能夠進行回饋呢！ 目前賣方資料與回饋排序功能暫不開放。
     </div>
 	
 	
@@ -177,7 +175,15 @@
 					?>
 		          </th> 
 		          <th>
-		          	回饋 <i class="icon-chevron-down"></i>
+		          	回饋		       
+		          	<?php
+		          		// Fix the sorting bug from the SQL query.
+						if( @$permute == '' || $priority == 'u' ) echo '<a href="buyerInterface.php?permute=FeedBack&priority=d">';
+						else echo '<a href="buyerInterface.php?permute=FeedBack&priority=u">';
+						
+						if( @$permute == 'FeedBack' && @$priority == 'd' ) echo '<i class="icon-chevron-up"></i></a>';
+						else echo '<i class="icon-chevron-down"></i></a>';	
+					?>
 		          </th>
 		          <th>刪除</th>     
 		        </tr>
@@ -221,7 +227,12 @@
 		          	?>
 		          </td>
 		          <td>
-		          	未評分
+		          	<?php		          	
+		          		if( $row['buy_list'] == 1 ) {
+			          		if( $row['FeedBack'] == 0 ) echo '<a href="feedbackS.php?trade='. $row['trade_id'] .'">未評分</a>';
+			          		else echo '已評鑑';
+		          		}
+		          	?>		          
 		          </td>
 		          <td>
 		          	<?php

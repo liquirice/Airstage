@@ -39,7 +39,7 @@
 	        	<a href="" class="dropdown-toggle" data-toggle="dropdown">交易管理介面 <b class="caret"></b></a>
 	            <ul class="dropdown-menu">   
 	              <li><a href="onChasing.php">追蹤清單</a></li>
-	              <li><a href="#">我的評分</a></li>
+	              <li><a href="myRate.php">我的評分</a></li>
 	              <li class="divider"></li>
 	              <li class="nav-header">進階管理</li>
 	              <li><a href="buyerInterface.php">買方總管理</a></li>
