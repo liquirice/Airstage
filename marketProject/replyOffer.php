@@ -81,7 +81,7 @@
 		</div>
 		
 		<div class="control-group">
-		  <label class="control-label" for="inputEmail">必須最低出價</label>
+		  <label class="control-label" for="inputEmail">自訂最低出價</label>
 		  <div class="controls">
 		  	<span class="input-xlarge uneditable-input"><?php echo $row['least_price']; ?></span>
 		  </div>

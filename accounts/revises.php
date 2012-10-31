@@ -2,7 +2,7 @@
 	// Last Modified Day : 2012.09.27
 	require_once( "../setSession.php" );
 	
-	if( !isset($_SESSION['stu_id']) || !isset($_SESSION['name']) || !isset($_SESSION['auth']) ) {
+	if( !isset($_SESSION['stu_id']) || !isset($_SESSION['name']) || !isset($_SESSION['auth']) || !isset($_SESSION['nick']) ) {
 		echo '<script type="text/javascript">alert("請先登入唷～"); location.href="../index.php"</script>';
 	} else {
 		if( $_SESSION['auth'] == 0 ) {

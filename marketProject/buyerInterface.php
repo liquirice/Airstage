@@ -6,19 +6,49 @@
 		echo '<script type="text/javascript">alert("請先登入!"); location.href="marketIndex.php"</script>';
 	} else {
 		require_once( "../connectVar.php" );
+		require_once( "UserQueryFunction.php" );
 		$stu_id = $_SESSION['stu_id'];
 		
-		require_once( "UserQueryFunction.php" );
+		if( isset($_GET['permute']) ) {
+			@$permute = mysqli_real_escape_string( $conn, trim($_GET['permute']) );
+			@$priority = mysqli_real_escape_string( $conn, trim($_GET['priority']) );
 		
-		$query = "SELECT marketSecondHand_productInfo.title, Member.username, marketSecondHand_trade.exist, marketSecondHand_time.start_date, marketSecondHand_bidList.*, " .
-				 "( SELECT COUNT(bidder_id) " . 
-				 "FROM marketSecondHand_bidList WHERE marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id ) AS BidNum " . 
-				 "FROM marketSecondHand_trade " .
-		         "LEFT JOIN marketSecondHand_bidList ON marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id " .
-				 "LEFT JOIN marketSecondHand_productInfo ON marketSecondHand_productInfo.product_id = marketSecondHand_trade.product_id " .
-				 "LEFT JOIN Member ON marketSecondHand_trade.stu_id = Member.stu_id " .
-				 "LEFT JOIN marketSecondHand_time ON marketSecondHand_time.time_id = marketSecondHand_trade.time_id " .
-				 "WHERE marketSecondHand_bidList.bidder_id = '$stu_id'";
+			if( $priority == 'u' ) {
+				$query = "SELECT marketSecondHand_productInfo.title, Member.username, marketSecondHand_trade.exist, marketSecondHand_time.start_date, marketSecondHand_bidList.*, " .
+						 "( SELECT COUNT(bidder_id) " . 
+						 "FROM marketSecondHand_bidList WHERE marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id ) AS BidNum " . 
+						 "FROM marketSecondHand_trade " .
+				         "LEFT JOIN marketSecondHand_bidList ON marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id " .
+						 "LEFT JOIN marketSecondHand_productInfo ON marketSecondHand_productInfo.product_id = marketSecondHand_trade.product_id " .
+						 "LEFT JOIN Member ON marketSecondHand_trade.stu_id = Member.stu_id " .
+						 "LEFT JOIN marketSecondHand_time ON marketSecondHand_time.time_id = marketSecondHand_trade.time_id " .
+						 "WHERE marketSecondHand_bidList.bidder_id = '$stu_id'" .
+						 "ORDER BY $permute DESC";
+			} else if( $priority == 'd' ) {
+				$query = "SELECT marketSecondHand_productInfo.title, Member.username, marketSecondHand_trade.exist, marketSecondHand_time.start_date, marketSecondHand_bidList.*, " .
+						 "( SELECT COUNT(bidder_id) " . 
+						 "FROM marketSecondHand_bidList WHERE marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id ) AS BidNum " . 
+						 "FROM marketSecondHand_trade " .
+				         "LEFT JOIN marketSecondHand_bidList ON marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id " .
+						 "LEFT JOIN marketSecondHand_productInfo ON marketSecondHand_productInfo.product_id = marketSecondHand_trade.product_id " .
+						 "LEFT JOIN Member ON marketSecondHand_trade.stu_id = Member.stu_id " .
+						 "LEFT JOIN marketSecondHand_time ON marketSecondHand_time.time_id = marketSecondHand_trade.time_id " .
+						 "WHERE marketSecondHand_bidList.bidder_id = '$stu_id'" .
+						 "ORDER BY $permute ASC";
+			}
+		} else {
+			$permute = '';
+			$query = "SELECT marketSecondHand_productInfo.title, Member.username, marketSecondHand_trade.exist, marketSecondHand_time.start_date, marketSecondHand_bidList.*, " .
+					 "( SELECT COUNT(bidder_id) " . 
+					 "FROM marketSecondHand_bidList WHERE marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id ) AS BidNum " . 
+					 "FROM marketSecondHand_trade " .
+			         "LEFT JOIN marketSecondHand_bidList ON marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id " .
+					 "LEFT JOIN marketSecondHand_productInfo ON marketSecondHand_productInfo.product_id = marketSecondHand_trade.product_id " .
+					 "LEFT JOIN Member ON marketSecondHand_trade.stu_id = Member.stu_id " .
+					 "LEFT JOIN marketSecondHand_time ON marketSecondHand_time.time_id = marketSecondHand_trade.time_id " .
+					 "WHERE marketSecondHand_bidList.bidder_id = '$stu_id'";
+		}
+		
 		$resultSecond = mysqli_query( $conn, $query ) or die('Second Die!');
 		
 		if( isset($_POST['deleteSecond']) ) {
@@ -65,7 +95,7 @@
 	<!-- Warning Area -->
 	<div class="alert alert-info fade in">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Airstage 提醒：</strong>要記得把已經結案的物品刪除唷！不然畫面會很亂XD
+        <strong>Airstage 提醒：</strong>得標的物品無法刪除記錄唷！ 目前賣方資料排序功能暫不開放。
     </div>
 	
 	
@@ -85,13 +115,70 @@
 		      <thead>
 		        <tr>
 		          <th>#</th>
-		          <th>商品名稱 <i class="icon-chevron-down"></i></th>
+		          <th>
+		          	商品名稱
+		          	<?php
+						if( @$permute == '' || $priority == 'u' ) echo '<a href="buyerInterface.php?permute=title&priority=d">';
+						else echo '<a href="buyerInterface.php?permute=title&priority=u">';
+						
+						if( @$permute == 'title' && @$priority == 'd' ) echo '<i class="icon-chevron-up"></i></a>';
+						else echo '<i class="icon-chevron-down"></i></a>';	
+					?>
+		          </th>
 		          <th>賣方資料 <i class="icon-chevron-down"></i></th>
-		          <th>交易方式 <i class="icon-chevron-down"></i></th>
-		          <th>商品狀況 <i class="icon-chevron-down"></i></th>
-		          <th>搶手人數 <i class="icon-chevron-down"></i></th>
-		          <th>拍賣日期 <i class="icon-chevron-down"></i></th>   
-		          <th>得標 <i class="icon-chevron-down"></i></th> 
+		          <th>
+		          	交易方式 
+		          	<?php
+						if( @$permute == '' || $priority == 'u' ) echo '<a href="buyerInterface.php?permute=exchange_type&priority=d">';
+						else echo '<a href="buyerInterface.php?permute=exchange_type&priority=u">';
+						
+						if( @$permute == 'exchange_type' && @$priority == 'd' ) echo '<i class="icon-chevron-up"></i></a>';
+						else echo '<i class="icon-chevron-down"></i></a>';	
+					?>
+		          </th>
+		          <th>
+		          	商品狀況 
+		          	<?php
+						if( @$permute == '' || @$priority == 'u' ) echo '<a href="buyerInterface.php?permute=exist&priority=d">';
+						else echo '<a href="buyerInterface.php?permute=exist&priority=u">';
+						
+						if( @$permute == 'exist' && @$priority == 'd' ) echo '<i class="icon-chevron-up"></i></a>';
+						else echo '<i class="icon-chevron-down"></i></a>';	
+					?>
+		          </th>
+		          <th>
+		          	搶手 
+		          	<?php
+						if( @$permute == '' || $priority == 'u' ) echo '<a href="buyerInterface.php?permute=BidNum&priority=d">';
+						else echo '<a href="buyerInterface.php?permute=BidNum&priority=u">';
+						
+						if( @$permute == 'BidNum' && @$priority == 'd' ) echo '<i class="icon-chevron-up"></i></a>';
+						else echo '<i class="icon-chevron-down"></i></a>';	
+					?>
+		          </th>
+		          <th>
+		          	拍賣日期
+		          	<?php
+						if( @$permute == '' || $priority == 'u' ) echo '<a href="buyerInterface.php?permute=start_date&priority=d">';
+						else echo '<a href="buyerInterface.php?permute=start_date&priority=u">';
+						
+						if( @$permute == 'start_date' && @$priority == 'd' ) echo '<i class="icon-chevron-up"></i></a>';
+						else echo '<i class="icon-chevron-down"></i></a>';	
+					?>
+		          </th>   
+		          <th>
+		          	得標
+		          	<?php
+						if( @$permute == '' || $priority == 'u' ) echo '<a href="buyerInterface.php?permute=buy_list&priority=d">';
+						else echo '<a href="buyerInterface.php?permute=buy_list&priority=u">';
+						
+						if( @$permute == 'buy_list' && @$priority == 'd' ) echo '<i class="icon-chevron-up"></i></a>';
+						else echo '<i class="icon-chevron-down"></i></a>';	
+					?>
+		          </th> 
+		          <th>
+		          	回饋 <i class="icon-chevron-down"></i>
+		          </th>
 		          <th>刪除</th>     
 		        </tr>
 		      </thead>
@@ -132,6 +219,9 @@
 		          		if( $row['buy_list'] == 1 ) echo '<i class="icon-ok"></i>'; 
 		          		else echo '<i class="icon-thumbs-down"></i>';
 		          	?>
+		          </td>
+		          <td>
+		          	未評分
 		          </td>
 		          <td>
 		          	<?php
@@ -254,36 +344,7 @@
 		        </tr>
 		      </thead>
 		      <tbody>
-		        <!--tr>
-		          <td>1</td>
-		          <td><a href = "#">Adobe Photoshop CS6</a></td>
-		          <td>       
-			      	<a href="#" rel="popover" title="Archerwind" data-content="And here's some amazing content. It's very engaging. right?">Archerwind</a>          	
-		          </td>
-		          <td>NT$1500</td>
-		          <td><a href="#"><i class="icon-repeat"></i> 00:00:30s</a></td>
-		          <td><a href="#"><i class="icon-gift"></i> NT$30</a></td>
-		          <td><a href="#"><i class="icon-shopping-cart"></i> 70人</a></td> 
-		          <td><i class="icon-ok"></i></td>  
-		          <td>
-				  	<input type="checkbox" id="inlineCheckbox1" value="option1" name="">
-		          </td>    
-		        </tr>
-		        <tr>
-		          <td>2</td>
-		          <td><a href = "#">Adobe Photoshop CS6</a></td>
-		          <td>
-			          <a href="#" rel="popover" title="Archerwind" data-content="And here's some amazing content. It's very engaging. right?">Archerwind</a>
-		          </td>
-		          <td>NT$5600</td>
-		          <td><a href="#"><i class="icon-repeat"></i> 已結團</a></td>
-		          <td><a href="#"><i class="icon-ok"></i> NT$700</a></td>
-		          <td><a href="#"><i class="icon-shopping-cart"></i> 20人</a></td>
-		          <td><i class="icon-thumbs-down"></i></td>
-		          <td>
-				  	<input type="checkbox" id="inlineCheckbox1" value="option1" name="">
-		          </td>
-		        </tr-->
+		        
 		      </tbody>
 		    </table>
 		    <!--button type="submit" name = "delete" class="btn btn-danger "><i class="icon-trash icon-white"></i> 刪除勾選資料</button--> 

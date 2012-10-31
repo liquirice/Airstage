@@ -6,15 +6,15 @@
 		echo '<script type="text/javascript">alert("請先登入!"); location.href="marketIndex.php"</script>';
 	} else {
 		require_once( "../connectVar.php" );
+		require_once( "UserQueryFunction.php" );
 		$stu_id = $_SESSION['stu_id'];
 		$trade_id = mysqli_real_escape_string( $conn, trim($_GET['trade']) );
-		
-		require_once( "UserQueryFunction.php" );
 		
 		// Get title Info.
 		$query = "SELECT marketSecondHand_productInfo.title FROM marketSecondHand_trade " .
 				 "INNER JOIN marketSecondHand_productInfo Using(product_id) " .
-				 "WHERE marketSecondHand_trade.trade_id = '$trade_id' AND marketSecondHand_trade.stu_id = '$stu_id' AND marketSecondHand_productInfo.product_id = marketSecondHand_trade.product_id ";
+				 "WHERE marketSecondHand_trade.trade_id = '$trade_id' AND marketSecondHand_trade.stu_id = '$stu_id' " . 
+				 "AND marketSecondHand_productInfo.product_id = marketSecondHand_trade.product_id ";
 		
 		$resultTitle = mysqli_query( $conn, $query );
 		$title = mysqli_fetch_array( $resultTitle );
@@ -24,7 +24,7 @@
 		}
 		
 		// Get Current Winner Info.
-		$query = "SELECT marketSecondHand_bidList.exchange_info, Member.username " .
+		$query = "SELECT marketSecondHand_bidList.exchange_info, Member.username, marketSecondHand_bidList.exchange_type " .
 				 "FROM marketSecondHand_trade " .
 				 "LEFT JOIN marketSecondHand_bidList ON marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id " .
 				 "LEFT JOIN Member ON marketSecondHand_bidList.bidder_id = Member.stu_id " .
@@ -32,13 +32,37 @@
 		
 		$resultWinner = mysqli_query( $conn, $query ) or die('Forbidden!'); 
 			
-		// Get the whole bid list.
-		$query = "SELECT Member.username, marketSecondHand_trade.*, marketSecondHand_productInfo.*, marketSecondHand_bidList.* " .
-				 "FROM marketSecondHand_trade " . 
-				 "LEFT JOIN marketSecondHand_productInfo ON marketSecondHand_productInfo.product_id = marketSecondHand_trade.product_id " .
-				 "LEFT JOIN marketSecondHand_bidList ON marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id " .				
-				 "LEFT JOIN Member ON Member.stu_id = marketSecondHand_bidList.bidder_id " .		
-				 "WHERE marketSecondHand_trade.trade_id = '$trade_id' AND marketSecondHand_trade.stu_id = '$stu_id' ";
+		if( isset($_GET['permute']) ) {
+			@$permute = mysqli_real_escape_string( $conn, trim($_GET['permute']) );
+			@$priority = mysqli_real_escape_string( $conn, trim($_GET['priority']) );
+		
+			if( $priority == 'u' ) {
+				$query = "SELECT Member.username, marketSecondHand_trade.*, marketSecondHand_productInfo.*, marketSecondHand_bidList.* " .
+						 "FROM marketSecondHand_trade " . 
+						 "LEFT JOIN marketSecondHand_productInfo ON marketSecondHand_productInfo.product_id = marketSecondHand_trade.product_id " .
+						 "LEFT JOIN marketSecondHand_bidList ON marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id " .				
+						 "LEFT JOIN Member ON Member.stu_id = marketSecondHand_bidList.bidder_id " .		
+						 "WHERE marketSecondHand_trade.trade_id = '$trade_id' AND marketSecondHand_trade.stu_id = '$stu_id' " .
+						 "ORDER BY $permute DESC";
+			} else if( $priority == 'd' ) {
+				$query = "SELECT Member.username, marketSecondHand_trade.*, marketSecondHand_productInfo.*, marketSecondHand_bidList.* " .
+						 "FROM marketSecondHand_trade " . 
+						 "LEFT JOIN marketSecondHand_productInfo ON marketSecondHand_productInfo.product_id = marketSecondHand_trade.product_id " .
+						 "LEFT JOIN marketSecondHand_bidList ON marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id " .				
+						 "LEFT JOIN Member ON Member.stu_id = marketSecondHand_bidList.bidder_id " .		
+						 "WHERE marketSecondHand_trade.trade_id = '$trade_id' AND marketSecondHand_trade.stu_id = '$stu_id' " .
+						 "ORDER BY $permute ASC";
+			}
+		} else {
+			// Get the whole bid list.
+			$permute = '';
+			$query = "SELECT Member.username, marketSecondHand_trade.*, marketSecondHand_productInfo.*, marketSecondHand_bidList.* " .
+					 "FROM marketSecondHand_trade " . 
+					 "LEFT JOIN marketSecondHand_productInfo ON marketSecondHand_productInfo.product_id = marketSecondHand_trade.product_id " .
+					 "LEFT JOIN marketSecondHand_bidList ON marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id " .				
+					 "LEFT JOIN Member ON Member.stu_id = marketSecondHand_bidList.bidder_id " .		
+					 "WHERE marketSecondHand_trade.trade_id = '$trade_id' AND marketSecondHand_trade.stu_id = '$stu_id' ";	
+		}
 				 
 		$resultSecondHand = mysqli_query( $conn, $query ) or die('Forbidden!');
 		
@@ -88,25 +112,56 @@
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
         <strong>Airstage 提醒：</strong><br />
         成交後系統會自動發信給其他出價者關於商品已經賣出的訊息，<br />
-        如果剩餘的商品數量為零時則結標，不然仍會繼續拍賣，並告知其他出價者剩餘商品數量。
+        如果剩餘的商品數量為零時則結標，不然仍會繼續拍賣，並告知其他出價者剩餘商品數量。<br />
+        目前買方資料的排序功能暫不開放。
     </div>
 	
 	
 	<!-- Second Hand Area -->
 	<h3><?php echo $title['title']; ?></h3>
-	<?php
-		if( mysqli_num_rows($resultWinner) == 0 ) {
-			echo '<h4>尚未有得標者</h4>';
-		} else {
-			while( $winner = mysqli_fetch_array($resultWinner) ) {
-		
-	?>
-			<h4><font color="red">得標者 - <?php echo $winner['username']; ?> - <?php echo $winner['exchange_info']; ?></font></h4>
-	<?php
-			}	
-		}
-	?>
-	<br />
+	<div class="bs-docs-example-popover" style="background-color: #FFF;">
+		<div class="popover bottom" style="width: 890px;">		
+		    <h3 class="popover-title">目前得標狀況</h3>
+		    <div class="popover-content">
+	    	<table class="table table-striped">
+			      <thead>
+			        <tr>
+			          <th>#</th>
+			          <th><i class="icon-user"></i> 得標者</th>
+			          <th><i class="icon-list-alt"></i> 得標方式</th>
+			          <th><i class="icon-comment"></i> 得標描述</th>       				                    
+			        </tr>
+			      </thead>
+			      <tbody>
+		      <?php
+				if( mysqli_num_rows($resultWinner) != 0 ) {
+					$loopCounter = 1;
+					while( $winner = mysqli_fetch_array($resultWinner) ) {
+				
+			  ?>
+			      	<tr>
+			      	   <th><?php echo $loopCounter; ?></th>
+			      	   <th><font color="red"><?php echo $winner['username']; ?></font></th>
+			      	   <th>
+				      	   <?php
+				      	      if( $winner['exchange_type'] == 0 ) echo '金錢';
+					      	  else if( $winner['exchange_type'] == 1 ) echo '以物易物';
+				      	      else echo '其他';
+				      	   ?>
+			      	   </th>
+			      	   <th><?php echo $winner['exchange_info']; ?></th>
+			      	</tr>				     				   
+			  <?php
+						$loopCounter++;
+					}	
+				}
+			  ?>
+			  		</tbody>
+			  	</table>
+		    </div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
 	
 	<h4>出價記錄</h4>	
 	<table class="table table-striped">
@@ -114,10 +169,37 @@
         <tr>
           <th>#</th>
           <th>出價帳號 <i class="icon-chevron-down"></i></th>
-          <th>出價方式 <i class="icon-chevron-down"></i></th>
-          <th>交易條件 <i class="icon-chevron-down"></i></th>       
-          <th>出價時間 <i class="icon-chevron-down"></i></th>
-          <th>得標 <i class="icon-chevron-down"></i></th>     
+          <th>
+          	出價方式
+          	<?php
+				if( @$permute == '' || $priority == 'u' ) echo '<a href="productSellInterfaceS.php?trade='. $trade_id .'&permute=exchange_type&priority=d">';
+				else echo '<a href="productSellInterfaceS.php?trade='. $trade_id .'&permute=exchange_type&priority=u">';
+				
+				if( @$permute == 'exchange_type' && @$priority == 'd' ) echo '<i class="icon-chevron-up"></i></a>';
+				else echo '<i class="icon-chevron-down"></i></a>';	
+			?>
+          </th>
+          <th>交易條件 <i class="icon-comment"></i></th>       
+          <th>
+          	出價時間
+          	<?php
+				if( @$permute == '' || $priority == 'u' ) echo '<a href="productSellInterfaceS.php?trade='. $trade_id .'&permute=update_time&priority=d">';
+				else echo '<a href="productSellInterfaceS.php?trade='. $trade_id .'&permute=update_time&priority=u">';
+				
+				if( @$permute == 'update_time' && @$priority == 'd' ) echo '<i class="icon-chevron-up"></i></a>';
+				else echo '<i class="icon-chevron-down"></i></a>';	
+			?>
+          </th>
+          <th>
+          	得標
+          	<?php
+				if( @$permute == '' || $priority == 'u' ) echo '<a href="productSellInterfaceS.php?trade='. $trade_id .'&permute=buy_list&priority=d">';
+				else echo '<a href="productSellInterfaceS.php?trade='. $trade_id .'&permute=buy_list&priority=u">';
+				
+				if( @$permute == 'buy_list' && @$priority == 'd' ) echo '<i class="icon-chevron-up"></i></a>';
+				else echo '<i class="icon-chevron-down"></i></a>';	
+			?>
+          </th>     
           <th>交易管理</th>          
         </tr>
       </thead>
@@ -151,10 +233,18 @@
           </td>        
           <td>          	
           	<div class="btn-group">
-                <button class="btn btn-info dropdown-toggle" data-toggle="dropdown">Action <i class="icon-edit icon-white"></i></button>
-                <ul class="dropdown-menu">			
-					<li><a href="<?php echo 'dealSuccess.php?trade=' . $row['trade_id'] . '&buyer=' . $row['bidder_id']; ?>"><i class="icon-ok"></i> 成交此筆</a></li>				
-					<li><a href="<?php echo 'replyOffer.php?trade=' . $row['trade_id'] . '&buyer=' . $row['bidder_id']; ?>"><i class="icon-envelope"></i> 回覆出價</a></li>				  			                                             
+                <button class="btn btn-info dropdown-toggle" data-toggle="dropdown" >Action <i class="icon-edit icon-white"></i></button>
+                <ul class="dropdown-menu">
+                	<?php 
+                		if($row['buy_list'] == 1) {
+	                		echo '<li><a><i class="icon-remove"></i> 此比記錄已成交</a></li>';
+                		} else {
+                	?>		
+						<li><a href="<?php echo 'dealSuccess.php?trade=' . $row['trade_id'] . '&buyer=' . $row['bidder_id']; ?>"><i class="icon-ok"></i> 成交此筆</a></li>				
+						<li><a href="<?php echo 'replyOffer.php?trade=' . $row['trade_id'] . '&buyer=' . $row['bidder_id']; ?>"><i class="icon-envelope"></i> 回覆出價</a></li>                              
+					<?php
+						}
+					?>
                 </ul>
               </div>
           </td>       
@@ -170,12 +260,12 @@
     <hr class="bs-docs-separator">
     <!-- Contention Area -->
     <h4>追蹤名單</h4>
-    <table class="table table-striped" style="width: 300px;">
+    <table class="table table-striped" >
       <thead>
         <tr>
           <th>#</th>
-          <th>追蹤帳號 <i class="icon-chevron-down"></i></th>
-          <th>追蹤日期 <i class="icon-chevron-down"></i></th>                 
+          <th><i class="icon-ok"></i> 追蹤帳號</th>
+          <th><i class="icon-list-alt"></i> 追蹤日期</th>                 
         </tr>
       </thead>
       <tbody>

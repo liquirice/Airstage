@@ -7,13 +7,39 @@
 		require_once( "../connectVar.php" );
 		$stu_id = $_SESSION['stu_id'];
 		
-		$query = "SELECT trade_id, title, start_date, exist, " . 
-				 "( SELECT COUNT(bidder_id) FROM marketSecondHand_bidList WHERE marketSecondHand_trade.trade_id = marketSecondHand_bidList.trade_id ) AS BuyNum, " . 
-				 "( SELECT COUNT(markTime) FROM marketSecondHand_chasingList WHERE marketSecondHand_trade.trade_id = marketSecondHand_chasingList.trade_id ) AS Chase " .
-				 "FROM marketSecondHand_trade " .		
-				 "LEFT JOIN marketSecondHand_productInfo ON marketSecondHand_trade.product_id = marketSecondHand_productInfo.product_id " .					 
-				 "LEFT JOIN marketSecondHand_time ON marketSecondHand_trade.time_id = marketSecondHand_time.time_id " .				 
-				 "WHERE marketSecondHand_trade.stu_id = '$stu_id'";
+		if( isset($_GET['permute']) ) {
+			@$permute = mysqli_real_escape_string( $conn, trim($_GET['permute']) );
+			@$priority = mysqli_real_escape_string( $conn, trim($_GET['priority']) );
+		
+			if( $priority == 'u' ) {
+				$query = "SELECT trade_id, title, start_date, exist, " . 
+						 "( SELECT COUNT(bidder_id) FROM marketSecondHand_bidList WHERE marketSecondHand_trade.trade_id = marketSecondHand_bidList.trade_id ) AS BuyNum, " . 
+						 "( SELECT COUNT(markTime) FROM marketSecondHand_chasingList WHERE marketSecondHand_trade.trade_id = marketSecondHand_chasingList.trade_id ) AS Chase " .
+						 "FROM marketSecondHand_trade " .		
+						 "LEFT JOIN marketSecondHand_productInfo ON marketSecondHand_trade.product_id = marketSecondHand_productInfo.product_id " .					 
+						 "LEFT JOIN marketSecondHand_time ON marketSecondHand_trade.time_id = marketSecondHand_time.time_id " .				 
+						 "WHERE marketSecondHand_trade.stu_id = '$stu_id'" .
+						 "ORDER BY $permute DESC";
+			} else if( $priority == 'd' ) {
+				$query = "SELECT trade_id, title, start_date, exist, " . 
+						 "( SELECT COUNT(bidder_id) FROM marketSecondHand_bidList WHERE marketSecondHand_trade.trade_id = marketSecondHand_bidList.trade_id ) AS BuyNum, " . 
+						 "( SELECT COUNT(markTime) FROM marketSecondHand_chasingList WHERE marketSecondHand_trade.trade_id = marketSecondHand_chasingList.trade_id ) AS Chase " .
+						 "FROM marketSecondHand_trade " .		
+						 "LEFT JOIN marketSecondHand_productInfo ON marketSecondHand_trade.product_id = marketSecondHand_productInfo.product_id " .					 
+						 "LEFT JOIN marketSecondHand_time ON marketSecondHand_trade.time_id = marketSecondHand_time.time_id " .				 
+						 "WHERE marketSecondHand_trade.stu_id = '$stu_id'" .
+						 "ORDER BY $permute ASC";
+			}
+		} else {
+			$query = "SELECT trade_id, title, start_date, exist, " . 
+					 "( SELECT COUNT(bidder_id) FROM marketSecondHand_bidList WHERE marketSecondHand_trade.trade_id = marketSecondHand_bidList.trade_id ) AS BuyNum, " . 
+					 "( SELECT COUNT(markTime) FROM marketSecondHand_chasingList WHERE marketSecondHand_trade.trade_id = marketSecondHand_chasingList.trade_id ) AS Chase " .
+					 "FROM marketSecondHand_trade " .		
+					 "LEFT JOIN marketSecondHand_productInfo ON marketSecondHand_trade.product_id = marketSecondHand_productInfo.product_id " .					 
+					 "LEFT JOIN marketSecondHand_time ON marketSecondHand_trade.time_id = marketSecondHand_time.time_id " .				 
+					 "WHERE marketSecondHand_trade.stu_id = '$stu_id'";			
+		}
+
 		$resultSecondHand = mysqli_query( $conn, $query ) or die('Query Error');
 		
 	}
@@ -52,7 +78,7 @@
 	<!-- Warning Area -->
 	<div class="alert alert-info fade in">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Airstage 提醒：</strong>記得用點案的方式收合各個市場的清單唷！
+        <strong>Airstage 提醒：</strong>記得用點按的方式收合各個市場的清單唷！
     </div>
     
     <!-- Second Hand Area -->
@@ -71,11 +97,56 @@
 		      <thead>		   
 		        <tr>
 		          <th>#</th>
-		          <th>商品名稱 <i class="icon-chevron-down"></i></th>		      
-		          <th>出價人數 <i class="icon-chevron-down"></i></th>
-		          <th>追蹤人數 <i class="icon-chevron-down"></i></th>
-		          <th>出價時間 <i class="icon-chevron-down"></i></th>
-		          <th>狀態 <i class="icon-chevron-down"></i></th>
+		          <th>
+		          	商品名稱 
+		          	<?php
+						if( @$permute == '' || $priority == 'u' ) echo '<a href="sellerInterface.php?permute=title&priority=d">';
+						else echo '<a href="sellerInterface.php?permute=title&priority=u">';
+						
+						if( @$permute == 'title' && @$priority == 'd' ) echo '<i class="icon-chevron-up"></i></a>';
+						else echo '<i class="icon-chevron-down"></i></a>';	
+					?>			          
+		          </th>		      
+		          <th>
+		          	出價人數
+		          	<?php
+						if( @$permute == '' || $priority == 'u' ) echo '<a href="sellerInterface.php?permute=BuyNum&priority=d">';
+						else echo '<a href="sellerInterface.php?permute=BuyNum&priority=u">';
+						
+						if( @$permute == 'BuyNum' && @$priority == 'd' ) echo '<i class="icon-chevron-up"></i></a>';
+						else echo '<i class="icon-chevron-down"></i></a>';	
+					?>
+		          </th>
+		          <th>
+		          	追蹤人數
+		          	<?php
+						if( @$permute == '' || $priority == 'u' ) echo '<a href="sellerInterface.php?permute=Chase&priority=d">';
+						else echo '<a href="sellerInterface.php?permute=Chase&priority=u">';
+						
+						if( @$permute == 'Chase' && @$priority == 'd' ) echo '<i class="icon-chevron-up"></i></a>';
+						else echo '<i class="icon-chevron-down"></i></a>';	
+					?>
+		          </th>
+		          <th>
+		          	出價時間
+		          	<?php
+						if( @$permute == '' || $priority == 'u' ) echo '<a href="sellerInterface.php?permute=start_date&priority=d">';
+						else echo '<a href="sellerInterface.php?permute=start_date&priority=u">';
+						
+						if( @$permute == 'start_date' && @$priority == 'd' ) echo '<i class="icon-chevron-up"></i></a>';
+						else echo '<i class="icon-chevron-down"></i></a>';	
+					?>
+		          </th>
+		          <th>
+		          	狀態
+		          	<?php
+						if( @$permute == '' || $priority == 'u' ) echo '<a href="sellerInterface.php?permute=exist&priority=d">';
+						else echo '<a href="sellerInterface.php?permute=exist&priority=u">';
+						
+						if( @$permute == 'exist' && @$priority == 'd' ) echo '<i class="icon-chevron-up"></i></a>';
+						else echo '<i class="icon-chevron-down"></i></a>';	
+					?>
+		          </th>
 		          <th>買賣管理</th>       
 		        </tr>
 		      </thead>
@@ -146,28 +217,7 @@
 		        </tr>
 		      </thead>
 		      <tbody>
-			  <!--tr>
-		          <td>1</td>
-		          <td><a href = "#">Adobe Photoshop CS6</a></td>
-		          <td>NT$200000</td>
-		          <td>40 人</td>
-		          <td>21 人</td>
-		          <td><a href="">00:00:03</a></td>          
-		          <td>
-			        <a href="productSellInterfaceC.php"><button class="btn btn-info">前往 <i class="icon-edit icon-white"></i></button></a>
-		          </td>       
-		        </tr>
-		        <tr>
-		          <td>2</td>
-		          <td><a href = "#">Adobe Photoshop CS6</a></td>
-		          <td>NT$200000</td>
-		          <td>52 人</td>
-		          <td>45 人</td>          
-		          <td>已結標</td>
-		          <td>
-			      	<a href=""><button class="btn btn-info">前往 <i class="icon-edit icon-white"></i></button></a>
-		          </td>
-		        </tr-->
+			  
 		      </tbody>
 		   </table>	    
         </div>
@@ -201,30 +251,7 @@
 		        </tr>
 		      </thead>
 		      <tbody>
-		        <!--tr>
-		          <td>1</td>
-		          <td><a href = "#">Adobe Photoshop CS6</a></td>
-		          <td>NT$200000</td>
-		          <td>20 人</td>
-		          <td>4 人</td>
-		          <td><a href="#">00:00:04</a></td>
-		          <td>已結團</td>
-		          <td>
-			        <a href=""><button class="btn btn-info">前往 <i class="icon-edit icon-white"></i></button></a>
-		          </td>       
-		        </tr>
-		        <tr>
-		          <td>2</td>
-		          <td><a href = "#">Adobe Photoshop CS6</a></td>
-		          <td>NT$200000</td>
-		          <td>20 人	</td>
-		          <td>4 人</td>
-		          <td><a href="#">00:00:04</a></td>
-		          <td><font color="red">揪團中</font></td>
-		          <td>
-			        <a href=""><button class="btn btn-info">前往 <i class="icon-edit icon-white"></i></button></a>
-		          </td>
-		        </tr-->
+		      
 		      </tbody>
 		   </table>
         </div>

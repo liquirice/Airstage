@@ -36,7 +36,7 @@
 					<div class="tooltip-demo">
 						<ul class="bs-docs-tooltip-examples">
 							<li>
-								<a href="#" class="thumbnail" rel="tooltip" data-placement="top" title="Click Me">
+								<a href="#" class="thumbnail" rel="tooltip" data-placement="top" title="點我進入">
 									<img src="img/secondHand_300x300.jpg" alt="二手交易市場" />
 								</a>
 								<div class="bs-docs-example-popover">
@@ -92,7 +92,7 @@
 					<div class="tooltip-demo">
 						<ul class="bs-docs-tooltip-examples">
 							<li>
-								<a href="contentionBoard.php" class="thumbnail" rel="tooltip" data-placement="top" title="Click Me">
+								<a href="#" class="thumbnail" rel="tooltip" data-placement="top" title="近期開放">
 									<img src="img/contention_300x300.jpg" alt="限時競標" />
 								</a>
 								<div class="bs-docs-example-popover">
@@ -121,14 +121,14 @@
 									</div>
 									<div class="btn-toolbar">
 										<div class="btn-group">
-											<button class="btn btn-primary btn-large"><i class = "icon-hand-up icon-white"></i> 競標分類</button>
-											<button class="btn btn-primary dropdown-toggle btn-large" data-toggle="dropdown">
+											<button class="btn btn-primary btn-large" disabled><i class = "icon-hand-up icon-white"></i> 競標分類</button>
+											<button class="btn btn-primary dropdown-toggle btn-large" data-toggle="dropdown" disabled>
 												<span class="caret"></span>
 											</button>
 											<ul class="dropdown-menu">
-												<li><a href = "contentionBoard.php"><i class = "icon-folder-open"></i> 全部分類</a></li>
-												<li><a href = "bookC.php"><i class = "icon-book"></i> 書本區</a></li>
-												<li><a href = "trivialC.php"><i class = "icon-eye-open"></i> 雜物區</a></li>											
+												<li><a href = "#"><i class = "icon-folder-open"></i> 全部分類</a></li>
+												<li><a href = "#"><i class = "icon-book"></i> 書本區</a></li>
+												<li><a href = "#"><i class = "icon-eye-open"></i> 雜物區</a></li>											
 											</ul>
 										</div>
 										<a data-toggle="modal" href="#ruleContention" class="btn btn-danger btn-large"><i class = "icon-ok icon-white"></i> 競標規則</a>
@@ -147,7 +147,7 @@
 					<div class="tooltip-demo">
 						<ul class="bs-docs-tooltip-examples">
 							<li>
-								<a href="#" class="thumbnail" rel="tooltip" data-placement="top" title="Click Me	">
+								<a href="#" class="thumbnail" rel="tooltip" data-placement="top" title="近期開放">
 									<img src="img/groupShop_300x300.jpg" alt="校園團購" />
 								</a>
 								<div class="bs-docs-example-popover">
@@ -173,8 +173,8 @@
 									</div>
 									<div class="btn-toolbar">
 										<div class="btn-group">
-											<button class="btn btn-primary btn-large"><i class = "icon-lock icon-white"></i> 團購分類</button>
-											<button class="btn btn-primary dropdown-toggle btn-large" data-toggle="dropdown">
+											<button class="btn btn-primary btn-large" disabled><i class = "icon-lock icon-white"></i> 團購分類</button>
+											<button class="btn btn-primary dropdown-toggle btn-large" data-toggle="dropdown" disabled>
 												<span class="caret"></span>
 											</button>
 											<ul class="dropdown-menu">

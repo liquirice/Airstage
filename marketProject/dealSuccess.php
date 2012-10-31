@@ -33,9 +33,15 @@
 		
 		// Update the product number.
 		$left = $row['number'] - $row['wanted_number'];
-		$query = "UPDATE marketSecondHand_trade SET number = '$left' WHERE marketSecondHand_trade.trade_id = '$trade_id'";
-		$updateNum = mysqli_query( $conn, $query ) or die('updateNum Error!');
 		
+		if( $left >= 0 ) {
+			$query = "UPDATE marketSecondHand_trade SET number = '$left' WHERE marketSecondHand_trade.trade_id = '$trade_id'";
+			$updateNum = mysqli_query( $conn, $query ) or die('updateNum Error!');
+		} else {
+			echo 'Number Error!';
+			exit();
+		}
+				
 		// Give all the commit user notifications about the product dealing info.
 		while( $line = mysqli_fetch_array($result) ) {
 			if( $line['bidder_id'] == $buyer_id ) {

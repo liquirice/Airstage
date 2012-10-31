@@ -37,8 +37,7 @@
 	        </li>         
 	        <li class="dropdown">
 	        	<a href="" class="dropdown-toggle" data-toggle="dropdown">交易管理介面 <b class="caret"></b></a>
-	            <ul class="dropdown-menu">           
-	              <li><a href="tradeHistory.php">成交記錄</a></li>
+	            <ul class="dropdown-menu">   
 	              <li><a href="onChasing.php">追蹤清單</a></li>
 	              <li><a href="#">我的評分</a></li>
 	              <li class="divider"></li>
@@ -63,7 +62,7 @@
 			//判斷為"新增"或"修改"出價
 			//測試資料
 			$stu_id = "test01";
-			$trade_id = 5;
+			//$trade_id = 5;
 			$result = mysqli_query( $conn, "SELECT * FROM `marketSecondHand_bidList` WHERE `bidder_id` = '{$stu_id}' AND `trade_id` = '{$trade_id}'" );
 			$check = mysqli_fetch_assoc($result);
 			?>

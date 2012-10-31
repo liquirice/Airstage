@@ -76,12 +76,15 @@
 	<!-- Warning Area -->
 	<div class="alert alert-info fade in">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Airstage 提醒：</strong>可以由標記功能去標出自己特別中意的物品唷！
+        <strong>Airstage 提醒：</strong>可以由標記功能去標出自己特別中意的物品唷！ 目前賣方資料排序功能暫不開放。
     </div>
 	
 	
 	<!-- Second Hand Area -->
 	<h3><a href = "#">二手市場</a></h3>
+	<blockquote>
+		<small>Second-Hand Market</small>
+	</blockquote>
 	<table class="table table-striped">
       <thead>
         <tr>
@@ -192,15 +195,18 @@
 	
     <!-- Contention Area -->
     <h3><a href = "#">限時競標</a></h3>
+    <blockquote>
+    	<small>Contention Market</small>
+    </blockquote>
     <table class="table table-striped">
       <thead>
         <tr>
           <th>#</th>
           <th>
-			商品名稱
+			商品名稱 <i class="icon-chevron-down"></i>
 		  </th>
           <th>
-			目前價格 
+			目前價格 <i class="icon-chevron-down"></i>
 			<?php
 				//if( @$permute == '' || $priority == 'u' ) echo '<a href="onChasing.php?permute=current_price&priority=d">';
 				//else echo '<a href="onChasing.php?permute=current_price&priority=u">';
@@ -211,13 +217,13 @@
 			</a>
 		  </th>
           <th>
-			商品狀態
+			商品狀態 <i class="icon-chevron-down"></i>
 		  </th>
           <th>
-			追蹤時間
+			追蹤時間 <i class="icon-chevron-down"></i>
 		  </th>
           <th>
-			標記	
+			標記	<i class="icon-chevron-down"></i>
 		  </th>
           <th>操作選項</th>          
         </tr>
@@ -284,6 +290,9 @@
     <hr class="bs-docs-separator">
     <!-- Group Shop Area -->
     <h3><a href = "">校園團購</a></h3>
+    <blockquote>
+  		<small>Group-shop Market</small>
+  	</blockquote>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -297,58 +306,7 @@
         </tr>
       </thead>
       <tbody>
-        <!--tr>
-          <td>1</td>
-          <td><a href = "#">Adobe Photoshop CS6</a></td>
-          <td>NT$200000</td>
-          <td>已結案</td>
-          <td>2012 / 10 / 10</td>
-          <td><i class="icon-star"></i></td>
-          <td>
-	          <div class="btn-group">
-                <button class="btn btn-info dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                  <li><a href="#"><i class="icon-star"></i> 加入標記</a></li>
-                  <li><a href="#"><i class="icon-trash"></i> 刪除選項</a></li>                                          
-                </ul>
-              </div>
-          </td>       
-        </tr>
-        <tr>
-          <td>2</td>
-          <td><a href = "#">Adobe Photoshop CS6</a></td>
-          <td>NT$200000</td>
-          <td><font color="red">揪團中(20人	)</font></td>
-          <td></td>
-          <td></td>
-          <td>
-	          <div class="btn-group">
-                <button class="btn btn-info dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                  <li><a href="#"><i class="icon-star"></i> 加入標記</a></li>
-                  <li><a href="#"><i class="icon-trash"></i> 刪除選項</a></li>                                               
-                </ul>
-              </div>
-          </td>
-        </tr>
         
-        <tr>
-          <td>3</td>
-          <td><a href = "#">Adobe Photoshop CS6</a></td>
-          <td>NT$200000</td>
-          <td>已結案</td>
-          <td></td>
-          <td></td>
-          <td>
-	          <div class="btn-group">
-                <button class="btn btn-info dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                  <li><a href="#"><i class="icon-star"></i> 加入標記</a></li>
-                  <li><a href="#"><i class="icon-trash"></i> 刪除選項</a></li>                                                 
-                </ul>
-              </div>
-          </td>
-        </tr-->
       </tbody>
     </table>
 	
