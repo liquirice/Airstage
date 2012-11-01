@@ -142,7 +142,49 @@
 	h5 {
 		text-align: left;
 	}
+	#username.denied { 
+	  background-color: #FFEBF5;  
+	}
 </style>
+<script type = "text/javascript">
+	window.onload = initPage;
+	
+	function initPage() {
+		document.getElementById("username").onblur = usernameIsEmpty;
+		document.getElementById("email").onblur = emailValidation;
+	}
+	
+	function usernameIsEmpty() {
+		var object = document.getElementById("username");
+		
+		if( object.value == "" ) {
+			document.getElementById("submit").disabled = true; 
+			object.focus();
+			object.className = "denied";
+		} else {
+			document.getElementById("submit").disabled = false;
+			object.className = "";
+		}
+	}
+	
+	function emailValidation() {
+		var object = document.getElementById("email");
+		
+		if( object.value == "" ) {
+			document.getElementById("submit").disabled = true; 
+			object.focus();
+			object.placeholder = "欄位不能是空的";
+		} else {
+			if (!/^[\w\.-_\+]+@[\w-]+(\.\w{2,4})+$/.test(object.value) ) {
+				document.getElementById("submit").disabled = true; 
+				object.focus();
+			} else {
+				document.getElementById("submit").disabled = false;
+				object.className = "span4";
+			}
+		}
+	}
+</script>
 </head>
 
 <body>
@@ -210,7 +252,8 @@
 	                    </td>
 	                    <td>
 	                    	<div class="controls">
-	                    		<input name="username" class="span3" value = "<?php echo $row['username'];?> " placeholder="輸入你的匿稱吧"/>
+	                    		<input name="username" id="username" class="span3" value = "<?php echo $row['username'];?> " placeholder="此欄位不能為空" maxlength="25"/>
+	                    		<span class="help-inline"><font color="red">* 必填欄位</font></span>
 	                    	</div>
 	                    </td>
                       </tr>
@@ -386,7 +429,8 @@
 	                    </label>
 		                </td>
 	                    <td>
-	                    	<i class="icon-envelope"></i>&nbsp;<input type = "text "name="email" class="span4" value = "<?php echo $row['email'];?>" placeholder="一定要填喔！"/>
+	                    	<i class="icon-envelope"></i>&nbsp;<input type = "text "name="email" id="email" class="span4" value = "<?php echo $row['email'];?>" placeholder="一定要填喔！"/>
+	                    	<span class="help-inline"><font color="red">* 必填欄位，格式需正確</font></span>
 	                    </td>	                    
                       </tr>
                       
@@ -700,7 +744,7 @@
                       </tr>                     	                  
                     </tbody>                    	               
                     </table>
-                    <button type = "submit" name = "submit" class="btn btn-info"><i class="icon-leaf icon-white"></i> 修改資料</button>
+                    <button type = "submit" name = "submit" id = "submit" class="btn btn-info"><i class="icon-leaf icon-white"></i> 修改資料</button>
                     <!-- End of form -->
 	              </form>
 	        </div>

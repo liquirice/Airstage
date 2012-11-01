@@ -4,7 +4,7 @@
 	if( !isset($_SESSION['stu_id']) || !isset($_SESSION['name']) || !isset($_SESSION['auth']) || !isset($_SESSION['nick']) ) {
 		echo '<script type="text/javascript">alert("請先登入!"); location.href="marketIndex.php"</script>';
 	} else {
-
+		// Query out the avg and show the percentage on the bar chart.
 	}
 ?>
 

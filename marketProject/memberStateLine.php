@@ -18,32 +18,32 @@
         	<li class="dropdown">
 	        	<a href="" class="dropdown-toggle" data-toggle="dropdown">前往 <b class="caret"></b></a>
 	            <ul class="dropdown-menu">    
-	              <li><a href="marketIndex.php">市場首頁</a></li>
+	              <li><a href="marketIndex.php"><i class="icon-globe"></i> 市場首頁</a></li>
 	              <li class="divider"></li>
 	              <li class="nav-header">二手市場</li>       
-	              <li><a href="#">二手書區</a></li>
-	              <li><a href="#">雜物區</a></li>
-	              <li><a href="#">求物區</a></li>
+	              <li><a href="#"><i class="icon-book"></i> 二手書區</a></li>
+	              <li><a href="#"><i class="icon-wrench"></i> 雜物區</a></li>
+	              <li><a href="#"><i class="icon-question-sign"></i> 求物區</a></li>
 	              <li class="divider"></li>
 	              <li class="nav-header">限時競標</li>
-	              <li><a href="#">書本區</a></li>
-	              <li><a href="#">雜物區</a></li>
+	              <li><a href="#"><i class="icon-book"></i> 書本區</a></li>
+	              <li><a href="#"><i class="icon-wrench"></i> 雜物區</a></li>
 	              <li class="divider"></li>
 	              <li class="nav-header">校園團購</li>	           
-	              <li><a href="#">教課書區</a></li>
-	              <li><a href="#">飲食區</a></li>
-	              <li><a href="#">求物區</a></li>
+	              <li><a href="#"><i class="icon-book"></i> 教課書區</a></li>
+	              <li><a href="#"><i class="icon-leaf"></i> 飲食區</a></li>
+	              <li><a href="#"><i class="icon-question-sign"></i> 求物區</a></li>
 	            </ul>
 	        </li>         
 	        <li class="dropdown">
 	        	<a href="" class="dropdown-toggle" data-toggle="dropdown">交易管理介面 <b class="caret"></b></a>
 	            <ul class="dropdown-menu">   
-	              <li><a href="onChasing.php">追蹤清單</a></li>
-	              <li><a href="myRate.php">我的評分</a></li>
+	              <li><a href="onChasing.php"><i class="icon-bell"></i> 追蹤清單</a></li>
+	              <li><a href="myRate.php"><i class="icon-heart"></i> 我的評分</a></li>
 	              <li class="divider"></li>
 	              <li class="nav-header">進階管理</li>
-	              <li><a href="buyerInterface.php">買方總管理</a></li>
-	              <li><a href="sellerInterface.php">賣方總管理</a></li>	          
+	              <li><a href="buyerInterface.php"><i class="icon-camera"></i> 買方總管理</a></li>
+	              <li><a href="sellerInterface.php"><i class="icon-share-alt"></i> 賣方總管理</a></li>	          
 	            </ul>
 	        </li>
 			<li><a data-toggle="modal" href="#newProduct">刊登商品</a></li>
