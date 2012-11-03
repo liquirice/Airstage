@@ -11,7 +11,7 @@
 		$stu_id = $_SESSION['stu_id'];
 		$trade_id = 4;//mysqli_real_escape_string( $conn, trim($_GET['trade']) );
 		
-		$query = "SELECT marketSecondHand_bidList.*, Member.username, marketSecondHand_productInfo.title " . 
+		$query = "SELECT marketSecondHand_bidList.*, Member.username, marketSecondHand_productInfo.title ,marketsecondhand_bidlist.bidder_id " . 
 				 "FROM marketSecondHand_bidList " . 
 				 "LEFT JOIN marketSecondHand_trade ON marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id " .
 				 "LEFT JOIN marketSecondHand_productInfo ON marketSecondHand_trade.product_id = marketSecondHand_productInfo.product_id " .
@@ -21,7 +21,10 @@
 		$row = mysqli_fetch_array( $result );
 		
 		if( isset($_POST['send']) ) {
-			// Insert the feedback to the comment table.
+			// Insert the feedback to the comment table.			
+			$market_reply = 'INSERT INTO `marketsecondhand_comment`(`trade_id`,`buyer_id`,`rate`,`feedback_content`) VALUES("'.$_row['stu_id'].'", "'.$_row["bidder_id"].'", "'.$_POST["rate"].'", "'.$_POST["reply"].'")   "';
+			$reply_result = mysqli_query($market_reply);
+       		$reply_row = mysqli_fetch_array( $reply_result );
 		}
 	}
 ?>
@@ -64,7 +67,10 @@
     </div>
 	
 	<?php
-		// If feedback has been writen. 
+		// If feedback has been writen.
+		$market_reply = 'INSERT INTO `marketsecondhand_comment`(`trade_id`,`buyer_id`,`rate`,`feedback_content`) VALUES("'.$_row['stu_id'].'", "'.$_row["bidder_id"].'", "'.$_POST["rate"].'", "'.$_POST["reply"].'")   "';
+		$reply_result = mysqli_query($market_reply);
+        $reply_row = mysqli_fetch_array( $reply_result ); 
 	?>
 	
 	
@@ -72,7 +78,7 @@
 		// If the feedback hasn't set.
 	?>
 	
-	<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="form-horizontal">
+	<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="form-horizontal" id="feedback" name="feedback">
     	<legend>交易回饋單</legend>
     	
     	<div class="control-group">
@@ -120,11 +126,11 @@
 		  <label class="control-label"><i class="icon-star"></i> 評分等級</label>
 		  <div class="controls">
 		    <div class="btn-group" data-toggle="buttons-radio">
-		        <button type="button" class="btn btn-danger">感覺很差</button>
-		        <button type="button" class="btn btn-warning">不太愉快</button>
-		        <button type="button" class="btn btn-primary">普普通通</button>
-		        <button type="button" class="btn btn-info">態度不錯</button>
-		        <button type="button" class="btn btn-success">完美賣家</button>
+		        <button type="button" class="btn btn-danger" name="rate" value="1" >感覺很差</button>
+		        <button type="button" class="btn btn-warning" name="rate" value="2" >不太愉快</button>
+		        <button type="button" class="btn btn-primary" name="rate" value="3" >普普通通</button>
+		        <button type="button" class="btn btn-info" name="rate" value="4" >態度不錯</button>
+		        <button type="button" class="btn btn-success" name="rate" value="5" >完美賣家</button>
 		    </div>		  
 		   </div>
 		</div>
