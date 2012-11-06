@@ -60,8 +60,12 @@
 							<td><input type="text" name="name" placeholder="活末日之花　奇蹟綻放" id="name" value="'.$url['name'].'" /></td>
 						</tr>
 						<tr>
-							<td><img src="../../../../activities/jpg/cub.png" />時間</td>
-							<td><input type="text" name="time" placeholder="2012/05/25" id="date" value="'.$url['time'].'" />&nbsp;&nbsp;<input type="text" name="extratime" placeholder=" 5:45 開放入場" value="'.$url['extratime'].'" /></td>
+							<td><img src="../../../../activities/jpg/cub.png" />活動開始日期</td>
+							<td><input type="text" name="starttime" placeholder="2012/05/25" class="date" value="'.$url['starttime'].'" /></td>
+						</tr>
+						<tr>
+							<td height="50px"><img src="../../../../activities/jpg/cub.png" />活動結束日期</td>
+							<td><input type="text" name="endtime" placeholder="2012/05/30" class="date" value="'.$url['endtime'].'" />&nbsp;&nbsp;<input type="text" name="extratime" placeholder=" 5:45 開放入場" value="'.$url['extratime'].'" /></td>
 						</tr>
 						<tr>
 							<td><img src="../../../../activities/jpg/cub.png" />地點</td>
@@ -124,7 +128,8 @@
 		$title = $_POST['title'];
 		$description = $_POST['description'];
 		$name = $_POST['name'];
-		$time = $_POST['time'];
+		$starttime = $_POST['starttime'];
+		$endtime = $_POST["endtime"];
 		$extratime = $_POST['extratime'];
 		$venue = $_POST['venue'];
 		$fee = $_POST['fee'];
@@ -134,7 +139,7 @@
 		$note = $_POST['note'];
 		$signup = $_POST['signup'];
 		
-		$update = "UPDATE Activities SET type = '$type', title = '$title', description = '$description', name = '$name', time = '$time', extratime = '$extratime', venue = '$venue', fee = '$fee', host = '$host', url1 = '$url1', url2 = '$url2', note = '$note', signup = '$signup' WHERE rno = ".$url['rno']."";
+		$update = "UPDATE Activities SET type = '$type', title = '$title', description = '$description', name = '$name', starttime = '$starttime', endtime = '$endtime', extratime = '$extratime', venue = '$venue', fee = '$fee', host = '$host', url1 = '$url1', url2 = '$url2', note = '$note', signup = '$signup' WHERE rno = ".$url['rno']."";
 		//將資料更新至Activities
 		if(mysqli_query($conn,$update)){
 			$check = "SELECT event".$url['rno']." FROM `List`";

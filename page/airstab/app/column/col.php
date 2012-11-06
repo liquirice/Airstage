@@ -1,6 +1,6 @@
 <table border="0" width="99%" cellspacing="0" cellpadding="0">
 					<tr>
-						<td background="jpg/whitecolumn.png" align="center" style="background-repeat:no-repeat" valign="top">
+						<td background="jpg/whitecolumn.png" align="center" style="background-repeat:no-repeat">
 										<table border="0" width="892" cellpadding="5">
 											<tr>
 												<td width="84" align="center" rowspan="2">
@@ -11,10 +11,19 @@
 														<td style="border: 1px solid #C0C0C0" valign="top" align="center">
 															<p align="center">
                                                             <div class="abgne-yahoo-slide abgne_tip_gallery_block2">
-															<a target="_top" href="read.php?rno=<?php echo ''.$topcol['rno'].''; ?>"><img border="0" src="jpg/p1.jpg" width="349" height="232"></a>
+															<a target="_top" href="read.php?rno=<?php echo ''.$topcol['rno'].''; ?>">
+															<?php
+																if($topcol["front"] != ""){
+																	echo '<img border="0" src="../../../../accounts/images/'.$topcol["stu_id"].'/col/'.$topcol["front"].'" width="349" height="232">';
+																}
+																else {
+																	echo '<img border="0" src="jpg/p1.jpg" width="349" height="232">';
+																}
+																?>
+																</a>
                                                         	<div class="title"><h3><a href="read.php?rno=<?php echo ''.$topcol['rno'].''; ?>" title=<?php echo '"'.$topcol['title'].'">'.$topcol['title'].'';?> </a></h3></div>
 															<div class="desc">
-																<p><span style="color:#FFF"><?php echo left_string($topcol['realcontent'],15,"..."); ?></span><a href="read.php?rno=<?php echo ''.$topcol['rno'].''; ?>" target="_blank" style="cursor:pointer">更多»</a></p>
+																<p><span style="color:#FFF"><?php $removecol = strip_tags($topcol['realcontent']);  echo CuttingStr($removecol,100); ?></span><a href="read.php?rno=<?php echo ''.$topcol['rno'].''; ?>" target="_blank" style="cursor:pointer">更多»</a></p>
 															</div>
                                                             </div></p>
         												</td>
@@ -25,16 +34,38 @@
 												<table border="0" width="93%" cellspacing="0" height="113">
 													<tr>
 														<td style="border: 1px solid #C0C0C0">
-														<img border="0" src="jpg/t2.jpg" width="161" height="104"></td>
+														<div class="abgne-yahoo-slide abgne_tip_gallery_block3">
+														<?php
+														if($secondcol["rno"] != ""){
+														if($secondcol["front"] != "") {
+															echo '<a href="read.php?rno='.$secondcol["rno"].'"><img border="0" src="../../../../accounts/images/'.$secondcol["stu_id"].'/col/'.$secondcol["front"].'" width="161px" height="104px"></a>';
+														}
+														else
+															echo '<a href="read.php?rno='.$secondcol["rno"].'"><img border="0" src="jpg/p1.jpg" width="161px" height="104px"></a>';
+														
+														echo ' 
+														<div class="othertitle"><h3><a href="read.php?rno='.$secondcol['rno'].'" title="'.$secondcol['title'].'">'.$secondcol['title'].'</a></h3>
+														<div class="maskCss" style="height: 50px; opacity: 0.6; "></div>
+														</div>';
+														}
+														else {
+															echo '<img border="0" src="jpg/p1.jpg" width="161px" height="104px">
+															<div class="othertitle"><h3 style="color:#FFFFFF">暫無文章!!!</h3>
+														<div class="maskCss" style="height: 50px; opacity: 0.6; "></div>
+														</div>';
+														}
+														?>
+														</div>
+														</td>
 													</tr>
 												</table>
 												</td>
-												<td align="center" rowspan="2" valign="top">
+												<td align="center" rowspan="2" valign="middle">
 												<p align="left" style="line-height: 150%"><br/>
 												<font color="#666666" face="微軟正黑體" style="font-size: 9pt">
                                                 <?php
 												while($column = mysqli_fetch_array($col)){
-													echo '● <a style="color:#666666" style="font-size:9pt;" href="read.php?rno='.$column['rno'].'" target="_blank">'.$column['title'].'</a><br>';
+													echo '● <a style="color:#666666" style="font-size:9pt;" href="read.php?rno='.$column['rno'].'">'.$column['title'].'</a><br>';
 												}
 												
 												?></font></td>
@@ -43,13 +74,40 @@
 												<td align="left" width="185" valign="bottom">
 												<table border="0" width="94%" cellspacing="0" height="113">
 													<tr>
-														<td style="border: 1px solid #C0C0C0">
-														<img border="0" src="jpg/t2.jpg" width="161" height="104"></td>
+														<td style="border: 1px solid #C0C0C0" align="center">
+														<div class="abgne-yahoo-slide abgne_tip_gallery_block3">
+														<?php
+														if($thirdcol["rno"] != ""){
+														if($thirdcol["front"] != "") {
+															echo '<a href="read.php?rno='.$thirdcol["rno"].'"><img border="0" src="../../../../accounts/images/'.$thirdcol["stu_id"].'/col/'.$thirdcol["front"].'" width="161px" height="104px"></a>';
+														}
+														else
+															echo '<a href="read.php?rno='.$thirdcol["rno"].'"><img border="0" src="jpg/p1.jpg" width="161px" height="104px"></a>';
+														
+														echo ' 
+														<div class="othertitle"><h3><a href="read.php?rno='.$thirdcol['rno'].'" title="'.$thirdcol['title'].'">'.$thirdcol['title'].'</a></h3>
+														<div class="maskCss" style="height: 50px; opacity: 0.6; "></div>
+														</div>';
+														}
+														else {
+															echo '<img border="0" src="jpg/p1.jpg" width="161px" height="104px">
+															<div class="othertitle"><h3 style="color:#FFFFFF">暫無文章!!!</h3>
+														<div class="maskCss" style="height: 50px; opacity: 0.6; "></div>
+														</div>';
+														}
+														
+														?>
+														</div>
+														</td>
 													</tr>
 												</table>
 												</td>
 											</tr>
+											<tr>
+												<td height="40px"></td>
+											</tr>
 										</table>
 										</td>
 					</tr>
+					
 					</table>

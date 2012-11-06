@@ -50,15 +50,16 @@ body {
 <script type="text/javascript" language="javascript" src="../plugin/validate/jquery.validate.js"></script>
 <script type="text/javascript" language="javascript">
         $(function(){
-			$('#datepicker').datepicker(
-				$.datepicker.regional['zh-TW']
-			);
+			
 			
 		});
 		
 </script>
 <script type="text/javascript" language="javascript">
-$(document).ready(function() {
+$(function() {
+	$('.datepicker').datepicker(
+		$.datepicker.regional['zh-TW']
+	);
     $('#form').validate({
 		success: 'valid',
 		rules:{
@@ -92,8 +93,10 @@ if($_SESSION['record'] === 'submit'){
 		$title = $_POST['title'];
 		$description = $_POST['description'];
 		$name = $_POST['name'];
-		$time = $_POST['time'];
+		$starttime = $_POST['starttime'];
+		$endtime = $_POST["endtime"];
 		$extratime = $_POST['extratime'];
+		$extratime2 = $_POST['extratime2'];
 		$venue = $_POST['venue'];
 		$fee = $_POST['fee'];
 		$host = $_POST['host'];
@@ -102,7 +105,7 @@ if($_SESSION['record'] === 'submit'){
 		$note = $_POST['note'];
 		$signup = $_POST['signup'];
 		
-		$insert = "INSERT INTO Activities(type, title, description, name, time, extratime, venue, fee, host, url1, url2, stu_id, note, signup) VALUES('$type', '$title', '$description', '$name', '$time', '$extratime', '$venue', '$fee', '$host', '$url1', '$url2', '".$_SESSION['stu_id']."', '$note', '$signup')";
+		$insert = "INSERT INTO Activities(type, title, description, name, starttime, endtime, extratime, extratime2, venue, fee, host, url1, url2, stu_id, note, signup) VALUES('$type', '$title', '$description', '$name', '$starttime', '$endtime', '$extratime', '$extratime2', '$venue', '$fee', '$host', '$url1', '$url2', '".$_SESSION['stu_id']."', '$note', '$signup')";
 		
 		if(mysqli_query($conn,$insert)){
 			$select = 'SELECT * FROM `Activities` ORDER BY rno DESC LIMIT 1';
@@ -149,7 +152,7 @@ else if($_SESSION['record'] == 'poster'){
 else if($_SESSION['record'] == 'upload'){
 	$path = "poster/";
 
-	$valid_formats = array("jpg");
+	$valid_formats = array("jpg", "JPG");
 	if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 		{
 			$name = $_FILES['photoimg']['name'];
@@ -162,13 +165,13 @@ else if($_SESSION['record'] == 'upload'){
 					{
 					if($size<(1024*1024))
 						{
-							$actual_image_name = time().substr(str_replace(" ", "_", $txt), 5).".".$ext;
+							$actual_image_name = $_SESSION['rnotemp'].".".$ext;
 							$tmp = $_FILES['photoimg']['tmp_name'];
 							if(move_uploaded_file($tmp, $path.$actual_image_name))
 								{
 									if(mysqli_query($conn,"UPDATE `Activities`  SET `poster` = '$actual_image_name' WHERE `rno` = ".$_SESSION['rnotemp']."")){
-									unset($_SESSION['rnotemp']);
-									echo "<script type='text/javascript' language='javascript'>alert('分享成功!'); window.opener.location.reload(true); window.close();</script>";
+										unset($_SESSION['rnotemp']);
+										echo "<script type='text/javascript' language='javascript'>alert('分享成功!'); window.opener.location.reload(true); window.close();</script>";
 									}
 									else{
 										echo "<script type='text/javascript' language='javascript'>alert('分享失敗!'); location.href='share.php?action=poster';</script>";
@@ -236,11 +239,18 @@ else if($_SESSION['record'] == 'share'){
     	<td colspan="2" class="type" width="100"><img src="jpg/cub.png" />活動名稱</td>
         <td><input type="text" size="53" name="name" id="name" placeholder="活末日之花　奇蹟綻放" /></td>
     </tr>
-    <!--時間-->
+    <!--開始日期-->
     <tr>
-    	<td colspan="2" class="type" width="100"><img src="jpg/cub.png" />時間</td>
-        <td width="407"><input type="text" name="time" placeholder="2012/05/25" id="datepicker" />&nbsp;&nbsp;
+    	<td colspan="2" class="type" width="100"><img src="jpg/cub.png" />活動開始日期</td>
+        <td width="407"><input type="text" name="starttime" placeholder="2012/05/25" class="datepicker" />&nbsp;&nbsp;
 		<input type="text" name="extratime" id="extratime" placeholder=" 5:45 開放入場" /></td>
+    </tr>
+    <!--截止日期-->
+    <tr>
+    	<td colspan="2" class="type" width="100" height="50px"><img src="jpg/cub.png" />活動結束日期</td>
+        <td width="407"><input type="text" name="endtime" placeholder="2012/05/30" class="datepicker" />&nbsp;&nbsp;
+		<input type="text" name="extratime2" id="extratime2" placeholder=" 5:45 開放入場" /><br />
+		<span style="font-size:12px; color:#777777">如果活動只有一天, 請將結束日期設為開始日起</span></td>
     </tr>
     <!--地點-->
     <tr>
@@ -281,7 +291,7 @@ else if($_SESSION['record'] == 'share'){
 		&nbsp;&nbsp;&nbsp;<textarea name="note" cols="30" id="note"" placeholder="注意事項" rows="4"></textarea></td>
 	</tr>
 	<tr>
-		<td height="100" align="center" valign="middle" colspan="2" bgcolor="#f1f1f1">是否需要開啟【線上報名】與【有誰參加】的功能?<br /><span style="color:#F00">如果沒有活動首頁將無法開啟此功能哦!</span><br />
+		<td height="100" align="center" valign="middle" colspan="2" bgcolor="#f1f1f1">是否需要開啟【線上報名】與【有誰參加】的功能?<br /><span style="color:#F00">如果沒有[活動首頁]將無法開啟此功能哦!</span><br />
 		<input type="radio" value="yes" name="signup" checked="checked" />需要&nbsp;&nbsp;<input type="radio" name="signup" value="no" />不需要</td>
 		</tr>
     <!--第二部份結束-->

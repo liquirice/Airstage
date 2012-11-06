@@ -54,7 +54,7 @@ while($urls[$i] != NULL){
 <script type="text/javascript" language="javascript" src="../../../../plugin/validate/jquery.validate.js"></script>
 <script type="text/javascript" language="javascript">
 $(function(){
-	$('#date').datepicker($.datepicker.regional['zh-TW']);
+	$('.date').datepicker($.datepicker.regional['zh-TW']);
 	$('#update').hide();
 	$('#adminlist').hide();
 	$('#private').hide();

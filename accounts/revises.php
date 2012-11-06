@@ -2,7 +2,7 @@
 	// Last Modified Day : 2012.09.27
 	require_once( "../setSession.php" );
 	
-	if( !isset($_SESSION['stu_id']) || !isset($_SESSION['name']) || !isset($_SESSION['auth']) || !isset($_SESSION['nick']) ) {
+	if( !isset($_SESSION['stu_id']) || !isset($_SESSION['name']) || !isset($_SESSION['auth']) ) {
 		echo '<script type="text/javascript">alert("請先登入唷～"); location.href="../index.php"</script>';
 	} else {
 		if( $_SESSION['auth'] == 0 ) {
@@ -125,6 +125,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Language" content="zh-tw">
 <title>│Airstage 西灣人│會員中心：編輯個人資料</title>
+<script language="javascript" type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script language="javascript" type="text/javascript">var app = "accounts";</script>
 <base target="_parent">
 <style type="text/css">
 	body,td,th {
@@ -142,56 +144,14 @@
 	h5 {
 		text-align: left;
 	}
-	#username.denied { 
-	  background-color: #FFEBF5;  
-	}
 </style>
-<script type = "text/javascript">
-	window.onload = initPage;
-	
-	function initPage() {
-		document.getElementById("username").onblur = usernameIsEmpty;
-		document.getElementById("email").onblur = emailValidation;
-	}
-	
-	function usernameIsEmpty() {
-		var object = document.getElementById("username");
-		
-		if( object.value == "" ) {
-			document.getElementById("submit").disabled = true; 
-			object.focus();
-			object.className = "denied";
-		} else {
-			document.getElementById("submit").disabled = false;
-			object.className = "";
-		}
-	}
-	
-	function emailValidation() {
-		var object = document.getElementById("email");
-		
-		if( object.value == "" ) {
-			document.getElementById("submit").disabled = true; 
-			object.focus();
-			object.placeholder = "欄位不能是空的";
-		} else {
-			if (!/^[\w\.-_\+]+@[\w-]+(\.\w{2,4})+$/.test(object.value) ) {
-				document.getElementById("submit").disabled = true; 
-				object.focus();
-			} else {
-				document.getElementById("submit").disabled = false;
-				object.className = "span4";
-			}
-		}
-	}
-</script>
 </head>
 
 <body>
 
 <div align="center">
 	<?php
-		require_once( "memberHeader.php" );
+		include( "../model/navi.php" );
 	?>
 	
 	<div align="center">
@@ -252,8 +212,7 @@
 	                    </td>
 	                    <td>
 	                    	<div class="controls">
-	                    		<input name="username" id="username" class="span3" value = "<?php echo $row['username'];?> " placeholder="此欄位不能為空" maxlength="25"/>
-	                    		<span class="help-inline"><font color="red">* 必填欄位</font></span>
+	                    		<input name="username" class="span3" value = "<?php echo $row['username'];?> " placeholder="輸入你的匿稱吧"/>
 	                    	</div>
 	                    </td>
                       </tr>
@@ -429,8 +388,7 @@
 	                    </label>
 		                </td>
 	                    <td>
-	                    	<i class="icon-envelope"></i>&nbsp;<input type = "text "name="email" id="email" class="span4" value = "<?php echo $row['email'];?>" placeholder="一定要填喔！"/>
-	                    	<span class="help-inline"><font color="red">* 必填欄位，格式需正確</font></span>
+	                    	<i class="icon-envelope"></i>&nbsp;<input type = "text "name="email" class="span4" value = "<?php echo $row['email'];?>" placeholder="一定要填喔！"/>
 	                    </td>	                    
                       </tr>
                       
@@ -744,7 +702,7 @@
                       </tr>                     	                  
                     </tbody>                    	               
                     </table>
-                    <button type = "submit" name = "submit" id = "submit" class="btn btn-info"><i class="icon-leaf icon-white"></i> 修改資料</button>
+                    <button type = "submit" name = "submit" class="btn btn-info"><i class="icon-leaf icon-white"></i> 修改資料</button>
                     <!-- End of form -->
 	              </form>
 	        </div>
@@ -759,17 +717,8 @@
         </tr>
         
 	    <tr>
-	      <td height="106" background="../jpg/last.png" valign="top"><div align="right">
-	        <table border="0" width="51%" height="45">
-	          <tr>
-	            <td align="left" width="116"><font color="#FFFFFF"> <a onMouseOver="var img=document['fpAnimswapImgFP21'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP21'].src=document['fpAnimswapImgFP21'].imgRolln" target="_parent" href="http://www.airstage.com.tw/nsysu/airs/page/studio/index.htm"> <img src="../mo/jpg/b1.jpg" alt="" name="fpAnimswapImgFP21" width="62" height="24" border="0" align="right" lowsrc="../mo/jpg/b102.jpg" id="fpAnimswapImgFP21" dynamicanimation="fpAnimswapImgFP21"></a><a onMouseOver="var img=document['fpAnimswapImgFP22'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP22'].src=document['fpAnimswapImgFP22'].imgRolln" target="_parent" href="https://www.facebook.com/pages/Airstage西灣人中山人的校園互動平台/356803227687619"><img src="../mo/jpg/b0.jpg" alt="" name="fpAnimswapImgFP22" width="31" height="24" border="0" align="right" lowsrc="../mo/jpg/b002.jpg" id="fpAnimswapImgFP22" dynamicanimation="fpAnimswapImgFP22"></a></font></td>
-	            <td align="left" width="68"><font color="#FFFFFF"> <a onMouseOver="var img=document['fpAnimswapImgFP23'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP23'].src=document['fpAnimswapImgFP23'].imgRolln" target="_parent" href="http://www.airstage.com.tw/nsysu/airs/page/studio/02.htm"> <img src="../mo/jpg/b2.jpg" alt="" name="fpAnimswapImgFP23" width="61" height="24" border="0" align="left" lowsrc="../mo/jpg/b202.jpg" id="fpAnimswapImgFP23" dynamicanimation="fpAnimswapImgFP23"></a></font></td>
-	            <td align="left" width="109"><font color="#FFFFFF"> <a onMouseOver="var img=document['fpAnimswapImgFP24'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP24'].src=document['fpAnimswapImgFP24'].imgRolln" target="_parent" href="http://www.airstage.com.tw/nsysu/airs/page/studio/03.htm"> <img src="../mo/jpg/b3.jpg" alt="" name="fpAnimswapImgFP24" width="61" height="24" border="0" align="left" lowsrc="../mo/jpg/b302.jpg" id="fpAnimswapImgFP24" dynamicanimation="fpAnimswapImgFP24"></a></font></td>
-	            <td align="left" valign="bottom"><font color="#FFFFFF"> <a onMouseOver="var img=document['fpAnimswapImgFP25'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP25'].src=document['fpAnimswapImgFP25'].imgRolln" target="_parent" href="http://www.airstage.com.tw"> <img src="../mo/jpg/b4.jpg" alt="" name="fpAnimswapImgFP25" width="124" height="30" border="0" align="left" lowsrc="../mo/jpg/b402.jpg" id="fpAnimswapImgFP25" dynamicanimation="fpAnimswapImgFP25"></a></font></td>
-	            <td align="left" width="31">&nbsp;</td>
-              </tr>
-            </table>
-	        </div>
+	      <td height="106" background="../jpg/last.png" valign="top">
+	      	<?php require("../model/footer.php"); ?>
 	        <p>&nbsp;</td>
         </tr>
   
@@ -796,6 +745,7 @@
 <script src = "assets/js/bootstrap-carousel.js"></script>
 <script src = "assets/js/bootstrap-typeahead.js"></script>
 <script src = "assets/js/bootstrap-affix.js"></script>
+<script src = "../plugin/jrumble/jquery.jrumble.1.3.min.js"></script>
 </body>
 
 
