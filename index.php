@@ -99,7 +99,9 @@
 ?>
 
 <!DOCTYPE HTML>
-<html><head>
+<html>
+<script	type="text/javascript"	src="./index.js"></script>
+<head>
 <link href="tm2.ico" rel="shortcut icon"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Language" content="zh-tw">
@@ -116,139 +118,6 @@ a{text-decoration:none;}
 </style>
 <link rel="stylesheet" type="text/css" href="css/index.css">
 
-<script type="text/javascript">
-$(document).ready(function() {
-	$('#banner').bjqs({
-          'animation' : 'slide',
-          'width' : 961,
-          'height' : 366,
-		  'nextText' : '<img src="jpg/rightafter.png" name="right" onMouseOver="document.right.src=\'jpg/arrowsright.png\'" onMouseOut="document.right.src=\'jpg/rightafter.png\'" />',
-		  'prevText' : '<img src="jpg/leftafter.png" name="left" onMouseOver="document.left.src=\'jpg/arrowsleft.png\'" onMouseOut="document.left.src=\'jpg/leftafter.png\'" />',
-		  'showMarkers' : true,
-		  'centerMarkers' : true,
-		  'animationDuration': 1200,
-		  'rotationSpeed' : 12000,
-    });
-	$(function(){
-		Shadowbox.init({
-			players : ['html'],
-			overlayColor: "#FFFFFF",
-		});
-		$('#logo').jrumble({
-			x:2,
-			y:2,
-			rotation:1,
-		});
-		$('#logo').hover(function(){
-			$(this).trigger('startRumble'); 
-		}, function(){
-			$(this).trigger('stopRumble');
-        });
-		$('#hot1').click(function(){
-			var $body = (window.opera) ? (document.compatMode == "CSS1Compat" ? $('html') : $('body')) : $('html,body');
-				$body.animate({
-					scrollTop: $('#hot').offset().top
-			}, 600);
-			return false;
-		});
-		$('#clubs1').click(function(){
-			var $body = (window.opera) ? (document.compatMode == "CSS1Compat" ? $('html') : $('body')) : $('html,body');
-				$body.animate({
-					scrollTop: $('#clubs').offset().top
-			}, 600);
-			return false;
-		});
-		$('#departments1').click(function(){
-			var $body = (window.opera) ? (document.compatMode == "CSS1Compat" ? $('html') : $('body')) : $('html,body');
-				$body.animate({
-					scrollTop: $('#departments').offset().top
-			}, 600);
-			return false;
-		});
-		$('#authorities1').click(function(){
-			var $body = (window.opera) ? (document.compatMode == "CSS1Compat" ? $('html') : $('body')) : $('html,body');
-				$body.animate({
-					scrollTop: $('#authorities').offset().top
-			}, 600);
-			return false;
-		});
-		$('#concerts1').click(function(){
-			var $body = (window.opera) ? (document.compatMode == "CSS1Compat" ? $('html') : $('body')) : $('html,body');
-				$body.animate({
-					scrollTop: $('#concerts').offset().top
-			}, 600);
-			return false;
-		});
-	});
-});
-</script>
-<script language="JavaScript" fptype="dynamicanimation">
-<!--
-	function dynAnimation() {}
-	function clickSwapImg() {}
-//-->
-</script>
-<base target="_parent">
-
-<script>
-	setTimeout("history.go(0);",60000);
-</script>
-
-<script language="JavaScript">
-<!--
-function FP_changeProp() {//v1.0
-	 var args=arguments,d=document,i,j,id=args[0],o=FP_getObjectByID(id),s,ao,v,x;
-	 d.$cpe=new Array(); if(o) for(i=2; i<args.length; i+=2) { v=args[i+1]; s="o"; 
-	 ao=args[i].split("."); for(j=0; j<ao.length; j++) { s+="."+ao[j]; if(null==eval(s)) { 
-	  s=null; break; } } x=new Object; x.o=o; x.n=new Array(); x.v=new Array();
-	 x.n[x.n.length]=s; eval("x.v[x.v.length]="+s); d.$cpe[d.$cpe.length]=x;
-	 if(s) eval(s+"=v"); }
-}
-
-function FP_getObjectByID(id,o) {//v1.0
-	 var c,el,els,f,m,n; if(!o)o=document; if(o.getElementById) el=o.getElementById(id);
-	 else if(o.layers) c=o.layers; else if(o.all) el=o.all[id]; if(el) return el;
-	 if(o.id==id || o.name==id) return o; if(o.childNodes) c=o.childNodes; if(c)
-	 for(n=0; n<c.length; n++) { el=FP_getObjectByID(id,c[n]); if(el) return el; }
-	 f=o.forms; if(f) for(n=0; n<f.length; n++) { els=f[n].elements;
-	 for(m=0; m<els.length; m++){ el=FP_getObjectByID(id,els[n]); if(el) return el; } }
-	 return null;
-}
-// -->
-</script>
-
-<script type="text/javascript">
-var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-34181090-1']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-function MM_swapImgRestore() { //v3.0
-  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
-}
-function MM_preloadImages() { //v3.0
-  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
-    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
-    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
-}
-
-function MM_findObj(n, d) { //v4.01
-  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
-    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
-  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
-  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
-  if(!x && d.getElementById) x=d.getElementById(n); return x;
-}
-
-function MM_swapImage() { //v3.0
-  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
-   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
-}
-</script>
 <style type="text/css">
 body,td,th {
 	font-family: "微軟正黑體";
@@ -789,13 +658,7 @@ echo'
     </tr>
     <tr>
       <td colspan="2"><div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/zh_TW/all.js#xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script></td>
+</td>
     </tr>
     <tr>
       <td colspan="2">&nbsp;</td>
@@ -820,15 +683,6 @@ echo'
   </table>
 </div>
 <div id="fb-root"></div>
-<script>
-	(function(d, s, id) {
-	  var js, fjs = d.getElementsByTagName(s)[0];
-	  if (d.getElementById(id)) return;
-	  js = d.createElement(s); js.id = id;
-	  js.src = "//connect.facebook.net/zh_TW/all.js#xfbml=1";
-	  fjs.parentNode.insertBefore(js, fjs);
-	} (document, 'script', 'facebook-jssdk'));
-</script>
 
 <?php mysqli_close( $conn ); ?>
 
