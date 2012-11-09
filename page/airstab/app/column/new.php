@@ -181,6 +181,7 @@ $(function(){
                                                     <p style="margin-top: 0; margin-bottom: 0"><b><font face="微軟正黑體" size="5" color="#333333">♠</font><font color="#333333" face="微軟正黑體" size="4">&nbsp; 寫篇新文章</font></b></p><br>
                                                     <br>
                                                     <br>
+                                                
                                                     <font face="微軟正黑體"><select size="1" name="type" id="type">
                                                         <option selected value="null">
                                                             文章分類
@@ -190,8 +191,8 @@ $(function(){
                                                             專欄文章
                                                         </option>
 
-                                                        <option value="news">
-                                                            新聞時事
+                                                        <option value="food">
+                                                            食尚指南
                                                         </option>
 
                                                         <option value="school">
@@ -202,7 +203,9 @@ $(function(){
                                                             藝文創作
                                                         </option>
                                                     </select></font>
-                                                    <font face="微軟正黑體" color="#C0C0C0">&nbsp;<input type="text" name="title" id="title" size="61" style="color: #C0C0C0; border: 1px solid #C0C0C0" placeholder="文章標題">　　　　　　　</font><input type="radio" value="small" checked name="display"><font size="2" color="#808080" face="微軟正黑體">顯示小檔案</font><input type="radio" value="username" name="display"><font face="微軟正黑體" size="2" color="#808080">僅用暱稱</font><input type="radio" value="clubs" name="display"><font face="微軟正黑體" size="2" color="#808080">社團名義</font>
+                                                    <font face="微軟正黑體" color="#C0C0C0">&nbsp;<input type="text" name="title" id="title" size="61" style="color: #C0C0C0; border: 1px solid #C0C0C0" placeholder="文章標題">　　　　　　　</font>
+                                                    <?php
+                                                    /*<input type="radio" value="small" checked name="display"><font size="2" color="#808080" face="微軟正黑體">顯示小檔案</font><input type="radio" value="username" name="display"><font face="微軟正黑體" size="2" color="#808080">僅用暱稱</font><input type="radio" value="clubs" name="display"><font face="微軟正黑體" size="2" color="#808080">社團名義</font>*/ ?>
                                                     <p>
 
                                                     <p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>

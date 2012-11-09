@@ -18,7 +18,7 @@ $j=1;
     <title>我的書架 - Airstage</title>
     <script type="text/javascript" language="javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script type="text/javascript" language="javascript">
-var app = "none";
+var app = "column";
     var coltype = "shelf";
     $(function() {
         $("a").css({"text-decoration": "none", "cursor": "pointer"});
@@ -37,10 +37,10 @@ var app = "none";
 
     <table align="center" border="0" cellpadding="0" cellspacing="0">
         <tr>
-            <td style="background-image:url(../../../../jpg/bot.png)">
+            <td style="background-image:url(../../../../jpg/bot.png)" valign="top">
                 <table align="center" border="0" cellpadding="0" cellspacing="0">
                     <tr>
-                        <td colspan="2" align="center"><iframe name="I1" src="main2.htm" scrolling="no" border="0" frameborder="0" marginwidth="1" marginheight="1" width="959px" height="141px"></iframe></td>
+                        <td colspan="2" align="center" valign="top"><iframe name="I1" src="main2.htm" scrolling="no" border="0" frameborder="0" marginwidth="1" marginheight="1" width="959px" height="141px"></iframe></td>
                     </tr><?php require("coltype.php") ?>
                     <tr>
 	                    <td height="30px"></td>

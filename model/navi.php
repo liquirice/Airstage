@@ -6,10 +6,16 @@
     height: 55px
 }
 </style>
+<link rel="stylesheet" type="text/css" href="http://www.airstage.com.tw/nsysu/airs/plugin/shadowbox/shadowbox.css">
 <script type="text/javascript" src="http://www.airstage.com.tw/nsysu/airs/plugin/jrumble/jquery.jrumble.1.3.min.js"></script>
+<script type="text/javascript" src="http://www.airstage.com.tw/nsysu/airs/plugin/shadowbox/shadowbox.js"></script>
 <script>
 $(function() {
 	$("a").css("text-decoration", "none");
+	Shadowbox.init({
+		players : ['html'],
+		overlayColor: "#FFFFFF",
+	});
 	$('#logo').jrumble({
         	x:2,
         	y:2,
@@ -160,7 +166,7 @@ $(function() {
                                                             <td><a href="http://www.airstage.com.tw/nsysu/airs/page/airstab/app/column/"><img alt="" width="86" height="35" border="0" id="coltop" /></a></td>
 
                                                             <td><a href="javascript:void(0)"><img alt="" width="86" height="35" border="0" id="markettop" /></a></td>
-                                                            <td><a href="http://www.airstage.com.tw/nsysu/airs/member/login.php"><img width="86" height="35" border="0" id="membertop"></a></td>
+                                                            <td><a href="http://www.airstage.com.tw/nsysu/airs/accounts/revises.php"><img width="86" height="35" border="0" id="membertop"></a></td>
                                                         </tr>
                                                     </table>
                                                 </td>
@@ -187,5 +193,5 @@ $(function() {
             </table>
         </div>
 
-        <p>&nbsp;</p>
+        <div style="height:30px"></div>
     </div>

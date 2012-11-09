@@ -55,6 +55,16 @@ $.validator.addMethod("valid", function(type, element) {
         return (this.optional(element) || type != 'null')
     }, "請選擇文章分類");
 $(function(){
+	$("#delete").click(function(){
+	if(confirm('你確定要刪除文章?')){
+		$.post("delete.php",{rno:"<?php echo $rno ?>"}, function(message){
+			alert(message);
+			window.location.href="index.php";
+		});
+	}
+	else
+		return "按一下[取消]停留在此頁";
+	});
 	$('#form').validate({
 		success: 'valid',
 		rules:{
@@ -187,7 +197,7 @@ function clickSwapImg() {}
 													echo '
 													<option value="null">文章分類</option>
 													<option selected value="column">專欄文章</option>
-													<option value="news">新聞時事</option>
+													<option value="food">食尚指南</option>
 													<option value="school">校園話題</option>
 													<option value="concerts">藝文創作</option>';
 												}
@@ -195,7 +205,7 @@ function clickSwapImg() {}
 													echo '
 													<option value="null">文章分類</option>
 													<option value="column">專欄文章</option>
-													<option selected value="news">新聞時事</option>
+													<option selected value="food">食尚指南</option>
 													<option value="school">校園話題</option>
 													<option value="concerts">藝文創作</option>';
 												}
@@ -203,7 +213,7 @@ function clickSwapImg() {}
 													echo '
 													<option value="null">文章分類</option>
 													<option value="column">專欄文章</option>
-													<option value="news">新聞時事</option>
+													<option value="food">食尚指南</option>
 													<option selected value="school">校園話題</option>
 													<option value="concerts">藝文創作</option>';
 												}
@@ -211,7 +221,7 @@ function clickSwapImg() {}
 													echo '
 													<option value="null">文章分類</option>
 													<option value="column">專欄文章</option>
-													<option value="news">新聞時事</option>
+													<option value="food">食尚指南</option>
 													<option value="school">校園話題</option>
 													<option selected value="concerts">藝文創作</option>';
 												}
@@ -219,7 +229,7 @@ function clickSwapImg() {}
 												</select> </font>
 												<font face="微軟正黑體" color="#C0C0C0">&nbsp;<input type="text" name="title" id="title" size="61" style="color: #000000; border: 1px solid #C0C0C0" placeholder="文章標題" value="<?php echo ''.$getresult['title'].''; ?>" />　　　　　　　</font>
 												<?php
-													if($getresult['display'] == 'small'){
+													/*if($getresult['display'] == 'small'){
 														echo '
 															<input type="radio" value="small" checked name="display"><font size="2" color="#808080" face="微軟正黑體">顯示小檔案</font>
 															<input type="radio" value="username" name="display"><font face="微軟正黑體" size="2" color="#808080">僅用暱稱</font>
@@ -239,13 +249,14 @@ function clickSwapImg() {}
 															<input type="radio" value="username" name="display"><font face="微軟正黑體" size="2" color="#808080">僅用暱稱</font>
 															<input type="radio" value="clubs" checked name="display"><font face="微軟正黑體" size="2" color="#808080">社團名義</font>
 														';
-													}
+													}*/
 												?>
 												<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
 												<table border="1" width="100%" cellspacing="0" cellpadding="5" height="560" bordercolor="#C0C0C0">
 													<tr>
 														<td style="border-style: solid; border-width: 0px" bgcolor="#E7E7E7" valign="top">
 														<p align="right">
+														<input type="button" id="delete" value="" style="width:48px; height:29px; background:url(jpg/delete.png); background-repeat:no-repeat; border:0; cursor:pointer" />&nbsp;
 														<input type="button" id="post" value="" style="width:48px; height:29px; background:url(jpg/bt01.png); background-repeat:no-repeat; border:0; cursor:pointer" onclick="window.document.body.onbeforeunload=null;return true;" />&nbsp;
 														<input type="button" id="save" value="" style="width:72px; height:29px; background:url(jpg/bt02.png); background-repeat:no-repeat; border:0; cursor:pointer" onclick="window.document.body.onbeforeunload=null;return true;" /></p></td>
 													</tr>

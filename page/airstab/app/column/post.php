@@ -46,10 +46,10 @@ if(mysqli_query($conn, $post)){
 			echo"<script language='javascript' type='text/javascript'>alert('格式或檔案大小有誤!'); history.back();</script>";
 	}
 	else{
-		echo "<script language='javascript' type='text/javascript'>alert('更新失敗!請重新再來!'); history.back();</script>";
+		echo "<script language='javascript' type='text/javascript'>alert('更新成功!'); window.location.href='read.php?rno=".$_SESSION["rnoCol"]."'</script>";
 		}
 	}
-}
+
 else{
 	echo "<script language='javascript' type='text/javascript'>alert('更新失敗!請重新再來'); history.back();</script>";
 }

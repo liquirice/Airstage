@@ -58,7 +58,12 @@ $(function(){
 	$('#update').hide();
 	$('#adminlist').hide();
 	$('#private').hide();
-	$(document).ready(function() {
+	$(function() {
+		$("a").hover(function(){
+			$(this).css("text-decoration", "underline");
+		}, function(){
+			$(this).css("text-decoration", "none");
+		});
 		$('#updateform').validate({
 		success: 'valid',
 		rules:{
@@ -202,12 +207,12 @@ else if($j == 0){
 		<img border="0" src="jpg/bl.jpg" width="1" height="20"></td>
 		<td align="center" width="81"><span style="vertical-align: medium">
 		<font color="#0066CC"><span style="font-weight: 700; font-size: 11pt">
-		<a onClick="document.getElementById(\'frame\').src="'.$url['url1'].'" style="cursor:pointer">
+		<a onClick="document.getElementById(\'frame\').src="'.$url['url1'].'" style="cursor:pointer; text=decoration:none">
 		<span style="text-decoration: none"><font color="#0066CC">首頁</font></span></a></span></font></span></td>
 		<td align="left" width="2">
 		<img border="0" src="jpg/bl.jpg" width="1" height="20"></td>
 		<td align="center" width="81">
-		<a href="'.$url['url2'].'" target="new" style="cursor:pointer">
+		<a href="'.$url['url2'].'" target="new" style="cursor:pointer; text-decoration:none">
 		<span style="font-weight: 700; font-size: 11pt; vertical-align: medium; text-decoration: none">
 		<font color="#0066CC">FB活動頁</font></span></a></td>
 		<td align="left" width="4">
@@ -228,7 +233,7 @@ else if($j == 0){
 		<img border="0" src="jpg/bl.jpg" width="1" height="20"></td>';
 		}
 		echo'
-		<td align="left" width="70">&nbsp;</td>
+		<td align="left" width="70"><div class="fb-like" data-href="'.$url["url2"].'" data-send="false" data-layout="button_count" data-width="70" data-show-faces="false"></div></td>
 	</tr>
 </table>
 <!--底部選項-->
@@ -238,5 +243,13 @@ else if($j == 0){
 </table>';
 }
 ?>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/zh_TW/all.js#xfbml=1&appId=209856362473286";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 </body>
 </html>

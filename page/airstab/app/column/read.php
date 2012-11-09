@@ -1,6 +1,7 @@
 <?php
 session_start();
 include('../../../../conn.php');
+require("zhstring.php");
 
 $rno = $_GET['rno'];
 $_SESSION['readrno'] = $rno;
@@ -46,6 +47,12 @@ if($_COOKIE['temprno'.$rno.''] == 0){
     <link href="http://www.airstage.com.tw/nsysu/airs/tm2.ico" rel="shortcut icon">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="Content-Language" content="zh-tw">
+    <meta property="og:title" content="<?php echo $getresult["title"] ?>" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="http://www.airstage.com.tw/nsysu/airs/page/airstab/app/column/read.php?rno=<?php echo $getresult["rno"] ?>" />
+    <meta property="og:image" content="http://www.airstage.com.tw/nsysu/airs/page/airstab/jpg/b301.jpg" />
+    <meta property="og:site_name" content="Airstage" />
+    <meta property="fb:admins" content="100000120819158" />
     <link rel="stylesheet" type="text/css" href="../../../../plugin/shadowbox/shadowbox.css">
     <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="../../../../plugin/shadowbox/shadowbox.js"></script>
@@ -257,7 +264,7 @@ body,td,th {
                                             if($picday['profile_pic'] == '')
                                                 echo '';
                                             else
-                                                echo '<tr><td rowspan="2"><img width="44px" height="44px" src="../../../../accounts/images/'.$hots['stu_id'].'/'.$picday['profile_pic'].'" /></td><td><a style="font-size:10px; color:#000; text-decoration:none" href="read.php?rno='.$hots['rno'].'">'.$hots['title'].'</a></td></tr><tr><td style="font-size:10px; color:#CCC">'.$proday['name'].'</td</tr>';
+                                                echo '<tr><td rowspan="2"><img width="44px" height="44px" src="../../../../accounts/images/'.$hots['stu_id'].'/'.$picday['profile_pic'].'" /></td><td><a style="font-size:10px; color:#000; text-decoration:none" href="read.php?rno='.$hots['rno'].'">'.CuttingStr($hots['title'],30).'</a></td></tr><tr><td style="font-size:10px; color:#CCC">'.$proday['name'].'</td</tr>';
                                             }
                                         }
                                         ?>
@@ -274,7 +281,7 @@ body,td,th {
                                             if($pic2['profile_pic'] == '')
                                                 echo '';
                                             else
-                                                echo '<tr><td rowspan="2"><img width="44px" height="44px" src="../../../../accounts/images/'.$monthhots['stu_id'].'/'.$pic2['profile_pic'].'" /></td><td><a style="font-size:10px; color:#000; text-decoration:none" href="read.php?rno='.$monthhots['rno'].'">'.$monthhots['title'].'</a></td></tr><tr><td style="font-size:10px; color:#CCC">'.$pro2['name'].'</td></tr>';
+                                                echo '<tr><td rowspan="2"><img width="44px" height="44px" src="../../../../accounts/images/'.$monthhots['stu_id'].'/'.$pic2['profile_pic'].'" /></td><td><a style="font-size:10px; color:#000; text-decoration:none" href="read.php?rno='.$monthhots['rno'].'">'.CuttingStr($monthhots['title'],30).'</a></td></tr><tr><td style="font-size:10px; color:#CCC">'.$pro2['name'].'</td></tr>';
                                             }
                                         }
                                         if($getresult['stu_id'] == $_SESSION['stu_id']){

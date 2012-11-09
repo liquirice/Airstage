@@ -61,11 +61,11 @@
 						</tr>
 						<tr>
 							<td><img src="../../../../activities/jpg/cub.png" />活動開始日期</td>
-							<td><input type="text" name="starttime" placeholder="2012/05/25" class="date" value="'.$url['starttime'].'" /></td>
+							<td><input type="text" name="starttime" placeholder="2012/05/25" class="date" value="'.$url['starttime'].'" />&nbsp;&nbsp;<input type="text" name="extratime" placeholder=" 5:45 開放入場" value="'.$url['extratime'].'" /></td>
 						</tr>
 						<tr>
 							<td height="50px"><img src="../../../../activities/jpg/cub.png" />活動結束日期</td>
-							<td><input type="text" name="endtime" placeholder="2012/05/30" class="date" value="'.$url['endtime'].'" />&nbsp;&nbsp;<input type="text" name="extratime" placeholder=" 5:45 開放入場" value="'.$url['extratime'].'" /></td>
+							<td><input type="text" name="endtime" placeholder="2012/05/30" class="date" value="'.$url['endtime'].'" />&nbsp;&nbsp;<input type="text" name="extratime2" placeholder=" 5:45 正式結束" value="'.$url['extratime2'].'" /></td>
 						</tr>
 						<tr>
 							<td><img src="../../../../activities/jpg/cub.png" />地點</td>
@@ -96,8 +96,8 @@
 						<tr>
 							<td colspan="2" class="type" width="100"><img src="../../../../activities/jpg/cub.png" />附註<br /><br />
 							&nbsp;&nbsp;&nbsp;<textarea name="note" id="note" cols="30" id="note"" placeholder="注意事項" rows="4">'.$url['note'].'</textarea></td>
-						</tr>
-						<tr>
+						</tr>';
+						/*<tr>
 							<td height="100" align="center" valign="middle" bgcolor="#f1f1f1">是否需要開啟【線上報名】與【有誰參加】的功能?<br /><br />';
 							if($url['signup'] == 'yes'){
 								echo '
@@ -108,7 +108,7 @@
 								echo '
 									<input type="radio" value="yes" name="signup" />需要&nbsp;&nbsp;<input type="radio" name="signup" value="no" checked="checked" />不需要</td>
 								</tr>';
-							}
+							}*/
 						echo '
 						<tr>
     						<td colspan="2" align="center"><br /><input type="submit" value="" style="background-image:url(../../../../activities/jpg/bt.png); background-repeat:no-repeat; width:127px; height:41px; cursor:pointer" /></td>
@@ -131,15 +131,16 @@
 		$starttime = $_POST['starttime'];
 		$endtime = $_POST["endtime"];
 		$extratime = $_POST['extratime'];
+		$extratime2 = $_POST['extratime2'];
 		$venue = $_POST['venue'];
 		$fee = $_POST['fee'];
 		$host = $_POST['host'];
 		$url1 = $_POST['url1'];
 		$url2 = $_POST['url2'];
 		$note = $_POST['note'];
-		$signup = $_POST['signup'];
+		//$signup = $_POST['signup'];
 		
-		$update = "UPDATE Activities SET type = '$type', title = '$title', description = '$description', name = '$name', starttime = '$starttime', endtime = '$endtime', extratime = '$extratime', venue = '$venue', fee = '$fee', host = '$host', url1 = '$url1', url2 = '$url2', note = '$note', signup = '$signup' WHERE rno = ".$url['rno']."";
+		$update = "UPDATE Activities SET type = '$type', title = '$title', description = '$description', name = '$name', starttime = '$starttime', endtime = '$endtime', extratime = '$extratime', extratime2 = '$extratime2', venue = '$venue', fee = '$fee', host = '$host', url1 = '$url1', url2 = '$url2', note = '$note' WHERE rno = ".$url['rno']."";
 		//將資料更新至Activities
 		if(mysqli_query($conn,$update)){
 			$check = "SELECT event".$url['rno']." FROM `List`";

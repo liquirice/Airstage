@@ -103,9 +103,9 @@ if($_SESSION['record'] === 'submit'){
 		$url1 = $_POST['url1'];
 		$url2 = $_POST['url2'];
 		$note = $_POST['note'];
-		$signup = $_POST['signup'];
+		//$signup = $_POST['signup'];
 		
-		$insert = "INSERT INTO Activities(type, title, description, name, starttime, endtime, extratime, extratime2, venue, fee, host, url1, url2, stu_id, note, signup) VALUES('$type', '$title', '$description', '$name', '$starttime', '$endtime', '$extratime', '$extratime2', '$venue', '$fee', '$host', '$url1', '$url2', '".$_SESSION['stu_id']."', '$note', '$signup')";
+		$insert = "INSERT INTO Activities(type, title, description, name, starttime, endtime, extratime, extratime2, venue, fee, host, url1, url2, stu_id, note) VALUES('$type', '$title', '$description', '$name', '$starttime', '$endtime', '$extratime', '$extratime2', '$venue', '$fee', '$host', '$url1', '$url2', '".$_SESSION['stu_id']."', '$note')";
 		
 		if(mysqli_query($conn,$insert)){
 			$select = 'SELECT * FROM `Activities` ORDER BY rno DESC LIMIT 1';
@@ -249,7 +249,7 @@ else if($_SESSION['record'] == 'share'){
     <tr>
     	<td colspan="2" class="type" width="100" height="50px"><img src="jpg/cub.png" />活動結束日期</td>
         <td width="407"><input type="text" name="endtime" placeholder="2012/05/30" class="datepicker" />&nbsp;&nbsp;
-		<input type="text" name="extratime2" id="extratime2" placeholder=" 5:45 開放入場" /><br />
+		<input type="text" name="extratime2" id="extratime2" placeholder=" 5:45 正式結束" /><br />
 		<span style="font-size:12px; color:#777777">如果活動只有一天, 請將結束日期設為開始日起</span></td>
     </tr>
     <!--地點-->
@@ -289,11 +289,12 @@ else if($_SESSION['record'] == 'share'){
 	<tr>
 		<td colspan="2" class="type" width="100"><img src="jpg/cub.png" />附註<br /><br />
 		&nbsp;&nbsp;&nbsp;<textarea name="note" cols="30" id="note"" placeholder="注意事項" rows="4"></textarea></td>
-	</tr>
-	<tr>
+	</tr>';
+	/*<tr>
 		<td height="100" align="center" valign="middle" colspan="2" bgcolor="#f1f1f1">是否需要開啟【線上報名】與【有誰參加】的功能?<br /><span style="color:#F00">如果沒有[活動首頁]將無法開啟此功能哦!</span><br />
 		<input type="radio" value="yes" name="signup" checked="checked" />需要&nbsp;&nbsp;<input type="radio" name="signup" value="no" />不需要</td>
-		</tr>
+		</tr>*/
+	echo '
     <!--第二部份結束-->
 	
 	

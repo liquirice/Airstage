@@ -3,22 +3,22 @@ session_start();
 include('../../../../conn.php');
 require("zhstring.php");
 $col = mysqli_query($conn, 'SELECT * FROM `Col` WHERE class = "column" AND shelf = "article" LIMIT 8');
-$new = mysqli_query($conn, 'SELECT * FROM `Col` WHERE class = "news" AND shelf = "article" LIMIT 8');
+$new = mysqli_query($conn, 'SELECT * FROM `Col` WHERE class = "food" AND shelf = "article" LIMIT 8');
 $sch = mysqli_query($conn, 'SELECT * FROM `Col` WHERE class = "school" AND shelf = "article" LIMIT 8');
 $con = mysqli_query($conn, 'SELECT * FROM `Col` WHERE class = "concerts" AND shelf = "article" LIMIT 8');
 
 $topcol = mysqli_fetch_array(mysqli_query($conn, 'SELECT * FROM `Col` WHERE class = "column" AND shelf = "article" ORDER BY view DESC LIMIT 1'));
-$topnew = mysqli_fetch_array(mysqli_query($conn, 'SELECT * FROM `Col` WHERE class = "news" AND shelf = "article" ORDER BY view DESC LIMIT 1'));
+$topnew = mysqli_fetch_array(mysqli_query($conn, 'SELECT * FROM `Col` WHERE class = "food" AND shelf = "article" ORDER BY view DESC LIMIT 1'));
 $topsch = mysqli_fetch_array(mysqli_query($conn, 'SELECT * FROM `Col` WHERE class = "school" AND shelf = "article" ORDER BY view DESC LIMIT 1'));
 $topcon = mysqli_fetch_array(mysqli_query($conn, 'SELECT * FROM `Col` WHERE class = "concerts" AND shelf = "article" ORDER BY view DESC LIMIT 1'));
 
 $secondcol = mysqli_fetch_array(mysqli_query($conn, 'SELECT * FROM `Col` WHERE class = "column" AND shelf = "article" ORDER BY view DESC LIMIT 1,1'));
-$secondnew = mysqli_fetch_array(mysqli_query($conn, 'SELECT * FROM `Col` WHERE class = "news" AND shelf = "article" ORDER BY view DESC LIMIT 1,1'));
+$secondnew = mysqli_fetch_array(mysqli_query($conn, 'SELECT * FROM `Col` WHERE class = "food" AND shelf = "article" ORDER BY view DESC LIMIT 1,1'));
 $secondsch = mysqli_fetch_array(mysqli_query($conn, 'SELECT * FROM `Col` WHERE class = "school" AND shelf = "article" ORDER BY view DESC LIMIT 1,1'));
 $secondcon = mysqli_fetch_array(mysqli_query($conn, 'SELECT * FROM `Col` WHERE class = "concerts" AND shelf = "article" ORDER BY view DESC LIMIT 1,1'));
 
 $thirdcol = mysqli_fetch_array(mysqli_query($conn, 'SELECT * FROM `Col` WHERE class = "column" AND shelf = "article" ORDER BY view DESC LIMIT 2,1'));
-$thirdnew = mysqli_fetch_array(mysqli_query($conn, 'SELECT * FROM `Col` WHERE class = "news" AND shelf = "article" ORDER BY view DESC LIMIT 2,1'));
+$thirdnew = mysqli_fetch_array(mysqli_query($conn, 'SELECT * FROM `Col` WHERE class = "food" AND shelf = "article" ORDER BY view DESC LIMIT 2,1'));
 $thirdsch = mysqli_fetch_array(mysqli_query($conn, 'SELECT * FROM `Col` WHERE class = "school" AND shelf = "article" ORDER BY view DESC LIMIT 2,1'));
 $thirdcon = mysqli_fetch_array(mysqli_query($conn, 'SELECT * FROM `Col` WHERE class = "concerts" AND shelf = "article" ORDER BY view DESC LIMIT 2,1'));
 ?>

@@ -5,11 +5,17 @@
 	require_once( "connectVar.php" );
 	require_once( "setSession.php" );
 	
-	$hot = "SELECT * FROM `Activities` WHERE type = 'hot' ORDER BY time ASC";
-	$clubs = "SELECT * FROM `Activities` WHERE type = 'clubs' ORDER BY time ASC";
-	$departments = "SELECT * FROM `Activities` WHERE type = 'departments' ORDER BY time ASC";
-	$authorities = "SELECT * FROM `Activities` WHERE type = 'authorities' ORDER BY time ASC";
-	$concerts = "SELECT * FROM `Activities` WHERE type = 'concerts' ORDER BY time ASC";
+	$hot = "SELECT * FROM `Activities` WHERE type = 'hot' ORDER BY starttime ASC";
+	$clubs = "SELECT * FROM `Activities` WHERE type = 'clubs' ORDER BY starttime ASC";
+	$departments = "SELECT * FROM `Activities` WHERE type = 'departments' ORDER BY starttime ASC";
+	$authorities = "SELECT * FROM `Activities` WHERE type = 'authorities' ORDER BY starttime ASC";
+	$concerts = "SELECT * FROM `Activities` WHERE type = 'concerts' ORDER BY starttime ASC";
+	
+	$hot3 = "SELECT * FROM `Activities` WHERE type = 'hot' ORDER BY starttime DESC";
+	$clubs3 = "SELECT * FROM `Activities` WHERE type = 'clubs' ORDER BY starttime DESC";
+	$departments3 = "SELECT * FROM `Activities` WHERE type = 'departments' ORDER BY starttime DESC";
+	$authorities3 = "SELECT * FROM `Activities` WHERE type = 'authorities' ORDER BY starttime DESC";
+	$concerts3 = "SELECT * FROM `Activities` WHERE type = 'concerts' ORDER BY starttime DESC";
 	
 	$h = 0;
 	$c = 0;
@@ -17,91 +23,100 @@
 	$a = 0;
 	$con = 0;
 	
-	$hot1 = mysqli_query($conn, $hot);
+	$hot1 = mysqli_query($conn, $hot3);
 	$hclass = 'align="center" background="jpg/graybox.png" width="14" height="14" style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat;"';
 	while($hot2 = mysqli_fetch_array($hot1)){
-		if(date('Y-m-d') < $hot2['time']){
+		if(date('Y-m-d') < $hot2['starttime']){
 			$h++;
-			$hclass = 'align="center" width="14" height="14" background="jpg/graybox.png" style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat;"';
+			if($geth != "red")
+				$hclass = 'align="center" width="14" height="14" background="jpg/graybox.png" style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat;"';
 		}
-		else if(date('Y-m-d') == $clubs2['time']){
+		else if(date('Y-m-d') >= $hot2['starttime'] && date("Y-m-d") <= $hot2["endtime"]){
 			$h++;
 			$hclass = 'align="center" width="14" height="14" background="jpg/redbox.png"  style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat"';
+			$geth = "red";
 		}
-		else{
+		elseif($geth != "red"){
 			$hclass = 'align="center" width="14" height="14" background="jpg/graybox.png" style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat;"';
 		}
 	}
 	
-	$clubs1 = mysqli_query($conn, $clubs);
+	$clubs1 = mysqli_query($conn, $clubs3);
 	$cclass = 'align="center" width="14" height="14" background="jpg/graybox.png" style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat;"';
 	while($clubs2 = mysqli_fetch_array($clubs1)){
-		if(date('Y-m-d') < $clubs2['time']){
+		if(date('Y-m-d') < $clubs2['starttime']){
 			$c++;
-			$cclass = 'align="center" width="14" height="14" background="jpg/graybox.png" style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat;"';
+			if($getc != "red")
+				$cclass = 'align="center" width="14" height="14" background="jpg/graybox.png" style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat;"';
 		}
-		else if(date('Y-m-d') == $clubs2['time']){
+		else if(date('Y-m-d') >= $clubs2['starttime'] && date("Y-m-d") <= $clubs2["endtime"]){
 			$c++;
 			$cclass = 'align="center" width="14" height="14" background="jpg/redbox.png"  style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat"';
+			$getc = "red";
 		}
-		else{
+		elseif($getc != "red"){
 			$cclass = 'align="center" width="14" height="14" background="jpg/graybox.png" style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat;"';
 		}
 	}
 	
-	$departments1 = mysqli_query($conn, $departments);
+	$departments1 = mysqli_query($conn, $departments3);
 	$dclass = 'align="center" width="14" height="14" background="jpg/graybox.png" style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat;"';
 	while($departments2 = mysqli_fetch_array($departments1)){
-		if(date('Y-m-d') < $departments2['time']){
+		if(date('Y-m-d') < $departments2['starttime']){
 			$d++;
-			$dclass = 'align="center" width="14" height="14" background="jpg/graybox.png" style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat;"';
+			if($getd != "red")
+				$dclass = 'align="center" width="14" height="14" background="jpg/graybox.png" style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat;"';
 		}
-		else if(date('Y-m-d') == $departments2['time']){
+		else if(date('Y-m-d') >= $departments2['starttime'] && date("Y-m-d") <= $departments2["endtime"]){
 			$d++;
 			$dclass = 'align="center" width="14" height="14" background="jpg/redbox.png"  style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat"';
+			$getd = "red";
 		}
-		else{
+		else if($getd != "red"){
 			$dclass = 'align="center" width="14" height="14" background="jpg/graybox.png" style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat;"';
 		}
 	}
 	
-	$authorities1 = mysqli_query($conn, $authorities);
+	$authorities1 = mysqli_query($conn, $authorities3);
 	$aclass = 'align="center" width="14" height="14" background="jpg/graybox.png" style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat;"';
 	while($authorities2 = mysqli_fetch_array($authorities1)){
-		if(date('Y-m-d') < $authorities2['time']){
+		if(date('Y-m-d') < $authorities2['starttime']){
 			$a++;
-			$aclass = 'align="center" width="14" height="14" background="jpg/graybox.png" style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat;"';
+			if($geta != "red")
+				$aclass = 'align="center" width="14" height="14" background="jpg/graybox.png" style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat;"';
 		}
-		else if(date('Y-m-d') == $authorities2['time']){
+		else if(date('Y-m-d') >= $authorities2['starttime'] && date("Y-m-d") <= $authorities2["endtime"]){
 			$a++;
 			$aclass = 'align="center" width="14" height="14" background="jpg/redbox.png"  style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat"';
+			$geta = "red";
 		}
-		else{
+		else if($geta != "red"){
 			$aclass = 'align="center" width="14" height="14" background="jpg/graybox.png" style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat;"';
 		}
 	}
 	
-	$concerts1 = mysqli_query($conn, $concerts);
+	$concerts1 = mysqli_query($conn, $concerts3);
 	$conclass = 'align="center" width="14" height="14" background="jpg/graybox.png" style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat;"';
 	while($concerts2 = mysqli_fetch_array($concerts1)){
-		if(date('Y-m-d') < $concerts2['time']){
+		if(date('Y-m-d') < $concerts2['starttime']){
 			$con++;
-			$conclass = 'align="center" width="14" height="14" background="jpg/graybox.png" style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat;"';
+			if($getcon != "red"){
+				$conclass = 'align="center" width="14" height="14" background="jpg/graybox.png" style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat;"';
+			}
 		}
-		else if(date('Y-m-d') == $concerts2['time']){
+		else if(date('Y-m-d') >= $concerts2['starttime'] && date("Y-m-d") <= $concerts2["endtime"]){
 			$con++;
 			$conclass = 'align="center" width="14" height="14" background="jpg/redbox.png"  style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat"';
+			$getcon = "red";
 		}
-		else{
+		else if($getcon != "red"){
 			$conclass = 'align="center" width="14" height="14" background="jpg/graybox.png" style="color:#FFF; font-size:9px; font:Arial, Helvetica, sans-serif; background-repeat:no-repeat;"';
 		}
 	}
 ?>
 
 <!DOCTYPE HTML>
-<html>
-<script	type="text/javascript"	src="./index.js"></script>
-<head>
+<html><head>
 <link href="tm2.ico" rel="shortcut icon"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Language" content="zh-tw">
@@ -111,13 +126,148 @@
 <script type="text/javascript" src="plugin/jrumble/jquery.jrumble.1.3.min.js"></script>
 <script type="text/javascript" src="plugin/bsjq/basic-jquery-slider.min.js"></script>
 <link type="text/css" rel="stylesheet" href="plugin/bsjq/basic-jquery-slider.css" />
-<title>│Airstage 西灣人│活動牆：開始倒數！</title>
+<title>活動牆 ─ Airstage 西灣人</title>
 <style fprolloverstyle>
 A:hover {text-decoration: underline; font-weight: bold;}
 a{text-decoration:none;}
 </style>
 <link rel="stylesheet" type="text/css" href="css/index.css">
 
+<script type="text/javascript">
+var app = "index";
+$(function(){
+	$(".info").each(function(){
+		$(this).hover(function(){
+			$(this).attr("background", "jpg/table2.jpg");
+		}, function() {
+			$(this).attr("background", "jpg/table.jpg");
+		})
+	})
+	$('#banner').bjqs({
+          'animation' : 'slide',
+          'width' : 961,
+          'height' : 366,
+		  'nextText' : '<img src="jpg/rightafter.png" name="right" onMouseOver="document.right.src=\'jpg/arrowsright.png\'" onMouseOut="document.right.src=\'jpg/rightafter.png\'" />',
+		  'prevText' : '<img src="jpg/leftafter.png" name="left" onMouseOver="document.left.src=\'jpg/arrowsleft.png\'" onMouseOut="document.left.src=\'jpg/leftafter.png\'" />',
+		  'showMarkers' : true,
+		  'centerMarkers' : true,
+		  'animationDuration': 1200,
+		  'rotationSpeed' : 12000,
+    });
+	
+		Shadowbox.init({
+			players : ['html'],
+			overlayColor: "#FFFFFF",
+		});
+		$('#fpAnimswapImgFP12').jrumble({
+			x:2,
+			y:2,
+			rotation:1,
+		});
+		$('#fpAnimswapImgFP12').hover(function(){
+			$(this).trigger('startRumble'); 
+		}, function(){
+			$(this).trigger('stopRumble');
+        });
+		$('#hot1').click(function(){
+			var $body = (window.opera) ? (document.compatMode == "CSS1Compat" ? $('html') : $('body')) : $('html,body');
+				$body.animate({
+					scrollTop: $('#hot').offset().top-60
+			}, 600);
+			return false;
+		});
+		$('#clubs1').click(function(){
+			var $body = (window.opera) ? (document.compatMode == "CSS1Compat" ? $('html') : $('body')) : $('html,body');
+				$body.animate({
+					scrollTop: $('#clubs').offset().top-60
+			}, 600);
+			return false;
+		});
+		$('#departments1').click(function(){
+			var $body = (window.opera) ? (document.compatMode == "CSS1Compat" ? $('html') : $('body')) : $('html,body');
+				$body.animate({
+					scrollTop: $('#departments').offset().top-60
+			}, 600);
+			return false;
+		});
+		$('#authorities1').click(function(){
+			var $body = (window.opera) ? (document.compatMode == "CSS1Compat" ? $('html') : $('body')) : $('html,body');
+				$body.animate({
+					scrollTop: $('#authorities').offset().top-60
+			}, 600);
+			return false;
+		});
+		$('#concerts1').click(function(){
+			var $body = (window.opera) ? (document.compatMode == "CSS1Compat" ? $('html') : $('body')) : $('html,body');
+				$body.animate({
+					scrollTop: $('#concerts').offset().top-60
+			}, 600);
+			return false;
+		});
+	});
+
+</script>
+<script language="JavaScript" fptype="dynamicanimation">
+<!--
+	function dynAnimation() {}
+	function clickSwapImg() {}
+//-->
+</script>
+<base target="_parent">
+<script language="JavaScript">
+<!--
+function FP_changeProp() {//v1.0
+	 var args=arguments,d=document,i,j,id=args[0],o=FP_getObjectByID(id),s,ao,v,x;
+	 d.$cpe=new Array(); if(o) for(i=2; i<args.length; i+=2) { v=args[i+1]; s="o"; 
+	 ao=args[i].split("."); for(j=0; j<ao.length; j++) { s+="."+ao[j]; if(null==eval(s)) { 
+	  s=null; break; } } x=new Object; x.o=o; x.n=new Array(); x.v=new Array();
+	 x.n[x.n.length]=s; eval("x.v[x.v.length]="+s); d.$cpe[d.$cpe.length]=x;
+	 if(s) eval(s+"=v"); }
+}
+
+function FP_getObjectByID(id,o) {//v1.0
+	 var c,el,els,f,m,n; if(!o)o=document; if(o.getElementById) el=o.getElementById(id);
+	 else if(o.layers) c=o.layers; else if(o.all) el=o.all[id]; if(el) return el;
+	 if(o.id==id || o.name==id) return o; if(o.childNodes) c=o.childNodes; if(c)
+	 for(n=0; n<c.length; n++) { el=FP_getObjectByID(id,c[n]); if(el) return el; }
+	 f=o.forms; if(f) for(n=0; n<f.length; n++) { els=f[n].elements;
+	 for(m=0; m<els.length; m++){ el=FP_getObjectByID(id,els[n]); if(el) return el; } }
+	 return null;
+}
+// -->
+</script>
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-34181090-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+</script>
 <style type="text/css">
 body,td,th {
 	font-family: "微軟正黑體";
@@ -126,35 +276,28 @@ body {
 	background-image: url(jpg/background.png);
 	background-repeat: repeat-x;
 }
+#glideDiv0 {
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+}
 </style>
 </head>
 
-<body topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0" marginwidth="0" marginheight="0" onLoad="dynAnimation();MM_preloadImages('jpg/sharenew2.png')" language="Javascript1.2">
+<body topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0" marginwidth="0" marginheight="0" onLoad="dynAnimation();MM_preloadImages('jpg/sharenew2.png','page/airstab/app/naviwhite/b0503.png','page/airstab/app/naviwhite/b0303.png')" language="Javascript1.2">
 
 <div align="center">
-	<table border="0" width="980" height="75" cellspacing="0" cellpadding="0">
-  <tr>
-        	<td width="38" background="jpg/topbar001.png"></td>
-        	<td height="43" width="99" background="jpg/topbar002.png" align="right"><p style="margin-top: 0; margin-bottom: 0"><a href="http://www.airstage.com.tw/nsysu/airs/index.php"><img src="page/airstab/app/theater/jpg/logo.png" name="logo" id="logo" align="left" /></a></td>
-			<td height="75" background="jpg/topbar002.png" width="700" valign="top"><font color="#FFFFFF"><a href="index.php"><img border="0" src="jpg/cal_bot002.png" width="89" height="75"></a><img border="0" src="jpg/topbar002.png" width="20" height="75"><a onMouseOver="var img=document['fpAnimswapImgFP9'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP9'].src=document['fpAnimswapImgFP9'].imgRolln" target="_parent" href="page/airstab/index.htm"><img src="jpg/air_bot001.png" alt="" name="fpAnimswapImgFP9" width="89" height="75" lowsrc="jpg/air_bot002.png" id="fpAnimswapImgFP" border="0" dynamicanimation="fpAnimswapImgFP9"></a></font></td>
-			<td background="jpg/topbar003.png" width="124" valign="middle"><span style="margin-top: 0; margin-bottom: 0">
-			<?php
-			 	require_once( "loginCheck.php" );
-			?>
-			</span></td>
-			
-           
-	  </tr>
-	</table>
-<table width="980" border="0" cellpadding="0" cellspacing="0">
+  <?php require("model/navi.php"); ?>
+  <table width="980" border="0" cellpadding="0" cellspacing="0">
 	  <tr>
 	    <td colspan="3" align="center" valign="top" background="jpg/bot.png"><div align="center">
 	      <?php include('news/news.php') ?>
         </div></td>
-      </tr>
+    </tr>
 	  <tr>
 	    <td colspan="3" align="center" valign="top" background="jpg/bot.png"><p>&nbsp;</p>
-	      <!----------活動列表-------------->
+	      <!--------活動列表-------------->
 	      <table width="862">
 	<tr>
     	<td width="721" align="center" style="color:#333333; font-size:9pt">
@@ -184,54 +327,45 @@ body {
     	<td colspan="2"><a id="hot" name="hot" style="cursor:pointer; border:0"><img src="activities/jpg/t1.jpg" name="hot" /></a></td>
     </tr>
     <tr>
-        <td colspan="2">
+        <td colspan="2" id="main">
         <?php
 		$a1=mysqli_query($conn,$hot);
 		if(mysqli_num_rows($a1) != 0){
 		while($hotlist = mysqli_fetch_array($a1)){
-		if(date('Y-m-d') <= $hotlist['time']){
-		$time = "".$hotlist['time']."-";
+		if(date('Y-m-d') <= $hotlist['endtime']){
+		$time = "".$hotlist['starttime']."-";
 		list($year, $month, $day) = explode("-", $time);
-		$gethot = $hotlist['stu_id'];
-		$i=0;
-		$j=0;
-		$gothot = explode(",", $gethot);
-		while($gothot[$i] != NULL){
-			$i++;
-		}
-		while($i-1 != -1){
-			//若此活動是該使用者分享則$j不等於0
-			if($gothot[$i-1] == $_SESSION['stu_id']){
-				$j++;
-				$i--;
-			}
-			//若此活動不是該使用者分享則$j等於0
-			else{
-				$i--;
-			}
-		}
+		if($hotlist["starttime"] <= date("Y-m-d") && $hotlist["endtime"] >= date("Y-m-d"))
+			$pic = "button8.png";
 		echo '
-        	<table background="jpg/table.jpg" style="background-repeat:no-repeat">
+        	<table background="jpg/table.jpg" style="background-repeat:no-repeat" width="875px" class="info">
             	<tr>
-                	<td rowspan="8" class="tdimg" height="224" width="38%" align="center" valign="middle"><img class="img" height="210" width="300"src="activities/poster/'.$hotlist['poster'].'" /></td>
-					<td rowspan="8" width="80px"></td>
-                    <td class="title" width="426" valign="top" align="left" colspan="2">'.$hotlist['title'].'</td>';
-					if($j != 0){
+                	<td rowspan="10" class="tdimg" height="224" width="38%" align="center" valign="middle"><img class="img" height="210" width="300"src="activities/poster/'.$hotlist['poster'].'" /></td>
+					<td rowspan="10" width="2%"></td>
+                    <td class="title" width="300px" valign="top" align="left" colspan="2">'.$hotlist['title'].'</td>
+                    <td rowspan="10" width="10%"></td>';
+					if($_SESSION['stu_id'] == $hotlist['stu_id']){
 						echo '
-							<td align="center" width="115" rowspan="2" style="font-size:14px"><form action="page/airstab/app/apply/apply02.php" method="get" target="foo" onSubmit="window.open(\'\',\'foo\',\'menubar=no,status=no,scrollbars=no,top=200,left=200,toolbar=no,width=918,height=545\')"><input type="hidden" name="rno" value="'.$hotlist['rno'].'" /><input type="submit" style="background-image:url(jpg/button4.png); background-repeat:no-repeat; background-size:115px 34px; border:0; width:115px; height:34px; cursor:pointer;" value="" /></form><br />&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script>
+							<td align="center" width="26%" rowspan="2" style="font-size:14px"><form action="page/airstab/app/apply/apply02.php" method="get" target="foo" onSubmit="window.open(\'\',\'foo\',\'menubar=no,status=no,scrollbars=no,top=200,left=200,toolbar=no,width=918,height=545\')"><input type="hidden" name="rno" value="'.$hotlist['rno'].'" /><input type="submit" style="background-image:url(jpg/button4.png); background-repeat:no-repeat; background-size:115px 34px; border:0; width:115px; height:34px; cursor:pointer;" value="" /></form><br />&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script>
 </td>';
 					}
-					else if($j == 0 && $hotlist['signup'] == 'yes' && $hotlist['url1'] != ''){
+					else if($_SESSION['stu_id'] != $hotlist['stu_id'] && $hotlist['signup'] == 'yes' && $hotlist['url1'] != ''){
+						if($hotlist["starttime"] > date("Y-m-d"))
+							$pic = "button3.png";
 						echo '
-							<td align="center" width="115" rowspan="2" style="font-size:14px"><form action="page/airstab/app/apply/apply02.php" method="get" target="foo" onSubmit="window.open(\'\',\'foo\',\'menubar=no,status=no,scrollbars=no,top=200,left=200,toolbar=no,width=900,height=700\')"><input type="hidden" name="rno" value="'.$hotlist['rno'].'" /><input type="submit"  style="background-image:url(jpg/button3.png); background-repeat:no-repeat; background-size:115px 34px; border:0; width:115px; height:34px; cursor:pointer;" value="" /></form><br />&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script></td>';
+							<td align="center" width="26%" rowspan="2" style="font-size:14px"><form action="page/airstab/app/apply/apply02.php" method="get" target="foo" onSubmit="window.open(\'\',\'foo\',\'menubar=no,status=no,scrollbars=no,top=200,left=200,toolbar=no,width=900,height=700\')"><input type="hidden" name="rno" value="'.$hotlist['rno'].'" /><input type="submit"  style="background-image:url(jpg/'.$pic.'); background-repeat:no-repeat; background-size:115px 34px; border:0; width:115px; height:34px; cursor:pointer;" value="" /></form><br />&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script></td>';
 					}
-					else if($j == 0 && $hotlist['signup'] == 'no' && $hotlist['url1'] != ''){
+					else if($_SESSION['stu_id'] != $hotlist['stu_id'] && $hotlist['signup'] == 'no' && $hotlist['url1'] != ''){
+						if($hotlist["starttime"] > date("Y-m-d"))
+							$pic = "button6.png";
 						echo '
-							<td align="center" width="115" rowspan="2" style="font-size:14px"><form action="page/airstab/app/apply/apply02.php" method="get" target="foo" onSubmit="window.open(\'\',\'foo\',\'menubar=no,status=no,scrollbars=no,top=200,left=200,toolbar=no,width=900,height=700\')"><input type="hidden" name="rno" value="'.$hotlist['rno'].'" /><input type="submit" style="background-image:url(jpg/button6.png); background-repeat:no-repeat; background-size:115px 34px; border:0; width:115px; height:34px; cursor:pointer;" value="" /></form><br />&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script></td>';
+							<td align="center" width="14%" rowspan="2" style="font-size:14px"><form action="page/airstab/app/apply/apply02.php" method="get" target="foo" onSubmit="window.open(\'\',\'foo\',\'menubar=no,status=no,scrollbars=no,top=200,left=200,toolbar=no,width=900,height=700\')"><input type="hidden" name="rno" value="'.$hotlist['rno'].'" /><input type="submit" style="background-image:url(jpg/'.$pic.'); background-repeat:no-repeat; background-size:115px 34px; border:0; width:115px; height:34px; cursor:pointer;" value="" /></form><br />&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script></td>';
 					}
-					else if($j == 0 && $hotlist['signup'] == 'no' && $hotlist['url1'] == ''){
+					else if($_SESSION['stu_id'] != $hotlist['stu_id'] && $hotlist['signup'] == 'no' && $hotlist['url1'] == ''){
+						if($hotlist["starttime"] > date("Y-m-d"))
+							$pic = "button2.png";
 						echo '
-							<td align="center" width="115" rowspan="2" style="font-size:14px"><img src="jpg/button2.png" width="115" height="34" /><a target="_blank" href="'.$hotlist['url2'].'"></a></img>&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script></td>';
+							<td align="center" width="20%" rowspan="2" style="font-size:14px"><a target="_blank" href="'.$hotlist['url2'].'"><img src="jpg/'.$pic.'" width="115" height="34" /></a><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script></td>';
 					}
         echo '  </tr>    
 				<tr>
@@ -242,8 +376,12 @@ body {
                     <td class="name">'.$hotlist['name'].'</td>
                 </tr>
                 <tr>
-                	<td class="sub">時&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;間&nbsp;:&nbsp;</td>
-                    <td class="time">'.$hotlist['time'].'&nbsp;&nbsp;'.$hotlist['extratime'].'</td>
+                	<td class="sub">開始時間&nbsp;:&nbsp;</td>
+                    <td class="time">'.$hotlist['starttime'].'&nbsp;&nbsp;'.$hotlist['extratime'].'</td>
+                </tr>
+                <tr>
+                	<td class="sub">結束時間&nbsp;:&nbsp;</td>
+                    <td class="time">'.$hotlist['endtime'].'&nbsp;&nbsp;'.$hotlist['extratime2'].'</td>
                 </tr>
                 <tr>
                 	<td class="sub">地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;點&nbsp;:&nbsp;</td>
@@ -265,6 +403,11 @@ body {
 				</tr>';
 				}
 				echo'
+				<tr>
+					<td>
+						<div class="fb-like" data-href="'.$hotlist["url2"].'" data-send="false" data-layout="button_count" data-width="50" data-show-faces="false"></div>
+					</td>
+				</tr>
             </table><br/><img src="jpg/grayline.png" /><br />';
 				
 		}
@@ -283,48 +426,39 @@ body {
 		$b1=mysqli_query($conn,$clubs);
 		if(mysqli_num_rows($b1) != 0){
 		while($clubslist = mysqli_fetch_array($b1)){
-		if(date('Y-m-d') <= $clubslist['time']) {
-		$time = "".$clubslist['time']."-";
+		if(date('Y-m-d') <= $clubslist['endtime']) {
+		$time = "".$clubslist['starttime']."-";
 		list($year, $month, $day) = explode("-", $time);
-		$getclubs = $clubslist['stu_id'];
-		$i=0;
-		$j=0;
-		$gotclubs = explode(",", $getclubs);
-		while($gotclubs[$i] != NULL){
-			$i++;
-		}
-		while($i-1 != -1){
-			//若此活動是該使用者分享的$j便不等於0
-			if($gotclubs[$i-1] == $_SESSION['stu_id']){
-				$j++;
-				$i--;
-			}
-			//若此活動不是該使用者分享則$j等於0
-			else{
-				$i--;
-			}
-		}
+		if($clubslist["starttime"] <= date("Y-m-d") && $clubslist["endtime"] >= date("Y-m-d"))
+			$pic = "button8.png";
 		echo '
-        	<table background="jpg/table.jpg" style="background-repeat:no-repeat">
+        	<table background="jpg/table.jpg" style="background-repeat:no-repeat" width="875px" class="info">
             	<tr>
-                	<td rowspan="8" class="tdimg" height="224" width="38%" align="center" valign="middle"><img class="img" height="210" width="300"src="activities/poster/'.$clubslist["poster"].'" /></td>
-					<td rowspan="8" width="80px"></td>
-                    <td class="title" width="426" valign="top" colspan="2">'.$clubslist["title"].'</td>';
-					if($j != 0){
+                	<td rowspan="10" class="tdimg" height="224" width="38%" align="center" valign="middle"><img class="img" height="210" width="300"src="activities/poster/'.$clubslist["poster"].'" /></td>
+					<td rowspan="10" width="2%"></td>
+                    <td class="title" width="300px" valign="top" colspan="2">'.$clubslist["title"].'</td>
+                    <td rowspan="10" width="10%"></td>';
+					if($_SESSION['stu_id'] == $clubslist['stu_id']){
 						echo '
-							<td align="center" width="115" rowspan="2" style="font-size:14px"><form action="page/airstab/app/apply/apply02.php" method="get" target="foo" onSubmit="window.open(\'\',\'foo\',\'menubar=no,status=no,scrollbars=no,top=200,left=200,toolbar=no,width=918,height=545\')"><input type="hidden" name="rno" value="'.$clubslist['rno'].'" /><input type="submit" style="background-image:url(jpg/button4.png); background-repeat:no-repeat; background-size:115px 34px; border:0; width:115px; height:34px; cursor:pointer;" value="" /></form><br />&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script></td>';
+							<td align="center" width="14%" rowspan="2" style="font-size:14px"><form action="page/airstab/app/apply/apply02.php" method="get" target="foo" onSubmit="window.open(\'\',\'foo\',\'menubar=no,status=no,scrollbars=no,top=200,left=200,toolbar=no,width=918,height=545\')"><input type="hidden" name="rno" value="'.$clubslist['rno'].'" /><input type="submit" style="background-image:url(jpg/button4.png); background-repeat:no-repeat; background-size:115px 34px; border:0; width:115px; height:34px; cursor:pointer;" value="" /></form><br />&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script></td>';
 					}
-					else if($j == 0 && $clubslist['signup'] == 'yes' && $clubslist['url1'] != ''){
+					else if($_SESSION['stu_id'] != $clubslist['stu_id'] && $clubslist['signup'] == 'yes' && $clubslist['url1'] != ''){
+						if($clubslist["starttime"] > date("Y-m-d"))
+							$pic = "button3.png";
 						echo '
-							<td align="center" width="115" rowspan="2" style="font-size:14px"><form action="page/airstab/app/apply/apply02.php" method="get" target="foo" onSubmit="window.open(\'\',\'foo\',\'menubar=no,status=no,scrollbars=no,top=200,left=200,toolbar=no,width=900,height=700\')"><input type="hidden" name="rno" value="'.$clubslist['rno'].'" /><input type="submit" style="background-image:url(jpg/button3.png); background-repeat:no-repeat; background-size:115px 34px; border:0; width:115px; height:34px; cursor:pointer;" value="" /></form><br />&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script></td>';
+							<td align="center" width="14%" rowspan="2" style="font-size:14px"><form action="page/airstab/app/apply/apply02.php" method="get" target="foo" onSubmit="window.open(\'\',\'foo\',\'menubar=no,status=no,scrollbars=no,top=200,left=200,toolbar=no,width=900,height=700\')"><input type="hidden" name="rno" value="'.$clubslist['rno'].'" /><input type="submit" style="background-image:url(jpg/'.$pic.'); background-repeat:no-repeat; background-size:115px 34px; border:0; width:115px; height:34px; cursor:pointer;" value="" /></form><br />&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script></td>';
 					}
-					else if($j == 0 && $clubslist['signup'] == 'no' && $clubslist['url1'] != ''){
+					else if($_SESSION['stu_id'] != $clubslist['stu_id'] && $clubslist['signup'] == 'no' && $clubslist['url1'] != ''){
+						if($clubslist["starttime"] > date("Y-m-d"))
+							$pic = "button6.png";
 						echo '
-							<td align="center" width="115" rowspan="2" style="font-size:14px"><form action="page/airstab/app/apply/apply02.php" method="get" target="foo" onSubmit="window.open(\'\',\'foo\',\'menubar=no,status=no,scrollbars=no,top=200,left=200,toolbar=no,width=900,height=700\')"><input type="hidden" name="rno" value="'.$clubslist['rno'].'" /><input type="submit" style="background-image:url(jpg/button6.png); background-repeat:no-repeat; background-size:115px 34px; border:0; width:115px; height:34px; cursor:pointer;" value="" /></form><br />&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script></td>';
+							<td align="center" width="14%" rowspan="2" style="font-size:14px"><form action="page/airstab/app/apply/apply02.php" method="get" target="foo" onSubmit="window.open(\'\',\'foo\',\'menubar=no,status=no,scrollbars=no,top=200,left=200,toolbar=no,width=900,height=700\')"><input type="hidden" name="rno" value="'.$clubslist['rno'].'" /><input type="submit" style="background-image:url(jpg/'.$pic.'); background-repeat:no-repeat; background-size:115px 34px; border:0; width:115px; height:34px; cursor:pointer;" value="" /></form><br />&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script></td>';
 					}
-					else if($j == 0 && $clubslist['signup'] == 'no' && $clubslist['url1'] == ''){
+					else if($_SESSION['stu_id'] != $clubslist['stu_id'] && $clubslist['signup'] == 'no' && $clubslist['url1'] == ''){
+						if($clubslist["starttime"] > date("Y-m-d"))
+							$pic = "button2.png";
 						echo '
-							<td align="center" width="115" rowspan="2" style="font-size:14px"><a href="'.$clubslist['url2'].'" target="_blank"><img src="jpg/button2.png" width="115" height="34" /></a><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script></td>';
+							<td align="center" width="14%" rowspan="2" style="font-size:14px"><a href="'.$clubslist['url2'].'" target="_blank"><img src="jpg/'.$pic.'" width="115" height="34" /></a><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script></td>';
 					}
         echo '</tr>
                 <tr>
@@ -335,8 +469,12 @@ body {
                     <td class="name">'.$clubslist["name"].'</td>
                 </tr>
                 <tr>
-                	<td class="sub">時&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;間&nbsp;:&nbsp;</td>
-                    <td class="time">'.$clubslist["time"].'&nbsp;&nbsp;'.$clubslist["extratime"].'</td>
+                	<td class="sub">開始時間&nbsp;:&nbsp;</td>
+                    <td class="time">'.$clubslist["starttime"].'&nbsp;&nbsp;'.$clubslist["extratime"].'</td>
+                </tr>
+                <tr>
+                	<td class="sub">結束時間&nbsp;:&nbsp;</td>
+                    <td class="time">'.$clubslist["endtime"].'&nbsp;&nbsp;'.$clubslist["extratime2"].'</td>
                 </tr>
                 <tr>
                 	<td class="sub">地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;點&nbsp;:&nbsp;</td>
@@ -360,7 +498,11 @@ body {
 				</tr>';
 }
 echo'
-				
+				<tr>
+					<td>
+						<div class="fb-like" data-href="'.$clubslist["url2"].'" data-send="false" data-layout="button_count" data-width="50" data-show-faces="false"></div>
+					</td>
+				</tr>
             </table><br/><img src="jpg/grayline.png" /><br />';
 		}
 		}
@@ -378,48 +520,39 @@ echo'
 		$c1=mysqli_query($conn,$departments);
 		if(mysqli_num_rows($c1) != 0){
 		while($departmentslist = mysqli_fetch_array($c1)){
-		if(date('Y-m-d') <= $departmentslist['time']){
-		$time = "".$departmentslist['time']."-";
+		if(date('Y-m-d') <= $departmentslist['endtime']){
+		$time = "".$departmentslist['starttime']."-";
 		list($year, $month, $day) = explode("-", $time);
-		$getdept = $departmentslist['stu_id'];
-		$i=0;
-		$j=0;
-		$gotdept = explode(",", $getdept);
-		while($gotdept[$i] != NULL){
-			$i++;
-		}
-		while($i-1 != -1){
-			//若此活動是該使用者分享則$j不等於0
-			if($gotdept[$i-1] == $_SESSION['stu_id']){
-				$j++;
-				$i--;
-			}
-			//若此活動不是該使用者分享則$j等於0
-			else{
-				$i--;
-			}
-		}
+		if($departmentslist["starttime"] <= date("Y-m-d") && $departmentslist["endtime"] >= date("Y-m-d"))
+			$pic = "button8.png";
 		echo '
-        	<table background="jpg/table.jpg" style="background-repeat:no-repeat">
+        	<table background="jpg/table.jpg" style="background-repeat:no-repeat" width="875px" class="info">
             	<tr>
-                	<td rowspan="8" class="tdimg" height="224" width="38%" align="center" valign="middle"><img class="img" height="210" width="300"src="activities/poster/'.$departmentslist["poster"].'" /></td>
-					<td rowspan="8" width="80px"></td>
-                    <td class="title" width="426" valign="top" colspan="2">'.$departmentslist["title"].'</td>';
-					if($j != 0){
+                	<td rowspan="10" class="tdimg" height="224" width="38%" align="center" valign="middle"><img class="img" height="210" width="300"src="activities/poster/'.$departmentslist["poster"].'" /></td>
+					<td rowspan="10" width="2%"></td>
+                    <td class="title" width="300px" valign="top" colspan="2">'.$departmentslist["title"].'</td>
+                    <td rowspan="10" width="10%"></td>';
+					if($_SESSION['stu_id'] == $departmentslist['stu_id']){
 						echo '
-							<td align="center" width="115" rowspan="2" style="font-size:14px"><form action="page/airstab/app/apply/apply02.php" method="get" target="foo" onSubmit="window.open(\'\',\'foo\',\'menubar=no,status=no,scrollbars=no,top=200,left=200,toolbar=no,width=918,height=545\')"><input type="hidden" name="rno" value="'.$departmentslist['rno'].'" /><input type="submit" style="background-image:url(jpg/button4.png); background-repeat:no-repeat; background-size:115px 34px; border:0; width:115px; height:34px; cursor:pointer;" value="" /></form><br />&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script></td>';
+							<td align="center" width="14%" rowspan="2" style="font-size:14px"><form action="page/airstab/app/apply/apply02.php" method="get" target="foo" onSubmit="window.open(\'\',\'foo\',\'menubar=no,status=no,scrollbars=no,top=200,left=200,toolbar=no,width=918,height=545\')"><input type="hidden" name="rno" value="'.$departmentslist['rno'].'" /><input type="submit" style="background-image:url(jpg/button4.png); background-repeat:no-repeat; background-size:115px 34px; border:0; width:115px; height:34px; cursor:pointer;" value="" /></form><br />&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script></td>';
 					}
-					else if($j == 0 && $departmentslist['signup'] == 'yes' && $departmentslist['url1'] != ''){
+					else if($_SESSION['stu_id'] != $departmentslist['stu_id'] && $departmentslist['signup'] == 'yes' && $departmentslist['url1'] != ''){
+						if($departmentslist["starttime"] > date("Y-m-d"))
+							$pic = "button3.png";
 						echo '
-							<td align="center" width="115" rowspan="2" style="font-size:14px"><form action="page/airstab/app/apply/apply02.php" method="get" target="foo" onSubmit="window.open(\'\',\'foo\',\'menubar=no,status=no,scrollbars=no,top=200,left=200,toolbar=no,width=900,height=700\')"><input type="hidden" name="rno" value="'.$departmentslist['rno'].'" /><input type="submit" style="background-image:url(jpg/button3.png); background-repeat:no-repeat; background-size:115px 34px; border:0; width:115px; height:34px; cursor:pointer;" value="" /></form><br />&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script></td>';
+							<td align="center" width="14%" rowspan="2" style="font-size:14px"><form action="page/airstab/app/apply/apply02.php" method="get" target="foo" onSubmit="window.open(\'\',\'foo\',\'menubar=no,status=no,scrollbars=no,top=200,left=200,toolbar=no,width=900,height=700\')"><input type="hidden" name="rno" value="'.$departmentslist['rno'].'" /><input type="submit" style="background-image:url(jpg/'.$pic.'); background-repeat:no-repeat; background-size:115px 34px; border:0; width:115px; height:34px; cursor:pointer;" value="" /></form><br />&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script></td>';
 					}
-					else if($j == 0 && $departmentslist['signup'] == 'no' && $departmentslist['url1'] != ''){
+					else if($_SESSION['stu_id'] != $departmentslist['stu_id'] && $departmentslist['signup'] == 'no' && $departmentslist['url1'] != ''){
+						if($departmentslist["starttime"] > date("Y-m-d"))
+							$pic = "button6.png";
 						echo '
-							<td align="center" width="115" rowspan="2" style="font-size:14px"><form action="page/airstab/app/apply/apply02.php" method="get" target="foo" onSubmit="window.open(\'\',\'foo\',\'menubar=no,status=no,scrollbars=no,top=200,left=200,toolbar=no,width=900,height=700\')"><input type="hidden" name="rno" value="'.$departmentslist['rno'].'" /><input type="submit" style="background-image:url(jpg/button6.png); background-repeat:no-repeat; background-size:115px 34px; border:0; width:115px; height:34px; cursor:pointer;" value="" /></form><br />&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script></td>';
+							<td align="center" width="14%" rowspan="2" style="font-size:14px"><form action="page/airstab/app/apply/apply02.php" method="get" target="foo" onSubmit="window.open(\'\',\'foo\',\'menubar=no,status=no,scrollbars=no,top=200,left=200,toolbar=no,width=900,height=700\')"><input type="hidden" name="rno" value="'.$departmentslist['rno'].'" /><input type="submit" style="background-image:url(jpg/'.$pic.'); background-repeat:no-repeat; background-size:115px 34px; border:0; width:115px; height:34px; cursor:pointer;" value="" /></form><br />&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script></td>';
 					}
-					else if($j == 0 && $departmentslist['signup'] == 'no' && $departmentslist['url1'] == ''){
+					else if($_SESSION['stu_id'] != $departmentslist['stu_id'] && $departmentslist['signup'] == 'no' && $departmentslist['url1'] == ''){
+						if($departmentslist["starttime"] > date("Y-m-d"))
+							$pic = "button2.png";
 						echo '
-							<td align="center" width="115" rowspan="2" style="font-size:14px"><a href="'.$departmentslist['url2'].'" target="_blank"><img src="jpg/button2.png" width="115" height="34" /></a><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script></td>';
+							<td align="center" width="14%" rowspan="2" style="font-size:14px"><a href="'.$departmentslist['url2'].'" target="_blank"><img src="jpg/'.$pic.'" width="115" height="34" /></a><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script></td>';
 					}
         echo '</tr>
                 <tr>
@@ -430,8 +563,12 @@ echo'
                     <td class="name">'.$departmentslist["name"].'</td>
                 </tr>
                 <tr>
-                	<td class="sub">時&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;間&nbsp;:&nbsp;</td>
-                    <td class="time">'.$departmentslist["time"].'&nbsp;&nbsp;'.$departmentslist["extratime"].'</td>
+                	<td class="sub">開始時間&nbsp;:&nbsp;</td>
+                    <td class="time">'.$departmentslist["starttime"].'&nbsp;&nbsp;'.$departmentslist["extratime"].'</td>
+                </tr>
+                <tr>
+                	<td class="sub">結束時間&nbsp;:&nbsp;</td>
+                    <td class="time">'.$departmentslist["endtime"].'&nbsp;&nbsp;'.$departmentslist["extratime2"].'</td>
                 </tr>
                 <tr>
                 	<td class="sub">地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;點&nbsp;:&nbsp;</td>
@@ -454,7 +591,11 @@ echo'
 				</tr>';
 }
 echo'
-				
+				<tr>
+					<td>
+						<div class="fb-like" data-href="'.$departmentslist["url2"].'" data-send="false" data-layout="button_count" data-width="50" data-show-faces="false"></div>
+					</td>
+				</tr>
             </table><br/><img src="jpg/grayline.png" /><br />';
 		}
 		}
@@ -472,48 +613,39 @@ echo'
 		$d1=mysqli_query($conn,$authorities);
 		if(mysqli_num_rows($d1) != 0){
 		while($authoritieslist = mysqli_fetch_array($d1)){
-		if(date('Y-m-d') <= $authoritieslist['time']){
-		$time = "".$authoritieslist['time']."-";
+		if(date('Y-m-d') <= $authoritieslist['endtime']){
+		$time = "".$authoritieslist['starttime']."-";
 		list($year, $month, $day) = explode("-", $time);
-		$getaut = $authoritieslist['stu_id'];
-		$i=0;
-		$j=0;
-		$gotaut = explode(",", $getaut);
-		while($gotaut[$i] != NULL){
-			$i++;
-		}
-		while($i-1 != -1){
-			//若此活動是該使用者分享的$j便不等於0
-			if($gotaut[$i-1] == $_SESSION['stu_id']){
-				$j++;
-				$i--;
-			}
-			//若此活動不是該使用者分享則$j等於0
-			else{
-				$i--;
-			}
-		}
+		if($authoritieslist["starttime"] <= date("Y-m-d") && $authoritieslist["endtime"] >= date("Y-m-d"))
+			$pic = "button8.png";
 		echo '
-        	<table background="jpg/table.jpg" style="background-repeat:no-repeat">
+        	<table background="jpg/table.jpg" style="background-repeat:no-repeat" width="875px" class="info">
             	<tr>
-                	<td rowspan="8" class="tdimg" height="224" width="38%" align="center" valign="middle"><img class="img" height="210" width="300"src="activities/poster/'.$authoritieslist["poster"].'" /></td>
-					<td rowspan="8" width="80px"></td>
-                    <td class="title" width="426" valign="top" colspan="2">'.$authoritieslist["title"].'</td>';
-					if($j != 0){
+                	<td rowspan="10" class="tdimg" height="224" width="38%" align="center" valign="middle"><img class="img" height="210" width="300"src="activities/poster/'.$authoritieslist["poster"].'" /></td>
+					<td rowspan="10" width="2%"></td>
+                    <td class="title" width="300px" valign="top" colspan="2">'.$authoritieslist["title"].'</td>
+                    <td rowspan="10" width="10%"></td>';
+					if($_SESSION['stu_id'] == $authoritieslist['stu_id']){
 						echo '
-							<td align="center" width="115" rowspan="2" style="font-size:14px"><form action="page/airstab/app/apply/apply02.php" method="get" target="foo" onSubmit="window.open(\'\',\'foo\',\'menubar=no,status=no,scrollbars=no,top=200,left=200,toolbar=no,width=918,height=545\')"><input type="hidden" name="rno" value="'.$authoritieslist['rno'].'" /><input type="submit" style="background-image:url(jpg/button4.png); background-repeat:no-repeat; background-size:115px 34px; border:0; width:115px; height:34px; cursor:pointer;" value="" /></form><br />&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script></td>';
+							<td align="center" width="14%" rowspan="2" style="font-size:14px"><form action="page/airstab/app/apply/apply02.php" method="get" target="foo" onSubmit="window.open(\'\',\'foo\',\'menubar=no,status=no,scrollbars=no,top=200,left=200,toolbar=no,width=918,height=545\')"><input type="hidden" name="rno" value="'.$authoritieslist['rno'].'" /><input type="submit" style="background-image:url(jpg/button4.png); background-repeat:no-repeat; background-size:115px 34px; border:0; width:115px; height:34px; cursor:pointer;" value="" /></form><br />&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script></td>';
 					}
-					else if($j == 0 && $authoritieslist['signup'] == 'yes' && $authoritieslist['url1'] != ''){
+					else if($_SESSION['stu_id'] != $authoritieslist['stu_id'] && $authoritieslist['signup'] == 'yes' && $authoritieslist['url1'] != ''){
+						if($authoritieslist["starttime"] > date("Y-m-d"))
+							$pic = "button3.png";
 						echo '
-							<td align="center" width="115" rowspan="2" style="font-size:14px"><form action="page/airstab/app/apply/apply02.php" method="get" target="foo" onSubmit="window.open(\'\',\'foo\',\'menubar=no,status=no,scrollbars=no,top=200,left=200,toolbar=no,width=900,height=700\')"><input type="hidden" name="rno" value="'.$authoritieslist['rno'].'" /><input type="submit" style="background-image:url(jpg/button3.png); background-repeat:no-repeat; background-size:115px 34px; border:0; width:115px; height:34px; cursor:pointer;" value="" /></form><br />&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script></td>';
+							<td align="center" width="14%" rowspan="2" style="font-size:14px"><form action="page/airstab/app/apply/apply02.php" method="get" target="foo" onSubmit="window.open(\'\',\'foo\',\'menubar=no,status=no,scrollbars=no,top=200,left=200,toolbar=no,width=900,height=700\')"><input type="hidden" name="rno" value="'.$authoritieslist['rno'].'" /><input type="submit" style="background-image:url(jpg/'.$pic.'); background-repeat:no-repeat; background-size:115px 34px; border:0; width:115px; height:34px; cursor:pointer;" value="" /></form><br />&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script></td>';
 					}
-					else if($j == 0 && $authoritieslist['signup'] == 'no' && $authoritieslist['url1'] != ''){
+					else if($_SESSION['stu_id'] != $authoritieslist['stu_id'] && $authoritieslist['signup'] == 'no' && $authoritieslist['url1'] != ''){
+						if($authoritieslist["starttime"] > date("Y-m-d"))
+							$pic = "button6.png";
 						echo '
-							<td align="center" width="115" rowspan="2" style="font-size:14px"><form action="page/airstab/app/apply/apply02.php" method="get" target="foo" onSubmit="window.open(\'\',\'foo\',\'menubar=no,status=no,scrollbars=no,top=200,left=200,toolbar=no,width=900,height=700\')"><input type="hidden" name="rno" value="'.$authoritieslist['rno'].'" /><input type="submit" style="background-image:url(jpg/button6.png); background-repeat:no-repeat; background-size:115px 34px; border:0; width:115px; height:34px; cursor:pointer;" value="" /></form><br />&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script></td>';
+							<td align="center" width="14%" rowspan="2" style="font-size:14px"><form action="page/airstab/app/apply/apply02.php" method="get" target="foo" onSubmit="window.open(\'\',\'foo\',\'menubar=no,status=no,scrollbars=no,top=200,left=200,toolbar=no,width=900,height=700\')"><input type="hidden" name="rno" value="'.$authoritieslist['rno'].'" /><input type="submit" style="background-image:url(jpg/'.$pic.'); background-repeat:no-repeat; background-size:115px 34px; border:0; width:115px; height:34px; cursor:pointer;" value="" /></form><br />&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script></td>';
 					}
-					else if($j == 0 && $authoritieslist['signup'] == 'no' && $authoritieslist['url1'] == ''){
+					else if($_SESSION['stu_id'] != $authoritieslist['stu_id'] && $authoritieslist['signup'] == 'no' && $authoritieslist['url1'] == ''){
+						if($authoritieslist["starttime"] > date("Y-m-d"))
+							$pic = "button2.png";
 						echo '
-							<td align="center" width="115" rowspan="2" style="font-size:14px"><a href="'.$authoritieslist['url2'].'" target="_blank"><img src="jpg/button2.png" width="115" height="34" /></a><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script></td>';
+							<td align="center" width="14%" rowspan="2" style="font-size:14px"><a href="'.$authoritieslist['url2'].'" target="_blank"><img src="jpg/'.$pic.'" width="115" height="34" /></a><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script></td>';
 					}
 
         echo '</tr>
@@ -525,8 +657,12 @@ echo'
                     <td class="name">'.$authoritieslist["name"].'</td>
                 </tr>
                 <tr>
-                	<td class="sub">時&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;間&nbsp;:&nbsp;</td>
-                    <td class="time">'.$authoritieslist["time"].'&nbsp;&nbsp;'.$authoritieslist["extratime"].'</td>
+                	<td class="sub">開始時間&nbsp;:&nbsp;</td>
+                    <td class="time">'.$authoritieslist["starttime"].'&nbsp;&nbsp;'.$authoritieslist["extratime"].'</td>
+                </tr>
+                <tr>
+                	<td class="sub">結束時間&nbsp;:&nbsp;</td>
+                    <td class="time">'.$authoritieslist["endtime"].'&nbsp;&nbsp;'.$authoritieslist["extratime2"].'</td>
                 </tr>
                 <tr>
                 	<td class="sub">地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;點&nbsp;:&nbsp;</td>
@@ -550,7 +686,11 @@ echo'
 				</tr>';
 }
 echo'
-				
+			<tr>
+					<td>
+						<div class="fb-like" data-href="'.$authoritieslist["url2"].'" data-send="false" data-layout="button_count" data-width="50" data-show-faces="false"></div>
+					</td>
+				</tr>	
             </table><br/><img src="jpg/grayline.png" /><br />';
 		}
 		}
@@ -568,48 +708,39 @@ echo'
 		$e1=mysqli_query($conn,$concerts);
 		if(mysqli_num_rows($e1) != 0){
 		while($concertslist = mysqli_fetch_array($e1)){
-		if(date('Y-m-d') <= $concertslist['time']){
-		$time = "".$concertslist['time']."-";
+		if(date('Y-m-d') <= $concertslist['endtime']){
+		$time = "".$concertslist['starttime']."-";
 		list($year, $month, $day) = explode("-", $time);
-		$getcon = $concertslist['stu_id'];
-		$i=0;
-		$j=0;
-		$gotcon = explode(",", $getcon);
-		while($gotcon[$i] != NULL){
-			$i++;
-		}
-		while($i-1 != -1){
-			//若此活動是該使用者分享的$j便不等於0
-			if($gotcon[$i-1] == $_SESSION['stu_id']){
-				$j++;
-				$i--;
-			}
-			//若此活動不是該使用者分享則$j等於0
-			else{
-				$i--;
-			}
-		}
+		if($concertslist["starttime"] <= date("Y-m-d") && $concertslist["endtime"] >= date("Y-m-d"))
+			$pic = "button8.png";
 		echo '
-        	<table background="jpg/table.jpg" style="background-repeat:no-repeat">
+        	<table background="jpg/table.jpg" style="background-repeat:no-repeat" width="875px" class="info">
             	<tr>
-                	<td rowspan="8" class="tdimg" height="224" width="38%" align="center" valign="middle"><img class="img" height="210" width="300"src="activities/poster/'.$concertslist["poster"].'" /></td>
-					<td rowspan="8" width="80px"></td>
-                    <td class="title" width="426" valign="top" colspan="2">'.$concertslist["title"].'</td>';
-					if($j != 0){
+                	<td rowspan="10" class="tdimg" height="224" width="38%" align="center" valign="middle"><img class="img" height="210" width="300"src="activities/poster/'.$concertslist["poster"].'" /></td>
+					<td rowspan="10" width="2%"></td>
+                    <td class="title" width="300px" valign="top" colspan="2">'.$concertslist["title"].'</td>
+                    <td rowspan="10" width="10%"></td>';
+					if($_SESSION['stu_id'] == $concertslist['stu_id']){
 						echo '
-							<td align="center" width="115" rowspan="2" style="font-size:14px"><form action="page/airstab/app/apply/apply02.php" method="get" target="foo" onSubmit="window.open(\'\',\'foo\',\'menubar=no,status=no,scrollbars=no,top=200,left=200,toolbar=no,width=918,height=545\')"><input type="hidden" name="rno" value="'.$concertslist['rno'].'" /><input type="submit" style="background-image:url(jpg/button4.png); background-repeat:no-repeat; background-size:115px 34px; border:0; width:115px; height:34px; cursor:pointer;" value="" /></form><br />&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script></td>';
+							<td align="center" width="14%" rowspan="2" style="font-size:14px"><form action="page/airstab/app/apply/apply02.php" method="get" target="foo" onSubmit="window.open(\'\',\'foo\',\'menubar=no,status=no,scrollbars=no,top=200,left=200,toolbar=no,width=918,height=545\')"><input type="hidden" name="rno" value="'.$concertslist['rno'].'" /><input type="submit" style="background-image:url(jpg/button4.png); background-repeat:no-repeat; background-size:115px 34px; border:0; width:115px; height:34px; cursor:pointer;" value="" /></form><br />&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script></td>';
 					}
-					else if($j == 0 && $concertslist['signup'] == 'yes' && $concertslist['url1'] != ''){
+					else if($_SESSION['stu_id'] != $concertslist['stu_id'] && $concertslist['signup'] == 'yes' && $concertslist['url1'] != ''){
+						if($concertslist["starttime"] > date("Y-m-d"))
+							$pic = "button3.png";
 						echo '
-							<td align="center" width="115" rowspan="2" style="font-size:14px"><form action="page/airstab/app/apply/apply02.php" method="get" target="foo" onSubmit="window.open(\'\',\'foo\',\'menubar=no,status=no,scrollbars=no,top=200,left=200,toolbar=no,width=900,height=700\')"><input type="hidden" name="rno" value="'.$concertslist['rno'].'" /><input type="submit" style="background-image:url(jpg/button3.png); background-repeat:no-repeat; background-size:115px 34px; border:0; width:115px; height:34px; cursor:pointer;" value="" /></form><br />&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script></td>';
+							<td align="center" width="14%" rowspan="2" style="font-size:14px"><form action="page/airstab/app/apply/apply02.php" method="get" target="foo" onSubmit="window.open(\'\',\'foo\',\'menubar=no,status=no,scrollbars=no,top=200,left=200,toolbar=no,width=900,height=700\')"><input type="hidden" name="rno" value="'.$concertslist['rno'].'" /><input type="submit" style="background-image:url(jpg/'.$pic.'); background-repeat:no-repeat; background-size:115px 34px; border:0; width:115px; height:34px; cursor:pointer;" value="" /></form><br />&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script></td>';
 					}
-					else if($j == 0 && $concertslist['signup'] == 'no' && $concertslist['url1'] != ''){
+					else if($_SESSION['stu_id'] != $concertslist['stu_id'] && $concertslist['signup'] == 'no' && $concertslist['url1'] != ''){
+						if($concertslist["starttime"] > date("Y-m-d"))
+							$pic = "button6.png";
 						echo '
-							<td align="center" width="115" rowspan="2" style="font-size:14px"><form action="page/airstab/app/apply/apply02.php" method="get" target="foo" onSubmit="window.open(\'\',\'foo\',\'menubar=no,status=no,scrollbars=no,top=200,left=200,toolbar=no,width=900,height=700\')"><input type="hidden" name="rno" value="'.$concertslist['rno'].'" /><input type="submit" style="background-image:url(jpg/button6.png); background-repeat:no-repeat; background-size:115px 34px; border:0; width:115px; height:34px; cursor:pointer;" value="" /></form><br />&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script></td>';
+							<td align="center" width="14%" rowspan="2" style="font-size:14px"><form action="page/airstab/app/apply/apply02.php" method="get" target="foo" onSubmit="window.open(\'\',\'foo\',\'menubar=no,status=no,scrollbars=no,top=200,left=200,toolbar=no,width=900,height=700\')"><input type="hidden" name="rno" value="'.$concertslist['rno'].'" /><input type="submit" style="background-image:url(jpg/'.$pic.'); background-repeat:no-repeat; background-size:115px 34px; border:0; width:115px; height:34px; cursor:pointer;" value="" /></form><br />&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script></td>';
 					}
-					else if($j == 0 && $concertslist['signup'] == 'no' && $concertslist['url1'] == ''){
+					else if($_SESSION['stu_id'] != $concertslist['stu_id'] && $concertslist['signup'] == 'no' && $concertslist['url1'] == ''){
+						if($concertslist["starttime"] > date("Y-m-d"))
+							$pic = "button2.png";
 						echo '
-							<td align="center" width="115" rowspan="2" style="font-size:14px"><a href="'.$concertslist['url2'].'" target="_blank"><img src="jpg/button2.png" width="115" height="34" /></a><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script></td>';
+							<td align="center" width="14%" rowspan="2" style="font-size:14px"><a href="'.$concertslist['url2'].'" target="_blank"><img src="jpg/'.$pic.'" width="115" height="34" /></a><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;<script language="javascript">var now=new Date();var spday=new Date('.$year.','.$month.'-1,'.$day.');a=(spday.getTime()-now.getTime())/(24*60*60*1000);a=Math.ceil(a); if(a<0){document.write("<b>0</b>");} else {document.write("<b>"+a+"</b>");}</script></td>';
 					}
         echo '</tr>
                 <tr>
@@ -620,8 +751,12 @@ echo'
                     <td class="name">'.$concertslist["name"].'</td>
                 </tr>
                 <tr>
-                	<td class="sub">時&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;間&nbsp;:&nbsp;</td>
-                    <td class="time">'.$concertslist["time"].'&nbsp;&nbsp;'.$concertslist["extratime"].'</td>
+                	<td class="sub">開始時間&nbsp;:&nbsp;</td>
+                    <td class="time">'.$concertslist["starttime"].'&nbsp;&nbsp;'.$concertslist["extratime"].'</td>
+                </tr>
+                <tr>
+                	<td class="sub">結束時間&nbsp;:&nbsp;</td>
+                    <td class="time">'.$concertslist["endtime"].'&nbsp;&nbsp;'.$concertslist["extratime2"].'</td>
                 </tr>
                 <tr>
                 	<td class="sub">地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;點&nbsp;:&nbsp;</td>
@@ -635,7 +770,6 @@ echo'
                 	<td class="sub">主辦單位&nbsp;:&nbsp;</td>
                     <td class="host">'.$concertslist["host"].'</td>
                 </tr>
-				
             ';
 				if($concertslist['note'] != ''){
 				echo'
@@ -645,7 +779,11 @@ echo'
 				</tr>';
 }
 echo'
-				
+			<tr>
+					<td>
+						<div class="fb-like" data-href="'.$concertslist["url2"].'" data-send="false" data-layout="button_count" data-width="50" data-show-faces="false"></div>
+					</td>
+				</tr>			
             </table><br/><img src="jpg/grayline.png" /><br />';
 		}
 		}
@@ -657,8 +795,7 @@ echo'
       <td colspan="2">&nbsp;</td>
     </tr>
     <tr>
-      <td colspan="2"><div id="fb-root"></div>
-</td>
+      <td colspan="2"></td>
     </tr>
     <tr>
       <td colspan="2">&nbsp;</td>
@@ -668,21 +805,22 @@ echo'
 </td>
       </tr>
 	  <tr>
-	    <td height="106" background="jpg/last.png" colspan="3" align="left" valign="top"><div align="right">
-	      <table border="0" width="51%" height="45">
-	        <tr>
-	          <td align="left" width="116"><font color="#FFFFFF"> <a onMouseOver="var img=document['fpAnimswapImgFP17'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP17'].src=document['fpAnimswapImgFP17'].imgRolln" target="_parent" href="http://www.airstage.com.tw/nsysu/airs/page/studio/index.htm"> <img src="mo/jpg/b1.jpg" alt="" name="fpAnimswapImgFP17" width="61" height="24" lowsrc="mo/jpg/b102.jpg" id="fpAnimswapImgFP17" border="0" dynamicanimation="fpAnimswapImgFP17" align="right"></a><a onMouseOver="var img=document['fpAnimswapImgFP19'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP19'].src=document['fpAnimswapImgFP19'].imgRolln" target="_parent" href="https://www.facebook.com/pages/Airstage西灣人中山人的校園互動平台/356803227687619"><img src="mo/jpg/b0.jpg" alt="" name="fpAnimswapImgFP19" width="31" height="24" lowsrc="mo/jpg/b002.jpg" id="fpAnimswapImgFP19" border="0" dynamicanimation="fpAnimswapImgFP19" align="right"></a></font></td>
-	          <td align="left" width="68"><font color="#FFFFFF"> <a onMouseOver="var img=document['fpAnimswapImgFP15'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP15'].src=document['fpAnimswapImgFP15'].imgRolln" target="_parent" href="http://www.airstage.com.tw/nsysu/airs/page/studio/02.htm"> <img src="mo/jpg/b2.jpg" alt="" name="fpAnimswapImgFP15" width="62" height="24" lowsrc="mo/jpg/b202.jpg" id="fpAnimswapImgFP15" border="0" dynamicanimation="fpAnimswapImgFP15" align="left"></a></font></td>
-	          <td align="left" width="109"><font color="#FFFFFF"> <a onMouseOver="var img=document['fpAnimswapImgFP18'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP18'].src=document['fpAnimswapImgFP18'].imgRolln" target="_parent" href="http://www.airstage.com.tw/nsysu/airs/page/studio/03.htm"> <img src="mo/jpg/b3.jpg" alt="" name="fpAnimswapImgFP18" width="61" height="24" lowsrc="mo/jpg/b302.jpg" id="fpAnimswapImgFP18" border="0" dynamicanimation="fpAnimswapImgFP18" align="left"></a></font></td>
-	          <td align="left" valign="bottom"><font color="#FFFFFF"> <a onMouseOver="var img=document['fpAnimswapImgFP20'];img.imgRolln=img.src;img.src=img.lowsrc?img.lowsrc:img.getAttribute?img.getAttribute('lowsrc'):img.src;" onMouseOut="document['fpAnimswapImgFP20'].src=document['fpAnimswapImgFP20'].imgRolln" target="_parent" href="http://www.airstage.com.tw"> <img src="mo/jpg/b4.jpg" alt="" name="fpAnimswapImgFP20" width="124" height="30" lowsrc="mo/jpg/b402.jpg" id="fpAnimswapImgFP20" border="0" dynamicanimation="fpAnimswapImgFP20" align="left"></a></font></td>
-	          <td align="left" width="31">&nbsp;</td>
-            </tr>
-          </table>
-	      </div></td>
+	    <td height="106" background="jpg/last.png" colspan="3" align="left" valign="top">
+	    	<?php require("model/footer.php"); ?>
+	    </td>
       </tr>
   </table>
 </div>
 <div id="fb-root"></div>
+<script>
+	(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/zh_TW/all.js#xfbml=1";
+	  fjs.parentNode.insertBefore(js, fjs);
+	} (document, 'script', 'facebook-jssdk'));
+</script>
 
 <?php mysqli_close( $conn ); ?>
 

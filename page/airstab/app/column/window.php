@@ -25,22 +25,22 @@
         list-style: none;
         position: absolute;
         width: 280px;
-        height:170px;
+        height:100%;
     }
     #abgneBlock ul.list li {
         float: left;
         width: 280px;
-        height: 170px;
+        height: 100%;
     }
     #abgneBlock .list img{
-        width: 280px;
-        height: 170px;
+        width: 100%;
+        height: 100%;
         border: 0;
     }
     #playercontrol {
         position: absolute;
         top: 270px;
-        left: 80px;
+        left: 50px;
         width: 280px;
         z-index: 2;
     }
@@ -81,6 +81,7 @@ $(function() {
             $control = $('#playercontrol'),
             $player = $('ul.list', $control),
             _width = $block.width(),
+            _height = $block.height(),
             $li = $('li', $slides),
             _animateSpeed = 600, 
             // 加入計時器, 輪播時間及控制開關
@@ -107,7 +108,7 @@ $(function() {
             clearTimeout(timer);
             // 移動位置到相對應的號碼
             $slides.stop().animate({
-                left: _width * $this.index() * -1
+                top: _height * $this.index() * -1
             }, _animateSpeed, function(){
                 // 當廣告移動到正確位置後, 依判斷來啟動計時器
                 if(!_stop) timer = setTimeout(move, _showSpeed);
@@ -170,15 +171,15 @@ $(function() {
 
                                         <div id="abgneBlock">
                                             <ul class="list">
-                                                <li><a target="_blank" href="#"><img src="images/01.jpg"></a></li>
+                                                <li><a target="_blank" href="https://www.facebook.com/NSYSUsmile"><img width="280px" height="170px" src="images/01.jpg"></a></li>
 
-                                                <li><a target="_blank" href="#"><img src="images/02.jpg"></a></li>
+                                                <li><a target="_blank" href="https://www.facebook.com/NSYSUsmile"><img width="280px" height="170px" src="images/02.jpg"></a></li>
 
-                                                <li><a target="_blank" href="#"><img src="images/03.jpg"></a></li>
+                                                <li><a target="_blank" href="https://www.facebook.com/NSYSUsmile"><img width="280px" height="170px" src="images/03.jpg"></a></li>
 
-                                                <li><a target="_blank" href="#"><img src="images/04.jpg"></a></li>
+                                                <li><a target="_blank" href="https://www.facebook.com/NSYSUsmile"><img width="280px" height="170px" src="images/04.jpg"></a></li>
 
-                                                <li><a target="_blank" href="#"><img src="images/05.jpg"></a></li>
+                                                <li><a target="_blank" href="https://www.facebook.com/NSYSUsmile"><img width="280px" height="170px" src="images/05.jpg"></a></li>
                                             </ul>
                                         </div>
                                     </td>
