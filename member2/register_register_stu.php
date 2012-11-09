@@ -1,5 +1,11 @@
+<?php
+	session_start();
+	if( isset($_SESSION['stu_id']) || isset($_SESSION['name']) || isset($_SESSION['auth']) ) {
+		echo '<script type="text/javascript">alert("你已經是會員囉!"); location.href="../index.php"</script>';
+	exit();
+	}
+?>
 <html>
-
 <head>
 <link href="http://www.airstage.com.tw/nsysu/airs/tm2.ico" rel="shortcut icon">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -29,11 +35,87 @@ function MM_swapImage() { //v3.0
    if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
 }
 </script>
+<script type="text/javascript" language="javascript">
+$f.dom.ready(function() {
+	 
+	  
+  $f("form", {
+	  rules:{
+		  username:{
+			  required:1
+		  },
+		  psw:{
+			  required:1
+		  },
+		  psw2:{
+			  required:1,compareTo:"psw",
+		  },
+		  name:{
+			  required:1,
+		  },
+		  stu_id:{
+			  required:1,
+			  pattern:/^[A-Za-z0-9]+$/,
+			  rangelength:[10,10],
+		  },
+		  gender:{
+			  required:1
+		  },
+		  email:{
+			  required:1,email:1,
+		  },
+		  department:{
+			  required:1
+		  },
+		  grade:{
+			  required:1
+		  },
+
+	  },
+	  messages:{
+		  username:{
+			  required:"此欄位不能為空！",
+		  },
+		  psw:{
+			  required:"此欄位不能為空！",
+		  },
+		  psw2:{
+			  required:"此欄位不能為空！", compareTo:"密碼不正確!",
+		  },
+		  name:{
+			  required:"此欄位不能為空！",
+		  },
+		  stu_id:{
+			  required:"此欄位不能為空！",
+			  pattern:"學號格式有誤！",
+			  rangelength:"學號格式有誤！",
+		  },
+		  gender:{
+			  required:"此欄位不能為空！",
+		  },
+		  email:{
+			  required:"此欄位不能為空！",
+		  },
+		  department:{
+			  required:" ",
+		  },
+		  grade:{
+			  required:" ",
+		  },
+	  },
+	  
+  });
+});
+</script>
 <style type="text/css">
 body {
 	background-image: url(../jpg/background.png);
 	background-repeat: repeat-x;
 	background-color: #F2F2F2;
+}
+.th_font {
+	font-style:'微軟正黑體';
+	font-size:14px;
 }
 </style>
 </head>
@@ -69,10 +151,74 @@ body {
 									<td>&nbsp;</td>
 								</tr>
 								<tr>
-									<td height="307" valign="top">
-									<p align="center">
-									<img border="0" src="jpg/sample.png" width="316" height="239">
-								  <p align="center"><a href="register_mail.php" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image6','','jpg/bb202.png',1)"><img src="jpg/bb2.png" name="Image6" width="90" height="27" border="0"></a></td>
+									<td height="307" valign="top" style="text-align:center;">
+									<form method="post" action="m2new.php" id="form">
+                                    
+									  <table border="0" style="">
+									    <tr>
+									      <td width="80" align="right" class="th_font" scope="row">帳號</td>
+									      <td width="220"><input type="text" name="username" id="username" value="" /></td>
+								        </tr>
+									    <tr>
+									      <td width="80" align="right" class="th_font" scope="row">密碼</td>
+									      <td width="220"><input type="password" name="psw" id="psw" value="" /></td>
+								        </tr>
+									    <tr>
+									      <td width="80" align="right" class="th_font" scope="row">確認密碼</td>
+									      <td width="220"><input type="password" name="psw2" id="psw2" value="" /></td>
+								        </tr>
+									    <tr>
+									      <td width="80" align="right" class="th_font" scope="row">姓名</td>
+									      <td width="220"><input type="text" name="name" id="name" value="" placeholder="請填入真實姓名" /></td>
+								        </tr>
+									    <tr>
+									      <td width="80" align="right" class="th_font" scope="row">學號</td>
+									      <td width="220"><input type="text" name="stu_id" id="stu_id" value=""  placeholder="認證依據，請據實填寫" /></td>
+								        </tr>
+									    <tr>
+									      <td width="80" align="right" class="th_font" scope="row">系級</td>
+									      <td width="220"><select name="department" id="department">
+				<option value="">請選擇</option>
+				<option value="中文系">中文系</option>
+				<option value="外文系">外文系</option>
+				<option value="音樂系">音樂系</option>
+				<option value="劇藝系">劇藝系</option>
+				<option value="應數系">應數系</option>
+				<option value="物理系">物理系</option>
+				<option value="化學系">化學系</option>
+				<option value="生科系">生科系</option>
+				<option value="財管系">財管系</option>
+				<option value="企管系">企管系</option>
+				<option value="資管系">資管系</option>
+				<option value="社會系">社會系</option>
+				<option value="資工系">資工系</option>
+				<option value="電機系">電機系</option>
+				<option value="機電系">機電系</option>
+				<option value="政經系">政經系</option>
+			</select>　
+			<select name="grade" id="grade">
+				<option value="">請選擇</option>
+				<option value="100">100</option>
+				<option value="101">101</option>
+				<option value="102">102</option>
+				<option value="103">103</option>
+				<option value="104">104</option>
+				<option value="105">105</option>
+			</select>級</td>
+								        </tr>
+									    <tr>
+									      <td width="80" align="right" class="th_font" scope="row">性別</td>
+									      <td width="220"><input type="radio" value="男" name="gender" />男&nbsp;&nbsp;<input type="radio" value="女" name="gender" />女</td>
+								        </tr>
+									    <tr>
+									      <td width="80" align="right" class="th_font" scope="row">備用信箱</td>
+									      <td width="220"><input type="text" name="email" /></td>
+								        </tr>
+								      </table>
+									  <p><a href="register_mail.php" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('999','','jpg/bb202.png',1)">
+                                      <input type="image" src="jpg/bb2.png" onClick="document.login.submit();"></a></p>
+                                    
+                                    </form></td>
 								</tr>
 						  </table>
 						</div>

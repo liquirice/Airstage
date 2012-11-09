@@ -38,7 +38,7 @@ body {
     </style>
 </head>
 
-<body leftmargin="0" topmargin="0" rightmargin="0" bottommargin="0" marginwidth="0" marginheight="0" onLoad="MM_preloadImages('jpg/c302.png','jpg/c202.png','jpg/c102.png','jpg/bb_log02.png','jpg/bb_reg02.png')">
+<body leftmargin="0" topmargin="0" rightmargin="0" bottommargin="0" marginwidth="0" marginheight="0" onLoad="MM_preloadImages('jpg/c302.png','jpg/c202.png','jpg/c102.png','jpg/bb_log02.png','jpg/bb_reg02.png','jpg/bb_log2.png','jpg/bb_reg2.png')">
     <?php require("../model/navi.php") ?>
 
     <div align="center">
@@ -78,21 +78,21 @@ body {
                                                                     <p align="center">&nbsp;</p>
 
                                                                     <div align="center">
-                                                                        <table border="0" width="86%" cellspacing="0" cellpadding="0" height="138">
+                                                                        <table border="0" width="86%" cellspacing="0" cellpadding="0" height="82">
                                                                             <tr>
-                                                                                <td height="82" colspan="3">
-                                                                                    <p align="center"><img border="0" src="jpg/sample2.png" width="220" height="77"></p>
+                                                                                <td width="100%" height="82" style="text-align:center;">
+                                                                                <form name="login" method="post" action="login.php" class="">
+						學號&nbsp;
+						<input type="text" name="id" placeholder="請輸入帳號或學號" class=""/> <br /><br />
+						密碼&nbsp;
+						<input type="password" name="pw" class=""/> 
+						<a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image8','','jpg/bb_log2.png',1)"><br>
+						<br>
+                        <input type="image" src="jpg/bb_log.png" onClick="document.login.submit();"></a><a href="register_law.php" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image9','','jpg/bb_reg2.png',1)">　<img src="jpg/bb_reg.png" name="Image9" width="74" height="27" border="0"></a><br />
+						<!--a href='forgetPassword.php' class = "btn btn-danger">忘記密碼?</a-->
+                                                                                </form>
+
                                                                                 </td>
-                                                                            </tr>
-
-                                                                            <tr>
-                                                                                <td width="23%">
-                                                                                    <p align="center">&nbsp;</p>
-                                                                                </td>
-
-                                                                                <td width="28%"><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image8','','jpg/bb_log2.png',1)"><img src="jpg/bb_log.png" name="Image8" width="64" height="27" border="0"></a></td>
-
-                                                                                <td width="49%"><a href="register_law.php" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image9','','jpg/bb_reg2.png',1)"><img src="jpg/bb_reg.png" name="Image9" width="74" height="27" border="0"></a></td>
                                                                             </tr>
                                                                         </table>
                                                                     </div>

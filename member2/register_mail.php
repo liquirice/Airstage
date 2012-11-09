@@ -1,5 +1,12 @@
 <html>
+<?php
+	session_start();
+	if( isset($_SESSION['stu_id']) || isset($_SESSION['name']) || isset($_SESSION['auth']) ) {
+		echo '<script type="text/javascript">alert("你已經不是新會員囉!"); location.href="../index.php"</script>';
+	exit();
+	}
 
+?>
 <head>
 <link href="http://www.airstage.com.tw/nsysu/airs/tm2.ico" rel="shortcut icon">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -34,6 +41,19 @@ body {
 	background-color: #F2F2F2;
 	background-image: url(../jpg/background.png);
 	background-repeat: repeat-x;
+}
+A.goBackIndex{
+	text-decoration: none;
+	border-left-color: #98A850;
+	border-bottom-color: #98A850;
+	border-right-color: #98A850;
+	border-top-color: #98A850;
+	background-color: #98A850;
+	padding: 5px;
+	;
+	color: #FFF;
+	font-size: 14px;
+	text-align: center;
 }
 </style>
 </head>
@@ -72,18 +92,18 @@ body {
 									<td height="318" valign="top">
 									<p align="center">
 									&nbsp;<div align="center">
-										<table border="0" width="86%" cellspacing="0" cellpadding="0" height="235">
+										<table border="0" width="86%" cellspacing="0" cellpadding="0" height="235" >
 											<tr>
 												<td height="35">
 												<p style="line-height: 150%; margin-top: 0; margin-bottom: 0">
-												<font face="微軟正黑體"><b>郭宇軒</b>
-												<font color="#676767" size="2">
-												同學：</font></font></td>
+												<font face="微軟正黑體"><font color="#676767" size="2">
+												</font><font face="微軟正黑體"><b><?php echo $_SESSION['stu_name']; unset($_SESSION['stu_name']); ?></b></font><font color="#676767" size="2">同學：</font></font></td>
 											</tr>
 											<tr>
-												<td height="144">
+												<td height="144" style="vertical-align:text-top;"><!--
 												<p style="line-height: 150%; margin-top: 0; margin-bottom: 0">
 												<font face="微軟正黑體" color="#676767" size="2">
+                                                
 												註冊的驗證信已寄到學校信箱囉！<br>
 												請盡速至<a href="http://student.nsysu.edu.tw/cgi-bin/owmmdir/openwebmail.pl" style="text-decoration: none"><font color="#009999">中山大學學生網路郵局</font></a>收信以驗證學生身分，完成帳號的開啟。<br>
 												<br>
@@ -91,7 +111,11 @@ body {
 											</tr>
 											<tr>
 												<td>
-												  <p align="center"><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image5','','jpg/bb302.png',1)"><img src="jpg/bb3.png" name="Image5" width="127" height="27" border="0"></a></td>
+												  <p align="center"><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image5','','jpg/bb302.png',1)"><img src="jpg/bb3.png" name="Image5" width="127" height="27" border="0"></a>-->
+                                                  <p>第一階段註冊程序已經完成囉。<br>
+                                                    信箱驗證將於近期開放。                                                    </p>
+                                                  <p> <span><a class="goBackIndex" href="../index.php">回首頁</a></span></p>
+                                                  </td>
 											</tr>
 										</table>
 									</div>
