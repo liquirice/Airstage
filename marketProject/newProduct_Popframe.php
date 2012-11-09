@@ -1,5 +1,5 @@
 ﻿<script>
-/*---- category select start----*/
+/*---- Category Select List start----*/
 function renewList()
 {
 	if( cat3.options.length > 1 )
@@ -135,8 +135,8 @@ function ChangeCat5(){}
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 		<h3 id="myModalLabel">刊登物品</h3>
 	</div>
-<form class="form-horizontal" id="newProductForm" name="newProductForm" action = "sellS.php" method = "post">
-	<div class="modal-body">
+	<form class="form-horizontal" id="newProductForm" name="newProductForm" action = "sellS.php" method = "post" enctype = "multipart/form-data">
+		<div class="modal-body">
 			<div class="row">
 				<div class="span1" style="padding-top:5px;"><label class="">選擇分類</label></div>
 				<div class="sapn11 offset1">
@@ -158,7 +158,7 @@ function ChangeCat5(){}
 			<div class="row">
 				<label class="span1">物品圖片</label>
 				<div class="sapn11 offset1">
-					<input class="input-middle" type="file" name="product_pic" id="product_pic" class="btn btn-small" value="上傳圖片" />
+					<input type="file" name="product_pic" id="product_pic" class="btn btn-small input-middle" value="上傳圖片" />
 				</div>
 			</div>
 			<hr/>
@@ -193,10 +193,10 @@ function ChangeCat5(){}
 					</textarea>
 				</div>
 			</div>		
-	</div>
-	<div class="modal-footer">
+		</div>
+		<div class="modal-footer">
 			<button class="btn btn-primary">刊登商品</button>
 			<button class="btn" data-dismiss="modal">關閉視窗</button>
-	</div>
-</form>
+		</div>
+	</form>
 </div>	
