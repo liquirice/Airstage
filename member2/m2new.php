@@ -55,9 +55,10 @@ if( 1 /*$_SESSION['pass_phrase'] == $_POST['captcha'] && $_POST['captcha'] !=""*
 	$grade = mysqli_real_escape_string( $conn, trim( $_POST['grade']) );
 	$gender = mysqli_real_escape_string( $conn, trim( $_POST['gender']) );
 	$email = mysqli_real_escape_string( $conn, trim( $_POST['email']) );
+	$fb_id = mysqli_real_escape_string( $conn, trim( $_POST['fb_id']) );
 
 	$insert = "INSERT INTO `Member`(`username`, `stu_id`, `psw`, `name`, `department`, `grade`, `gender`, `email`) VALUES('{$username}', '{$stu_id}', '{$psw}', '{$name}', '{$department}', '{$grade}', '{$gender}', '{$email}')";
-	$MInfo_insert = "INSERT INTO `member_Info` (`stu_id`, `facebook`, `msn`, `twitter`, `plurk`, `skype`, `phone`, `food`, `home`, `id`, `dorm`, `room`, `outAddr`, `car`, `profile_pic`) VALUES ('{$stu_id}', '', '', '', '', '', '', '0', '', '', '', '000', '', '0', '');";
+	$MInfo_insert = "INSERT INTO `member_Info` (`stu_id`, `facebook`, `msn`, `twitter`, `plurk`, `skype`, `phone`, `food`, `home`, `id`, `dorm`, `room`, `outAddr`, `car`, `profile_pic`) VALUES ('{$stu_id}', '{$fb_id}', '', '', '', '', '', '0', '', '', '', '000', '', '0', '');";
 	$DCheck_insert = "INSERT INTO `display_check` (`stu_id`, `stu_id_c`, `name_c`, `username_c`,`gender_c`, `grade_c`, `facebook_c`, `msn_c`, `twitter_c`, `plurk_c`, `skype_c`, `phone_c`, `email_c`, `home_c`, `dorm_c`, `outAddr_c`, `car_c`, `profile_pic_c`) VALUES ('{$stu_id}', 'on', '', '', '','', 'on', '', '', '', '', '', '', '', '', '', '', 'on');";
 
 	if( mysqli_query($conn,$insert) && mysqli_query($conn,$MInfo_insert) && mysqli_query($conn,$DCheck_insert) ){

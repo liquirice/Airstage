@@ -35,10 +35,16 @@ function MM_swapImage() { //v3.0
    if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
 }
 </script>
+<script type="text/javascript" language="javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" language="javascript" src="../plugin/fancyValidate/fancyValidate.min.js"></script>
+<script type="text/javascript" language="javascript" src="../plugin/fancyValidate/fancyValidate.additional.min.js"></script>
+<script src="../plugin/fancyValidate/external/jquery.qtip/jquery.qtip.min.js">
+</script>
+<link rel="stylesheet" type="text/css" href="../plugin/fancyValidate/examples/css/example.css" />
+<link rel="stylesheet" type="text/css" href="../plugin/fancyValidate/css/fancyValidate.css" />
+<link href="../plugin/fancyValidate/external/jquery.qtip/jquery.qtip.min.css" rel="stylesheet" />
 <script type="text/javascript" language="javascript">
 $f.dom.ready(function() {
-	 
-	  
   $f("form", {
 	  rules:{
 		  username:{
@@ -74,24 +80,24 @@ $f.dom.ready(function() {
 	  },
 	  messages:{
 		  username:{
-			  required:"此欄位不能為空！",
+			  required:"必填項目",
 		  },
 		  psw:{
-			  required:"此欄位不能為空！",
+			  required:"必填項目",
 		  },
 		  psw2:{
-			  required:"此欄位不能為空！", compareTo:"密碼不正確!",
+			  required:"必填項目", compareTo:"密碼有誤",
 		  },
 		  name:{
-			  required:"此欄位不能為空！",
+			  required:"必填項目",
 		  },
 		  stu_id:{
-			  required:"此欄位不能為空！",
-			  pattern:"學號格式有誤！",
+			  required:"必填項目",
+			  pattern:"格式有誤",
 			  rangelength:"學號格式有誤！",
 		  },
 		  gender:{
-			  required:"此欄位不能為空！",
+			  required:"必填項目",
 		  },
 		  email:{
 			  required:"此欄位不能為空！",
@@ -116,6 +122,7 @@ body {
 .th_font {
 	font-style:'微軟正黑體';
 	font-size:14px;
+	font-family: "Times New Roman";
 }
 </style>
 </head>
@@ -151,74 +158,106 @@ body {
 									<td>&nbsp;</td>
 								</tr>
 								<tr>
-									<td height="307" valign="top" style="text-align:center;">
-									<form method="post" action="m2new.php" id="form">
+									<td height="307" valign="top" style="text-align:center; color: #06C;">
+									<div><form method="post" action="m2new.php" id="form">
                                     
-									  <table border="0" style="">
+									  <table border="0">
 									    <tr>
-									      <td width="80" align="right" class="th_font" scope="row">帳號</td>
-									      <td width="220"><input type="text" name="username" id="username" value="" /></td>
+									      <td width="60" align="right" valign="top" class="th_font" scope="row">學號</td>
+									      <td width="10" align="right" class="th_font" scope="row">&nbsp;</td>
+									      <td width="240"><input type="text" name="stu_id" id="stu_id" value=""  placeholder="認證依據，請據實填寫" /></td>
 								        </tr>
 									    <tr>
-									      <td width="80" align="right" class="th_font" scope="row">密碼</td>
-									      <td width="220"><input type="password" name="psw" id="psw" value="" /></td>
+									      <td width="60" align="right" valign="top" class="th_font" scope="row">密碼</td>
+									      <td width="10" align="right" class="th_font" scope="row">&nbsp;</td>
+									      <td width="240"><input type="password" name="psw" id="psw" value="" /></td>
 								        </tr>
 									    <tr>
-									      <td width="80" align="right" class="th_font" scope="row">確認密碼</td>
-									      <td width="220"><input type="password" name="psw2" id="psw2" value="" /></td>
+									      <td width="60" align="right" valign="top" class="th_font" scope="row">確認密碼</td>
+									      <td width="10" align="right" class="th_font" scope="row">&nbsp;</td>
+									      <td width="240"><input type="password" name="psw2" id="psw2" value="" /></td>
 								        </tr>
 									    <tr>
-									      <td width="80" align="right" class="th_font" scope="row">姓名</td>
-									      <td width="220"><input type="text" name="name" id="name" value="" placeholder="請填入真實姓名" /></td>
+									      <td width="60" align="right" valign="top" class="th_font" scope="row">姓名</td>
+									      <td width="10" align="right" class="th_font" scope="row">&nbsp;</td>
+									      <td width="240"><input type="text" name="name" id="name" value="" placeholder="請填入真實姓名" /></td>
 								        </tr>
 									    <tr>
-									      <td width="80" align="right" class="th_font" scope="row">學號</td>
-									      <td width="220"><input type="text" name="stu_id" id="stu_id" value=""  placeholder="認證依據，請據實填寫" /></td>
+									      <td width="60" align="right" valign="top" class="th_font" scope="row">暱稱</td>
+									      <td width="10" align="right" class="th_font" scope="row">&nbsp;</td>
+									      <td width="240"><input type="text" name="username" id="username" value="" /></td>
 								        </tr>
 									    <tr>
-									      <td width="80" align="right" class="th_font" scope="row">系級</td>
-									      <td width="220"><select name="department" id="department">
+									      <td width="60" align="right" valign="top" class="th_font" scope="row">系級</td>
+									      <td width="10" align="right" class="th_font" scope="row">&nbsp;</td>
+									      <td width="240" style="font:微軟正黑體; font-size:12px"><select name="department" id="department">
+				<option value="" checked>請選擇</option>
+				<option disabled>【 　文學院 　】</option>
+							  <option value="中文系">中文系</option>
+							  <option value="外文系">外文系</option>
+							  <option value="劇藝系">劇藝系</option>
+							  <option value="音樂系">音樂系</option>
+							  <option value="文院碩博士">文院碩博士</option>
+							  
+							  <option disabled>【 　社科院 　】</option>
+							  <option value="政經系">政經系</option>
+							  <option value="社會系">社會系</option>
+							  <option value="社科院碩博士">社科院碩博士</option>
+							 
+							  <option disabled>【 　理學院 　】</option>
+							  <option value="應數系">應數系</option>
+							  <option value="化學系">化學系</option>
+							  <option value="物理系">物理系</option>
+							  <option value="生科系">生科系</option>
+							  <option value="理院碩博士">理院碩博士</option>
+							  
+							  <option disabled>【 　工學院 　】</option>
+							  <option value="電機系">電機系</option>
+							  <option value="機電系">機電系</option>
+							  <option value="資工系">資工系</option>
+							  <option value="材光系">材光系</option>
+                              <option value="光電系">光電系</option>
+							  <option value="工學院碩博士">工學院碩博士</option>
+							  
+							  <option disabled>【 　管學院 　】</option>
+							  <option value="企管系">企管系</option>
+							  <option value="財管系">財管系</option>
+							  <option value="資管系">資管系</option>
+							  <option value="管學院碩博士">管學院碩博士</option>
+							  
+							  <option disabled>【 　海科院 　】</option>
+							  <option value="海科系">海科系</option>
+							  <option value="海資系">海資系</option>
+							  <option value="海工系">海工系</option>
+							  <option value="海科院碩博士">海科院碩博士</option>
+							  
+			</select>
+							        <select name="grade" id="grade" style="width:60px;">
 				<option value="">請選擇</option>
-				<option value="中文系">中文系</option>
-				<option value="外文系">外文系</option>
-				<option value="音樂系">音樂系</option>
-				<option value="劇藝系">劇藝系</option>
-				<option value="應數系">應數系</option>
-				<option value="物理系">物理系</option>
-				<option value="化學系">化學系</option>
-				<option value="生科系">生科系</option>
-				<option value="財管系">財管系</option>
-				<option value="企管系">企管系</option>
-				<option value="資管系">資管系</option>
-				<option value="社會系">社會系</option>
-				<option value="資工系">資工系</option>
-				<option value="電機系">電機系</option>
-				<option value="機電系">機電系</option>
-				<option value="政經系">政經系</option>
-			</select>　
-			<select name="grade" id="grade">
-				<option value="">請選擇</option>
-				<option value="100">100</option>
-				<option value="101">101</option>
-				<option value="102">102</option>
-				<option value="103">103</option>
-				<option value="104">104</option>
-				<option value="105">105</option>
-			</select>級</td>
+				<option value="100">100級</option>
+				<option value="101">101級</option>
+				<option value="102">102級</option>
+				<option value="103">103級</option>
+				<option value="104">104級</option>
+				<option value="105">105級</option>
+			</select></td>
 								        </tr>
 									    <tr>
-									      <td width="80" align="right" class="th_font" scope="row">性別</td>
-									      <td width="220"><input type="radio" value="男" name="gender" />男&nbsp;&nbsp;<input type="radio" value="女" name="gender" />女</td>
+									      <td width="60" align="right" valign="top" class="th_font" scope="row">性別</td>
+									      <td width="10" align="right" class="th_font" scope="row">&nbsp;</td>
+									      <td width="240" style="font-size:14px"><input type="radio" value="男" name="gender" />男&nbsp;&nbsp;<input type="radio" value="女" name="gender" />女</td>
 								        </tr>
 									    <tr>
-									      <td width="80" align="right" class="th_font" scope="row">備用信箱</td>
-									      <td width="220"><input type="text" name="email" /></td>
+									      <td width="60" align="right" valign="top" class="th_font" scope="row">Facebook </td>
+									      <td width="10" align="right" class="th_font" scope="row">&nbsp;</td>
+									      <td width="240"><input type="text" name="fb_id" style="width:235px;"/></td>
 								        </tr>
 								      </table>
 									  <p><a href="register_mail.php" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('999','','jpg/bb202.png',1)">
                                       <input type="image" src="jpg/bb2.png" onClick="document.login.submit();"></a></p>
                                     
-                                    </form></td>
+                                    </form></div>
+                                    </td>
 								</tr>
 						  </table>
 						</div>

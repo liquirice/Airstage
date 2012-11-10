@@ -1,3 +1,40 @@
+<?php 
+	// Last Modified Day : 2012.09.11
+	header('P3P: CP="NOI ADM DEV COM NAV OUR STP"');
+	session_start(); 
+	
+	if( isset($_SESSION['stu_id']) || isset($_SESSION['name']) || isset($_SESSION['auth']) ) {
+		echo '<script type="text/javascript">alert("你已經登入囉!"); location.href="../index.php"</script>';
+	exit();
+	}
+	if( isset($_POST['id'])) {
+		require_once( "../connectVar.php" );
+		$stu_id = mysqli_real_escape_string( $conn, trim($_POST['id']) );
+		$pw = sha1( mysqli_real_escape_string( $conn, trim($_POST['pw']) ) );
+		
+		$query = "SELECT * FROM Member WHERE (username = '$stu_id' OR stu_id = '$stu_id') AND psw = '$pw'";
+		$result = mysqli_query( $conn, $query );
+		
+		if( mysqli_num_rows($result) == 0 ) {
+			// NO such account.
+			echo '<script type="text/javascript">alert("登入失敗");location.href="./register_log.php"</script>';
+		} else {
+			// Write user into session to authenticate.
+			$row = mysqli_fetch_array( $result );
+	        $_SESSION['stu_id'] = $row['stu_id'];
+			$_SESSION['name'] = $row['name']; 
+			$_SESSION['auth'] = $row['AUTH'];
+			$_SESSION['nick'] = $row['username'];
+			setcookie( 'stu_id', $row['stu_id'], time()+(60*60*24*10) );
+			setcookie( 'name', $row['name'], time()+(60*60*24*10) );
+			setcookie( 'auth', $row['AUTH'], time()+(60*60*24*10) );
+			setcookie( 'nick', $row['username'], time()+(60*60*24*10) );
+			echo '<script type="text/javascript">alert("Welcome Back");location.href="../index.php"</script>';
+			exit();
+		}
+		mysqli_close( $conn );
+	}
+?>
 <html>
 <head>
     <link href="http://www.airstage.com.tw/nsysu/airs/tm2.ico" rel="shortcut icon">
@@ -5,7 +42,7 @@
 
     <title>會員登入 ─ Airstage 西灣人</title>
     <script type="text/javascript" language="javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script type="text/javascript">
+<script type="text/javascript">
     var app = "none";
 function MM_swapImgRestore() { //v3.0
     var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
@@ -35,6 +72,10 @@ body {
     background-image: url(../jpg/background.png);
     background-repeat: repeat-x;
     }
+    .v {
+	font-family: "微軟正黑體";
+	font-size: 12px;
+}
     </style>
 </head>
 
@@ -81,14 +122,14 @@ body {
                                                                         <table border="0" width="86%" cellspacing="0" cellpadding="0" height="82">
                                                                             <tr>
                                                                                 <td width="100%" height="82" style="text-align:center;">
-                                                                                <form name="login" method="post" action="login.php" class="">
-						學號&nbsp;
+                                                                                <form name="login" method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>">
+						<span class="v">學號&nbsp;
 						<input type="text" name="id" placeholder="請輸入帳號或學號" class=""/> <br /><br />
 						密碼&nbsp;
 						<input type="password" name="pw" class=""/> 
-						<a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image8','','jpg/bb_log2.png',1)"><br>
-						<br>
-                        <input type="image" src="jpg/bb_log.png" onClick="document.login.submit();"></a><a href="register_law.php" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image9','','jpg/bb_reg2.png',1)">　<img src="jpg/bb_reg.png" name="Image9" width="74" height="27" border="0"></a><br />
+						<br><br>
+
+<a onmouseover="MM_swapImage('Image8','','jpg/bb_log2.png',1)" onmouseout="MM_swapImgRestore()" href="javascript:document.login.submit();" style="text-decoration: none; font-weight: 100;"><img style="padding-right:10px;" src="jpg/bb_log.png"/></a><a href="./register_register_stu.php"><img src="jpg/bb_reg.png" name="Image9" width="74" height="27" border="0"></a></span><br />
 						<!--a href='forgetPassword.php' class = "btn btn-danger">忘記密碼?</a-->
                                                                                 </form>
 
