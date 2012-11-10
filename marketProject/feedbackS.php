@@ -1,5 +1,5 @@
 <?php
-	// Last Modified Day : 2012.10.07
+	// Last Modified Day : 2012.11.10
 	session_start();
 	
 	if( !isset($_SESSION['stu_id']) || !isset($_SESSION['name']) || !isset($_SESSION['auth']) || !isset($_SESSION['nick']) ) {
@@ -9,7 +9,7 @@
 		require_once( "UserQueryFunction.php" );
 		
 		$stu_id = $_SESSION['stu_id'];
-		$trade_id = 4;//mysqli_real_escape_string( $conn, trim($_GET['trade']) );
+		//$trade_id = 4;//mysqli_real_escape_string( $conn, trim($_GET['trade']) );
 		
 		$query = "SELECT marketSecondHand_bidList.*, Member.username, marketSecondHand_productInfo.title ,marketsecondhand_bidlist.bidder_id " . 
 				 "FROM marketSecondHand_bidList " . 
