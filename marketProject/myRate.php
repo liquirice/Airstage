@@ -4,43 +4,43 @@
  
 	session_start();
 	
-	if( !isset($_SESSION['stu_id']) || !isset($_SESSION['name']) || !isset($_SESSION['auth']) || !isset($_SESSION['nick']) ) {
-		echo '<script type="text/javascript">alert("請先登入!"); location.href="marketIndex.php"</script>';
-	} else {
-		// Query out the avg and show the percentage on the bar chart.
-	}
-	//$SESSION['stu_id'] = "test01";	for test
 	
 	require_once( "../connectVar.php" );
 	require_once( "UserQueryFunction.php" );
 	
-	//catch rate infromation
-	
-	$catch = 'SELECT `c`.`rate` FROM `marketsecondhand_trade` as `t`  RIGHT JOIN `marketsecondhand_comment` as `c`'.
-			'ON `t`.`trade_id` =  `c`.`trade_id`'.
-			'WHERE `t`.`stu_id` = "'.$SESSION['stu_id'].'"';
-	$result = mysqli_query($conn, $catch); 
-	$total_result = mysqli_num_rows($result);
-	
-	//calculate rate information 
-	
-	$average = 0;
-	for($i=0;$i<$total_result;$i++){
-		$row =mysqli_fetch_array($result);	
-		$data[$i] = $row[0];
-	}
-	$output = array_count_values($data);
-	for($i=1;$i<=5;$i++){
+	if( !isset($_SESSION['stu_id']) || !isset($_SESSION['name']) || !isset($_SESSION['auth']) || !isset($_SESSION['nick']) ) {
+		echo '<script type="text/javascript">alert("請先登入!"); location.href="marketIndex.php"</script>';
+	} else {
+		// Query out the avg and show the percentage on the bar chart.
 		
-		if($output[(string)$i]==""){
-			$output[(string)$i] = 0;
-			}
-		$element_name = "length_";
-		$element_name .= (string)$i;
-		$$element_name = ((float)($output[(string)$i])/$total_result)*100;
-		$average += $i*$output[(string)$i];
-	}
-	$average = number_format((float)($average/$total_result),2);
+		//catch rate infromation
+		
+		$catch = 'SELECT `c`.`rate` FROM `marketsecondhand_trade` as `t`  RIGHT JOIN `marketsecondhand_comment` as `c`'.
+				'ON `t`.`trade_id` =  `c`.`trade_id`'.
+				'WHERE `t`.`stu_id` = "'.$_SESSION['stu_id'].'"';
+		$result = mysqli_query($conn, $catch); 
+		$total_result = mysqli_num_rows($result);
+		
+		//calculate rate information 
+		
+		$average = 0;
+		for($i=0;$i<$total_result;$i++){
+			$row =mysqli_fetch_array($result);	
+			$data[$i] = $row[0];
+		}
+		$output = array_count_values($data);
+		for($i=1;$i<=5;$i++){
+			
+			if($output[(string)$i]==""){
+				$output[(string)$i] = 0;
+				}
+			$element_name = "length_";
+			$element_name .= (string)$i;
+			$$element_name = ((float)($output[(string)$i])/$total_result)*100;
+			$average += $i*$output[(string)$i];
+		}
+		$average = number_format((float)($average/$total_result),2);			
+	}	
 
 ?>
 
