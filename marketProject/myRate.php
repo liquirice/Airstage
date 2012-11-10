@@ -1,4 +1,7 @@
-<?php 
+<?php
+
+	//Last edit 2012.11.10 by margies
+ 
 	session_start();
 	
 	if( !isset($_SESSION['stu_id']) || !isset($_SESSION['name']) || !isset($_SESSION['auth']) || !isset($_SESSION['nick']) ) {
@@ -6,6 +9,39 @@
 	} else {
 		// Query out the avg and show the percentage on the bar chart.
 	}
+	//$SESSION['stu_id'] = "test01";	for test
+	
+	require_once( "../connectVar.php" );
+	require_once( "UserQueryFunction.php" );
+	
+	//catch rate infromation
+	
+	$catch = 'SELECT `c`.`rate` FROM `marketsecondhand_trade` as `t`  RIGHT JOIN `marketsecondhand_comment` as `c`'.
+			'ON `t`.`trade_id` =  `c`.`trade_id`'.
+			'WHERE `t`.`stu_id` = "'.$SESSION['stu_id'].'"';
+	$result = mysqli_query($conn, $catch); 
+	$total_result = mysqli_num_rows($result);
+	
+	//calculate rate information 
+	
+	$average = 0;
+	for($i=0;$i<$total_result;$i++){
+		$row =mysqli_fetch_array($result);	
+		$data[$i] = $row[0];
+	}
+	$output = array_count_values($data);
+	for($i=1;$i<=5;$i++){
+		
+		if($output[(string)$i]==""){
+			$output[(string)$i] = 0;
+			}
+		$element_name = "length_";
+		$element_name .= (string)$i;
+		$$element_name = ((float)($output[(string)$i])/$total_result)*100;
+		$average += $i*$output[(string)$i];
+	}
+	$average = number_format((float)($average/$total_result),2);
+
 ?>
 
 <!DOCTYPE HTML>
@@ -45,30 +81,34 @@
     </div>
     
     <div class="page-header">
-	  <h1>平均評分 AVG  <small><font color="red"> 4.5</font></small></h1>
+	  <h1>平均評分 AVG  <small><font color="red">
+      <?
+	  	echo $average;
+		?> 
+      </font></small></h1>
 	</div>
     
     <h3>評分統計</h3>
     
     完美賣家（5分）
     <div class="progress progress-success progress-striped active">
-	  <div class="bar" style="width: 40%;"></div>
+	  <div class="bar" style="width: <?= $length_5;?>%;"></div>
 	</div>
 	態度不錯（4分）
 	<div class="progress progress-info progress-striped active">
-	  <div class="bar" style="width: 10%;"></div>
+	  <div class="bar" style="width: <?= $length_4;?>%;"></div>
 	</div>
 	普普通通（3分）
 	<div class="progress progress-striped active">
-	  <div class="bar" style="width: 60%;"></div>
+	  <div class="bar" style="width: <?= $length_3;?>%;"></div>
 	</div>
 	不太愉快（2分）
 	<div class="progress progress-warning progress-striped active">
-	  <div class="bar" style="width: 90%;"></div>
+	  <div class="bar" style="width: <?= $length_2;?>%;"></div>
 	</div>
 	態度很差（1分）
 	<div class="progress progress-danger progress-striped active">
-	  <div class="bar" style="width: 50%;"></div>
+	  <div class="bar" style="width: <?= $length_1;?>%;"></div>
 	</div>
 </div>
 <!-- End Container -->
