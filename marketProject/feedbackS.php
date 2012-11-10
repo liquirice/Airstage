@@ -22,8 +22,9 @@
 		
 		if( isset($_POST['send']) ) {
 			// Insert the feedback to the comment table.			
-			$market_reply = 'INSERT INTO `marketsecondhand_comment`(`trade_id`,`buyer_id`,`rate`,`feedback_content`) VALUES("'.$_row['stu_id'].'", "'.$_row["bidder_id"].'", "'.$_POST["rate"].'", "'.$_POST["reply"].'")   "';
-			$reply_result = mysqli_query($market_reply);
+			$market_reply = 'INSERT INTO `marketsecondhand_comment`(`trade_id`,`buyer_id`,`rate`,`feedback_content`) '.
+							'VALUES("'.$_row['stu_id'].'", "'.$_row["bidder_id"].'", "'.$_POST["rate"].'", "'.$_POST["reply"].'")   "';
+			$reply_result = mysqli_query($conn, $market_reply);
        		$reply_row = mysqli_fetch_array( $reply_result );
 		}
 	}
@@ -66,17 +67,7 @@
         <strong>Airstage 提醒：</strong>感謝您用心填寫回饋單，AIRSTAGE會拿出更高品質的服務來回應。        
     </div>
 	
-	<?php
-		// If feedback has been writen.
-		$market_reply = 'INSERT INTO `marketsecondhand_comment`(`trade_id`,`buyer_id`,`rate`,`feedback_content`) VALUES("'.$_row['stu_id'].'", "'.$_row["bidder_id"].'", "'.$_POST["rate"].'", "'.$_POST["reply"].'")   "';
-		$reply_result = mysqli_query($market_reply);
-        $reply_row = mysqli_fetch_array( $reply_result ); 
-	?>
-	
-	
-	<?php
-		// If the feedback hasn't set.
-	?>
+
 	
 	<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="form-horizontal" id="feedback" name="feedback">
     	<legend>交易回饋單</legend>
