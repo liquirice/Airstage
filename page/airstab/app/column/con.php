@@ -5,15 +5,15 @@
 										<table border="0" width="892" cellpadding="5">
 											<tr>
 												<td width="84" align="center" rowspan="2">
-												<img border="0" src="jpg/t02.jpg" width="54" height="53" align="middle"></td>
+												<img border="0" src="jpg/t04.jpg" width="35" height="53" align="middle"></td>
 												<td align="center" width="359" rowspan="2" valign="top">
 												<table border="0" width="359" cellspacing="0" cellpadding="0">
 													<tr>
 														<td style="border: 1px solid #C0C0C0" valign="middle" align="center" height="240px">
                                                             <div class="abgne-yahoo-slide abgne_tip_gallery_block2">
                                                             <?php
-                                                            echo $topsch;
-															 ?>
+                                                            echo $topcon;
+															?>
                                                             </div>
         												</td>
 													</tr>
@@ -25,8 +25,8 @@
 														<td style="border: 1px solid #C0C0C0" align="center" valign="middle">
 															<div class="abgne-yahoo-slide abgne_tip_gallery_block3">
 														<?php
-														if($secondsch != "")
-															echo $secondsch;
+														if($secondcon != "")
+															echo $secondcon;
 														
 														else {
 															echo '<img border="0" src="jpg/p1.jpg" width="161px" height="104px">
@@ -44,7 +44,7 @@
 												<p align="left" style="line-height: 150%"><br/>
 												<font color="#666666" face="微軟正黑體" style="font-size: 9pt">
                                                 <?php
-                                                echo $sch;
+                                                echo $con;
 												?></font></td>
 											</tr>
 											<tr>
@@ -54,8 +54,8 @@
 														<td style="border: 1px solid #C0C0C0" align="center" valign="middle">
 															<div class="abgne-yahoo-slide abgne_tip_gallery_block3">
 														<?php
-														if($thirdsch != "")
-															echo $thirdsch;
+														if($thirdcon != "")
+															echo $thirdcon;
 														
 														else {
 															echo '<img border="0" src="jpg/p1.jpg" width="161px" height="104px">
