@@ -21,8 +21,8 @@
 		$query .= "FROM( ( ( marketSecondHand_bidList INNER JOIN marketSecondHand_trade USING(trade_id) ) INNER JOIN marketSecondHand_productInfo USING ( product_id ))INNER JOIN marketsecondhand_time USING ( time_id ) )";
 		/*截標狀態*/
 		if ( $exsit_status < 2)	{ $query .= "WHERE `marketSecondHand_trade`.`exist` = '{$exsit_status}' "; }
-		/*排序依據+排序方式*/
 		$query .= "GROUP BY `trade_id` ";
+		/*排序依據+排序方式*/
 		switch($order_by){
 			case 1 :
 				$query .= "ORDER BY `marketSecondHand_time`.`start_date`  {$show_method}, `marketSecondHand_time`.`start_time` {$show_method} ";
@@ -86,11 +86,6 @@
 		$bidder_num = $detail['COUNT(*)'];
 		//$ = $detail[''];
 
-		/*分開抓(廢棄)
-		$bidList_query = "SELECT * FROM `marketSecondHand_bidList` WHERE `trade_id` = '{$trade_id}' ";
-		$bidList_result = mysqli_query( $conn, $bidList_query );
-		$bidder_num = mysqli_num_rows( $bidList_result );
-		*/
 		print_r($row);
 		echo "</br>";
 	}
