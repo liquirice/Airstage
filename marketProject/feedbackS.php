@@ -9,7 +9,7 @@
 		require_once( "UserQueryFunction.php" );
 		
 		$stu_id = $_SESSION['stu_id'];
-		//$trade_id = 4;//mysqli_real_escape_string( $conn, trim($_GET['trade']) );
+		$trade_id = mysqli_real_escape_string( $conn, trim($_GET['trade']) );
 		
 		$query = "SELECT marketSecondHand_bidList.*, Member.username, marketSecondHand_productInfo.title ,marketsecondhand_bidlist.bidder_id " . 
 				 "FROM marketSecondHand_bidList " . 
@@ -109,7 +109,7 @@
 		<div class="control-group">
 		  <label class="control-label"><i class="icon-user"></i> 賣方資料</label>
 		  <div class="controls">
-		    <a href="#" rel="popover" title="<?php echo $row['username']; ?>" data-content="<?php getSellerInfo($row['username'], $conn); ?>"><?php echo $row['username']; ?></a>
+		    <a href="#" rel="popover" data-placement="bottom" title="<?php echo $row['username']; ?>" data-content="<?php getSellerInfo($row['username'], $conn); ?>"><?php echo $row['username']; ?></a>
 		  </div>
 		</div>
 		

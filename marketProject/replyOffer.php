@@ -90,7 +90,14 @@
 		<div class="control-group">
 		  <label class="control-label" for="inputPassword">買方資料</label>
 		  <div class="controls">
-		    <a href="#" rel="popover" title="<?php echo $row['username']; ?>" data-content="<?php getSellerInfo($row['username'], $conn); ?>"><?php echo $row['username']; ?></a>
+		    <a href="#" rel="popover" data-placement="bottom" title="<?php echo $row['username']; ?>" data-content="<?php getSellerInfo($row['username'], $conn); ?>"><?php echo $row['username']; ?></a>
+		  </div>
+		</div>
+		
+		<div class="control-group">
+		  <label class="control-label" for="inputEmail">欲購數量</label>
+		  <div class="controls">
+		  	<span class="input-xlarge uneditable-input"><?php echo $row['wanted_number']; ?></span>
 		  </div>
 		</div>
 		

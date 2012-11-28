@@ -104,7 +104,7 @@
 		<li><a href="marketIndex.php">市場首頁</a> <span class="divider">/</span></li>
 		<li>交易管理介面 <span class="divider">/</span></li>
 		<li><a href="sellerInterface.php">賣方總管理</a> <span class="divider">/</span></li>
-		<li class="active">二手交易 - <?php echo $title['title']; ?></li>
+		<li class="active">二手交易細節 - <?php echo $title['title']; ?></li>
 	</ul>
 	
 	<!-- Warning Area -->
@@ -163,12 +163,12 @@
 		<div class="clearfix"></div>
 	</div>
 	
-	<h4>出價記錄</h4>	
+	<h4><i class="icon-th-list"></i> 出價記錄</h4>	
 	<table class="table table-striped">
       <thead>
         <tr>
           <th>#</th>
-          <th>出價帳號 <i class="icon-chevron-down"></i></th>
+          <th>出價帳號 <i class="icon-th-large"></i></th>
           <th>
           	出價方式
           	<?php
@@ -179,7 +179,17 @@
 				else echo '<i class="icon-chevron-down"></i></a>';	
 			?>
           </th>
-          <th>交易條件 <i class="icon-comment"></i></th>       
+          <th>交易條件 <i class="icon-comment"></i></th>  
+          <th>
+          	欲購數量
+          	<?php
+				if( @$permute == '' || $priority == 'u' ) echo '<a href="productSellInterfaceS.php?trade='. $trade_id .'&permute=wanted_number&priority=d">';
+				else echo '<a href="productSellInterfaceS.php?trade='. $trade_id .'&permute=wanted_number&priority=u">';
+				
+				if( @$permute == 'wanted_number' && @$priority == 'd' ) echo '<i class="icon-chevron-up"></i></a>';
+				else echo '<i class="icon-chevron-down"></i></a>';	
+			?>
+          </th>     
           <th>
           	出價時間
           	<?php
@@ -211,7 +221,7 @@
         <tr>
           <td><?php echo $counter; ?></td>
           <td>
-          	<a href="#" rel="popover" title="<?php echo $row['username']; ?>" data-content="<?php getSellerInfo($row['username'], $conn); ?>"><?php echo $row['username']; ?></a>
+          	<a href="#" rel="popover" data-placement="bottom" title="<?php echo $row['username']; ?>" data-content="<?php getSellerInfo($row['username'], $conn); ?>"><?php echo $row['username']; ?></a>
           </td>
           <td>
 	        <?php 
@@ -222,6 +232,9 @@
           </td>
           <td>       
           	<?php echo $row['exchange_info']; ?>
+          </td>
+          <td>
+          	<?php echo $row['wanted_number']; ?>
           </td>
           <td>
 	        <?php echo $row['update_time']; ?>
@@ -239,9 +252,9 @@
                 		if($row['buy_list'] == 1) {
 	                		echo '<li><a><i class="icon-remove"></i> 此比記錄已成交</a></li>';
                 		} else {
-                	?>		
-						<li><a href="<?php echo 'dealSuccess.php?trade=' . $row['trade_id'] . '&buyer=' . $row['bidder_id']; ?>"><i class="icon-ok"></i> 成交此筆</a></li>				
-						<li><a href="<?php echo 'replyOffer.php?trade=' . $row['trade_id'] . '&buyer=' . $row['bidder_id']; ?>"><i class="icon-envelope"></i> 回覆出價</a></li>                              
+                	?>												
+						<li><a href="<?php echo 'replyOffer.php?trade=' . $row['trade_id'] . '&buyer=' . $row['bidder_id']; ?>"><i class="icon-envelope"></i> 回覆出價</a></li>     
+						<li><a href="<?php echo 'dealSuccess.php?trade=' . $row['trade_id'] . '&buyer=' . $row['bidder_id']; ?>"><i class="icon-ok"></i> 成交此筆</a></li>                         
 					<?php
 						}
 					?>
@@ -259,7 +272,7 @@
     
     <hr class="bs-docs-separator">
     <!-- Contention Area -->
-    <h4>追蹤名單</h4>
+    <h4><i class="icon-tags"></i> 追蹤名單</h4>
     <table class="table table-striped" >
       <thead>
         <tr>
@@ -276,7 +289,7 @@
         <tr>
           <td><?php echo $counter; ?></td>
           <td>
-	          <a href="#" rel="popover" title="<?php echo $chasing['username']; ?>" data-content="<?php getSellerInfo($chasing['username'], $conn); ?>"><?php echo $chasing['username']; ?></a>
+	          <a href="#" rel="popover" data-placement="bottom" title="<?php echo $chasing['username']; ?>" data-content="<?php getSellerInfo($chasing['username'], $conn); ?>"><?php echo $chasing['username']; ?></a>
           </td>
           <td>
           	<?php echo $chasing['markTime']; ?>

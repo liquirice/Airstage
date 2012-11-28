@@ -199,7 +199,7 @@
 		          	<a href = "#"><?php echo $row['title']; ?></a>
 		          </td>
 		          <td>       
-			      	<a href="#" rel="popover" title="<?php echo $row['username']; ?>" data-content="<?php getSellerInfo($row['username'], $conn); ?>"><?php echo $row['username']; ?></a>          	
+			      	<a href="#" rel="popover" data-placement="bottom" title="<?php echo $row['username']; ?>" data-content="<?php getSellerInfo($row['username'], $conn); ?>"><?php echo $row['username']; ?></a>          	
 		          </td>
 		          <td>
 			          <?php 
