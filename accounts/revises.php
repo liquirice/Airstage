@@ -553,7 +553,7 @@
 	                    <td>
 	                    <i class="icon-home"></i>&nbsp;
 	                      <select size="1" name="home">
-	                        <option selected>來至哪裡呀？</option>
+	                        <option selected>來自哪裡呀？</option>
 	                        <option disabled>【台灣】</option>
 	                        <option value="Keelung" <?php if($row['home'] == "Keelung") echo 'selected';?>>基隆</option>
 	                        <option value="Taipei" <?php if($row['home'] == "Taipei") echo 'selected';?>>台北</option>
