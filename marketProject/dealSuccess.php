@@ -3,8 +3,8 @@
 	
 	//Last Modified 2012.12.02
 	//PEAR function
-	require_once "Mail.php";
-	include('Mail/mime.php');
+	require_once "..\member\PEAR\Mail-1.2.0\Mail.php";
+	include('..\member\PEAR\Mail-1.2.0\Mail\mime.php');
 	
 	
 	function winnerNotification( $id, $trade_id, $conn ) {
