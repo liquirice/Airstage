@@ -15,21 +15,21 @@
 		$trade_id = mysqli_real_escape_string( $conn, trim($_GET['trade']) );
 		$buyer_id = mysqli_real_escape_string( $conn, trim($_GET['buyer']) );
 		
-		/*$query = "SELECT marketSecondHand_productInfo.title, marketSecondHand_bidList.*, Member.username, Member.email, marketSecondHand_trade.least_price " .
+		$query = "SELECT marketSecondHand_productInfo.title, marketSecondHand_bidList.*, Member.username, Member.email, marketSecondHand_trade.least_price " .
 				 "FROM marketSecondHand_trade " .
 				 "LEFT JOIN marketSecondHand_bidList ON marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id " .
 				 "LEFT JOIN marketSecondHand_productInfo ON marketSecondHand_productInfo.product_id = marketSecondHand_trade.product_id " .
 				 "LEFT JOIN Member ON Member.stu_id = marketSecondHand_bidList.bidder_id " .
-				 "WHERE marketSecondHand_trade.trade_id = '$trade_id' AND marketSecondHand_trade.stu_id = '$stu_id' AND marketSecondHand_bidList.bidder_id = '$buyer_id'";*/
+				 "WHERE marketSecondHand_trade.trade_id = '$trade_id' AND marketSecondHand_trade.stu_id = '$stu_id' AND marketSecondHand_bidList.bidder_id = '$buyer_id'";
 				 
-		//test		 
+		/*test		 
 		$query = "SELECT marketsecondhand_productinfo. * ,marketSecondHand_productInfo.title, marketSecondHand_bidList.*, Member.username, Member.email,". 
 					"marketSecondHand_trade.least_price, marketSecondHand_trade.number ".
 					"FROM marketSecondHand_trade ".
 					"LEFT JOIN marketSecondHand_bidList ON marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id ".
 					"LEFT JOIN marketSecondHand_productInfo ON marketSecondHand_productInfo.product_id = marketSecondHand_trade.product_id ".
 					"LEFT JOIN Member ON Member.stu_id = marketSecondHand_bidList.bidder_id ".
-					"WHERE marketSecondHand_trade.trade_id =7 AND marketSecondHand_trade.stu_id = 'B004020013' AND marketSecondHand_bidList.bidder_id = 'B004020012'";
+					"WHERE marketSecondHand_trade.trade_id =7 AND marketSecondHand_trade.stu_id = 'B004020013' AND marketSecondHand_bidList.bidder_id = 'B004020012'";*/
 				 
 		$result = mysqli_query( $conn, $query ) or die('Forbidden!');
 		
