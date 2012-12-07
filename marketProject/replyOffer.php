@@ -1,6 +1,10 @@
 <?php
 	session_start();
 	
+	//Last Modified 2012.12.07
+	require_once ('..\member\PEAR\Mail-1.2.0\Mail.php');
+	include('..\member\PEAR\Mail-1.2.0\Mail\mime.php');
+	
 	if( !isset($_SESSION['stu_id']) || !isset($_SESSION['name']) || !isset($_SESSION['auth']) || !isset($_SESSION['nick']) ) {
 		echo '<script type="text/javascript">alert("請先登入!"); location.href="marketIndex.php"</script>';
 	} else {
@@ -11,12 +15,21 @@
 		$trade_id = mysqli_real_escape_string( $conn, trim($_GET['trade']) );
 		$buyer_id = mysqli_real_escape_string( $conn, trim($_GET['buyer']) );
 		
-		$query = "SELECT marketSecondHand_productInfo.title, marketSecondHand_bidList.*, Member.username, Member.email, marketSecondHand_trade.least_price " .
+		/*$query = "SELECT marketSecondHand_productInfo.title, marketSecondHand_bidList.*, Member.username, Member.email, marketSecondHand_trade.least_price " .
 				 "FROM marketSecondHand_trade " .
 				 "LEFT JOIN marketSecondHand_bidList ON marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id " .
 				 "LEFT JOIN marketSecondHand_productInfo ON marketSecondHand_productInfo.product_id = marketSecondHand_trade.product_id " .
 				 "LEFT JOIN Member ON Member.stu_id = marketSecondHand_bidList.bidder_id " .
-				 "WHERE marketSecondHand_trade.trade_id = '$trade_id' AND marketSecondHand_trade.stu_id = '$stu_id' AND marketSecondHand_bidList.bidder_id = '$buyer_id'";
+				 "WHERE marketSecondHand_trade.trade_id = '$trade_id' AND marketSecondHand_trade.stu_id = '$stu_id' AND marketSecondHand_bidList.bidder_id = '$buyer_id'";*/
+				 
+		//test		 
+		$query = "SELECT marketsecondhand_productinfo. * ,marketSecondHand_productInfo.title, marketSecondHand_bidList.*, Member.username, Member.email,". 
+					"marketSecondHand_trade.least_price, marketSecondHand_trade.number ".
+					"FROM marketSecondHand_trade ".
+					"LEFT JOIN marketSecondHand_bidList ON marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id ".
+					"LEFT JOIN marketSecondHand_productInfo ON marketSecondHand_productInfo.product_id = marketSecondHand_trade.product_id ".
+					"LEFT JOIN Member ON Member.stu_id = marketSecondHand_bidList.bidder_id ".
+					"WHERE marketSecondHand_trade.trade_id =7 AND marketSecondHand_trade.stu_id = 'B004020013' AND marketSecondHand_bidList.bidder_id = 'B004020012'";
 				 
 		$result = mysqli_query( $conn, $query ) or die('Forbidden!');
 		
@@ -28,6 +41,49 @@
 		
 		if( isset($_POST['send']) ) {
 			// TODO : Send Email to the buyer by gmail.
+			
+			$from = "airstagestudio@gmail.com";
+			$to = $row['email'];
+			$subject = "[系統寄信]Airstage賣方回覆";
+			$body = '<p style="size:20px,font-weight:bold;">親愛的'.$row['username'].'同學：</p>'.
+			'<p style="margin-left:50px;">您在Airstage二手市集對於'.$row['title'].'的出價，賣家回覆囉</br></br>'.
+			'賣家回覆：'.$_POST['reply'].'</br>'.
+			'商品名稱：'.$row['title'].'：</br>'.
+			'商品剩餘數量：'.$row['number'].'</br></br>'.
+			'感謝您對Airstage二手市集的支持！</p>'.
+			'<p style="margin-left:300px;margin-top:200px;"><a href="http://www.airstage.com.tw/">Airstage</a></p>';
+			$host = "smtp.gmail.com";
+			$username = "airstagestudio"; // same as $from in most cases
+			$password = "86088608";
+			
+			$headers = array ('From' => $from,
+			'To' => $to,
+			'Subject' => $subject
+			);
+			
+			$mime = new Mail_Mime("\n");
+			$mime->setHTMLBody($body);
+			
+			$body = $mime->get();
+			$headers = $mime->headers($headers);
+			
+			$email = Mail::factory('smtp',
+			array ('host' => $host,
+			'auth' => true,
+			'username' => $username,
+			'password' => $password
+			)
+			);
+			
+			$result = $email->send($to, $headers, $body);
+			
+			if (PEAR::isError($result))
+			echo "Error occurred: " . $result->getMessage();
+			else;
+		
+			//echo $id . '<br />';
+			
+			
 		}
 	}
 	
