@@ -1,7 +1,7 @@
 <?php
 	// Last Modified Day : 2012.09.26
 	// No need to login to browse the products.
-	session_start();
+	require_once( "../global/setSession.php" );
 ?>
 
 <!DOCTYPE HTML>

@@ -1,5 +1,5 @@
 <?php
-	session_start();
+	require_once( "../global/setSession.php" );
 	
 	//Last Modified 2012.12.07
 	require_once ('..\member\PEAR\Mail-1.2.0\Mail.php');

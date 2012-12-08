@@ -5,9 +5,9 @@
 	    	Design By Archerwind & Abu
     	</p>
     	<ul class="footer-links">
-	    	<li><a href="">AIRSTAGE</a></li>
-	    	<li><a href="">人才招募</a></li>
-	    	<li><a href="">未來計畫</a></li>
+	    	<li><a href="../about/index.php">AIRSTAGE</a></li>
+	    	<li><a href="../about/03.php">人才招募</a></li>
+	    	<li><a href="../about/02.php">聯絡我們</a></li>
 	    </ul>
     	
 	</div>

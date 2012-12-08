@@ -1,6 +1,6 @@
 <?php
 	// Last Modified Day : 2012.10.07
-	session_start();
+	require_once( "../global/setSession.php" );
 	
 	if( !isset($_SESSION['stu_id']) || !isset($_SESSION['name']) || !isset($_SESSION['auth']) || !isset($_SESSION['nick']) ) {
 		echo '<script type="text/javascript">alert("請先登入!"); location.href="marketIndex.php"</script>';
@@ -196,7 +196,7 @@
 		        <tr>
 		          <td><?php echo $counter; ?></td>
 		          <td>
-		          	<a href = "#"><?php echo $row['title']; ?></a>
+		          	<a href = "productDetail.php?trade=<?php echo $row['trade_id']; ?>"><?php echo $row['title']; ?></a>
 		          </td>
 		          <td>       
 			      	<a href="#" rel="popover" data-placement="bottom" title="<?php echo $row['username']; ?>" data-content="<?php getSellerInfo($row['username'], $conn); ?>"><?php echo $row['username']; ?></a>          	

@@ -1,0 +1,53 @@
+td{
+	font-size:12px;
+}
+.img{
+	width:300;
+	height:210;
+}
+.title{
+	font-weight:bold;
+	font-size:16px;
+	color:#000000;
+}
+.sub{
+	color:#666666;
+}
+.description{
+	font-size:13px;
+	color:#666;
+	width:100%;
+	font-weight:bold;
+	font:msjh;
+	height:50px;
+}
+.name{
+	color:#666666;
+	width:700px;
+}
+.time{
+	color:#666666;
+}
+.venue{
+	color:#666666;
+}
+.fee{
+	color:#666666;
+}
+.host{
+	color:#666666;
+}
+.note{
+	color:#F00;
+}
+.tdimg{
+	border: 1px solid #C0C0C0;
+}
+body {
+	background-image: url(jpg/background.png);
+	background-repeat: repeat-x;
+	background-color: #F2F2F2;
+}
+body,td,th {
+	font-family: "·L³n¥¿¶ÂÅé";
+}

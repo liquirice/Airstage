@@ -1,5 +1,5 @@
 <?php
-	session_start();
+	require_once( "../global/setSession.php" );
 	
 	if( !isset($_SESSION['stu_id']) || !isset($_SESSION['name']) || !isset($_SESSION['auth']) || !isset($_SESSION['nick']) ) {
 		echo '<script type="text/javascript">alert("請先登入!"); location.href="marketIndex.php"</script>';
@@ -59,6 +59,7 @@
 <body>
 
 <?php
+	//require_once( "../global/navi_white/navi.php" );
 	require_once( "marketNavi.php" );
 	require_once( "marketAnnouce.php" );
 ?>
@@ -159,7 +160,7 @@
 		        <tr>
 		          <td><?php echo $counter; ?></td>
 		          <td>
-		          	<a href = "#"><?php echo $row['title']; ?></a>
+		          	<a href = "productDetail.php?trade=<?php echo $row['trade_id']; ?>"><?php echo $row['title']; ?></a>
 		          </td>		         
 		          <td>
 			        <?php echo $row['BuyNum']; ?>  

@@ -1,11 +1,8 @@
 <?php
 
 	//Last edit 2012.11.10 by margies
- 
-	session_start();
-	
-	//12344354546565
-	
+
+	require_once( "../global/setSession.php" );
 	require_once( "../connectVar.php" );
 	require_once( "UserQueryFunction.php" );
 	
@@ -25,12 +22,12 @@
 		//calculate rate information 
 		
 		$average = 0;
-		for($i=0;$i<$total_result;$i++){
+		for( $i = 0; $i < $total_result; $i++ ){
 			$row =mysqli_fetch_array($result);	
 			$data[$i] = $row[0];
 		}
-		$output = array_count_values($data);
-		for($i=1;$i<=5;$i++){
+		$output = array_count_values( $data );
+		for( $i = 1; $i <= 5; $i++ ){
 			
 			if($output[(string)$i]==""){
 				$output[(string)$i] = 0;
@@ -85,7 +82,7 @@
 	  <h1>平均評分 AVG  <small><font color="red">
       <?
 	  	echo $average;
-		?> 
+	  ?> 
       </font></small></h1>
 	</div>
     

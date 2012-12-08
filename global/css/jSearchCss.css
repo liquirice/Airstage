@@ -1,0 +1,15 @@
+input.jsinput{
+	border:1px solid #CCC;
+	margin:0px;
+	padding:8px 6px;
+	font-size:15px !important;
+	width:90%;
+}
+
+ul.jskey {margin:0px;}
+ul.jskey li {float:left; font-size:15px; display:inline; padding-right:16px; margin:10px 0px; cursor:pointer;}
+ul.jskey li.jskeyclear {color:#F33;}
+
+div#qResult div.jsearch_response_dialog{
+	width:100%; clear:both; background:url(../jpg/hor.jpg) bottom no-repeat; color:#999; padding:16px 0px; font-size:15px;
+}

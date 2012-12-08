@@ -1,5 +1,5 @@
 <?php
-	session_start();
+	require_once( "../global/setSession.php" );
 
 	if( !isset($_SESSION['stu_id']) || !isset($_SESSION['name']) || !isset($_SESSION['auth']) || !isset($_SESSION['nick']) ) {
 		echo '<script type="text/javascript">alert("請先登入!"); location.href="marketIndex.php"</script>';
