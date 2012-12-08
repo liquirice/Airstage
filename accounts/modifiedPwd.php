@@ -1,9 +1,14 @@
 <?php
 	// Last Modified Day : 2012.09.14
-	require_once( "../setSession.php" );
+	require_once( "../global/setSession.php" );
+	
+	if( !isset($_SESSION['stu_id']) || !isset($_SESSION['name']) || !isset($_SESSION['auth']) ) {
+		echo '<script type="text/javascript">alert("請先登入唷～"); location.href="../index.php"</script>';
+		exit();
+	} 
 	
 	if( isset($_POST['submit']) && isset($_SESSION['stu_id']) ) {
-		require_once( "../connectVar.php" );
+		require_once( "../global/connectVar.php" );
 		
 		$stu_id = $_SESSION['stu_id'];
 		$original = sha1(mysqli_real_escape_string( $conn, trim($_POST['original']) ));
@@ -36,7 +41,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Language" content="zh-tw">
 <title>│Airstage 西灣人│會員中心：修改密碼</title>
-
+<script language="javascript" type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script language="javascript" type="text/javascript">var app = "accounts";</script>
 <link rel="stylesheet" type="text/css" href="../plugin/shadowbox/shadowbox.css">
 <base target="_parent">
 <style type="text/css">
@@ -45,7 +51,7 @@
 		font-size: 14px;
 	}
 	body {
-		background-image: url(../jpg/background.png);
+		//background-image: url(../jpg/background.png);
 		background-repeat: repeat-x;
 		background-color: #F2F2F2;
 	}
@@ -58,14 +64,14 @@
 <body>
 
 <div align="center">
-	<?php 
-		require_once( "memberHeader.php" );
-	?>
-    
-	<div align="center">
-		<table border="0" width="980" height="693" cellspacing="0" cellpadding="0">
+<?php
+	require_once( "../global/navi_white/navi.php" );
+?>
+</div>
+<div align="center">
+  <table border="0" width="980" height="693" cellspacing="0" cellpadding="0">
 	    <tr>
-	      <td background="../jpg/bot.png" valign="top"><div align="center">
+	      <td background="../global/images/bot.png" valign="top"><div align="center">
 	        <table border="0" width="98%" cellspacing="0" cellpadding="0" height="761">
 	          <tr>
 	            <td align="left" valign="top" height="192" colspan="2" background="jpg/top.jpg" width="960">
@@ -119,6 +125,13 @@
 				<p><span style="vertical-align: medium">&nbsp;</span></div>
 			</td>
 		</tr>
+		
+		<tr>
+			<td height="106" background="../global/images/last.png" valign="top">
+				<?php require_once("../global/footer.php"); ?>
+			</td>
+        </tr>
+		
 	</table>
 </div>
 <script src = "assets/js/bootstrap-modal.js"></script>

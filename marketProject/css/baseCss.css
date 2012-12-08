@@ -5,16 +5,22 @@ body {
 	margin: 0px auto;
 }
 
+li, ul {
+	font-family: "微軟正黑體", "Arial";
+}
+
 table, th, td {
+	font-family: "微軟正黑體", "Arial";
 	vertical-align:-webkit-baseline-middle;
 }
 
 textarea {
+	font-family: "微軟正黑體", "Arial";
 	width: 730px;
 }
 
 div {
-	font-family: "Arial";
+	font-family: "微軟正黑體", "Arial";
 }
 
 

@@ -1,6 +1,6 @@
 <?php
 	// Last Modified Day : 2012.09.27
-	require_once( "../setSession.php" );
+	require_once( "../global/setSession.php" );
 	
 	if( !isset($_SESSION['stu_id']) || !isset($_SESSION['name']) || !isset($_SESSION['auth']) ) {
 		echo '<script type="text/javascript">alert("請先登入唷～"); location.href="../index.php"</script>';
@@ -8,7 +8,7 @@
 		if( $_SESSION['auth'] == 0 ) {
 			echo '<script type="text/javascript">alert("記得去信箱認證帳號才有權限進來唷!"); location.href="../index.php"</script>';
 		} else {
-			require_once( "../connectVar.php" );
+			require_once( "../global/connectVar.php" );
 			require_once( "uploadPath.php" );
 			$stu_id = $_SESSION['stu_id'];
 			
@@ -124,17 +124,17 @@
 <!--link href="../css/bootstrap-Full/docs/assets/css/docs.css" rel="stylesheet"-->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Language" content="zh-tw">
-<title>│Airstage 西灣人│會員中心：編輯個人資料</title>
+<title>會員中心─ Airstage 西灣人</title>
 <script language="javascript" type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script language="javascript" type="text/javascript">var app = "accounts";</script>
 <base target="_parent">
 <style type="text/css">
 	body,td,th {
-		font-family: "微軟正黑體", "Arial";
-		font-size: 14px;
+	font-family: "微軟正黑體", Arial;
+	font-size: 14px;
 	}
 	body {
-		background-image: url(../jpg/background.png);
+		//background-image: url(../jpg/background.png);
 		background-repeat: repeat-x;
 		background-color: #F2F2F2;
 	}
@@ -151,13 +151,12 @@
 
 <div align="center">
 	<?php
-		include( "../model/navi.php" );
-	?>
-	
+		require_once( "../global/navi_white/navi.php" );
+	?>	
 	<div align="center">
 	  <table border="0" width="980" height="693" cellspacing="0" cellpadding="0">
 	    <tr>
-	      <td background="../jpg/bot.png" valign="top"><div align="center">
+	      <td background="../global/images/bot.png" valign="top"><div align="center">
 	        <table border="0" width="98%" cellspacing="0" cellpadding="0" height="761">
 	          <tr>
 	            <td align="left" valign="top" height="192" colspan="2" background="jpg/top.jpg" width="960"></td>
@@ -249,37 +248,37 @@
 							  <option value="外文系">外文系</option>
 							  <option value="劇藝系">劇藝系</option>
 							  <option value="音樂系">音樂系</option>
-							  <option value="文院研究所">文院碩博士</option>
+							  <option value="文院碩博士">文院碩博士</option>
 							  <option value="文院教師與同仁">文院教師與同仁</option>
 							  <option disabled>【 　社科院 　】</option>
 							  <option value="政經系">政經系</option>
 							  <option value="社會系">社會系</option>
-							  <option value="社科院研究所">社科院碩博士</option>
+							  <option value="社科院碩博士">社科院碩博士</option>
 							  <option value="社科院教師與同仁">社科院教師與同仁</option>
 							  <option disabled>【 　理學院 　】</option>
 							  <option value="應數系">應數系</option>
 							  <option value="化學系">化學系</option>
 							  <option value="物理系">物理系</option>
 							  <option value="生科系">生科系</option>
-							  <option value="理院研究所">理院碩博士</option>
+							  <option value="理院碩博士">理院碩博士</option>
 							  <option value="理院教師與同仁">理院教師與同仁</option>
 							  <option disabled>【 　工學院 　】</option>
 							  <option value="電機系">電機系</option>
 							  <option value="機電系">機電系</option>
 							  <option value="資工系">資工系</option>
 							  <option value="材光系">材光系</option>
-							  <option value="工學院研究所">工學院碩博士</option>
+							  <option value="工學院碩博士">工學院碩博士</option>
 							  <option value="工院教師與同仁">工院教師與同仁</option>
 							  <option disabled>【 　管學院 　】</option>
 							  <option value="企管系">企管系</option>
 							  <option value="財管系">財管系</option>
 							  <option value="資管系">資管系</option>
-							  <option value="管學院研究所">管學院碩博士</option>
+							  <option value="管學院碩博士">管學院碩博士</option>
 							  <option value="管院教師與同仁">管院教師與同仁</option>
 							  <option disabled>【 　海科院 　】</option>
 							  <option value="海資系">海資系</option>
 							  <option value="海工系">海工系</option>
-							  <option value="海科院研究所">海科院碩博士</option>
+							  <option value="海科院碩博士">海科院碩博士</option>
 							  <option value="海院教師與同仁">海院教師與同仁</option>
 							  <option disabled>【&nbsp;&nbsp;校方機構&nbsp;&nbsp;】</option>
 							  <option value="行政處室">行政處室</option>
@@ -553,7 +552,7 @@
 	                    <td>
 	                    <i class="icon-home"></i>&nbsp;
 	                      <select size="1" name="home">
-	                        <option selected>來自哪裡呀？</option>
+	                        <option selected>來至哪裡呀？</option>
 	                        <option disabled>【台灣】</option>
 	                        <option value="Keelung" <?php if($row['home'] == "Keelung") echo 'selected';?>>基隆</option>
 	                        <option value="Taipei" <?php if($row['home'] == "Taipei") echo 'selected';?>>台北</option>
@@ -717,9 +716,8 @@
         </tr>
         
 	    <tr>
-	      <td height="106" background="../jpg/last.png" valign="top">
-	      	<?php require("../model/footer.php"); ?>
-	        <p>&nbsp;</td>
+	      <td height="106" background="../global/images/last.png" valign="top">
+	      	<?php require_once("../global/footer.php"); ?>
         </tr>
   
   

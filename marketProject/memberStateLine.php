@@ -1,4 +1,4 @@
-<div class="navbar">
+<div class="navbar" style="font-family: '微軟正黑體', 'Arial';">
   <div class="navbar-inner">
     <div class="container">
       <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -12,7 +12,7 @@
 	?>
 	  
       <a class="brand" href="../accounts/revises.php"><?php echo $_SESSION['nick']; ?></a>
-      <div class="nav-collapse">
+      <div class="nav-collapse" style="font-family: '微軟正黑體', 'Arial';">
         <ul class="nav">
         	<li class="divider-vertical"></li>
         	<li class="dropdown">

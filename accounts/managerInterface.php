@@ -1,6 +1,6 @@
 <?php
 	// Last Modified Day : 2012.09.14
-	require_once( "../setSession.php" );
+	require_once( "../global/setSession.php" );
 	
 	if( $_SESSION['auth'] != 2 || !isset($_SESSION['stu_id']) ) {
 		echo '<script type="text/javascript">alert("You have no rights to access!"); location.href="../index.php"</script>';	
