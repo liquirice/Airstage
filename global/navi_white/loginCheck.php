@@ -174,7 +174,7 @@ $(document).ready(function(){
 
 		<font color="#000000" size="2">會員登入</font></a>';
 */
-	echo '<a href="http://'.$_SERVER ['HTTP_HOST'].'/member/register/login.php" style="border:0 none; text-decoration:none; font-weight:700" id="login" width=330; height=400">
+	echo '<a href="http://'.$_SERVER ['HTTP_HOST'].'/member/register/index.php" style="border:0 none; text-decoration:none; font-weight:700" id="login" width=330; height=400">
 
 		<font color="#000000" size="2">會員登入</font></a>';
 	} else {
