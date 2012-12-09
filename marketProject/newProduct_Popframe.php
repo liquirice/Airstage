@@ -21,17 +21,22 @@ function ChangeCat2()
 	{
 		/*書籍雜誌*/
 		case "1":
-			cat2Arr[i++] = "校內課程用書";
+			cat2Arr[i++] = "課程用書";
 			cat2Arr[i++] = "一般書籍";
-			cat2Arr[i++] = "雜誌";
-			cat2Arr[i++] = "外文書";
+			cat2Arr[i++] = "報刊雜誌";
+			cat2Arr[i++] = "外文書籍";
 			break;
 		/*其他雜物*/
 		case "2":
 			cat2Arr[i++] = "服飾精品";
+			cat2Arr[i++] = "美容保養";
 			cat2Arr[i++] = "文具小物";
+			cat2Arr[i++] = "3C產品";
+			cat2Arr[i++] = "各式票券";
 			cat2Arr[i++] = "家具家電";
-			cat2Arr[i++] = "其他";
+			cat2Arr[i++] = "交通工具";
+			cat2Arr[i++] = "食品";
+			cat2Arr[i++] = "其他雜物";
 			break;
 	}
 	arraySize = i;
@@ -51,7 +56,7 @@ function ChangeCat3()
 	if( document.newProductForm.cat1.value == "1"){
 		switch(document.newProductForm.cat2.value)
 		{
-			/*書籍雜誌-校內課程用書*/
+			/*書籍雜誌-課程用書*/
 			case "1":
 				cat3Arr[i++] = "文學院";
 				cat3Arr[i++] = "理學院";
@@ -62,7 +67,7 @@ function ChangeCat3()
 				cat3Arr[i++] = "通識課程";
 				cat3Arr[i++] = "其他課程";
 				break;
-			/*書籍雜誌-雜誌*/
+			/*書籍雜誌-報刊雜誌*/
 			case "3":
 				cat3Arr[i++] = "新聞時事";
 				cat3Arr[i++] = "財經企管";
@@ -74,7 +79,7 @@ function ChangeCat3()
 				cat3Arr[i++] = "旅遊、休閒、生活";
 				cat3Arr[i++] = "其他雜誌";
 				break;
-			/*書籍雜誌-一般書籍 & 書籍雜誌-外文書*/
+			/*書籍雜誌-一般書籍 & 書籍雜誌-外文書籍*/
 			case "2":
 			case "4":
 				cat3Arr[i++] = "商業理財";
@@ -90,28 +95,60 @@ function ChangeCat3()
 	}else if( document.newProductForm.cat1.value == "2") {
 		switch(document.newProductForm.cat2.value)
 		{
-			/*其他雜物-服飾精品*/
+			/*生活雜物-服飾精品*/
 			case "1":
 				cat3Arr[i++] = "女性時裝";
 				cat3Arr[i++] = "男性時裝";
 				cat3Arr[i++] = "其他";
 				break;
-			/*其他雜物-文具小物*/
+			/*生活雜物-美容保養*/
 			case "2":
-				cat3Arr[i++] = "文具";
-				cat3Arr[i++] = "雜物";
+				cat3Arr[i++] = "保養用品";
+				cat3Arr[i++] = "化妝用品";
+				cat3Arr[i++] = "健身用品";
+				cat3Arr[i++] = "清潔用品";
 				cat3Arr[i++] = "其他";
 				break;
-			/*其他雜物-家具家電*/
+			/*生活雜物-文具小物*/
 			case "3":
-				cat3Arr[i++] = "家具";
-				cat3Arr[i++] = "家電";
-				cat3Arr[i++] = "電腦與週邊產品";
-				cat3Arr[i++] = "手機與週邊產品";
+				cat3Arr[i++] = "文具用品";
+				cat3Arr[i++] = "收納整理";
 				cat3Arr[i++] = "其他";
 				break;
-			/*其他雜物-*/
+			/*生活雜物-3C產品*/
 			case "4":
+				cat3Arr[i++] = "電腦與周邊";
+				cat3Arr[i++] = "手機與周邊";
+				cat3Arr[i++] = "影音與周邊";
+				cat3Arr[i++] = "其他";
+				break;
+			/*生活雜物-各式票券*/
+			case "5":
+				cat3Arr[i++] = "交通票券";
+				cat3Arr[i++] = "活動票券";
+				cat3Arr[i++] = "餐券禮券";
+				cat3Arr[i++] = "電影票券";
+				cat3Arr[i++] = "其他";
+				break;
+			/*生活雜物-家具家電*/
+			case "6":
+				cat3Arr[i++] = "電冰箱";
+				cat3Arr[i++] = "廚房家電";
+				cat3Arr[i++] = "其他家電";
+				cat3Arr[i++] = "衛浴用品";
+				cat3Arr[i++] = "各種家具";
+				break;
+			/*生活雜物-交通工具*/
+			case "7":
+				cat3Arr[i++] = "腳踏車";
+				cat3Arr[i++] = "其他";
+				break;
+			/*生活雜物-食品*/
+			case "8":
+				cat3Arr[i++] = "食品";
+				break;
+			/*生活雜物-其他雜物*/
+			case "9":
 				cat3Arr[i++] = "其他";
 				break;
 		}
@@ -119,6 +156,7 @@ function ChangeCat3()
 	arraySize = i;
 	for(i=1; i<arraySize; i++)
 	{
+		var value = "";
 		cat3.options[i]=new Option( cat3Arr[i], i);
 	}
 	cat3.options.length=arraySize;
@@ -144,7 +182,7 @@ function ChangeCat5(){}
 					<select class="input-small" id="cat1" name="cat1" onChange="ChangeCat2();">
 						<option value="">主分類</option>
 						<option value="1">書籍雜誌</option>
-						<option value="2">其他雜物</option>
+						<option value="2">生活雜物</option>
 					</select> /
 					<select class="input-small" id="cat2" name="cat2" onChange="ChangeCat3();">
 						<option value="">選擇分類</option>
@@ -189,8 +227,7 @@ function ChangeCat5(){}
 			<div class="row">
 				<label class="span1">物品說明</label>
 				<div class="sapn11 offset1">
-					<textarea class="span5" name="product_detail" id="product_detail">
-					</textarea>
+					<textarea class="span5" name="product_detail" id="product_detail"></textarea>
 				</div>
 			</div>		
 		</div>
