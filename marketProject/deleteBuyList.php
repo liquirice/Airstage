@@ -12,5 +12,6 @@
 		$query = "DELETE FROM marketSecondHand_bidList " . 
 				 "WHERE marketSecondHand_bidList.trade_id = '$trade_id' AND marketSecondHand_bidList.bidder_id ='$stu_id'";
 		$result = mysqli_query( $conn, $query ) or die('delete buyer error!');
+		echo '<script type="text/javascript">location.href="buyerInterface.php"</script>';
 	}
 ?>

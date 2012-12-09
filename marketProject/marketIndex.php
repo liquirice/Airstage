@@ -13,6 +13,11 @@
 	<link href="css/docs.css" rel="stylesheet">
 	<meta http-equiv = "Content-Type" content = "text/html; charset = utf8" />
 	<meta http-equiv = "Content-Language" content = "zh-tw" />
+	<style>
+		h4, h3, h2, h1, table, tr, td, li, ul, th, label, legend, button {
+			font-family: "微軟正黑體", "Arial";
+		}
+	</style>
 </head>
 
 <body>

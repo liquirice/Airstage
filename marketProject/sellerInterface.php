@@ -54,6 +54,11 @@
 	<link href="css/docs.css" rel="stylesheet">
 	<meta http-equiv = "Content-Type" content = "text/html; charset = utf8" />
 	<meta http-equiv = "Content-Language" content = "zh-tw" />
+	<style>
+		h3, h2, h1, table, tr, td, li, ul, th {
+			font-family: "微軟正黑體", "Arial";
+		}
+	</style>
 </head>
 
 <body>
@@ -77,7 +82,7 @@
 	</ul>
 	
 	<!-- Warning Area -->
-	<div class="alert alert-info fade in">
+	<div class="alert alert-info fade in" style="font-family: '微軟正黑體';">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
         <strong>Airstage 提醒：</strong>記得用點按的方式收合各個市場的清單唷！
     </div>

@@ -10,19 +10,20 @@
 	
 	function getSellerInfo( $userID, $conn ) {
 		$query = "SELECT * FROM Member " . 
-				 "LEFT JOIN member_info ON Member.stu_id = member_info.stu_id " .
+				 "LEFT JOIN member_Info ON Member.stu_id = member_Info.stu_id " .
 				 "LEFT JOIN display_check ON Member.stu_id = display_check.stu_id " . 
 				 "WHERE Member.username = '$userID'";
 		$result = mysqli_query( $conn, $query ) or die('User Query Error');
 		$detail = mysqli_fetch_array( $result );
 		
-		echo '<div>';
+		echo "<div>";
 		
 		if( $detail['name_c'] == "on" )   echo $detail['name'] . ' - ';
-		                                  echo $detail['department'] . '<br />';
+		                                  echo $detail['department'] . ' - ';
+										  echo 'Grade ' . $detail['grade'] . '<br />';
 		echo '</div>';
 		
 		// Image area.
-		echo '<a href=\'' . $detail['facebook'] . '\' class=\'thumbnail\'><img src=\'http://placehold.it/188x120\' class=\'img-polaroid\' /></a>';
+		echo '<a href=\'' . $detail['facebook'] . '\' class=\'thumbnail\'> <img src=\'../accounts/images/'. $detail['stu_id'] . '/' . $detail['profile_pic'] . '\'' . ' class=\'img-polaroid\' width=\'200px\' height=\'200px\' /> </a>';
 	}
 ?>

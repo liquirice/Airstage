@@ -2,13 +2,13 @@
 	require_once( "../global/setSession.php" );
 	
 	//Last Modified 2012.12.07
-	require_once ('..\member\PEAR\Mail-1.2.0\Mail.php');
-	include('..\member\PEAR\Mail-1.2.0\Mail\mime.php');
+	require_once ('PEAR/Mail-1.2.0/Mail.php');
+	include('PEAR/Mail-1.2.0/Mail/mime.php');
 	
 	if( !isset($_SESSION['stu_id']) || !isset($_SESSION['name']) || !isset($_SESSION['auth']) || !isset($_SESSION['nick']) ) {
 		echo '<script type="text/javascript">alert("請先登入!"); location.href="marketIndex.php"</script>';
 	} else {
-		require_once( "../connectVar.php" );
+		require_once( "../global/connectVar.php" );
 		require_once( "UserQueryFunction.php" );
 		
 		$stu_id = $_SESSION['stu_id'];
@@ -79,10 +79,10 @@
 			
 			if (PEAR::isError($result))
 			echo "Error occurred: " . $result->getMessage();
-			else;
+			
 		
 			//echo $id . '<br />';
-			
+			echo '<script type="text/javascript">alert("您的信件已送出!"); location.href="sellerInterface.php"</script>';
 			
 		}
 	}
@@ -98,6 +98,11 @@
 	<link href="css/docs.css" rel="stylesheet">
 	<meta http-equiv = "Content-Type" content = "text/html; charset = utf8" />
 	<meta http-equiv = "Content-Language" content = "zh-tw" />
+	<style>
+		h4, h3, h2, h1, table, tr, td, li, ul, th, label, legend, button {
+			font-family: "微軟正黑體", "Arial";
+		}
+	</style>
 </head>
 
 <body>
@@ -121,7 +126,7 @@
 	</ul>
 	
 	<!-- Warning Area -->
-	<div class="alert alert-info fade in">
+	<div class="alert alert-info fade in" style="font-family: '微軟正黑體';">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
         <strong>Airstage 提醒：</strong>寫好的回覆會經由Email的方式發信給該出價者。
     </div>

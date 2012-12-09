@@ -18,21 +18,22 @@
         	<li class="dropdown">
 	        	<a href="" class="dropdown-toggle" data-toggle="dropdown">前往 <b class="caret"></b></a>
 	            <ul class="dropdown-menu">    
-	              <li><a href="marketIndex.php"><i class="icon-globe"></i> 市場首頁</a></li>
+	              <li><a href="marketIndex.php"><i class="icon-home"></i> 市場首頁</a></li>
 	              <li class="divider"></li>
-	              <li class="nav-header">二手市場</li>       
-	              <li><a href="#"><i class="icon-book"></i> 二手書區</a></li>
-	              <li><a href="#"><i class="icon-wrench"></i> 雜物區</a></li>
-	              <li><a href="#"><i class="icon-question-sign"></i> 求物區</a></li>
+	              <li class="nav-header">二手市場</li>      
+				  <li><a href="categoryS.php"><i class="icon-globe"></i> 全部分類</a></li>				  
+	              <li><a href="#"><i class="icon-book"></i> 書籍雜誌</a></li>
+	              <li><a href="#"><i class="icon-wrench"></i> 服飾精品</a></li>
+	              <li><a href="#"><i class="icon-question-sign"></i> 生活雜務</a></li>
 	              <li class="divider"></li>
 	              <li class="nav-header">限時競標</li>
-	              <li><a href="#"><i class="icon-book"></i> 書本區</a></li>
-	              <li><a href="#"><i class="icon-wrench"></i> 雜物區</a></li>
+	              <!--li><a href="#"><i class="icon-book"></i> 書本區</a></li>
+	              <li><a href="#"><i class="icon-wrench"></i> 雜物區</a></li-->
 	              <li class="divider"></li>
 	              <li class="nav-header">校園團購</li>	           
-	              <li><a href="#"><i class="icon-book"></i> 教課書區</a></li>
+	              <!--li><a href="#"><i class="icon-book"></i> 教課書區</a></li>
 	              <li><a href="#"><i class="icon-leaf"></i> 飲食區</a></li>
-	              <li><a href="#"><i class="icon-question-sign"></i> 求物區</a></li>
+	              <li><a href="#"><i class="icon-question-sign"></i> 求物區</a></li-->
 	            </ul>
 	        </li>         
 	        <li class="dropdown">

@@ -5,13 +5,13 @@
 	if( !isset($_SESSION['stu_id']) || !isset($_SESSION['name']) || !isset($_SESSION['auth']) || !isset($_SESSION['nick']) ) {
 		echo '<script type="text/javascript">alert("請先登入!"); location.href="marketIndex.php"</script>';
 	} else {
-		require_once( "../connectVar.php" );
+		require_once( "../global/connectVar.php" );
 		require_once( "UserQueryFunction.php" );
 		
 		$stu_id = $_SESSION['stu_id'];
 		$trade_id = mysqli_real_escape_string( $conn, trim($_GET['trade']) );
 		
-		$query = "SELECT marketSecondHand_bidList.*, Member.username, marketSecondHand_productInfo.title ,marketsecondhand_bidlist.bidder_id " . 
+		$query = "SELECT marketSecondHand_bidList.*, Member.username, marketSecondHand_productInfo.title " . 
 				 "FROM marketSecondHand_bidList " . 
 				 "LEFT JOIN marketSecondHand_trade ON marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id " .
 				 "LEFT JOIN marketSecondHand_productInfo ON marketSecondHand_trade.product_id = marketSecondHand_productInfo.product_id " .
@@ -21,11 +21,19 @@
 		$row = mysqli_fetch_array( $result );
 		
 		if( isset($_POST['send']) ) {
+			echo '123'.$_POST['rate'] . '<br />' . $_POST['reply'];
+			
 			// Insert the feedback to the comment table.			
-			$market_reply = 'INSERT INTO `marketsecondhand_comment`(`trade_id`,`buyer_id`,`rate`,`feedback_content`) '.
-							'VALUES("'.$_row['stu_id'].'", "'.$_row["bidder_id"].'", "'.$_POST["rate"].'", "'.$_POST["reply"].'")   "';
-			$reply_result = mysqli_query($conn, $market_reply);
+			$market_reply = 'INSERT INTO `marketSecondHand_comment`(`trade_id`,`buyer_id`,`rate`,`feedback_content`) '.
+							'VALUES("'.$_row['trade_id'].'", "'.$_row["bidder_id"].'", "'.$_POST["rate"].'", "'.$_POST["reply"].'")   "';
+			$reply_result = mysqli_query( $conn, $market_reply ) or die(' Insert Error');
        		$reply_row = mysqli_fetch_array( $reply_result );
+			
+			$query = "INSERT INTO marketSecondHand_bidList(`FeedBack`) VALUES(1)";
+			$result = mysqli_query( $conn, $query ) or die('Feed Error');
+			
+			echo '<script type="text/javascript">alert("感謝填寫!"); location.href="buyerInterface.php"</script>';
+			// TODO : Add Email to the seller.
 		}
 	}
 ?>
@@ -36,9 +44,14 @@
 	<link href = "../tm2.ico" rel = "shortcut icon" />
 	<link href = "css/bootstrap.css" rel = "stylesheet" />
 	<link href = "css/baseCss.css" rel = "stylesheet" />
-	<link href="css/docs.css" rel="stylesheet">
+	<link href="css/docs.css" rel="stylesheet" />
 	<meta http-equiv = "Content-Type" content = "text/html; charset = utf8" />
 	<meta http-equiv = "Content-Language" content = "zh-tw" />
+	<style>
+		h3, h2, h1, table, tr, td, li, ul, th, label, legend, button {
+			font-family: "微軟正黑體", "Arial";
+		}
+	</style>
 </head>
 
 <body>
@@ -51,6 +64,7 @@
 <!-- Container Start -->
 <div class = "container" >
     <?php
+		require_once( "marketNavi.php" );
 	    require_once( "memberStateLine.php" );
 	?>
 	
@@ -62,7 +76,7 @@
 	</ul>
 	
 	<!-- Warning Area -->
-	<div class="alert alert-info fade in">
+	<div class="alert alert-info fade in" style="font-family: '微軟正黑體';">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
         <strong>Airstage 提醒：</strong>感謝您用心填寫回饋單，AIRSTAGE會拿出更高品質的服務來回應。        
     </div>
@@ -70,7 +84,7 @@
 
 	
 	<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="form-horizontal" id="feedback" name="feedback">
-    	<legend>交易回饋單</legend>
+    	<legend><strong>交易回饋單</strong></legend>
     	
     	<div class="control-group">
 		  <label class="control-label"><i class="icon-bookmark"></i> 商品名稱</label>

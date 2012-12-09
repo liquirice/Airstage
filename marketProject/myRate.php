@@ -3,7 +3,7 @@
 	//Last edit 2012.11.10 by margies
 
 	require_once( "../global/setSession.php" );
-	require_once( "../connectVar.php" );
+	require_once( "../global/connectVar.php" );
 	require_once( "UserQueryFunction.php" );
 	
 	if( !isset($_SESSION['stu_id']) || !isset($_SESSION['name']) || !isset($_SESSION['auth']) || !isset($_SESSION['nick']) ) {
@@ -13,7 +13,7 @@
 		
 		//catch rate infromation
 		
-		$catch = 'SELECT `c`.`rate` FROM `marketsecondhand_trade` as `t`  RIGHT JOIN `marketsecondhand_comment` as `c`'.
+		$catch = 'SELECT `c`.`rate` FROM `marketSecondHand_trade` as `t`  RIGHT JOIN `marketSecondHand_comment` as `c`'.
 				'ON `t`.`trade_id` =  `c`.`trade_id`'.
 				'WHERE `t`.`stu_id` = "'.$_SESSION['stu_id'].'"';
 		$result = mysqli_query($conn, $catch); 
@@ -66,28 +66,29 @@
 	    require_once( "memberStateLine.php" );
 	?>
 	
-	<ul class="breadcrumb">
+	<ul class="breadcrumb" style="font-family: '微軟正黑體', 'Arial';">
 		<li><a href="marketIndex.php">市場首頁</a> <span class="divider">/</span></li>
 		<li>交易管理介面 <span class="divider">/</span></li>
 		<li class="active">我的評分</li>
 	</ul>
 	
 	<!-- Warning Area -->
-	<div class="alert alert-info fade in">
+	<div class="alert alert-info fade in" style="font-family: '微軟正黑體', 'Arial';">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
         <strong>Airstage 提醒：</strong>評分綜合結果會顯示在會員系統中給大家鑑定唷！
     </div>
     
     <div class="page-header">
-	  <h1>平均評分 AVG  <small><font color="red">
+	  <h1 style="font-family: '微軟正黑體', 'Arial';">平均積分 AVG  <small><font color="red">
       <?
 	  	echo $average;
 	  ?> 
       </font></small></h1>
 	</div>
     
-    <h3>評分統計</h3>
+    <h3 style="font-family: '微軟正黑體', 'Arial';">評分統計</h3>
     
+	<p style="font-family: '微軟正黑體', 'Arial';">
     完美賣家（5分）
     <div class="progress progress-success progress-striped active">
 	  <div class="bar" style="width: <?= $length_5;?>%;"></div>
@@ -108,6 +109,7 @@
 	<div class="progress progress-danger progress-striped active">
 	  <div class="bar" style="width: <?= $length_1;?>%;"></div>
 	</div>
+	</p>
 </div>
 <!-- End Container -->
 

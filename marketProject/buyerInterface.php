@@ -5,7 +5,7 @@
 	if( !isset($_SESSION['stu_id']) || !isset($_SESSION['name']) || !isset($_SESSION['auth']) || !isset($_SESSION['nick']) ) {
 		echo '<script type="text/javascript">alert("請先登入!"); location.href="marketIndex.php"</script>';
 	} else {
-		require_once( "../connectVar.php" );
+		require_once( "../global/connectVar.php" );
 		require_once( "UserQueryFunction.php" );
 		$stu_id = $_SESSION['stu_id'];
 		
@@ -68,6 +68,11 @@
 	<link href = "css/docs.css" rel = "stylesheet" />
 	<meta http-equiv = "Content-Type" content = "text/html; charset = utf8" />
 	<meta http-equiv = "Content-Language" content = "zh-tw" />
+	<style>
+		h3, h2, h1, table, tr, td, li, ul, th {
+			font-family: "微軟正黑體", "Arial";
+		}
+	</style>
 </head>
 
 <body>
@@ -91,7 +96,7 @@
 	</ul>
 	
 	<!-- Warning Area -->
-	<div class="alert alert-info fade in">
+	<div class="alert alert-info fade in" style="font-family: '微軟正黑體';">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
         <strong>Airstage 提醒：</strong>得標的物品無法刪除記錄唷！ 只有得標的物品才能夠進行回饋呢！ 目前賣方資料與回饋排序功能暫不開放。
     </div>

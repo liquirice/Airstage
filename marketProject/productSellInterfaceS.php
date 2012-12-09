@@ -5,7 +5,7 @@
 	if( !isset($_SESSION['stu_id']) || !isset($_SESSION['name']) || !isset($_SESSION['auth']) || !isset($_SESSION['nick']) ) {
 		echo '<script type="text/javascript">alert("請先登入!"); location.href="marketIndex.php"</script>';
 	} else {
-		require_once( "../connectVar.php" );
+		require_once( "../global/connectVar.php" );
 		require_once( "UserQueryFunction.php" );
 		$stu_id = $_SESSION['stu_id'];
 		$trade_id = mysqli_real_escape_string( $conn, trim($_GET['trade']) );
@@ -85,6 +85,11 @@
 	<link href="css/docs.css" rel="stylesheet">
 	<meta http-equiv = "Content-Type" content = "text/html; charset = utf8" />
 	<meta http-equiv = "Content-Language" content = "zh-tw" />
+	<style>
+		h4, h3, h2, h1, table, tr, td, li, ul, th, label, legend, button {
+			font-family: "微軟正黑體", "Arial";
+		}
+	</style>
 </head>
 
 <body>
@@ -108,7 +113,7 @@
 	</ul>
 	
 	<!-- Warning Area -->
-	<div class="alert alert-info fade in">
+	<div class="alert alert-info fade in" style="font-family: '微軟正黑體';">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
         <strong>Airstage 提醒：</strong><br />
         成交後系統會自動發信給其他出價者關於商品已經賣出的訊息，<br />

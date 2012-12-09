@@ -39,3 +39,6 @@
     </div>
   </div>
 </div>
+<?php
+	//require_once( "../global/navi_white/navi.php" );
+?>
