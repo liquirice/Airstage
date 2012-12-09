@@ -70,10 +70,11 @@ if( 1 /*$_SESSION['pass_phrase'] == $_POST['captcha'] && $_POST['captcha'] !=""*
 	//成功寫入資料庫 / 註冊成功
 	if( mysqli_query($conn,$insert) && mysqli_query($conn,$MInfo_insert) && mysqli_query($conn,$DCheck_insert) ){	
 		//建立圖片資料夾
-		mkdir("../member/images/{$stu_id}", 0777);
-		mkdir("../member/images/{$stu_id}/member", 0777);
-		mkdir("../member/images/{$stu_id}/market", 0777);	
-		mkdir("../member/images/{$stu_id}/column", 0777);
+		mkdir("../images/{$stu_id}", 0777);
+		mkdir("../images/{$stu_id}/member", 0777);
+		mkdir("../images/{$stu_id}/market", 0777);	
+		mkdir("../images/{$stu_id}/column", 0777);
+		mkdir("../images/{$stu_id}/activities", 0777);
 		//自動登入
 		$_SESSION['stu_id'] = $stu_id;
 		$_SESSION['name'] = $name;

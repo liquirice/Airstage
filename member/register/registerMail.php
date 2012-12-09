@@ -2,6 +2,7 @@
 	session_start();
 	require_once( "../../global/connectVar.php" );
 	require_once( "../../global/setSession.php" );
+	$msg ="";
 	
 	//驗證token ，以 registerMail.php?usr=&token= 進入
 	if( !empty($_GET['usr']) && !empty($_GET['token']) )
@@ -30,28 +31,27 @@
 			{
 				$update_AUTH = "UPDATE `Member` SET `AUTH` = '1' WHERE `stu_id` = '$stu_id'";
 				if(mysqli_query($conn, $update_AUTH)) {
-					$msg = "認證成功";
-					/*echo '<script type="text/javascript">alert("認證成功！\n系統將為您自動登出，請重新登入。"); location.href="./logout.php";</script>';
-					exit();*/
+					$msg = "<p>恭喜您已經認證成功囉！稍後系統將自動為您登出。下次登入後即可擁有認證會員完整權限。</p>";
+					$msg .= "<p>Airstage感謝您的註冊。</p>";
+					$msg .= '<script type="text/javascript">setTimeout("location.href=\'./logout.php\'",10000);</script>';
 				}
 				else {
-					$msg = "認證失敗 重新整理";
-					/*
-					echo '<script type="text/javascript">alert("認證失敗！請再試一次！"); location.href="../../index.php";</script>';
-					exit();*/
+					$msg = "<p>Oops！<br>系統似乎出了點問題，請重新整理本頁，再試一次。</p>";
 				}
 			}
 			else
 			{
-				$msg = "token錯誤";
-				/*echo '<script type="text/javascript">alert("認證連結有誤！請重新確認！"); location.href="registerMail.php";</script>';*/
+				$msg = "<p>Oops！您的驗證網址中參數有誤。請您：<br>";
+				$msg .= "1. 確認您是否使用最新一封驗證信？<br>";
+				$msg .= "2. 沒收到信認證信？試著<a href='./registerMail.php'>再寄一封</a><br>";
+				$msg .= "3. 若您忘記學生信箱密碼、或有其他問題，請直接聯絡管理人員。<br></p>";
+				$msg .= "**提醒** 請勿嘗試亂Try驗證參數。";
+				$msg .= "<p>Airstage感謝您的使用。</p>";
 			}
 		}
 	}
 	else if( isset($_SESSION['stu_id']) || isset($_SESSION['name']) || isset($_SESSION['auth']) ) 
 	{	//已登入會員，以　registerMail.php　進入
-		echo '<script type="text/javascript">alert("test！"); location.href="./index.php"</script>';
-
 		$stu_id = $_SESSION['stu_id'];
 		
 		$result = mysqli_query( $conn, "SELECT `stu_id`, `name`, `username`, `AUTH` FROM `Member` WHERE `stu_id` = '{$stu_id}'" );
@@ -63,7 +63,8 @@
 	
 		if( $AUTH > 0 || $_SESSION['auth'] > 0 ) 
 		{	// AUTH > 0 : 已通過認證 -> 跳回首頁
-			echo '<script type="text/javascript">alert("動作失敗！您已經認證過囉！"); location.href="../../index.php"</script>';
+			$msg = "<p>你之前已經通過認證，不需要再寄認證信囉！<br>系統稍後將為您轉回首頁。</p>";
+			$msg .= '<script type="text/javascript">setTimeout("location.href=\'../../index.php\'",10000);</script>';
 			exit();
 		}
 		else if( $AUTH <= 0 && $AUTH > -6 )
@@ -78,38 +79,37 @@
 				$token = sha1($token);
 				
 				/*發信開始*/
-				//$recipients = $stu_id . "@student.nsysu.edu.tw";
-				$recipients = "tp6u83@gmail.com";
-				$headers = "From: Studio Airstage <airstage@airstage.com.tw> Content-Type:text/html";
+				$recipients = $stu_id . "@student.nsysu.edu.tw";
+				//$recipients = "tp6u83@gmail.com";abu測試用信箱
+				$headers = "From: Studio Airstage";
 				$subject = "Airstage Studio - 註冊認證信";
-				$message = "<p>** 本電子郵件為自動生成郵件，請勿直接回復。 **</p>";
-				$message .= "<div>";
-				$message .= "$name 您好：";
-				$message .= "<blockquote>";
-				$message .= "<p>感謝您註冊Airstage :)</p>";
-				$message .= "<p>請點擊以下網址，通過e-mail認證程序：<br>";
-				$message .= "<a target='_blank' href='http://www.airstage.com.tw/member/register/registerMail.php?usr=$stu_id&token=$token'>http://www.airstage.com.tw/member/register/registerMail.php?usr=$stu_id&token=$token</a>";
-				$message .= "升級為Airstage認證會員後，就能夠享受Airstage的完整會員功能及服務囉！<br>";
-				$message .= "</p>";
-				$message .= "<p>Airstage 歡迎您的加入。</p>";
-				$message .= "</blockquote>";
-				$message .= "國立中山大學 | Airstage Studio | 西灣人 - http://www.airstage.com.tw/</div>";
-				$message = "<p>** 本電子郵件為自動生成郵件，請勿直接回復。 **</p>";
+				$message = "** 本電子郵件為自動生成郵件，請勿直接回復。 ** \r\n";
+				$message .= "\r\n";
+				$message .= "$name 您好：\r\n";
+				$message .= "\r\n";
+				$message .= "　　感謝您註冊Airstage :)\r\n";
+				$message .= "　　請連結以下網址，通過e-mail認證程序：\r\n";
+				$message .= "　　http://www.airstage.com.tw/member/register/registerMail.php?usr=$stu_id&token=$token\r\n";
+				$message .= "　　升級為Airstage認證會員後，就能夠享受Airstage的完整會員功能及服務囉！\r\n";
+				$message .= "\r\n";
+				$message .= "　　Airstage 歡迎您的加入。\r\n";
+				$message .= "\r\n";
+				$message .= "國立中山大學 | Airstage Studio | 西灣人 - http://www.airstage.com.tw/　\r\n";
+				$message .= "\r\n";
+				$message .= "** 本電子郵件為自動生成郵件，請勿直接回復。 **\r\n";
 				//$message .= "<br>";
 								
 				if( mail( $recipients, $subject, $message, $headers) ) {
 					/*顯示發信次數和本次發信時間、告知使用者請用最新的認證信認證*/
-					$msg = '<p>首先感謝您註冊Airstage。<br>'.
-						   '目前Airstage僅開放給中山大學學生使用。<br>'.
-						   '為確認您為中山大學學生，<br>'.
-						   '系統目前已依照您所填的學號，發送一封認證信至您的中山大學學生信箱。<br>'.
-						   '麻煩您到學生信箱收取認證信，依照信件指示完成最後的註冊動作，<br>';
+					$msg ="";
+					$msg = '　　系統目前已依照您所填的學號，發送認證信至您的<a href="http://student.nsysu.edu.tw/cgi-bin/owmmdir/openwebmail.pl" target="_blank">中山大學學生信箱</a>。';
 					if( $AUTH < -1 )
-						$msg .= '到目前為止已為您寄送 '.($AUTH*(-1)).' 封認證信，請務必使用最新的認證信做驗證。<br>';
-						$msg .= '認證成功即可成為Airstage的認證會員，就能夠享受完整會員功能及服務囉！<br>';
-						$msg .= '&nbsp;<br>';
-						$msg .= 'Airstage - <a href="http://www.airstage.com.tw/">http://www.airstage.com.tw/</a><br>';
-						$msg .= '國立中山大學　學生網路郵局 - <a href="http://student.nsysu.edu.tw/cgi-bin/owmmdir/openwebmail.pl">http://student.nsysu.edu.tw/cgi-bin/owmmdir/openwebmail.pl</a></p>';
+						$msg .= '到目前為止已為您寄送 '.($AUTH*(-1)).' 封認證信，';
+					$msg .= '麻煩您到學生信箱收取最新的認證信，依照信件指示完成最後的註冊動作。';
+					$msg .= '認證成功即可成為Airstage的認證會員，就能夠享受完整會員功能及服務囉！</p>';
+					$msg .= '<br>';
+					$msg .= 'Airstage感謝您註冊。<br>';
+
 				}
 				else{
 					$AUTH++;
@@ -123,15 +123,18 @@
 			else
 			{	//寄送按鈕和相關提示
 				$msg = "<p>目前系統已經發過 ".($AUTH*(-1))." 封認證信至您的信箱。<br>";
-				$msg = "記得要去學生信箱收信唷！另外別忘了要使用最新的認證信做驗證。</p>";
-				$msg = "<p>若是想重新送信，請按下方按鈕寄信。</p>";
-				$msg = "<form action='registerMail.php' method='post'><button class='btn btn-large btn-block btn-primary' type='button'>重新發送認證信</button></form><br>";
+				$msg .= "記得要去<a href='http://student.nsysu.edu.tw/cgi-bin/owmmdir/openwebmail.pl' target='_blank'>學生信箱</a>收信唷！<br>另外別忘了要使用最新的認證信做驗證。</p>";
+				$msg .= "<p>若是想重新送信，請按下方按鈕寄信。</p>";
+				$msg .= "<form action='registerMail.php' method='post'><button class='btn btn-large btn-block btn-primary' type='submit' name='submit'>重新發送認證信</button></form><br>";
 			}
 		}
 		else if( $AUTH <= -6 )
 		{
-			echo '<script type="text/javascript">alert("動作失敗！您發送了過多的認證信。為保護系統，目前已暫停您寄發認證信的權利。如有問題請聯絡管理人員。"); location.href="./logout.php"</script>';
-			exit();
+			$msg = "<p>Oops！您已經發送了過多的認證信<br>";
+			$msg .= "為保護系統，目前已暫停您寄發新認證信的權利。請您嘗試：<br>";
+			$msg .= "1. 至<a href='http://student.nsysu.edu.tw/cgi-bin/owmmdir/openwebmail.pl' target='_blank'>學生信箱</a>收信<br>";
+			$msg .= "2. 若您忘記學生信箱密碼、或有其他問題，請直接聯絡管理人員。<br></p>";
+			$msg .= "<p>Airstage感謝您的配合。</p>";
 		}
 	}
 	else
@@ -197,7 +200,7 @@
 
 <body leftmargin="0" topmargin="0" rightmargin="0" bottommargin="0" marginwidth="0" marginheight="0" onLoad="MM_preloadImages('jpg/b402.png','jpg/b102.png','jpg/bb302.png')">
 
-<!--?php require_once("../../global/navi_white/navi.php"); ?-->
+<?php require_once("../../global/navi_white/navi.php"); ?>
 
 <div align="center">
 	<table border="0" width="980" height="146" cellspacing="0" cellpadding="0" style="color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-size: medium; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;">
@@ -237,7 +240,7 @@
 												<td height="35">
 												<p style="line-height: 150%; margin-top: 0; margin-bottom: 0">
 												<font face="微軟正黑體"><font color="#676767" size="2">
-												</font><font face="微軟正黑體"><b><!--?php echo $name; ?--></b></font><font color="#676767" size="2">同學：</font></font></td>
+												</font><font face="微軟正黑體"><b><?php echo $name; ?></b></font><font color="#676767" size="2">同學：</font></font></td>
 											</tr>
 											<tr>
 												<td height="144" style="vertical-align:text-top;">
@@ -254,8 +257,10 @@
 												<td>
 												  <p align="center"><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image5','','jpg/bb302.png',1)"><img src="jpg/bb3.png" name="Image5" width="127" height="27" border="0"></a>-->
 												  
-                                                 <div>
-												 <!--?php if($msg) echo $msg;?-->
+                                                 <div style="line-height: 150%; margin-top: 0; margin-bottom: 0">
+												 <font face="微軟正黑體" color="#676767" size="2">
+												 <?php if($msg) echo $msg;?>
+												 </font>
 												 </div>
                                                   <p> <!--span><a class="goBackIndex" href="../../index.php">回首頁</a></span--></p>
 												  

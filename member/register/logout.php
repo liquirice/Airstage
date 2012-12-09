@@ -18,5 +18,5 @@
 	setcookie( 'auth', '', time()-3600 );
 	setcookie( 'nick', '', time()-3600 );
 	
-	echo '<script type="text/javascript">alert("Logout Success!"); location.href = document.referrer;</script>';
+	echo '<script type="text/javascript">alert("Logout Success!"); location.href="../../index.php";</script>';
 ?>

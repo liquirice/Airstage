@@ -2,7 +2,7 @@
 	// Last Modified Day : 2012.12.02
 	header('P3P: CP="NOI ADM DEV COM NAV OUR STP"');
 	session_start(); 
-	//
+	
 	if( isset($_SESSION['stu_id']) || isset($_SESSION['name']) || isset($_SESSION['auth']) ) {
 		echo '<script type="text/javascript">alert("你已經登入囉!"); location.href="../../index.php"</script>';
 		exit();
@@ -99,7 +99,7 @@
                                         <table border="0" width="45%" cellspacing="0" cellpadding="0" height="455">
                                             <tr>
                                                 <td colspan="3" background="jpg/bar.png">
-                                                    <p align="center"><font face="微軟正黑體"><a href="register_law.php" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image7','','jpg/c102.png',1)"><img src="jpg/c1.png" name="Image7" width="103" height="41" border="0"></a><a href="register_law.php" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image6','','jpg/c202.png',1)"><img src="jpg/c2.png" name="Image6" width="103" height="41" border="0"></a><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image5','','jpg/c302.png',1)"><img src="jpg/c3.png" name="Image5" width="103" height="41" border="0"></a><img src="jpg/c4.png" width="98" height="41"></font></p>
+                                                    <p align="center"><font face="微軟正黑體"><a href="registerLaw.php" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image7','','jpg/c102.png',1)"><img src="jpg/c1.png" name="Image7" width="103" height="41" border="0"></a><a href="registerLaw.php" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image6','','jpg/c202.png',1)"><img src="jpg/c2.png" name="Image6" width="103" height="41" border="0"></a><a href="registerMail.php" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image5','','jpg/c302.png',1)"><img src="jpg/c3.png" name="Image5" width="103" height="41" border="0"></a><img src="jpg/c4.png" width="98" height="41"></font></p>
                                                 </td>
                                             </tr>
 
@@ -109,7 +109,7 @@
 
                                             <tr>
                                                 <td>&nbsp;</td>
-
+<?php 	if( isset($_SESSION['stu_id']) || isset($_SESSION['name']) || isset($_SESSION['auth']) ) {}else{?>
                                                 <td width="399" height="395" background="jpg/box_log.png" valign="top">
                                                     <div align="center">
                                                         <table border="0" width="85%" cellspacing="0" cellpadding="0" height="389">
@@ -126,16 +126,17 @@
                                                                             <tr>
                                                                                 <td width="100%" height="82" style="text-align:center;">
                                                                                 <form name="login" method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>">
+
 						<span class="v">學號&nbsp;
 						<input type="text" name="id" placeholder="請輸入帳號或學號" class=""/> <br /><br />
 						密碼&nbsp;
 						<input type="password" name="pw" class=""/> 
 						<br><br>
 
-<a onMouseOver="MM_swapImage('Image8','','jpg/bb_log2.png',1)" onMouseOut="MM_swapImgRestore()" href="javascript:document.login.submit();" style="text-decoration: none; font-weight: 100;"><img style="padding-right:10px;" src="jpg/bb_log.png"/></a><a href="./register_law.php"><img src="jpg/bb_reg.png" name="Image9" width="74" height="27" border="0"></a></span><br />
+<a onMouseOver="MM_swapImage('Image8','','jpg/bb_log2.png',1)" onMouseOut="MM_swapImgRestore()" href="javascript:document.login.submit();" style="text-decoration: none; font-weight: 100;"><img style="padding-right:10px;" src="jpg/bb_log.png"/></a><a href="./registerLaw.php"><img src="jpg/bb_reg.png" name="Image9" width="74" height="27" border="0"></a></span><br />
 						<!--a href='forgetPassword.php' class = "btn btn-danger">忘記密碼?</a-->
                                                                                 </form>
-
+<?php } ?>
                                                                                 </td>
                                                                             </tr>
                                                                         </table>

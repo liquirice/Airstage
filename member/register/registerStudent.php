@@ -250,7 +250,7 @@ body {
 									    <tr>
 									      <td width="60" align="right" valign="top" class="th_font" scope="row">Facebook </td>
 									      <td width="10" align="right" class="th_font" scope="row">&nbsp;</td>
-									      <td width="240"><input type="text" name="fb_id" style="width:235px;"/></td>
+									      <td width="240"><input type="text" name="fb_id" style="width:235px;" placeholder="ex. https://www.facebook.com/maxwell.darknight"/></td>
 								        </tr>
 								      </table>
 									  <p><a href="registerMail.php" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('999','','jpg/bb202.png',1)">
