@@ -3,8 +3,8 @@
 	
 	//Last Modified 2012.12.02
 	//PEAR function
-	require_once ('..\member\PEAR\Mail-1.2.0\Mail.php');
-	include('..\member\PEAR\Mail-1.2.0\Mail\mime.php');
+	require_once 'Mail.php';
+	include('Mail/mime.php');
 	
 	
 	function winnerNotification( $id, $trade_id, $conn ) {
@@ -23,25 +23,33 @@
 		$to = $row_email['email'];
 		$subject = "[系統寄信]Airstage二手市集得標通知";
 		$body = '<p style="size:20px,font-weight:bold;">親愛的'.$row_email['name'].'同學：</p>'.
-		'<p style="margin-left:50px;">恭喜您成功在Airstage二手市場得標</br></br>'.
-		'商品編號：'.$row_product['title'].'</br>'.
-		'商品名稱：'.$row_product['title'].'：</br>'.
-		'商品剩餘數量：'.$left.'</br></br>'.
-		'感謝您對Airstage二手市集的支持！</p>'.
+		'<p style="margin-left:50px;">恭喜您成功在Airstage二手市場得標</p>'.
+		'<p style="margin-left:50px;">商品編號：'.$row_product['title'].'</p>'.
+		'<p style="margin-left:50px;">商品名稱：'.$row_product['title'].'：</p>'.
+		'<p style="margin-left:50px;">商品剩餘數量：'.$left.'</p>'.
+		'<p style="margin-left:50px;">感謝您對Airstage二手市集的支持！</p>'.
 		'<p style="margin-left:300px;margin-top:200px;"><a href="http://www.airstage.com.tw/">Airstage</a></p>';
 		$host = "smtp.gmail.com";
 		$username = "airstagestudio"; // same as $from in most cases
 		$password = "86088608";
 		
 		$headers = array ('From' => $from,
-		'To' => $to,
-		'Subject' => $subject
+				'To' => $to,
+				'Subject' => '=?utf8?B?' . base64_encode($subject) . '?=', 
+                'Content-type' => 'text/html; charset=utf-8'
 		);
 		
 		$mime = new Mail_Mime("\n");
 		$mime->setHTMLBody($body);
 		
-		$body = $mime->get();
+		$mime_params = array(
+			  'text_encoding' => '7bit',
+			  'text_charset'  => 'UTF-8',
+			  'html_charset'  => 'UTF-8',
+			  'head_charset'  => 'UTF-8'
+			);
+		
+		$body = $mime->get($mime_params);
 		$headers = $mime->headers($headers);
 		
 		$email = Mail::factory('smtp',
