@@ -36,6 +36,7 @@
 						  "WHERE `t`.`trade_id` = '".$tradeid."'";
 						  
 			$find_result = mysqli_query( $conn, $find_email ) or die ('Error!');
+<<<<<<< HEAD
 			$find_row = mysqli_fetch_array($find_result);
 					
 			$find_buyeremail = "SELECT `stu_id` ".
@@ -46,6 +47,9 @@
 			$find_buyerrow = mysqli_fetch_array($find_buyerresult);
 			$last = substr($find_buyerrow['stu_id'],-9);
 			
+=======
+			$find_row = mysqli_fetch_array($find_result);		
+>>>>>>> 8196fc654633f729663dc150d634f0eef8af1a58
 			
 			$buyer = "SELECT `username` FROM `Member` WHERE `stu_id` = '".$_SESSION['stu_id']."'";
 			$buyer_result = mysqli_query($conn,$buyer);
@@ -56,18 +60,29 @@
 							'VALUES("'.$find_row['trade_id'].'", "'.$stu_id.'", "'.$_POST["rate_result"].'", "'.$_POST["reply"].'") ';
 			$reply_result = mysqli_query( $conn, $market_reply ) or die(' Insert Error');
 			
+<<<<<<< HEAD
 			$query = "UPDATE marketSecondHand_bidList SET FeedBack = 1 WHERE bidder_id = '$stu_id' AND trade_id = '$trade_id'";
 			$result = mysqli_query( $conn, $query ) or die('Feed Error');
 			
 			echo '<script type="text/javascript">alert("回覆已寄出！"); location.href="buyerInterface.php"</script>';
 			
+=======
+			$query = "INSERT INTO marketSecondHand_bidList(`FeedBack`) VALUES(1)";
+			$result = mysqli_query( $conn, $query ) or die('Feed Error');
+			
+			echo '<script type="text/javascript">alert("感謝填寫!"); location.href="buyerInterface.php"</script>';
+>>>>>>> 8196fc654633f729663dc150d634f0eef8af1a58
 			
 			
 			
 			// TODO : Add Email to the seller.
 			
 			$from = 'airstagestudio@gmail.com';
+<<<<<<< HEAD
 			$to = "b".$last."@student.nsysu.edu.tw";
+=======
+			$to = $find_row['email'];
+>>>>>>> 8196fc654633f729663dc150d634f0eef8af1a58
 			$subject = 'Airstage二手市集 買家給你評鑑囉！';
 			$html = '<html><body>'.
 					'<p>親愛的'.$find_row['username'].',</p>'.

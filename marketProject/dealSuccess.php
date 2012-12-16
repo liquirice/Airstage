@@ -16,6 +16,54 @@
 		$result_mail = mysqli_query( $conn,$find_mail );
 		$row_mail = mysqli_fetch_array($result_mail);
 		
+<<<<<<< HEAD
+=======
+		//catch product information
+		$result_product = mysql_query("SELECT * FROM `marketsecondhand_productinfo` as `i` ".
+		"RIGHT JOIN `marketsecondhand_trade` as `t` ON `i`.`trade_id` = `t`.`trade_id` WHERE `t`.`trade_id` = ".$trade_id."");
+		$row_product = mysql_fetch_array($result_product);
+				
+		$from = "airstagestudio@gmail.com";
+		$to = $row_email['email'];
+		$subject = "[系統寄信]Airstage二手市集得標通知";
+		$body = '<p style="size:20px,font-weight:bold;">親愛的'.$row_email['name'].'同學：</p>'.
+		'<p style="margin-left:50px;">恭喜您成功在Airstage二手市場得標</p>'.
+		'<p style="margin-left:50px;">商品編號：'.$row_product['title'].'</p>'.
+		'<p style="margin-left:50px;">商品名稱：'.$row_product['title'].'：</p>'.
+		'<p style="margin-left:50px;">商品剩餘數量：'.$left.'</p>'.
+		'<p style="margin-left:50px;">感謝您對Airstage二手市集的支持！</p>'.
+		'<p style="margin-left:300px;margin-top:200px;"><a href="http://www.airstage.com.tw/">Airstage</a></p>';
+		$host = "smtp.gmail.com";
+		$username = "airstagestudio"; // same as $from in most cases
+		$password = "86088608";
+		
+		$headers = array ('From' => $from,
+				'To' => $to,
+				'Subject' => '=?utf8?B?' . base64_encode($subject) . '?=', 
+                'Content-type' => 'text/html; charset=utf-8'
+		);
+		
+		$mime = new Mail_Mime("\n");
+		$mime->setHTMLBody($body);
+		
+		$mime_params = array(
+			  'text_encoding' => '7bit',
+			  'text_charset'  => 'UTF-8',
+			  'html_charset'  => 'UTF-8',
+			  'head_charset'  => 'UTF-8'
+			);
+		
+		$body = $mime->get($mime_params);
+		$headers = $mime->headers($headers);
+		
+		$email = Mail::factory('smtp',
+		array ('host' => $host,
+		'auth' => true,
+		'username' => $username,
+		'password' => $password
+		)
+		);
+>>>>>>> 8196fc654633f729663dc150d634f0eef8af1a58
 		
 		//catch product information
 		$find_product = "SELECT * FROM `marketSecondHand_productInfo` as `i` ".

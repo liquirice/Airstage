@@ -1,5 +1,5 @@
 <?php
-	require_once( "../global/setSession.php" );
+	session_start();
 	
 	//Last Modified 2012.12.07
 	require_once 'Mail.php';
@@ -15,21 +15,29 @@
 		$trade_id = mysqli_real_escape_string( $conn, trim($_GET['trade']) );
 		$buyer_id = mysqli_real_escape_string( $conn, trim($_GET['buyer']) );
 		
+<<<<<<< HEAD
 		$query = "SELECT marketSecondHand_productInfo.title, marketSecondHand_bidList.*,marketSecondHand_trade.number, Member.username, Member.email, marketSecondHand_trade.least_price " .
+=======
+		/*$query = "SELECT marketSecondHand_productInfo.title, marketSecondHand_bidList.*, Member.username, Member.email, marketSecondHand_trade.least_price " .
+>>>>>>> 8196fc654633f729663dc150d634f0eef8af1a58
 				 "FROM marketSecondHand_trade " .
 				 "LEFT JOIN marketSecondHand_bidList ON marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id " .
 				 "LEFT JOIN marketSecondHand_productInfo ON marketSecondHand_productInfo.product_id = marketSecondHand_trade.product_id " .
 				 "LEFT JOIN Member ON Member.stu_id = marketSecondHand_bidList.bidder_id " .
-				 "WHERE marketSecondHand_trade.trade_id = '$trade_id' AND marketSecondHand_trade.stu_id = '$stu_id' AND marketSecondHand_bidList.bidder_id = '$buyer_id'";
+				 "WHERE marketSecondHand_trade.trade_id = '$trade_id' AND marketSecondHand_trade.stu_id = '$stu_id' AND marketSecondHand_bidList.bidder_id = '$buyer_id'";*/
 				 
 		//test		 
+<<<<<<< HEAD
 		/*$query = "SELECT marketsecondhand_productinfo. * ,marketSecondHand_productInfo.title, marketSecondHand_bidList.*, Member.username, Member.email,". 
+=======
+		$query = "SELECT marketsecondhand_productinfo. * ,marketSecondHand_productInfo.title, marketSecondHand_bidList.*, Member.username, Member.email,". 
+>>>>>>> 8196fc654633f729663dc150d634f0eef8af1a58
 					"marketSecondHand_trade.least_price, marketSecondHand_trade.number ".
 					"FROM marketSecondHand_trade ".
 					"LEFT JOIN marketSecondHand_bidList ON marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id ".
 					"LEFT JOIN marketSecondHand_productInfo ON marketSecondHand_productInfo.product_id = marketSecondHand_trade.product_id ".
 					"LEFT JOIN Member ON Member.stu_id = marketSecondHand_bidList.bidder_id ".
-					"WHERE marketSecondHand_trade.trade_id =7 AND marketSecondHand_trade.stu_id = 'B004020013' AND marketSecondHand_bidList.bidder_id = 'B004020012'";*/
+					"WHERE marketSecondHand_trade.trade_id =7 AND marketSecondHand_trade.stu_id = 'B004020013' AND marketSecondHand_bidList.bidder_id = 'B004020012'";
 				 
 		$result = mysqli_query( $conn, $query ) or die('Forbidden!');
 		
@@ -47,6 +55,7 @@
 			$from = "airstagestudio@gmail.com";
 			$to = "b".$email_account."@student.nsysu.edu.tw";
 			$subject = "[系統寄信]Airstage賣方回覆";
+<<<<<<< HEAD
 			$body = '<p style="size:20px,font-weight:bold;">親愛的 '.$_POST['username'].' 同學：</p>'.
 			'<p style="margin-left:50px;">您在Airstage二手市集對於'.$_POST['title'].'的出價，賣家回覆囉</p>'.
 			'<p style="margin-left:50px;">賣家回覆：'.$_POST['reply'].'</p>'.
@@ -54,6 +63,15 @@
 			'<p style="margin-left:50px;">商品剩餘數量：'.$_POST['number'].'</p>'.
 			'<p style="margin-left:50px;">感謝您對Airstage二手市集的支持！</p>'.
 			'<p style="margin-left:300px;margin-top:30px;"><a href="http://www.airstage.com.tw/">Airstage</a></p>';
+=======
+			$body = '<p style="size:20px,font-weight:bold;">親愛的'.$row['username'].'同學：</p>'.
+			'<p style="margin-left:50px;">您在Airstage二手市集對於'.$row['title'].'的出價，賣家回覆囉</p>'.
+			'<p style="margin-left:50px;">賣家回覆：'.$_POST['reply'].'</p>'.
+			'<p style="margin-left:50px;">商品名稱：'.$row['title'].'：</p>'.
+			'<p style="margin-left:50px;">商品剩餘數量：'.$row['number'].'</p>'.
+			'<p style="margin-left:50px;">感謝您對Airstage二手市集的支持！</p>'.
+			'<p style="margin-left:300px;margin-top:200px;"><a href="http://www.airstage.com.tw/">Airstage</a></p>';
+>>>>>>> 8196fc654633f729663dc150d634f0eef8af1a58
 			$host = "smtp.gmail.com";
 			$username = "airstagestudio"; // same as $from in most cases
 			$password = "86088608";

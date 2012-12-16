@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body {
 	font-family: "微軟正黑體", "Arial";
 	font-size: 14px;
@@ -24,3 +25,31 @@ div {
 }
 
 
+=======
+body {
+	font-family: "微軟正黑體", "Arial";
+	font-size: 14px;
+	background-color: #FFF;
+	margin: 0px auto;
+}
+
+li, ul, h1, h3, h2, h4 {
+	font-family: "微軟正黑體", "Arial";
+}
+
+table, th, td, tr {
+	font-family: "微軟正黑體", "Arial";
+	vertical-align:-webkit-baseline-middle;
+}
+
+textarea {
+	font-family: "微軟正黑體", "Arial";
+	width: 730px;
+}
+
+div {
+	font-family: "微軟正黑體", "Arial";
+}
+
+
+>>>>>>> 8196fc654633f729663dc150d634f0eef8af1a58

@@ -1,8 +1,14 @@
 <?php
+<<<<<<< HEAD
 	// Last Modified Day : 12/15
 	require_once( "../global/setSession.php" );
 	require_once( "../global/connectVar.php" );	
 	require_once( "UserQueryFunction.php" );
+=======
+	// Last Modified Day : 12/12
+	require_once( "../global/setSession.php" );
+	require_once( "../connectVar.php" );	
+>>>>>>> 8196fc654633f729663dc150d634f0eef8af1a58
 	
 	$trade_id = intval( htmlspecialchars( trim( $_GET['trade'] ) ) );
 	
@@ -86,11 +92,16 @@
 	<script language="javascript" type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script type="text/javascript" language="javascript">var app = "market";</script>
 	<style>
+<<<<<<< HEAD
 		.pDetail {width:380px; height:20px;font-size:14px; float:left; margin-bottom:25px;}
 		.buyerDetail {width:110px;float:left; margin:4px;}
 		h3, h2, h1, table, tr, td, li, ul, th, p {
 			font-family: "微軟正黑體", "Arial";
 		}
+=======
+	.pDetail {width:380px; height:20px;font-size:14px; float:left; margin-bottom:25px;}
+    .buyerDetail {width:110px;float:left; margin:4px;}
+>>>>>>> 8196fc654633f729663dc150d634f0eef8af1a58
     </style>
 </head>
 
@@ -381,7 +392,11 @@
                     <!--圖片product_pic(左)-->
                     <div class="row">    
                     <div class="span6" style="float:left;">       
+<<<<<<< HEAD
                         <ul class="thumbnails"><li class="span" ><a href="#" class="thumbnail" ><img src="../member/images/<?php echo $stu_id;?>/market/<?php echo $product_pic;?>" width="400px"></a></li></ul>
+=======
+                        <ul class="thumbnails"><li class="span" ><a href="#" class="thumbnail" ><img src="../member/images/<?php echo $stu_id;?>/market/<?php echo $product_pic;?>" alt="" width=""></a></li></ul>
+>>>>>>> 8196fc654633f729663dc150d634f0eef8af1a58
                     </div>
                     
                     <!--描述description(右)-->
@@ -428,7 +443,11 @@
                     $count_bid = 0;
                     $count_buy = 0; 
                     while ($rowCount_bid = mysqli_fetch_array($resultCount_bid)){
+<<<<<<< HEAD
                         if($rowCount_bid['buy_list'] == 1 || $rowCount_bid['buy_list'] == 0 ){
+=======
+                        if($rowCount_bid['buy_list']){
+>>>>>>> 8196fc654633f729663dc150d634f0eef8af1a58
                             $count_bid ++ ;  //出價次數++
                             if($rowCount_bid['buy_list'] == 1){
                                 $count_buy ++; //成交次數++
@@ -436,6 +455,7 @@
                         }
                     }	
                     ?>
+<<<<<<< HEAD
                     <div class="pDetail"><p class="muted"><i class="icon-user"></i> 賣家帳號<?php echo "　　".$stu_id;?></p></div>
                     <div class="pDetail"><p class="muted"><i class="icon-user"></i> 賣家暱稱 &nbsp;<a href="#" rel="popover" data-placement="bottom" title="<?php echo "  ".$rowNickname['username']; ?>" data-content="<?php getSellerInfo($rowNickname['username'], $conn); ?>"><?php echo $rowNickname['username']; ?></a></p></div>
                     <div class="pDetail"><p class="muted"><i class="icon-star"></i> 賣家評價<?php echo "　　".$average;?></p></div>
@@ -445,6 +465,17 @@
                     <div class="pDetail"><p class="muted"><i class="icon-time"></i> 開始時間<?php echo "　　".$start_date." ".$start_time;?></p></div>
                     <div class="pDetail"><p class="muted"><i class="icon-ok"></i> 成交次數<?php echo "　　".$count_buy;?>次</p></div>
                     <div class="pDetail"><p class="muted"><i class="icon-time"></i> 結束時間<?php echo "　　".$end_date." ".$end_time;?></p></div>
+=======
+                    <div class="pDetail"><p class="muted"><i class="icon-user"></i>賣家帳號<?php echo "　　".$stu_id;?></p></div>
+                    <div class="pDetail"><p class="muted"><i class="icon-user"></i>賣家暱稱<?php echo "　　".$rowNickname['username'];?></p></div>
+                    <div class="pDetail"><p class="muted"><i class="icon-star"></i>賣家評價<?php echo "　　".$average;?></p></div>
+                    <div class="pDetail"><p class="muted"><i class="icon-heart"></i>商品數量<?php echo "　　".$number;?>件</p></div>               
+                    <div class="pDetail"><p class="muted"><i class="icon-plus"></i>起始價格<?php echo "　　".$least_price;?>元</p></div>
+                    <div class="pDetail"><p class="muted"><i class="icon-ok"></i>出價次數<?php echo "　　".$count_bid;?>次</p></div>
+                    <div class="pDetail"><p class="muted"><i class="icon-time"></i>開始時間<?php echo "　　".$start_date." ".$start_time;?></p></div>
+                    <div class="pDetail"><p class="muted"><i class="icon-ok"></i>成交次數<?php echo "　　".$count_buy;?>次</p></div>
+                    <div class="pDetail"><p class="muted"><i class="icon-time"></i>結束時間<?php echo "　　".$end_date." ".$end_time;?></p></div>
+>>>>>>> 8196fc654633f729663dc150d634f0eef8af1a58
                     <div style="clear:both;"></div>
                 </div>	
                 <?php
@@ -607,11 +638,19 @@
                                 <div class="buyerDetail"><?php echo $rowDetail['wanted_number'];?></div>
                                 <div class="buyerDetail">
                                     <?php
+<<<<<<< HEAD
                                     if ( $rowDetail['buy_list'] == 1 ) {
                                         echo '已得標';
                                     }
                                     else {
                                         echo '未得標';
+=======
+                                    if ( $rowDetail['buy_list'] == 0 ) {
+                                        echo '未得標';
+                                    }
+                                    else {
+                                        echo '已得標';
+>>>>>>> 8196fc654633f729663dc150d634f0eef8af1a58
                                     }
                                     ?>
                                 </div>

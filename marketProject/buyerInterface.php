@@ -69,12 +69,19 @@
 	<meta http-equiv = "Content-Type" content = "text/html; charset = utf8" />
 	<meta http-equiv = "Content-Language" content = "zh-tw" />
 	<style>
+<<<<<<< HEAD
 		h3, h2, h1, table, tr, td, li, ul, th, p {
 			font-family: "微軟正黑體", "Arial";
 		}
 	</style>
 	<script language="javascript" type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script type="text/javascript" language="javascript">var app = "market";</script>
+=======
+		h3, h2, h1, table, tr, td, li, ul, th {
+			font-family: "微軟正黑體", "Arial";
+		}
+	</style>
+>>>>>>> 8196fc654633f729663dc150d634f0eef8af1a58
 </head>
 
 <body>

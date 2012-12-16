@@ -54,8 +54,11 @@
 	<link href="css/docs.css" rel="stylesheet">
 	<meta http-equiv = "Content-Type" content = "text/html; charset = utf8" />
 	<meta http-equiv = "Content-Language" content = "zh-tw" />
+<<<<<<< HEAD
 	<script language="javascript" type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script type="text/javascript" language="javascript">var app = "market";</script>
+=======
+>>>>>>> 8196fc654633f729663dc150d634f0eef8af1a58
 	<style>
 		h3, h2, h1, table, tr, td, li, ul, th {
 			font-family: "微軟正黑體", "Arial";
