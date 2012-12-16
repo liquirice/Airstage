@@ -5,7 +5,7 @@
 	if( !isset($_SESSION['stu_id']) || !isset($_SESSION['name']) || !isset($_SESSION['auth']) || !isset($_SESSION['nick']) ) {
 		echo '<script type="text/javascript">alert("請先登入!"); location.href="marketIndex.php"</script>';
 	} else {
-		require_once( "../connectVar.php" );
+		require_once( "../global/connectVar.php" );
 		require_once( "UserQueryFunction.php" );
 		$stu_id = $_SESSION['stu_id'];
 		
@@ -18,7 +18,7 @@
 						 "( SELECT COUNT(bidder_id) " . 
 						 "FROM marketSecondHand_bidList WHERE marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id ) AS BidNum, " . 
 						 "( SELECT COUNT(buyer_id) FROM marketSecondHand_comment INNER JOIN marketSecondHand_bidList Using(trade_id) " . 
-						 "WHERE marketSecondHand_comment.buyer_id = '$stu_id' AND marketSecondHand_bidList.trade_id = marketSecondHand_comment.trade_id ) AS FeedBack " .
+						 "WHERE marketSecondHand_comment.buyer_id = '$stu_id' AND marketSecondHand_bidList.trade_id = marketSecondHand_comment.trade_id ) AS CounFeed " .
 						 "FROM marketSecondHand_trade " .
 				         "LEFT JOIN marketSecondHand_bidList ON marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id " .
 						 "LEFT JOIN marketSecondHand_productInfo ON marketSecondHand_productInfo.product_id = marketSecondHand_trade.product_id " .
@@ -31,7 +31,7 @@
 						 "( SELECT COUNT(bidder_id) " . 
 						 "FROM marketSecondHand_bidList WHERE marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id ) AS BidNum, " . 
 						 "( SELECT COUNT(buyer_id) FROM marketSecondHand_comment INNER JOIN marketSecondHand_bidList Using(trade_id) " . 
-						 "WHERE marketSecondHand_comment.buyer_id = '$stu_id' AND marketSecondHand_bidList.trade_id = marketSecondHand_comment.trade_id ) AS FeedBack " .
+						 "WHERE marketSecondHand_comment.buyer_id = '$stu_id' AND marketSecondHand_bidList.trade_id = marketSecondHand_comment.trade_id ) AS CounFeed " .
 						 "FROM marketSecondHand_trade " .
 				         "LEFT JOIN marketSecondHand_bidList ON marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id " .
 						 "LEFT JOIN marketSecondHand_productInfo ON marketSecondHand_productInfo.product_id = marketSecondHand_trade.product_id " .
@@ -46,7 +46,7 @@
 					 "( SELECT COUNT(bidder_id) " . 
 					 "FROM marketSecondHand_bidList WHERE marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id ) AS BidNum, " . 
 					 "( SELECT COUNT(buyer_id) FROM marketSecondHand_comment INNER JOIN marketSecondHand_bidList Using(trade_id) " . 
-					 "WHERE marketSecondHand_comment.buyer_id = '$stu_id' AND marketSecondHand_bidList.trade_id = marketSecondHand_comment.trade_id ) AS FeedBack " .
+					 "WHERE marketSecondHand_comment.buyer_id = '$stu_id' AND marketSecondHand_bidList.trade_id = marketSecondHand_comment.trade_id ) AS CounFeed " .
 					 "FROM marketSecondHand_trade " .
 			         "LEFT JOIN marketSecondHand_bidList ON marketSecondHand_bidList.trade_id = marketSecondHand_trade.trade_id " .
 					 "LEFT JOIN marketSecondHand_productInfo ON marketSecondHand_productInfo.product_id = marketSecondHand_trade.product_id " .
@@ -68,6 +68,13 @@
 	<link href = "css/docs.css" rel = "stylesheet" />
 	<meta http-equiv = "Content-Type" content = "text/html; charset = utf8" />
 	<meta http-equiv = "Content-Language" content = "zh-tw" />
+	<style>
+		h3, h2, h1, table, tr, td, li, ul, th, p {
+			font-family: "微軟正黑體", "Arial";
+		}
+	</style>
+	<script language="javascript" type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script type="text/javascript" language="javascript">var app = "market";</script>
 </head>
 
 <body>
@@ -91,7 +98,7 @@
 	</ul>
 	
 	<!-- Warning Area -->
-	<div class="alert alert-info fade in">
+	<div class="alert alert-info fade in" style="font-family: '微軟正黑體';">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
         <strong>Airstage 提醒：</strong>得標的物品無法刪除記錄唷！ 只有得標的物品才能夠進行回饋呢！ 目前賣方資料與回饋排序功能暫不開放。
     </div>
@@ -230,13 +237,17 @@
 		          	<?php		          	
 		          		if( $row['buy_list'] == 1 ) {
 			          		if( $row['FeedBack'] == 0 ) echo '<a href="feedbackS.php?trade='. $row['trade_id'] .'">未評分</a>';
-			          		else echo '已評鑑';
+							else echo '已評分';
 		          		}
 		          	?>		          
 		          </td>
 		          <td>
 		          	<?php
-				  		if( $row['exist'] == 0 || $row['buy_list'] == 0 ) echo '<a href="deleteBuyList.php?trade=' . $row['trade_id'] . '"><i class="icon-trash"></i> 刪除</a>';
+				  		if( $row['exist'] == 0 ) {
+							if( $row['buy_list'] == 0 ){
+								echo '<a href="deleteBuyList.php?trade=' . $row['trade_id'] . '"><i class="icon-trash"></i> 刪除</a>';
+							}
+						}
 				  	?>
 		          </td>	             
 		        </tr>
@@ -370,7 +381,6 @@
 <?php
 	require_once( "marketFooter.php" );
 ?>
-
 
 <script src = "js/bootstrap-modal.js"></script>
 <script src = "js/jquery.js"></script>

@@ -1,8 +1,9 @@
 <?php
 	// Last Modified Day : 2012.09.27
+	require_once( "redirectFilter.php" );
 	require_once( "../global/setSession.php" );
 	
-	if( !isset($_SESSION['stu_id']) || !isset($_SESSION['name']) || !isset($_SESSION['auth']) ) {
+	if( !isset($_SESSION['stu_id']) || !isset($_SESSION['name']) || !isset($_SESSION['auth']) || !isset($_SESSION['nick']) ) {
 		echo '<script type="text/javascript">alert("請先登入唷～"); location.href="../index.php"</script>';
 	} else {
 		if( $_SESSION['auth'] == 0 ) {
@@ -27,8 +28,11 @@
 				$department = mysqli_real_escape_string( $conn, trim($_POST['department']) );
 				$grade = mysqli_real_escape_string( $conn, trim($_POST['grade']) );
 				$facebook = mysqli_real_escape_string( $conn, trim($_POST['facebook']) );
+				$about = mysqli_real_escape_string( $conn, trim($_POST['about']) );
 				
 				// Common info.
+				$group = mysqli_real_escape_string( $conn, trim($_POST['group']) );
+				$groupLevel = mysqli_real_escape_string( $conn, trim($_POST['groupLevel']) );
 				$msn = mysqli_real_escape_string( $conn, trim($_POST['msn']) );
 				$twitter = mysqli_real_escape_string( $conn, trim($_POST['twitter']) );
 				$plurk = mysqli_real_escape_string( $conn, trim($_POST['plurk']) );
@@ -49,6 +53,8 @@
 				$gender_c = $_POST['gender_c'];
 				$grade_c = $_POST['grade_c'];
 				$facebook_c = $_POST['facebook_c'];
+				$group_c = $_POST['group_c'];
+				$groupLevel_c = $_POST['groupLevel_c'];
 				$msn_c = $_POST['msn_c'];
 				$twitter_c = $_POST['twitter_c'];
 				$plurk_c = $_POST['plurk_c'];
@@ -59,41 +65,144 @@
 				$dorm_c = $_POST['dorm_c'];
 				$outAddr_c = $_POST['outAddr_c'];
 				$car_c = $_POST['car_c'];
+				$about_c = $_POST['about_c'];
 				$profile_pic_c = $_POST['profile_pic_c'];
 					
 				// Profile Pic.
 				$picName = $_FILES['profile_pic']['name'];
 				$picType = $_FILES['profile_pic']['type'];
 				$picSize = $_FILES['profile_pic']['size'];
-				
+				$picTemp = $_FILES['profile_pic']['temp'];
+			
 				if( !empty($picName) ) {
 					if( (($picType == 'image/gif') || ($picType == 'image/jpeg') || ($picType == 'image/png') || ($picType == 'image/pjpeg')) && ($picSize > 0) && ($picSize <= MAXSIZE) ) {
+						
+						
+
+					
+						
+						/*
+						if ($_FILES['profile_pic']['error']  > 0)
+						   {
+							   echo "Apologies, an error has occurred.";
+							   echo "Error Code: " . $_FILES['profile_pic']['error'];
+						   }
+						else
+						   {	
+						   //"/home/airstage/public_html/test_area/move_uploaded_file/test2/" . $_FILES['profile_pic']['name']
+						   //"/home/airstage/public_html/accounts/images/" . $_FILES['profile_pic']['name']					
+						   $target = UPLOADPATH . $picName;
+						   if(move_uploaded_file($_FILES['profile_pic']['tmp_name'],$target)){				
+						   		echo "Succcessful!!" ;
+							}
+							else{
+								echo "fail!!";
+							}
+						   }
+
+						
+						if( $_FILES['profile_pic']['error'] > 0 ) {
+							echo "Error: " . $_FILES['profile_pic']['error'];
+						}						
+						else{
+							$target = UPLOADPATH . $picName;
+							//move_uploaded_file($_FILES["file"]["tmp_name"],"upload/".$_FILES["file"]["name"]);
+							if(move_uploaded_file($_FILES['profile_pic']['name'],"images/test.png")){
+								echo "Error: " . $_FILES['profile_pic']['error']."<br/>";
+								echo "檔案名稱: " . $_FILES['profile_pic']['name']."<br/>";
+								echo "檔案類型: " . $_FILES['profile_pic']['type']."<br/>";
+								echo "檔案大小: " . ($_FILES['profile_pic']['size'] / 1024)." Kb<br />";
+								echo "暫存名稱: " . $_FILES['profile_pic']['tmp_name'];
+								}
+							else{
+								echo "Error: " . $_FILES['profile_pic']['error']."<br/>";
+								echo "檔案名稱: " . $_FILES['profile_pic']['name']."<br/>";
+								echo "檔案類型: " . $_FILES['profile_pic']['type']."<br/>";
+								echo "檔案大小: " . ($_FILES['profile_pic']['size'] / 1024)." Kb<br />";
+								echo "暫存名稱: " . $_FILES['profile_pic']['tmp_name'];
+								//$query = "UPDATE member_Info SET profile_pic = '$picName' WHERE stu_id = '$stu_id'";
+								echo "Error: " . $_FILES['profile_pic']['error']."<br/>";
+								echo "Error:move_uploaded_file " ;
+								
+								}
+							}
+							
+							//$upload_dir = "images/";
+							if (is_writable(UPLOADPATH)) {
+								// do upload logic here
+								echo 'Upload directory is writable, or does not exist.';
+							}
+							else {
+								echo 'Upload directory is not writable, or does not exist.';
+							}
+							*/
+						
+						
 						if( $_FILES['profile_pic']['error'] == 0 ) {
 							// Move to the target folder.
+							//$target = UPLOADPATH . $picName;
 							$target = UPLOADPATH . $picName;
+
+							
+							//echo $_FILES['profile_pic']['name']."<br/>";
+						
 							if( move_uploaded_file( $_FILES['profile_pic']['tmp_name'], $target) ) {
+								/*
+								echo $target."<br/>";
+								echo "<table border=\"1\">";
+								echo "<tr><td>Client Filename: </td>
+								   <td>" . $_FILES['profile_pic']['name'] . "</td></tr>";
+								echo "<tr><td>File Type: </td>
+								   <td>" . $_FILES['profile_pic']['type'] . "</td></tr>";
+								echo "<tr><td>File Size: </td>
+								   <td>" . ($_FILES['profile_pic']['size'] / 1024) . " Kb</td></tr>";
+								echo "<tr><td>Name of Temp File: </td>
+								   <td>" . $_FILES['profile_pic']['tmp_name'] . "</td></tr>";
+								echo "</table>";
+								*/
+								
 								$query = "UPDATE member_Info SET profile_pic = '$picName' WHERE stu_id = '$stu_id'";
 								$result = mysqli_query( $conn, $query ) or die('Update Error0');
 							}
+							else{
+								echo "Error:move_uploaded_file " ;								
+								}
+								
+							/*
+							if(move_uploaded_file($_FILES['profile_pic']['name'], $target)) {
+								echo "The file ".  basename( $_FILES['profile_pic']['name']). " has been uploaded";
+								//$query = "UPDATE member_Info SET profile_pic = '$picName' WHERE stu_id = '$stu_id'";
+								//$result = mysqli_query( $conn, $query ) or die('Update Error0');
+							} 
+							else{
+								echo "There was an error uploading the file, please try again!";
+							}
+							*/
+						} else {
+							echo "fail to upload picture";
 						}
 					}
 				}
+				else{
+					//echo $picName."Empty";
+					}
 				
 				// Update the basic info.
-				$query = "UPDATE Member SET gender = '$gender', department = '$department', grade = '$grade', email = '$email', username = '$username'".
+				$query = "UPDATE Member SET gender = '$gender', department = '$department', grade = '$grade', email = '$email', username = '$username', aboutauthor = '$about' ".
 						 " WHERE stu_id = '$stu_id'";
 				$result = mysqli_query( $conn, $query ) or die('Update Error1');
 				
 				// Upadte the common info.
-				$query = "UPDATE member_Info SET msn = '$msn', twitter = '$twitter', plurk = '$plurk', skype = '$skype', facebook = '$facebook'".
+				$query = "UPDATE member_Info SET msn = '$msn', twitter = '$twitter', plurk = '$plurk', skype = '$skype', facebook = '$facebook', `group` = '$group', groupLevel = '$groupLevel'".
 				 		 " ,phone = '$phone', food = '$food', home = '$home', id = '$id', dorm = '$dorm', room = '$room', outAddr = '$outAddr', car = '$car'".
 				 		 " WHERE stu_id = '$stu_id'";
 				$result = mysqli_query( $conn, $query ) or die('Update Error2');
 				
 				// Upadte the checkbox.
-				$query = "UPDATE display_check SET stu_id_c = '$stu_id_c', name_c = '$name_c', gender_c = '$gender_c', grade_c = '$grade_c', facebook_c = '$facebook_c'".
+				$query = "UPDATE display_check SET stu_id_c = '$stu_id_c', name_c = '$name_c', gender_c = '$gender_c', grade_c = '$grade_c', facebook_c = '$facebook_c', about_c = '$about_c'".
 						 " ,msn_c = '$msn_c', twitter_c = '$twitter_c', plurk_c = '$plurk_c', skype_c = '$skype_c', phone_c = '$phone_c', email_c = '$email_c', home_c = '$home_c'".
-						 " ,dorm_c = '$dorm_c', outAddr_c = '$outAddr_c', car_c = '$car_c', profile_pic_c = '$profile_pic_c'";
+						 " ,dorm_c = '$dorm_c', outAddr_c = '$outAddr_c', car_c = '$car_c', profile_pic_c = '$profile_pic_c', group_c = '$group_c', groupLevel_c = '$groupLevel_c' ".
+						 " WHERE stu_id = '$stu_id'";
 				$result = mysqli_query( $conn, $query ) or die('Upadte Error3');
 				
 				echo '<script type="text/javascript">alert("更新完成！");</script>';
@@ -120,8 +229,6 @@
 <head>
 <link href="tm2.ico" rel="shortcut icon"/>
 <link href="assets/css/bootstrap.css" rel="stylesheet">
-<!--link href="../css/bootstrap-Full/docs/assets/css/bootstrap-responsive.css" rel="stylesheet"-->
-<!--link href="../css/bootstrap-Full/docs/assets/css/docs.css" rel="stylesheet"-->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Language" content="zh-tw">
 <title>會員中心─ Airstage 西灣人</title>
@@ -324,11 +431,11 @@
 	                  <tr>
 	                    <td>
 	                    <label class="checkbox">
-	                    	<input type="checkbox" name="msn_c" id="check_msn" "<?php if($check['msn_c'] == "on") { echo "checked"; }?> /> &nbsp;MSN
+	                    	<input type="checkbox" name="msn_c" id="check_msn" <?php if($check['msn_c'] == "on") { echo "checked"; }?> /> &nbsp;MSN
 	                    </label>
 	                    </td>
 	                    <td>
-	                    	<img src="https://encrypted-tbn3.google.com/images?q=tbn:ANd9GcTBZwvwVjMGbhInOthILiljaNLc_AC0AdmBsvlqdC3OLz6RVttG" width="14" height="14">
+	                    	<img src="https://encrypted-tbn3.google.com/images?q=tbn:ANd9GcTBZwvwVjMGbhInOthILiljaNLc_AC0AdmBsvlqdC3OLz6RVttG" width="14" height="14">&nbsp;
 	                    	<input name="msn" class="span4" value = "<?php echo $row['msn'];?>" />
 	                    </td>
                       </tr>
@@ -340,7 +447,7 @@
 	                    </label>
 	                    </td>
 	                    <td>
-	                    	<img src="https://encrypted-tbn0.google.com/images?q=tbn:ANd9GcRXwLPUkXaduzV_Mna-a74rv4K5w-oirMO4H0hEbjnNMkI9BIbS0A" width="14" height="14">
+	                    	<img src="https://encrypted-tbn0.google.com/images?q=tbn:ANd9GcRXwLPUkXaduzV_Mna-a74rv4K5w-oirMO4H0hEbjnNMkI9BIbS0A" width="14" height="14">&nbsp;
 	                    	<input name="twitter" class="span4" value = "<?php echo $row['twitter'];?>" />
 	                    </td>	                  
                       </tr>
@@ -352,7 +459,7 @@
 	                    </label>
 	                    </td>
 	                    <td>
-	                    	<img src="https://encrypted-tbn0.google.com/images?q=tbn:ANd9GcR1JaAOCNgLEWVxxyk8qXiq4otEva94IQbiEAZNeJy7iYP04o7Y" width="14" height="14">
+	                    	<img src="https://encrypted-tbn0.google.com/images?q=tbn:ANd9GcR1JaAOCNgLEWVxxyk8qXiq4otEva94IQbiEAZNeJy7iYP04o7Y" width="14" height="14">&nbsp;
 	                    	<input name="plurk" class="span4" value = "<?php echo $row['plurk'];?>" />
 	                    </td>	                   
                       </tr>
@@ -364,7 +471,7 @@
 	                    </label>
 		                </td>
 	                    <td>
-	                    	<img src="https://encrypted-tbn2.google.com/images?q=tbn:ANd9GcTxk19xab9zH7syPeMI7E1uaF5o9CUw0wl0RIIG8zzqH6TyYCPc" width="14" height="14">
+	                    	<img src="https://encrypted-tbn2.google.com/images?q=tbn:ANd9GcTxk19xab9zH7syPeMI7E1uaF5o9CUw0wl0RIIG8zzqH6TyYCPc" width="14" height="14">&nbsp;
 	                    	<input name="skype" class="span4" value = "<?php echo $row['skype'];?>" />
 	                    </td>	                  
                       </tr>
@@ -376,7 +483,7 @@
 	                    </label>
 		                </td>
 	                    <td>
-	                    	<i class="icon-signal icon"></i>&nbsp;<input name="phone" class="span4" value = "<?php echo $row['phone'];?>" />
+	                    	<i class="icon-signal icon"></i>&nbsp;&nbsp;<input name="phone" class="span4" value = "<?php echo $row['phone'];?>" />
 	                    </td>	                    
                       </tr>
                       
@@ -387,145 +494,147 @@
 	                    </label>
 		                </td>
 	                    <td>
-	                    	<i class="icon-envelope"></i>&nbsp;<input type = "text "name="email" class="span4" value = "<?php echo $row['email'];?>" placeholder="一定要填喔！"/>
+	                    	<i class="icon-envelope"></i>&nbsp;&nbsp;<input type = "text "name="email" class="span4" value = "<?php echo $row['email'];?>" placeholder="一定要填喔！"/>
 	                    </td>	                    
                       </tr>
                       
-	                  <!--tr>
-	                    <td align="left" height="2" width="22"><span style="vertical-align: medium"> <font face="微軟正黑體">
-	                      	<input type="checkbox" name="check_clubs" value="1" id="check_clubs"></font></span>
-	                    </td>
-	                    <td height="2" colspan="2" align="left">
-	                    	<span style="vertical-align: medium"> <font size="2" face="微軟正黑體">社　　團</font></span>
-	                    </td>
-	                    <td align="left" height="2" colspan="2"><font face="微軟正黑體">
-	                      <select size="1" name="club">
-	                        <span class="Apple-converted-space"></span>
-	                        <option disabled>有參加社團嗎？</option>
-	                        <span class="Apple-converted-space"></span>
+	                  <tr>
+	                    <td>
+						<label class="checkbox">
+	                      	<input type="checkbox" name="group_c" id="group_c" <?php if($check['group_c'] == "on") { echo "checked"; }?>>&nbsp;社　　團
+	                    </label>
+						</td>
+	                    <td>
+						<i class="icon-qrcode"></i>&nbsp;
+	                      <select size="1" name="group">&nbsp;
+	                      	<option value="">有參加社團嗎？</option>
+	                        
 	                        <option disabled>【　服務性社團　】</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="基服社">基服社</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="滋青社">滋青社</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="慈青社">慈青社</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="原學社">原學社</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="迴馨社">迴馨社</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="扶根社">扶根社</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="水上安全社">水上安全社</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="綠色西灣社">綠色西灣社</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="動物保護教育推廣社">動物保護教育推廣社</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="英語志工社">英語志工社</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="法輪大法社">法輪大法社</option>
-	                        <span class="Apple-converted-space"></span>
+	                        
+	                        <option value="基服社" <?php if($row['group'] == "基服社") echo 'selected';?>>基服社</option>
+	                        
+	                        <option value="滋青社" <?php if($row['group'] == "滋青社") echo 'selected';?>>滋青社</option>
+	                        
+	                        <option value="慈青社" <?php if($row['group'] == "慈青社") echo 'selected';?>>慈青社</option>
+	                        
+	                        <option value="原學社" <?php if($row['group'] == "原學社") echo 'selected';?>>原學社</option>
+	                        
+	                        <option value="迴馨社" <?php if($row['group'] == "迴馨社") echo 'selected';?>>迴馨社</option>
+	                        
+	                        <option value="扶根社" <?php if($row['group'] == "扶根社") echo 'selected';?>>扶根社</option>
+	                        
+	                        <option value="CDPA" <?php if($row['group'] == "CDPA") echo 'selected';?>>CDPA - 中山網推會</option>
+							
+							<option value="水上安全社" <?php if($row['group'] == "水上安全社") echo 'selected';?>>水上安全社</option>
+	                        
+	                        <option value="綠色西灣社" <?php if($row['group'] == "綠色西灣社") echo 'selected';?>>綠色西灣社</option>
+	                        
+	                        <option value="動物保護教育推廣社" <?php if($row['group'] == "動物保護教育推廣社") echo 'selected';?>>動物保護教育推廣社</option>
+	                        
+	                        <option value="英語志工社" <?php if($row['group'] == "英語志工社") echo 'selected';?>>英語志工社</option>
+	                        
+	                        <option value="法輪大法社" <?php if($row['group'] == "法輪大法社") echo 'selected';?>>法輪大法社</option>
+	                        
 	                        <option disabled>【　學術性社團　】</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="AIESEC">AIESEC</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="福爾摩沙社">福爾摩沙社</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="青年領袖研習社">青年領袖研習社</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="中山團契">中山團契</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="學員團契">學員團契</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="中諦佛學社">中諦佛學社</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="奇蹟生命研習社">奇蹟生命研習社</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="現代詩社">現代詩社</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="喜樂團契">喜樂團契</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="全人學社">全人學社</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="西子劇坊">西子劇坊</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="推理小說研究社">推理小說研究社</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="嚴新氣功科學研習社">嚴新氣功科學研習社</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="中醫社">中醫社</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="易學社">易學社</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="晨興設">晨興社</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="思辨社">思辨社</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="天文社" selected>天文社</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="命學社">命學社</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option disabled>【　音樂性社團　】</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="颺韻合唱團">颺韻合唱團</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="吉他社">吉他社</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="管樂社">管樂社</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="南雁國樂社">南雁國樂社</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="楊門樂社">揚門樂社</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="室內樂社">室內樂社</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="詩人詩頭會社">詩人詩頭會社</option>
-	                        <span class="Apple-converted-space"></span>
+	                        
+	                        <option value="AIESEC" <?php if($row['group'] == "AIESEC") echo 'selected';?>>AIESEC</option>
+	                        
+	                        <option value="福爾摩沙社" <?php if($row['group'] == "福爾摩沙社") echo 'selected';?>>福爾摩沙社</option>
+	                        
+	                        <option value="青年領袖研習社" <?php if($row['group'] == "青年領袖研習社") echo 'selected';?>>青年領袖研習社</option>
+	                        
+	                        <option value="中山團契" <?php if($row['group'] == "中山團契") echo 'selected';?>>中山團契</option>
+	                        
+	                        <option value="學員團契" <?php if($row['group'] == "學員團契") echo 'selected';?>>學員團契</option>
+	                        
+	                        <option value="中諦佛學社" <?php if($row['group'] == "中諦佛學社") echo 'selected';?>>中諦佛學社</option>
+	                        
+	                        <option value="奇蹟生命研習社" <?php if($row['group'] == "奇蹟生命研習社") echo 'selected';?>>奇蹟生命研習社</option>
+	                        
+	                        <option value="現代詩社" <?php if($row['group'] == "現代詩社") echo 'selected';?>>現代詩社</option>
+	                        
+	                        <option value="喜樂團契" <?php if($row['group'] == "喜樂團契") echo 'selected';?>>喜樂團契</option>
+	                        
+	                        <option value="全人學社" <?php if($row['group'] == "全人學社") echo 'selected';?>>全人學社</option>
+	                        
+	                        <option value="西子劇坊" <?php if($row['group'] == "西子劇坊") echo 'selected';?>>西子劇坊</option>
+	                        
+	                        <option value="推理小說研究社" <?php if($row['group'] == "推理小說研究社") echo 'selected';?>>推理小說研究社</option>
+	                        
+	                        <option value="嚴新氣功科學研習社" <?php if($row['group'] == "嚴新氣功科學研習社") echo 'selected';?>>嚴新氣功科學研習社</option>
+	                        
+	                        <option value="中醫社" <?php if($row['group'] == "中醫社") echo 'selected';?>>中醫社</option>
+	                        
+	                        <option value="易學社" <?php if($row['group'] == "易學社") echo 'selected';?>>易學社</option>
+	                        
+	                        <option value="晨興設" <?php if($row['group'] == "晨興設") echo 'selected';?>>晨興社</option>
+	                        
+	                        <option value="思辨社" <?php if($row['group'] == "思辨社") echo 'selected';?>>思辨社</option>
+	                        
+	                        <option value="天文社" <?php if($row['group'] == "天文社") echo 'selected';?>>天文社</option>
+	                        
+	                        <option value="命學社" <?php if($row['group'] == "命學社") echo 'selected';?>>命學社</option>
+	                        
+	                        <option disabled>【　表演性社團　】</option>
+	                        
+							<option value="勁舞社" <?php if($row['group'] == "勁舞社") echo 'selected';?>>勁舞社</option>
+							
+	                        <option value="颺韻合唱團" <?php if($row['group'] == "颺韻合唱團") echo 'selected';?>>颺韻合唱團</option>
+	                        
+	                        <option value="吉他社" <?php if($row['group'] == "吉他社") echo 'selected';?>>吉他社</option>
+	                        
+	                        <option value="管樂社" <?php if($row['group'] == "管樂社") echo 'selected';?>>管樂社</option>
+	                        
+	                        <option value="南雁國樂社" <?php if($row['group'] == "南雁國樂社") echo 'selected';?>>南雁國樂社</option>
+	                        
+	                        <option value="楊門樂社" <?php if($row['group'] == "楊門樂社") echo 'selected';?>>揚門樂社</option>
+	                        
+	                        <option value="室內樂社" <?php if($row['group'] == "室內樂社") echo 'selected';?>>室內樂社</option>
+	                        
+	                        <option value="詩人詩頭會社" <?php if($row['group'] == "詩人詩頭會社") echo 'selected';?>>詩人詩頭會社</option>
+	                        
 	                        <option disabled>【　學藝性社團　】</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="攝影社">攝影社</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="手語社">手語社</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="美食社">美食社</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="圍棋社">圍棋社</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="電影社">電影社</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="動畫社">動畫社</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="書法社">書法社</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="橋藝社">橋藝社</option>
-	                        <span class="Apple-converted-space"></span>
-	                        <option value="美術社">美術社</option>
-	                        <span class="Apple-converted-space"></span>
+	                        
+	                        <option value="攝影社" <?php if($row['group'] == "攝影社") echo 'selected';?>>攝影社</option>
+	                        
+	                        <option value="手語社" <?php if($row['group'] == "手語社") echo 'selected';?>>手語社</option>
+	                        
+	                        <option value="美食社" <?php if($row['group'] == "美食社") echo 'selected';?>>美食社</option>
+	                        
+	                        <option value="圍棋社" <?php if($row['group'] == "圍棋社") echo 'selected';?>>圍棋社</option>
+	                        
+	                        <option value="電影社" <?php if($row['group'] == "電影社") echo 'selected';?>>電影社</option>
+	                        
+	                        <option value="動畫社" <?php if($row['group'] == "動畫社") echo 'selected';?>>動畫社</option>
+	                        
+	                        <option value="書法社" <?php if($row['group'] == "書法社") echo 'selected';?>>書法社</option>
+	                        
+	                        <option value="橋藝社" <?php if($row['group'] == "橋藝社") echo 'selected';?>>橋藝社</option>
+	                        
+	                        <option value="美術社" <?php if($row['group'] == "美術社") echo 'selected';?>>美術社</option>
+	                        
                           </select>
-	                    </font></td>
-                      </tr-->
-                      
-	                  <!--tr>
-	                    <td align="left" height="2" width="22">
-	                    	<span style="vertical-align: medium"> <font face="微軟正黑體">
-		                    <input type="checkbox" name="check_level" value="ON" id="check_level"></font></span>
-		                </td>
-	                    <td height="2" colspan="2" align="left">
-	                    	<span style="vertical-align: medium"> <font size="2" face="微軟正黑體">社團身分</font></span>
 	                    </td>
-	                    <td align="left" height="2" colspan="2"><span style="vertical-align: medium"><font face="微軟正黑體">
-	                      <select name="level" size="1">
-	                        <option selected>社團裡的身分？</option>
-	                        <option>會長</option>
-	                        <option>副會長</option>
-	                        <option>社團幹部</option>
-	                        <option>社團成員</option>
+                      </tr>
+                      
+	                  <tr>
+	                    <td>
+						<label class="checkbox">
+		                    <input type="checkbox" name="groupLevel_c" id="groupLevel_c" <?php if($check['groupLevel_c'] == "on") { echo "checked"; }?> />&nbsp;社團身分
+		                </label>
+						</td>
+	               	    <td>
+						  <i class="icon-barcode"></i>&nbsp;
+	                      <select name="groupLevel" size="1">
+	                        <option value="">社團裡的身分？</option>
+	                        <option value="0" <?php if($row['groupLevel'] == "0") echo 'selected';?>>會長</option>
+	                        <option value="1" <?php if($row['groupLevel'] == "1") echo 'selected';?>>副會長</option>
+	                        <option value="2" <?php if($row['groupLevel'] == "2") echo 'selected';?>>社團幹部</option>
+	                        <option value="3" <?php if($row['groupLevel'] == "3") echo 'selected';?>>社團成員</option>
                           </select>
 	                      </font></span>
 	                     </td>
-                      </tr-->
+                      </tr>
                       
 	                  <tr>
 	                    <td>
@@ -596,7 +705,7 @@
 	                    </label>
 	                    </td>
 	                    <td>	                    
-	                    	<i class="icon-pencil"></i>&nbsp;<input name="id" size="34" value ="<?php echo $row['id'];?>" />
+	                    	<i class="icon-pencil"></i>&nbsp;&nbsp;<input name="id" size="34" value ="<?php echo $row['id'];?>" />
 	                    </td>	                    
                       </tr>
                       
@@ -656,7 +765,7 @@
 	                    </label>
 	                    </td>
 	                    <td>
-	                    	<i class="icon-flag"></i>&nbsp;<input name="outAddr" class="span4" value = "<?php echo $row['outAddr']; ?>" />
+	                    	<i class="icon-flag"></i>&nbsp;&nbsp;<input name="outAddr" class="span4" value = "<?php echo $row['outAddr']; ?>" />
 	                    </td>
                       </tr>
                       
@@ -678,6 +787,18 @@
 	                    </td>
                       </tr>
                       
+					  <tr>
+	                    <td>
+	                    <label class="checkbox">
+	                    	<input type="checkbox" name="about_c" id="about_c" <?php if($check['about_c'] == "on") { echo "checked"; }?> /> &nbsp;個人簡介
+	                    </label>
+	                    </td>
+	                    <td>
+	                    	<i class="icon-comment"></i>&nbsp;&nbsp;
+							<textarea placeholder="關於我是什麼呢?" name="about" style="height: 200px; width: 400px;" ><?php echo $row['aboutauthor'];?></textarea>
+	                    </td>
+                      </tr>
+					  
 	                  <tr>
 	                    <td>
 	                    <label class="checkbox">
@@ -728,7 +849,6 @@
 
 <?php mysqli_close( $conn ); ?>
 <script src = "assets/js/bootstrap-modal.js"></script>
-<script src = "assets/js/jquery.js"></script>
 <script src = "assets/js/application.js"></script>
 <script src = "assets/js/bootstrap-transition.js"></script>
 <script src = "assets/js/bootstrap-alert.js"></script>

@@ -16,6 +16,8 @@
 <title>│Airstage 西灣人│管理者介面</title>
 <link href="assets/css/bootstrap.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="../plugin/shadowbox/shadowbox.css">
+<script language="javascript" type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script language="javascript" type="text/javascript">var app = "accounts";</script>
 <base target="_parent">
 <style type="text/css">
 	body,td,th {
@@ -40,13 +42,13 @@
 
 <div align="center">
 	<?php
-		require_once( "memberHeader.php" );
+		require_once( "../global/navi_white/navi.php" );
 	?>
     
 	<div align="center">
 		<table border="0" width="980" height="693" cellspacing="0" cellpadding="0">
 	    <tr>
-	      <td background="../jpg/bot.png" valign="top"><div align="center">
+	      <td background="../global/images/bot.png" valign="top"><div align="center">
 	        <table border="0" width="98%" cellspacing="0" cellpadding="0" height="761">
 	          <tr>
 	            <td align="left" valign="top" height="192" colspan="2" background="jpg/top.jpg" width="960">
@@ -65,38 +67,37 @@
 						<p style="line-height: 24px; margin-top: 0px; margin-bottom: 0px">
 						<span style="vertical-align: medium">&nbsp;</span></font></font></p>
 						
-						<h3>♠ Airstage 管理者介面</h3>
-						<h4>請點選功能操作 : </h4><br />
+						<h3>♠ Airstage Center</h3>
 						
 						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 							<table border="0" width="645" cellspacing="1" height="150" class="table table-hover">
 								<tr>
 									<td> 1. </td>
-									<td><a href = "managerQuery.php" style="text-decoration:none; color:#000;">使用者查詢</a></td>
+									<td><a href = "managerQuery.php" style="text-decoration:none; color:#000;">God Member Query</a></td>
 									<td></td>
 								</tr>
                                 
                                 <tr>
 									<td> 2. </td>
-									<td><a href = "managerRealTime.php" style="text-decoration:none; color:#000;">線上即時資料查詢</a></td>
+									<td><a href = "managerRealTime.php" style="text-decoration:none; color:#000;">Real-Time Information</a></td>
 									<td></td>
 								</tr>
                                 
                                 <tr>
 									<td> 3. </td>
-									<td><a href = "managerTotal.php" style="text-decoration:none; color:#000;">整體性資料查詢</a></td>
+									<td><a href = "managerTotal.php" style="text-decoration:none; color:#000;">Statistic Information</a></td>
 									<td></td>
 								</tr>
 								
                                 <tr>
 									<td> 4. </td>
-									<td><a href = "managerAnnounce.php" style="text-decoration:none; color:#000;">發送全站公告</a></td>
+									<td><a href = "managerAnnounce.php" style="text-decoration:none; color:#000;">Notification Sender</a></td>
 									<td></td>
 								</tr>
 								
                                 <tr>
 									<td> 5. </td>
-									<td><a href = "managerNews.php" style="text-decoration:none; color:#000;">電子報功能</a></td>
+									<td><a href = "managerNews.php" style="text-decoration:none; color:#000;">E-Paper</a></td>
 									<td></td>
 								</tr>                                                                                  
 							</table>
@@ -108,10 +109,13 @@
 				<p><span style="vertical-align: medium">&nbsp;</span></div>
 			</td>
 		</tr>
+		<tr>
+	      <td height="106" background="../global/images/last.png" valign="top">
+	      	<?php require_once("../global/footer.php"); ?>
+        </tr>
 	</table>
 </div>
 <script src = "assets/js/bootstrap-modal.js"></script>
-<script src = "assets/js/jquery.js"></script>
 <script src = "assets/js/application.js"></script>
 <script src = "assets/js/bootstrap-transition.js"></script>
 <script src = "assets/js/bootstrap-alert.js"></script>

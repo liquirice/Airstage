@@ -13,6 +13,12 @@
 		//連接資料庫
 		require_once("../connectVar.php");
 		
+		if( empty($_POST['least_price']) || empty($_POST['cat1']) || empty($_POST['cat2']) || empty($_POST['cat3']) || empty($_POST['title']) ||  empty($_POST['number']) || empty($_POST['end_date']) || empty($_POST['end_time']) || empty($_POST['product_detail']) )
+		{
+			echo "<script type='text/javascript'>alert('您還有資料未填唷!'); history.back();</script>";
+			exit();
+		}
+		
 		//接收表單資料
 		$stu_id = mysqli_real_escape_string( $conn, trim( $_SESSION['stu_id']) );
 		$least_price = mysqli_real_escape_string( $conn, trim( $_POST['least_price']) );
@@ -95,11 +101,8 @@
 		else
 		{
 			$deleteTime = "DELETE FROM `marketSecondHand_time` WHERE `time_id` = '$time_id'";
-			mysqli_query( $conn, $deleteTime );
 			$deleteInfo = "DELETE FROM `marketSecondHand_productInfo` WHERE `product_id` = '$product_id'";
-			mysqli_query( $conn, $deleteInfo );
 			$deleteTrade = "DELETE FROM `marketSecondHand_trade` WHERE `trade_id` = '$trade_id'";
-			mysqli_query( $conn, $deleteTrade );
 			echo '<script type="text/javascript">alert("物品刊登失敗，請稍後再試。"); history.back();</script>'; 
 		}
 	}

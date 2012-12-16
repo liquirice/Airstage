@@ -36,14 +36,13 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<link href="tm2.ico" rel="shortcut icon"/>
+<link href="http://airstage.com.tw/global/images/tm2.ico" rel="shortcut icon"/>
 <link href="assets/css/bootstrap.css" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Language" content="zh-tw">
 <title>│Airstage 西灣人│會員中心：修改密碼</title>
 <script language="javascript" type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script language="javascript" type="text/javascript">var app = "accounts";</script>
-<link rel="stylesheet" type="text/css" href="../plugin/shadowbox/shadowbox.css">
 <base target="_parent">
 <style type="text/css">
 	body,td,th {
@@ -135,7 +134,6 @@
 	</table>
 </div>
 <script src = "assets/js/bootstrap-modal.js"></script>
-<script src = "assets/js/jquery.js"></script>
 <script src = "assets/js/application.js"></script>
 <script src = "assets/js/bootstrap-transition.js"></script>
 <script src = "assets/js/bootstrap-alert.js"></script>

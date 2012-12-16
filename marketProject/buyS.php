@@ -3,7 +3,7 @@
 	
 	echo "now loading...";
 
-	require_once( "../setSession.php" );
+	require_once( "../global/setSession.php" );
 	
 	//確定登入狀態
 	if( !isset($_SESSION['stu_id']) || !isset($_SESSION['name']) || !isset($_SESSION['auth']) )	{
@@ -13,6 +13,9 @@
 		echo '<script type="text/javascript">alert("請先通過信箱認證，才可以進行市集的交易唷！"); history.back();"</script>';
 		exit();
 	}
+	
+	//連接資料庫
+	require_once("../global/connectVar.php");
 
 	//接收資料
 	$bidder_id = $_SESSION['stu_id'];
@@ -21,11 +24,8 @@
 	$exchange_info = mysqli_real_escape_string( $conn, trim( $_POST['pay_info']) );
 	$wanted_number = mysqli_real_escape_string( $conn, trim( $_POST['num']) );
 	
-	//連接資料庫
-	require_once("../connectVar.php");
-	
 	//確認商品資訊
-	$query = "SELECT * FROM `marketSecondHand_trade` WHERE `trade_id` = '$trade_id'";
+	$query = "SELECT * FROM `marketSecondHand_trade` WHERE `trade_id` = $trade_id";
 	$result = mysqli_query( $conn, $query );
 	if( mysqli_num_rows($result) == 0 )	{
 		echo '<script type="text/javascript">alert("沒有這項商品唷！"); history.back();</script>';

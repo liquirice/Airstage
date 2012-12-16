@@ -6,6 +6,9 @@ require("../zhstring.php");
 $select = "SELECT * FROM notifications ORDER BY rno DESC";
 
 $totalnotify = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM Member WHERE stu_id='".$_SESSION["stu_id"]."'"));
+    if($totalnotify["AUTH"] != 2){
+        echo "<script type='text/javascript' language='javascript'>alert('您無權訪問此頁!'); window.location.href='../../index.php'</script>";
+    }
     $numnotify = explode(",", "".$totalnotify["notify"]."");
     $count = 0;
     while($numnotify[$count] != ""){

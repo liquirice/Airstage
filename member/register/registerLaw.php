@@ -1,8 +1,8 @@
 <?php
 	session_start();
-	if( isset($_SESSION['stu_id']) || isset($_SESSION['name']) || isset($_SESSION['auth']) ) {
+	if( isset($_SESSION['stu_id']) || isset($_SESSION['name']) || isset($_SESSION['auth']) || isset($_SESSION['nick']) ) {
 		echo '<script type="text/javascript">alert("你已經是會員囉!"); location.href="../../index.php"</script>';
-	exit();
+		exit();
 	}
 ?>
 

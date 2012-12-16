@@ -1,11 +1,13 @@
 <?php
 header('P3P: CP="NOI ADM DEV COM NAV OUR STP"');
 session_start();
-if(empty($_SESSION['name']) || empty($_SESSION['stu_id'])){
-		echo '<script type="text/javascript" language="javascript">alert("請先登入!"); location.href="../member/login.php";</script>';
-}
-include('../conn.php');
 
+require("../global/validSession.php");
+require("../global/connectVar.php");
+$validauth=mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM Member WHERE stu_id = '".$_SESSION["stu_id"]."' LIMIT 1"));
+if($validauth["AUTH"] <= -1){
+    echo "<script language='javascript' type='text/javascript'>alert('記得去信箱認證帳號才有權限進來喔!'); window.close();</script>";
+}
 if(isset($_GET['action']) == false){
 	$_SESSION['record']= 'share';
 }
@@ -18,9 +20,9 @@ else if($_GET['action']){
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>分享新活動</title>
-<link href="http://www.airstage.com.tw/nsysu/airs/tm2.ico" rel="shortcut icon"/>
+<link href="/global/images/tm2.ico" rel="shortcut icon"/>
 <link href="../plugin/jquery-ui/css/ui-lightness/jquery-ui-1.8.21.custom.css" rel="stylesheet" type="text/css" />
-<link href="../css/validate.css" rel="stylesheet" type="text/css" />
+<link href="../global/css/validate.css" rel="stylesheet" type="text/css" />
 <style>
 td{font-size:10pt;}
 .ui-datepicker { width: 23em; padding: .2em .2em 0; display: none; font-size: 62.5%; }
@@ -46,20 +48,30 @@ body {
 </style>
 <script type="text/javascript" language="javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" language="javascript" src="../plugin/jquery-ui/js/jquery-ui-1.8.21.custom.min.js"></script>
-<script type="text/javascript" language="javascript" src="http://jquery-ui.googlecode.com/svn/trunk/ui/i18n/jquery.ui.datepicker-zh-TW.js"></script>
 <script type="text/javascript" language="javascript" src="../plugin/validate/jquery.validate.js"></script>
 <script type="text/javascript" language="javascript">
-        $(function(){
-			
-			
-		});
-		
-</script>
-<script type="text/javascript" language="javascript">
-$(function() {
-	$('.datepicker').datepicker(
-		$.datepicker.regional['zh-TW']
-	);
+$(document).ready(function() {
+    $.datepicker.regional['zh-TW'] = {
+            clearText: '清除', clearStatus: '清除已選日期',
+            closeText: '關閉', closeStatus: '取消選擇',
+            prevText: '<上一月', prevStatus: '顯示上個月',
+            nextText: '下一月>', nextStatus: '顯示下個月',
+            currentText: '今天', currentStatus: '顯示本月',
+            monthNames: ['一月','二月','三月','四月','五月','六月',
+            '七月','八月','九月','十月','十一月','十二月'],
+            monthNamesShort: ['一','二','三','四','五','六',
+            '七','八','九','十','十一','十二'],
+            monthStatus: '選擇月份', yearStatus: '選擇年份',
+            weekHeader: '周', weekStatus: '',
+            dayNames: ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],
+            dayNamesShort: ['周日','周一','周二','周三','周四','周五','周六'],
+            dayNamesMin: ['日','一','二','三','四','五','六'],
+            dayStatus: '設定每周第一天', dateStatus: '選擇 m月 d日, DD',
+            dateFormat: 'yy-mm-dd', firstDay: 1, 
+            initStatus: '請選擇日期', isRTL: false
+        };
+	$('.datepicker').datepicker();
+	$.datepicker.setDefaults($.datepicker.regional['zh-TW']);
     $('#form').validate({
 		success: 'valid',
 		rules:{
@@ -134,24 +146,25 @@ if($_SESSION['record'] === 'submit'){
 //選擇海報
 else if($_SESSION['record'] == 'poster'){
 	echo '<!--第三部份-->
-	<table cellspacing="0" background="jpg/box_share2.png" style="background-repeat:no-repeat" width="916" height="546">
+	<table cellspacing="0" background="images/box_share2.png" style="background-repeat:no-repeat" width="916" height="546">
     <tr>
     	<td height="423"></td>
     </tr>
     <!--上傳圖片-->
     <tr align="center">
-    	<td><form id="imageform" method="post" enctype="multipart/form-data" action="share.php?action=upload" target="_self"><img src="jpg/cub.png" />上傳海報<input type="file" name="photoimg" id="photoimg" placeholder="限jpg檔,大小不可超過1MB" /></td>
+    	<td><form id="imageform" method="post" enctype="multipart/form-data" action="share.php?action=upload" target="_self"><img src="images/cub.png" />上傳海報<input type="file" name="photoimg" id="photoimg" placeholder="限jpg檔,大小不可超過1MB" /></td>
 	</tr>
 	<tr align="center">
-		<td align="center"><input type="submit" value="" style="background-image:url(jpg/bt2.png); background-repeat:no-repeat; width:127px; height:41px; cursor:pointer" /></form></td>
+		<td align="center"><input type="submit" value="" style="background-image:url(images/bt2.png); background-repeat:no-repeat; width:127px; height:41px; cursor:pointer" /></form></td>
 	</tr>
 	</table>';
 }
 
 //上傳海報
 else if($_SESSION['record'] == 'upload'){
-	$path = "poster/";
-
+    if(!is_dir("../member/images/".$_SESSION["stu_id"]."/activities/"))
+        mkdir("../member/images/".$_SESSION["stu_id"]."/activities/", 0777);
+    $path = "../member/images/".$_SESSION["stu_id"]."/activities/";
 	$valid_formats = array("jpg", "JPG");
 	if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 		{
@@ -203,7 +216,7 @@ else if($_SESSION['record'] == 'share'){
 	echo '
 <!--填寫資料-->
 <form method="post" action="share.php?action=submit" target="_self" id="form">
-<table width="919" height="546" border="0" cellspacing="0" align="left" background="jpg/box_share.png" style="background-repeat:no-repeat">
+<table width="919" height="546" border="0" cellspacing="0" align="left" background="images/box_share.png" style="background-repeat:no-repeat">
 <tr valign="top">
 	<td>
     <!--第一部份-->
@@ -213,7 +226,7 @@ else if($_SESSION['record'] == 'share'){
     </tr>
     <!--活動分類-->
     <tr>
-    	<td colspan="2" class="type" width="100"><img src="jpg/cub.png" />活動分類</td>
+    	<td colspan="2" class="type" width="100"><img src="images/cub.png" />活動分類</td>
 		<td width="407" align="left">
         <select name="type" id="type">
 			<option selected="selected" value="null">====請選擇====</option>
@@ -226,45 +239,45 @@ else if($_SESSION['record'] == 'share'){
     </tr>
     <!--大標題-->
     <tr>
-    	<td colspan="2" class="type" width="100"><img src="jpg/cub.png" />大標題</td>
+    	<td colspan="2" class="type" width="100"><img src="images/cub.png" />大標題</td>
         <td><input type="text" id="title" name="title" placeholder="2012中山校園演唱會" /></td>
     </tr>
     <!--活動簡介-->
     <tr>
-    	<td colspan="3" class="type" width="100"><img src="jpg/cub.png" />活動簡介<br /><br />
+    	<td colspan="3" class="type" width="100"><img src="images/cub.png" />活動簡介<br /><br />
         &nbsp;&nbsp;&nbsp;<input type="text" maxlength="80" size="75" name="description" id="description" placeholder="演出藝人：陳綺貞|盧廣仲|魏如萱|蛋堡|李佳薇|張芸京|玩聲樂團 (host:NONO)" /></td>
     </tr>
     <!--活動名稱-->
     <tr>
-    	<td colspan="2" class="type" width="100"><img src="jpg/cub.png" />活動名稱</td>
+    	<td colspan="2" class="type" width="100"><img src="images/cub.png" />活動名稱</td>
         <td><input type="text" size="53" name="name" id="name" placeholder="活末日之花　奇蹟綻放" /></td>
     </tr>
     <!--開始日期-->
     <tr>
-    	<td colspan="2" class="type" width="100"><img src="jpg/cub.png" />活動開始日期</td>
+    	<td colspan="2" class="type" width="100"><img src="images/cub.png" />活動開始日期</td>
         <td width="407"><input type="text" name="starttime" placeholder="2012/05/25" class="datepicker" />&nbsp;&nbsp;
 		<input type="text" name="extratime" id="extratime" placeholder=" 5:45 開放入場" /></td>
     </tr>
     <!--截止日期-->
     <tr>
-    	<td colspan="2" class="type" width="100" height="50px"><img src="jpg/cub.png" />活動結束日期</td>
+    	<td colspan="2" class="type" width="100" height="50px"><img src="images/cub.png" />活動結束日期</td>
         <td width="407"><input type="text" name="endtime" placeholder="2012/05/30" class="datepicker" />&nbsp;&nbsp;
 		<input type="text" name="extratime2" id="extratime2" placeholder=" 5:45 正式結束" /><br />
 		<span style="font-size:12px; color:#777777">如果活動只有一天, 請將結束日期設為開始日起</span></td>
     </tr>
     <!--地點-->
     <tr>
-    	<td colspan="2" class="type" width="100"><img src="jpg/cub.png" />地點</td>
+    	<td colspan="2" class="type" width="100"><img src="images/cub.png" />地點</td>
         <td><input type="text" name="venue" id="venue" placeholder="西子灣沙灘海水浴場" /></td>
     </tr>
     <!--費用-->
     <tr>
-    	<td colspan="2" class="type" width="100"><img src="jpg/cub.png" />費用</td>
+    	<td colspan="2" class="type" width="100"><img src="images/cub.png" />費用</td>
         <td><input type="text" size="53" name="fee" id="fee" placeholder="貴賓票－免費 校內票－$250 校外票－$400" /></td>
     </tr>
     <!--主辦單位-->
     <tr>
-    	<td colspan="2" class="type" width="100"><img src="jpg/cub.png" />主辦單位</td>
+    	<td colspan="2" class="type" width="100"><img src="images/cub.png" />主辦單位</td>
         <td><input type="text" name="host" id="host" placeholder="中山大學學生會" /></td>
     </tr>
 	</table>
@@ -277,17 +290,17 @@ else if($_SESSION['record'] == 'share'){
     	<td colspan="2" height="80"></td>
     <!--網址1-->
     <tr>
-    	<td colspan="2" class="type" width="100"><img src="jpg/cub.png" />活動主頁<br /><br />
+    	<td colspan="2" class="type" width="100"><img src="images/cub.png" />活動主頁<br /><br />
      	&nbsp;&nbsp;&nbsp;<input type="text" size="50" name="url1" id="url1" placeholder="Google協作平台、無名小站等,沒有可空白" /><br />
 &nbsp;&nbsp;&nbsp;<input type="button" onclick="window.open(\'https://sites.google.com/\')" value="申請Google協作平台" /></td>
     </tr>
     <!--網址2-->
     <tr>
-    	<td colspan="2" class="type" width="100"><img src="jpg/cub.png" />Facebook網址<br /><br />
+    	<td colspan="2" class="type" width="100"><img src="images/cub.png" />Facebook網址<br /><br />
         &nbsp;&nbsp;&nbsp;<input type="text" size="50" name="url2" id="url2" placeholder="活動資訊的Facebook網址" /></td>
     </tr>
 	<tr>
-		<td colspan="2" class="type" width="100"><img src="jpg/cub.png" />附註<br /><br />
+		<td colspan="2" class="type" width="100"><img src="images/cub.png" />附註<br /><br />
 		&nbsp;&nbsp;&nbsp;<textarea name="note" cols="30" id="note"" placeholder="注意事項" rows="4"></textarea></td>
 	</tr>';
 	/*<tr>
@@ -300,7 +313,7 @@ else if($_SESSION['record'] == 'share'){
 	
     <!--提交所有填寫資料-->
     <tr>
-    	<td colspan="2" align="center"><br /><input type="submit" value="" style="background-image:url(jpg/bt.png); background-repeat:no-repeat; width:127px; height:41px; cursor:pointer" /></td>
+    	<td colspan="2" align="center"><br /><input type="submit" value="" style="background-image:url(images/bt.png); background-repeat:no-repeat; width:127px; height:41px; cursor:pointer" /></td>
     </tr>        
 </table>
 </td>

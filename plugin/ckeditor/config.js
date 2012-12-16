@@ -1,0 +1,47 @@
+/**
+ * @license Copyright (c) 2003-2012, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.html or http://ckeditor.com/license
+ */
+
+CKEDITOR.editorConfig = function( config ) {
+	// Define changes to default configuration here.
+	// For the complete reference:
+	// http://docs.ckeditor.com/#!/api/CKEDITOR.config
+	
+	//高度
+	config.height = '454px';
+	//預設中文
+	config.language = 'zh';
+	//預設中文
+	config.defaultLanguage = 'zh';
+	//按enter是<br/>
+	config.enterMode = CKEDITOR.ENTER_BR;
+	// The toolbar groups arrangement, optimized for a single toolbar row.
+	config.toolbarGroups = [
+		{ name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] },
+		// On the basic preset, clipboard and undo is handled by keyboard.
+		// Uncomment the following line to enable them on the toolbar as well.
+		// { name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
+		{ name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
+		{ name: 'forms' },
+		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+		{ name: 'paragraph',   groups: [ 'list', 'blocks', 'align' ] },
+		{ name: 'links' },
+		{ name: 'insert' },
+		{ name: 'styles' },
+		{ name: 'colors' },
+		{ name: 'tools' },
+		{ name: 'others' },
+	];
+
+	// The default plugins included in the basic setup define some buttons that
+	// we don't want too have in a basic editor. We remove them here.
+	config.removeButtons = 'Anchor,Underline,Strike,Subscript,Superscript';
+
+	// Considering that the basic setup doesn't provide pasting cleanup features,
+	// it's recommended to force everything to be plain text.
+	config.forcePasteAsPlainText = true;
+
+	// Let's have it basic on dialogs as well.
+	config.removeDialogTabs = 'link:advanced';
+};

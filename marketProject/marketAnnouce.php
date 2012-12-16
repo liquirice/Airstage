@@ -8,24 +8,24 @@
 	<div id="myCarousel" class="carousel slide">
         <div class="carousel-inner">
             <div class="item active">
-                <img src="img/AnnouceBackground.jpg" alt="">
+                <img src="img/Banner1.jpg" alt="">
                 <div class="carousel-caption">
-                    <h4>1 # First Thumbnail label</h4>
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                    <h4>1 # The Very Begining of the AIRSTAGE STUDENT MARKET</h4>
+                    <!--p>Enjoy Your Air Life.</p-->
                 </div>
             </div>
             <div class="item">
-                <img src="img/temp1.jpg" alt="">
+                <img src="img/Banner1.jpg" alt="">
                 <div class="carousel-caption">
-                    <h4>2 # Second Thumbnail label</h4>
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                    <h4>2 # The Very Begining of the AIRSTAGE STUDENT MARKET</h4>
+                    <!--p>Enjoy Your Air Life.</p-->
                 </div>
             </div>
             <div class="item">
-                <img src="img/temp3.jpg" alt="">
+                <img src="img/Banner1.jpg" alt="">
                 <div class="carousel-caption">
-                    <h4>3 # Third Thumbnail label</h4>
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                    <h4>3 # The Very Begining of the AIRSTAGE STUDENT MARKET</h4>
+                    <!--p>Enjoy Your Air Life.</p-->
                 </div>
             </div>      
         </div>

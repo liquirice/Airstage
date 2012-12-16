@@ -1,5 +1,4 @@
 <?php
-	session_start();
 	require_once( "../../global/connectVar.php" );
 	require_once( "../../global/setSession.php" );
 	$msg ="";
@@ -19,7 +18,7 @@
 		
 		if( $AUTH > 0 )
 		{	//其實可省略
-			echo '<script type="text/javascript">alert("動作失敗！您已經認證過囉！"); location.href="../index.php";</script>';
+			echo '<script type="text/javascript">alert("動作失敗！您已經認證過囉！"); location.href="../../index.php";</script>';
 			exit();
 		}
 		else
@@ -74,13 +73,14 @@
 			{
 				$AUTH--;
 				$update_AUTH = mysqli_query( $conn, "UPDATE `Member` SET `AUTH` = '$AUTH' WHERE `stu_id` = '$stu_id'" );
-				
+					
 				$token = $stu_id.$AUTH;
 				$token = sha1($token);
+				$stu_id = strtolower($stu_id);
 				
 				/*發信開始*/
-				$recipients = $stu_id . "@student.nsysu.edu.tw";
-				//$recipients = "tp6u83@gmail.com";abu測試用信箱
+				$recipients = $stu_id."@student.nsysu.edu.tw";
+				//$recipients = "";//abu測試用信箱
 				$headers = "From: Studio Airstage";
 				$subject = "Airstage Studio - 註冊認證信";
 				$message = "** 本電子郵件為自動生成郵件，請勿直接回復。 ** \r\n";
@@ -109,6 +109,7 @@
 					$msg .= '認證成功即可成為Airstage的認證會員，就能夠享受完整會員功能及服務囉！</p>';
 					$msg .= '<br>';
 					$msg .= 'Airstage感謝您註冊。<br>';
+					$msg .= $recipients;
 
 				}
 				else{

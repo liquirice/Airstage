@@ -187,28 +187,28 @@ function ChangeCat5(){}
 					<select class="input-small" id="cat2" name="cat2" onChange="ChangeCat3();">
 						<option value="">選擇分類</option>
 					</select> /
-					<select class="input-small" id="cat3" name="cat3" onChange="ChangeCat4();">
+					<select class="span2" id="cat3" name="cat3" onChange="ChangeCat4();">
 						<option value="">選擇分類</option>
 					</select>
 				</div>
 			</div>
 			<hr/>
 			<div class="row">
-				<div class="span1" style="padding-top:10px;"><label class="">物品圖片</label></div>
+				<label class="span1">物品圖片</label>
 				<div class="sapn11 offset1">
 					<input type="file" name="product_pic" id="product_pic" class="btn btn-small input-middle" value="上傳圖片" />
 				</div>
 			</div>
 			<hr/>
 			<div class="row">
-				<div class="span1" style="padding-top:5px;"><label class="">商品標題</label></div>
+				<label class="span1">商品標題</label>
 				<div class="sapn11 offset1">
 					<input class="span5" type="text" name = "title" id="title" placeholder="">
 				</div>
 			</div>
 			<hr/>
 			<div class="row">
-				<div class="span1" style="padding-top:5px;"><label class="">價格數量</label></div>
+				<label class="span1">價格數量</label>
 				<div class="sapn11 offset1">
 					每個 <input class="span1" type="text" name="least_price" id="least_price" placeholder=""> 元　/　
 					共有 <input class="span1" type="text" name="number" id="number" placeholder=""> 個
@@ -216,7 +216,7 @@ function ChangeCat5(){}
 			</div>
 			<hr/>
 			<div class="row">
-				<div class="span1" style="padding-top:5px;"><label class="">刊登時間</label></div>
+				<label class="span1">刊登時間</label>
 				<div class="sapn11 offset1">
 					至 <input class="input-small" type="text" name="end_date" id="end_date" placeholder="2012-11-08"> 
 					的 <input class="span1" type="text" name="end_time" id="end_time" placeholder="14:05"> 截止

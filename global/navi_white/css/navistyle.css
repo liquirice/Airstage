@@ -1,0 +1,19 @@
+#notify{
+	display:none;
+}
+#glideDiv0 {    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height: 75px;
+    border: 0 solid #FFFFFF;
+    z-index:1001;
+    background-image:url(http://www.airstage.com.tw/global/navi_white/images/naviback.png);
+}
+#span {
+	position: relative;
+	top: -8px
+}
+#blank{
+	height:30px
+}

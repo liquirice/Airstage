@@ -47,6 +47,8 @@
 <title>│Airstage 西灣人│管理者介面 - 使用者查詢</title>
 <link href="assets/css/bootstrap.css" rel="stylesheet">
 <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+<script language="javascript" type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script language="javascript" type="text/javascript">var app = "accounts";</script>
 <base target="_parent">
 <style type="text/css">
 	body,td,th {
@@ -54,7 +56,7 @@
 		font-size: 14px;
 	}
 	body {
-		background-color: #dad9d9;
+		//background-color: #dad9d9;
 	}
 	.d {
 		font-size: 13px;
@@ -65,12 +67,12 @@
 <body>
 <div align="center">
 	<?php
-		require_once( "memberHeader.php" );
+		require_once( "../global/navi_white/navi.php" );
 	?>
 	<div align="center">
 		<table border="0" width="980" height="693" cellspacing="0" cellpadding="0" >
 	    <tr>
-	      <td background="../jpg/bot.png" valign="top"><div align="center">
+	      <td background="../global/images/bot.png" valign="top"><div align="center">
 	        <table border="0" width="98%" cellspacing="0" cellpadding="0" height="761">
 	          <tr>
 	            <td align="left" valign="top" height="192" colspan="2" background="jpg/top.jpg" width="960">
@@ -86,7 +88,7 @@
 						</div>
 						</td>
 						<td align="center" valign="top" width="70%">
-							<h3>♠ Airstage 管理者介面 - 使用者查詢</h3><br />
+							<h3>♠ Airstage Center - God Member Query</h3><br />
 							<table class="table table-hover">
 							<tbody>
 								<tr>
@@ -303,13 +305,18 @@
 				<p><span style="vertical-align: medium">&nbsp;</span></div>
 			</td>
 		</tr>
+		<tr>
+	      <td height="106" background="../global/images/last.png" valign="top">
+	      	<?php require_once("../global/footer.php"); ?>
+        </tr>
 	</table>
 </div>
 
-<?php mysqli_close( $conn ); ?>
+<?php 
+	mysqli_close( $conn ); 
+?>
 
 <script src = "assets/js/bootstrap-modal.js"></script>
-<script src = "assets/js/jquery.js"></script>
 <script src = "assets/js/application.js"></script>
 <script src = "assets/js/bootstrap-transition.js"></script>
 <script src = "assets/js/bootstrap-alert.js"></script>

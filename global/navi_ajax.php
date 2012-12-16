@@ -141,6 +141,14 @@ $(function() {
     });
 });
 </script>
+<style type="text/css">
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+</style>
 <div>
         <div id="wrap_outer"></div>
 
@@ -191,7 +199,7 @@ $(function() {
                     </td>
                 </tr>
             </table>
-        </div>
+  </div>
 
-        <div style="height:30px"></div>
+        <div style="height:0px"></div>
     </div>

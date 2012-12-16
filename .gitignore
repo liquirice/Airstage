@@ -1,3 +1,4 @@
-connectVar.php
+global/connectVar.php
 member/gmail_setting.php
 member/images/*
+member2/images/*

@@ -85,8 +85,8 @@ if( 1 /*$_SESSION['pass_phrase'] == $_POST['captcha'] && $_POST['captcha'] !=""*
 	//註冊失敗
 	else {
 		//刪除資料庫中所有相關資料
-		$deleteM = "DELETE FROM `Member` WHERE `username` = '$username' AND `stu_id` = '$stu_id' AND `psw` = '$psw' AND `name` = '$name' AND `department` = '$department' AND `grade` = '$grade' AND `gender` = '$gender' AND `email` = 'email'";
-		$deleteMI = "DELETE FROM `member_Info` WHERE `stu_id` = '$stu_id' AND `facebook` = '$fb_id'";
+		$deleteM = "DELETE FROM `Member` WHERE `stu_id` = '$stu_id'";
+		$deleteMI = "DELETE FROM `member_Info` WHERE `stu_id` = '$stu_id'";
 		$deleteDC = "DELETE FROM `member_Info` WHERE `stu_id` = '$stu_id'";
 		mysqli_query($conn,$deleteM);
 		mysqli_query($conn,$deleteMI);

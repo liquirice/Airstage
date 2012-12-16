@@ -68,6 +68,13 @@
     var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
     if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
     }
+	/*enter登入 開始*/
+	$('#pw').on('keydown',function(e){
+	if(e.keyCode==13){
+	$('form#login').submit();
+	}
+	});
+	/*enter登入 結束*/
     </script>
     <style type="text/css">
 		body {
@@ -106,10 +113,9 @@
                                             <tr>
                                                 <td colspan="3">&nbsp;</td>
                                             </tr>
-
                                             <tr>
                                                 <td>&nbsp;</td>
-<?php 	if( isset($_SESSION['stu_id']) || isset($_SESSION['name']) || isset($_SESSION['auth']) ) {}else{?>
+
                                                 <td width="399" height="395" background="jpg/box_log.png" valign="top">
                                                     <div align="center">
                                                         <table border="0" width="85%" cellspacing="0" cellpadding="0" height="389">
@@ -125,18 +131,18 @@
                                                                         <table border="0" width="86%" cellspacing="0" cellpadding="0" height="82">
                                                                             <tr>
                                                                                 <td width="100%" height="82" style="text-align:center;">
-                                                                                <form name="login" method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>">
+                                                                                <form name="login" id="login" method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>">
 
 						<span class="v">學號&nbsp;
 						<input type="text" name="id" placeholder="請輸入帳號或學號" class=""/> <br /><br />
 						密碼&nbsp;
-						<input type="password" name="pw" class=""/> 
+						<input type="password" name="pw" id="pw" class="" o/> 
 						<br><br>
 
 <a onMouseOver="MM_swapImage('Image8','','jpg/bb_log2.png',1)" onMouseOut="MM_swapImgRestore()" href="javascript:document.login.submit();" style="text-decoration: none; font-weight: 100;"><img style="padding-right:10px;" src="jpg/bb_log.png"/></a><a href="./registerLaw.php"><img src="jpg/bb_reg.png" name="Image9" width="74" height="27" border="0"></a></span><br />
 						<!--a href='forgetPassword.php' class = "btn btn-danger">忘記密碼?</a-->
                                                                                 </form>
-<?php } ?>
+
                                                                                 </td>
                                                                             </tr>
                                                                         </table>

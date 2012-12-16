@@ -52,6 +52,11 @@
 	<link href="css/docs.css" rel="stylesheet">
 	<meta http-equiv = "Content-Type" content = "text/html; charset = utf8" />
 	<meta http-equiv = "Content-Language" content = "zh-tw" />
+	<style>
+		h3, h2, h1, table, tr, td, li, ul, th {
+			font-family: "微軟正黑體", "Arial";
+		}
+	</style>
 </head>
 
 <body>
@@ -67,14 +72,14 @@
 	    require_once( "memberStateLine.php" );
 	?>
 	
-	<ul class="breadcrumb">
+	<ul class="breadcrumb" style="font-family: '微軟正黑體', 'Arial';">
 		<li><a href="marketIndex.php">市場首頁</a> <span class="divider">/</span></li>
 		<li>交易管理介面 <span class="divider">/</span></li>
 		<li class="active">追蹤清單</li>
 	</ul>
 	
 	<!-- Warning Area -->
-	<div class="alert alert-info fade in">
+	<div class="alert alert-info fade in" style="font-family: '微軟正黑體', 'Arial';">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
         <strong>Airstage 提醒：</strong>可以由標記功能去標出自己特別中意的物品唷！ 目前賣方資料排序功能暫不開放。
     </div>
@@ -83,8 +88,9 @@
 	<!-- Second Hand Area -->
 	<h3><a href = "#">二手市場</a></h3>
 	<blockquote>
-		<small>Second-Hand Market</small>
+		<small style="font-family: '微軟正黑體', 'Arial';">Second-Hand Market</small>
 	</blockquote>
+	
 	<table class="table table-striped">
       <thead>
         <tr>
@@ -146,9 +152,9 @@
           <td>
           	<a href = "productDetail.php?trade=<?php echo $row['trade_id']; ?>"><?php echo $row['title']; ?></a>
           </td>
-          <td>       
+          <td>   
 	      	<a href="#" rel="popover" data-placement="bottom" title="<?php echo $row['username']; ?>" data-content="<?php getSellerInfo($row['username'], $conn); ?>"><?php echo $row['username']; ?></a>          	
-          </td>
+		  </td>
           <td>
 	        <?php
 				if( $row['exist'] == 1 ) echo '<font color="red">競標中</font>';
