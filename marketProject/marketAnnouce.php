@@ -10,21 +10,21 @@
             <div class="item active">
                 <img src="img/Banner1.jpg" alt="">
                 <div class="carousel-caption">
-                    <h4>1 # The Very Begining of the AIRSTAGE STUDENT MARKET</h4>
+                    <h4>1 # The Very Beginning of the AIRSTAGE STUDENT MARKET</h4>
                     <!--p>Enjoy Your Air Life.</p-->
                 </div>
             </div>
             <div class="item">
                 <img src="img/Banner1.jpg" alt="">
                 <div class="carousel-caption">
-                    <h4>2 # The Very Begining of the AIRSTAGE STUDENT MARKET</h4>
+                    <h4>2 # The Very Beginning of the AIRSTAGE STUDENT MARKET</h4>
                     <!--p>Enjoy Your Air Life.</p-->
                 </div>
             </div>
             <div class="item">
                 <img src="img/Banner1.jpg" alt="">
                 <div class="carousel-caption">
-                    <h4>3 # The Very Begining of the AIRSTAGE STUDENT MARKET</h4>
+                    <h4>3 # The Very Beginning of the AIRSTAGE STUDENT MARKET</h4>
                     <!--p>Enjoy Your Air Life.</p-->
                 </div>
             </div>      
