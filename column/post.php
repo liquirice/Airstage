@@ -28,34 +28,53 @@ if(mysqli_query($conn, $post)){
 				$ext=explode(".", $front_name);
 				if( move_uploaded_file( $_FILES["front_pic"]["tmp_name"], "../member/images/".$stu_id."/column/".$_SESSION["rnoCol"].".".$ext[1]) ) {
 					$query = "UPDATE Col SET front = '".$_SESSION["rnoCol"].".".$ext[1]."' WHERE rno = ".$_SESSION["rnoCol"]."";
-					if(mysqli_query( $conn, $query )){
-						if($shelf == "article")
-                            echo "<script language='javascript' type='text/javascript'>alert('PO文成功!'); window.location.href='read.php?rno=".$_SESSION["rnoCol"]."'</script>";
-                        else
-                            echo "<script language='javascript' type='text/javascript'>alert('儲存成功!'); window.location.href='index.php'</script>";
+					if(mysqli_query( $conn, $query )){					
+                        echo "<script language='javascript' type='text/javascript'>alert('PO文成功!'); window.location.href='read.php?rno=".$_SESSION["rnoCol"]."'</script>";
+                        exit();              
 					}
 					else {
 						echo "<script language='javascript' type='text/javascript'>alert('更新失敗!請重新再來'); history.back();</script>";
+                        exit();
 					}
 				}
-				else
+				else{
 					echo "<script language='javascript' type='text/javascript'>alert('上傳圖片有誤!請重新再來'); history.back();</script>";
+                    exit();
+                }
 			}
-			else
+			else{
 				echo "<script language='javascript' type='text/javascript'>alert('圖片有誤!錯誤信息:".$_FILES["front_pic"]["error"]."'); history.back();</script>";
+                exit();
+            }
 		}
-		else
+		else{
 			echo"<script language='javascript' type='text/javascript'>alert('格式或檔案大小有誤!'); history.back();</script>";
+            exit();
+        }
 	}
 	else{
-	    if($shelf == "article")
-		  echo "<script language='javascript' type='text/javascript'>alert('PO文成功!'); window.location.href='read.php?rno=".$_SESSION["rnoCol"]."'</script>";
-        else
-            echo "<script language='javascript' type='text/javascript'>alert('儲存成功!'); window.location.href='index.php'</script>";
-		}
-	}
+	    if($shelf == "article"){
+		    echo "<script language='javascript' type='text/javascript'>alert('PO文成功!'); window.location.href='read.php?rno=".$_SESSION["rnoCol"]."'</script>";
+            exit();
+        }
+        else{
+          $_SESSION["readrno"] = $_SESSION["rnoCol"];
+          $arr=array("time"=>date("Y-m-d h:i:s a"), "rno"=>$_SESSION['readrno']);
+          echo json_encode($arr);
+          exit();
+        }
+    }
+}
 
 else{
-	echo "<script language='javascript' type='text/javascript'>alert('更新失敗!請重新再來'); history.back();</script>";
+	if($shelf == "article"){
+       echo "<script language='javascript' type='text/javascript'>alert('更新失敗!請重新再來'); history.back();</script>";
+       exit();
+    }
+    else{
+        $arr=array("time"=>"儲存失敗,請通知系統管理員修復");
+        echo json_encode($arr);
+        exit();
+    }
 }
 ?>

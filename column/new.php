@@ -31,14 +31,22 @@ if($totalnotify["AUTH"] <= -1){
 
     <title><?php if($count!=0) echo "(".$count.")" ?> 寫新文章 ─ Airstage 西灣人</title>
     <script type="text/javascript" language="javascript">
-    
     var coltype = "none";
     var app = "column";
+    //var rno = '';
+    
+    window.setTimeout("autosave();",30000);
+    function autosave(){
+        document.getElementById("save").click();
+        setTimeout("autosave();",30000);
+    }
+    
     window.onbeforeunload = function(){
 		    if(!confirm('你確定要離開此頁面?'))
 		    	return "按一下[取消]停留在此頁";
 	}
 $(document).ready(function(){
+    
 	$('#form').validate({
         success: 'valid',
         rules:{
@@ -53,40 +61,20 @@ $(document).ready(function(){
         return (this.optional(element) || type != 'null')
     }, "請選擇文章分類");
     
-    $("#column").hover(function(){
-	    $(this).attr("src","images/b202.jpg");
+    $("#preview").hover(function(){
+        $(this).css("background-image","url(images/view02.png)");
     }, function(){
-	    $(this).attr("src","images/b2.jpg");
+        $(this).css("background-image","url(images/view01.png)");
     });
-    $("#food").hover(function(){
-	    $(this).attr("src","images/b302.jpg");
+    $("#save").hover(function(){
+        $(this).css("background-image","url(images/save02.png)");
     }, function(){
-	    $(this).attr("src","images/b3.jpg");
+        $(this).css("background-image","url(images/save01.png)");
     });
-    $("#school").hover(function(){
-	    $(this).attr("src","images/b402.jpg");
+    $("#post").hover(function(){
+        $(this).css("background-image","url(images/pub02.png)");
     }, function(){
-	    $(this).attr("src","images/b4.jpg");
-    });
-    $("#concert").hover(function(){
-	    $(this).attr("src","images/b502.jpg");
-    }, function(){
-	    $(this).attr("src","images/b5.jpg");
-    });
-    $("#clubs").hover(function(){
-	    $(this).attr("src","images/b602.jpg");
-    }, function(){
-	    $(this).attr("src","images/b6.jpg");
-    });
-    $("#write").hover(function(){
-	    $(this).attr("src","images/bb102.png");
-    }, function(){
-	    $(this).attr("src","images/bb1.png");
-    });
-    $("#mine").hover(function(){
-	    $(this).attr("src","images/bb202.png");
-    }, function(){
-	    $(this).attr("src","images/bb2.png");
+        $(this).css("background-image","url(images/pub01.png)");
     });
     $("#imgur").hover(function() {
         $(this).attr("src", "images/imgur02.png");
@@ -158,51 +146,47 @@ $(document).ready(function(){
         }
     });
     $("#save").click(function(){
-        if($("#front_pic").val()!=''){
-            //判定上傳圖片大小及種類
-            var fileSize = 0; //檔案大小
-            var SizeLimit = 1024;  //上傳上限，單位:byte
-            var f = document.getElementById("front_pic");
-            var re = /\.(jpg|pjpeg|JPG|jpeg|png)$/i;  //允許的圖片副檔名 
-            if (!re.test(f.value)) { 
-                alert("圖片格式不允許!"); 
-            }
-            else {
-                //FOR IE
-                if ($.browser.msie) {
-                    var img = new Image();
-                    img.onload = checkSize;
-                    img.src = f.val();
-                    fileSize = this.fileSize;
-                }
-                //FOR Firefox,Chrome
-                else {
-                    fileSize = f.files.item(0).size;
-                }
-                //檢查檔案大小
-
-                if ((fileSize / 1048576) > 1) {
-                    alert("您所選擇的檔案大小為 "+(fileSize / 1048576).toPrecision(4) + "MB, 已超過上傳上限"+1+"MB, 不允許上傳！");
-                }
-                else {
-                    $("#shelf").val("draft");
-                    $('form').submit();
-                }
-            //結束判定
-            }
+        if($(this).hasClass('saved')){
+            var action="updatecol";
         }
-        else{
-            $("#shelf").val("draft");
-            $('form').submit();
-        }
+        else
+            var action="post";
+        $.ajax({
+            url:action+".php",
+            type:"POST",
+            data:{
+                shelf:"draft",
+                type:$("#type").val(),
+                smalltype:$(".smalltype").val(),
+                title:$("#title").val(),
+                editor1:CKEDITOR.instances.editor1.getData(),
+                rno:$("#rno").val(),
+            },
+            success:function(data){
+                $("#message").remove();
+                if(!$("#save").hasClass('saved')){
+                    $("#save").addClass('saved');
+                }
+                $("#saveblock").append("<span id='message' style='font-color:#666666; line-height:2; font:微軟正黑體'>已儲存 "+data["time"]+"</span>");
+                $("#message").delay(2500).fadeOut('fast',function(){
+                    $(this).remove();
+                });
+                $("form").append("<input type='hidden' value='"+data["rno"]+"' id='rno' />");
+            },
+            dataType:"json"
+        })
     });
 
     })
     </script>
+    
 </head>
 
 <body topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0" marginwidth="0" marginheight="0" class="yui-skin-sam" style="background-attachment: fixed;">
 <?php include("../global/navi_white/navi.php"); ?>
+    <style type="text/css">
+        .message { background: #CCCCCC; background-image: none;width:200px; height:50px}
+    </style>
 	<div align="center">
     	<table border="0" width="980" height="65" cellspacing="0" cellpadding="0">
             <tr>
@@ -265,8 +249,13 @@ $(document).ready(function(){
 
                                                     <table border="1" width="100%" cellspacing="0" cellpadding="5" height="560" bordercolor="#C0C0C0">
                                                         <tr>
-                                                            <td style="border-style: solid; border-width: 0px" bgcolor="#E7E7E7" valign="top" colspan="3">
-                                                                <p align="right"><input type="button" id="preview" value="" onclick="window.document.body.onbeforeunload=null;return true;" style="width:72px; height:29px; background-image: url(images/preview.png); background-repeat: no-repeat; cursor: pointer; border: none; border-radius: 5px" />&nbsp;&nbsp;<input type="button" id="save" value="" style="width:72px; height:29px; background:url(images/bt02.png); background-repeat:no-repeat; border:0; cursor:pointer" onclick="window.document.body.onbeforeunload=null;return true;">&nbsp; <input type="button" id="post" value="" style="width:48px; height:29px; background:url(images/bt01.png); background-repeat:no-repeat; border:0; cursor:pointer" onclick="window.document.body.onbeforeunload=null;return true;"></p>
+                                                            <td style="border-style: solid; border-width: 0px" bgcolor="#E7E7E7" valign="middle" colspan="3" height="40px">
+                                                                <span id="saveblock" style="float:left; width:400px; height:40px"></span>
+                                                                <span style="float: right">
+                                                                    <input type="button" id="preview" value="" onclick="window.document.body.onbeforeunload=null;return true;" style="width:74px; height:29px; background-image: url(images/view01.png); background-repeat: no-repeat; cursor: pointer; border: none;" />&nbsp;
+                                                                    <input type="button" id="save" value="" style="width:74px; height:29px; background:url(images/save01.png); background-repeat:no-repeat; border:0; cursor:pointer" onclick="window.document.body.onbeforeunload=null;return true;">&nbsp;
+                                                                    <input type="button" id="post" value="" style="width:74px; height:29px; background:url(images/pub01.png); background-repeat:no-repeat; border:0; cursor:pointer" onclick="window.document.body.onbeforeunload=null;return true;">
+                                                                </span>
                                                             </td>
                                                         </tr>
 

@@ -13,7 +13,7 @@ $totalnotify = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM Member WHERE
 
 <html>
 <head>
-    <link href="http://airstage.com.tw/global/images/tm2.ico" rel="shortcut icon">
+    <link href="http://www.airstage.com.tw/global/images/tm2.ico" rel="shortcut icon">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="Content-Language" content="zh-tw">
     <script src="http://code.jquery.com/jquery-latest.min.js" language="javascript" type="text/javascript"></script>

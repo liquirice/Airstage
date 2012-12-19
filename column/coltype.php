@@ -1,5 +1,5 @@
 <script type="text/javascript" language="javascript">
-$(function() {
+$(document).ready(function() {
 if(coltype == "index"){
 	$("#index").attr("src", "images/b102.jpg");
 	$("#column").attr("src", "images/b2.jpg");

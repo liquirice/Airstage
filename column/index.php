@@ -362,15 +362,9 @@ while($topall = mysqli_fetch_array($top)){
     background-color: #F2F2F2;
     }
     </style>
-    <script language="JavaScript" fptype="dynamicanimation" type="text/javascript">
-<!--
-    function dynAnimation() {}
-    function clickSwapImg() {}
-    //-->
-    </script>
 </head>
 
-<body topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0" marginwidth="0" marginheight="0" onload="dynAnimation()" language="Javascript1.2" style="background-attachment: fixed">
+<body topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0" marginwidth="0" marginheight="0" style="background-attachment: fixed">
     <!--header-->
     <!--等專欄的CSS寫好再套
 ?php

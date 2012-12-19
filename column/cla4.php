@@ -14,7 +14,7 @@ $totalnotify = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM Member WHERE
 
 <html>
 <head>
-    <link href="http://airstage.com.tw/global/images/tm2.ico" rel="shortcut icon">
+    <link href="http://www.airstage.com.tw/global/images/tm2.ico" rel="shortcut icon">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="Content-Language" content="zh-tw">
     <link rel="stylesheet" type="text/css" href="../plugin/shadowbox/shadowbox.css">
@@ -125,7 +125,7 @@ $totalnotify = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM Member WHERE
                                                 <td colspan='2' width='394px'style='font-size:11px; line-height:2;' align='left'>".$short."...</td>
                                             </tr>
                                             <tr>
-                                                <td align='left'><div class='fb-like' data-href='http://airstage.com.tw/column/read.php?rno=".$colresult["rno"]."' data-send='false' data-width='50' data-layout='button_count' data-show-faces='true'></div></td>
+                                                <td align='left'><div class='fb-like' data-href='http://www.airstage.com.tw/column/read.php?rno=".$colresult["rno"]."' data-send='false' data-width='50' data-layout='button_count' data-show-faces='true'></div></td>
                                             </tr>
                                             </table>";
                                         }

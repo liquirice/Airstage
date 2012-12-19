@@ -84,41 +84,6 @@ $(document).ready(function(){
     }, function(){
 	    $(this).attr("src","images/share1.png");
     });
-    $("#index").hover(function(){
-	    $(this).attr("src","images/b102.jpg");
-    }, function(){
-	    $(this).attr("src","images/b1.jpg");
-    });
-    $("#food").hover(function(){
-	    $(this).attr("src","images/b302.jpg");
-    }, function(){
-	    $(this).attr("src","images/b3.jpg");
-    });
-    $("#school").hover(function(){
-	    $(this).attr("src","images/b402.jpg");
-    }, function(){
-	    $(this).attr("src","images/b4.jpg");
-    });
-    $("#concert").hover(function(){
-	    $(this).attr("src","images/b502.jpg");
-    }, function(){
-	    $(this).attr("src","images/b5.jpg");
-    });
-    $("#clubs").hover(function(){
-	    $(this).attr("src","images/b602.jpg");
-    }, function(){
-	    $(this).attr("src","images/b6.jpg");
-    });
-    $("#write").hover(function(){
-	    $(this).attr("src","images/bb102.png");
-    }, function(){
-	    $(this).attr("src","images/bb1.png");
-    });
-    $("#mine").hover(function(){
-	    $(this).attr("src","images/bb202.png");
-    }, function(){
-	    $(this).attr("src","images/bb2.png");
-    });
     $(".orderblock").each(function(){
         $(this).hover(function(){
             $(this).css("background","#F2F2F2")
@@ -143,15 +108,9 @@ body,td,th {
 	background-color: #F2F2F2;
 }
     </style>
-    <script language="JavaScript" fptype="dynamicanimation" type="text/javascript">
-<!--
-    function dynAnimation() {}
-    function clickSwapImg() {}
-    //-->
-    </script>
 </head>
 
-<body topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0" marginwidth="0" marginheight="0" onload="dynAnimation()" language="Javascript1.2" style="background-attachment: fixed; font-family: '微軟正黑體';">
+<body topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0" marginwidth="0" marginheight="0" style="background-attachment: fixed; font-family: '微軟正黑體';">
     <div align="center">
     <?php include("../global/navi_white/navi.php") ?>
         <table border="0" width="980" height="693" cellspacing="0" cellpadding="0">
@@ -282,9 +241,9 @@ body,td,th {
                                             <td colspan="3" height="49" valign="top" align="right">
                                                 <div class="fb-like" style="float:left" data-href="http://www.airstage.com.tw/column/read.php?rno=<?php echo ''.$rno.''; ?>" data-send="false" data-width="410" data-show-faces="true"></div>
                                                 <div style="float:right">
-                                                    <span style="width:130px; float:left; font-size:14px;"><p>共有 <span style="font-size:22px">
+                                                    <p style="float:left; font-size:14px; line-height: 1.5">共有 <span style="font-size:22px">
                                                         <?php echo $getresult["view"]; ?>
-                                                    </span> 個人閱讀過</p></span>&nbsp;&nbsp;
+                                                    </span> 個人閱讀過</p>&nbsp;&nbsp;
                                                     <div style="float: right">
                                                         <?php if($_SESSION["stu_id"] != ''){include("../global/like/like.php");} ?>
                                                     </div>

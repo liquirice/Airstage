@@ -19,6 +19,7 @@ $getresult = mysqli_fetch_array($result);
 
 if($getresult['stu_id'] != $_SESSION['stu_id']){
 	echo '<script type="text/javascript" language="javascript">alert("無權訪問!"); location.href="index.php";</script>';
+    exit();
 }
 
 $member = 'SELECT * FROM `Member` WHERE stu_id = "'.$getresult['stu_id'].'" LIMIT 1';
@@ -44,66 +45,12 @@ $getmember = mysqli_fetch_array($membertemp);
 <title><?php if($count!=0) echo "(".$count.")" ?> 編輯文章 - Airstage</title>
 
 <script type="text/javascript" language="javascript">
-/*var fileSize = 0; //檔案大小
-    var SizeLimit = 1048576;  //上傳上限，單位:byte
-    var message='';
-
-    function checkFile(type) {
-        var message = '';
-        var f = document.getElementById("front_pic");
-        var re = /\.(jpg|png|pjpeg|JPG|jpeg)$/i;  //允許的圖片副檔名
-        if (!re.test(f.value)) {
-            message = message + "圖片格式錯誤!\n";
-            checkSize(type,message);
-        }
-        else{
-        //FOR IE
-        if ($.browser.msie) {
-                var img = new Image();
-                img.onload = checkSize(type);
-                img.src = f.value;
-            }
-            //FOR Firefox,Chrome
-            else {
-                fileSize = f.files.item(0).size;
-                checkSize(type);
-            }
-        }
-    }
-
-    //檢查檔案大小
-    function checkSize(type,message) {
-        //FOR IE FIX
-        if ($.browser.msie) {
-            fileSize = this.fileSize;
-        }
-
-        if (fileSize > SizeLimit) {
-            message=message+"您所選擇的檔案大小為 " + (fileSize / 1048576).toPrecision(4) + " MB\n已超過上傳上限 " + (SizeLimit / 1048576).toPrecision(2) + " MB\n不允許上傳！";
-            alert(message);
-            return false;
-        }
-        else if(message != ''){
-            alert(message);
-            return false;
-        }
-        else {
-            if(type == "post"){
-                if(CKEDITOR.instances.editor1.getData() == ""){
-                    alert("內容不能為空");
-                    return false;
-                }
-                else{
-                    document.getElementById("shelf").value="article";
-                    document.form.submit();
-                }
-            }
-            else if(type == "save"){
-                    document.getElementById("shelf").value="draft";
-                    document.form.submit();
-                }
-            }
-        }*/
+var rno = '';
+window.setTimeout("autosave();",30000);
+function autosave(){
+    document.getElementById("save").click();
+    setTimeout("autosave();",30000);
+}
 var coltype = "none";
 var app = "column";
 window.onbeforeunload = function(){
@@ -113,7 +60,7 @@ window.onbeforeunload = function(){
 $.validator.addMethod("valid", function(type, element) {
         return (this.optional(element) || type != 'null')
     }, "請選擇文章分類");
-$(function(){
+$(document).ready(function(){
 	$("#delete").click(function(){
 	if(confirm('你確定要刪除文章?')){
 		$.post("delete.php",{rno:"<?php echo $rno ?>"}, function(message){
@@ -135,22 +82,26 @@ $(function(){
 		},
 	});
 	$('a').css('cursor', 'pointer');
+	
+	$("#preview").hover(function(){
+        $(this).css("background-image","url(images/view02.png)");
+    }, function(){
+        $(this).css("background-image","url(images/view01.png)");
+    });
+    $("#save").hover(function(){
+        $(this).css("background-image","url(images/save02.png)");
+    }, function(){
+        $(this).css("background-image","url(images/save01.png)");
+    });
+    $("#post").hover(function(){
+        $(this).css("background-image","url(images/pub02.png)");
+    }, function(){
+        $(this).css("background-image","url(images/pub01.png)");
+    });
 	$("#imgur").hover(function() {
         $(this).attr("src", "images/imgur02.png");
     }, function() {
         $(this).attr("src", "images/imgur01.png");
-    });
-	$("#post").click(function(){
-        if(CKEDITOR.instances.editor1.getData() == "")
-            alert("內容不能為空");
-        else{
-            $("#shelf").val("article");
-            $('form').submit();
-        }
-    });
-    $("#save").click(function(){
-        $("#shelf").val("draft");
-        $('form').submit();
     });
     $("#type").change(function(){
         if($("#type option:selected").val() == "column"){
@@ -168,7 +119,79 @@ $(function(){
         else if($("#type option:selected").val() == "concerts"){
             $(".smalltype").replaceWith("<select name='smalltype' class='smalltype concertstype'><option value='短篇'>短篇</option><option value='中篇'>中篇</option><option value='長篇'>長篇</option><option value='繪圖'>繪圖</option><option value='攝影'>攝影</option></select>")
         }
+    });
+    
+    $("#preview").click(function(){
+       $("#form").attr({action: "preview.php",target:"_blank"});
+       $("form").submit();
+       $("#form").removeAttr("action").removeAttr("target");
+       $("#form").attr("action", "post.php");
     })
+    $("#post").click(function(){
+        if(CKEDITOR.instances.editor1.getData() == "")
+            alert("內容不能為空");
+        else if($("#front_pic").val()!=''){
+            //判定上傳圖片大小及種類
+            var fileSize = 0; //檔案大小
+            var f = document.getElementById("front_pic");
+            var re = /\.(jpg|pjpeg|JPG|jpeg|png)$/i;  //允許的圖片副檔名 
+            if (!re.test(f.value)) { 
+                alert("圖片格式不允許!"); 
+            }
+            else {
+                //FOR IE
+                if ($.browser.msie) {
+                    var img = new Image();
+                    img.onload = checkSize;
+                    img.src = f.val();
+                    fileSize = this.fileSize;
+                }
+                //FOR Firefox,Chrome
+                else {
+                    fileSize = f.files.item(0).size;
+                }
+                //檢查檔案大小
+
+                if ((fileSize / 1048576) > 1) {
+                    //alert(fileSize);
+                    alert("您所選擇的檔案大小為 "+(fileSize / 1048576).toPrecision(4) + "MB, 已超過上傳上限"+1 +"MB, 不允許上傳！");
+                }
+                else {
+                    $("#shelf").val("article");
+                    $('form').submit();
+                }
+            //結束判定
+            }
+        }
+        else{
+            $("#shelf").val("article");
+            $('form').submit();
+        }
+    });
+    $("#save").click(function(){
+        var rno = $("#rno").val();
+        $.ajax({
+            url:"updatecol.php",
+            type:"POST",
+            data:{
+                shelf:"draft",
+                type:$("#type").val(),
+                smalltype:$(".smalltype").val(),
+                title:$("#title").val(),
+                editor1:CKEDITOR.instances.editor1.getData(),
+                rno:<?php echo $_SESSION['readrno']; ?>,
+            },
+            success:function(data){
+                $("#saveblock").append("<span id='message' style='font-color:#666666; float:left; display:none; line-height:2'>已儲存 "+data["time"]+"</span>");
+                $("#message").fadeIn('fast',function(){
+                    $(this).delay(2500).fadeOut('fast', function(){
+                        $(this).remove();
+                    });
+                });
+            },
+            dataType:"json"
+        })
+    });
 	
 })
 </script>
@@ -336,11 +359,13 @@ $(function(){
 												<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
 												<table border="1" width="100%" cellspacing="0" cellpadding="5" height="560" bordercolor="#C0C0C0">
 													<tr>
-														<td style="border-style: solid; border-width: 0px" bgcolor="#E7E7E7" valign="top" colspan="3">
-														<p align="right">
+														<td style="border-style: solid; border-width: 0px" bgcolor="#E7E7E7" valign="top" colspan="3" id="saveblock">
+														<span id="saveblock" style="float:left; width:10px; height:40px"></span>
+                                                        <span style="float: right">
 														<input type="button" id="delete" value="" style="width:48px; height:29px; background:url(images/delete.png); background-repeat:no-repeat; border:0; cursor:pointer" onclick="window.document.body.onbeforeunload=null;return true;" />&nbsp;
-														<input type="button" id="save" value="" style="width:72px; height:29px; background:url(images/bt02.png); background-repeat:no-repeat; border:0; cursor:pointer" onclick="<?php /*checkFile('save');*/ ?> window.document.body.onbeforeunload=null;return true;" />&nbsp;
-														<input type="button" id="post" value="" style="width:48px; height:29px; background:url(images/bt01.png); background-repeat:no-repeat; border:0; cursor:pointer" onclick="<?php /*checkFile('post');*/ ?> window.document.body.onbeforeunload=null;return true;" /></p></td>
+														<input type="button" id="preview" value="" onclick="window.document.body.onbeforeunload=null;return true;" style="width:74px; height:29px; background-image: url(images/view01.png); background-repeat: no-repeat; cursor: pointer; border: none;" />&nbsp;
+														<input type="button" id="save" value="" style="width:74px; height:29px; background:url(images/save01.png); background-repeat:no-repeat; border:0; cursor:pointer" onclick="<?php /*checkFile('save');*/ ?> window.document.body.onbeforeunload=null;return true;" />&nbsp;
+														<input type="button" id="post" value="" style="width:74px; height:29px; background:url(images/pub01.png); background-repeat:no-repeat; border:0; cursor:pointer" onclick="<?php /*checkFile('post');*/ ?> window.document.body.onbeforeunload=null;return true;" /></span></td>
 													</tr>
 													<tr>
 														<td style="border-style: solid; border-width: 0px" colspan="3"><textarea class="ckeditor" id="editor1" name="editor1"><?php echo ''.$getresult['realcontent'].''; ?></textarea><input type="hidden" value="<?php echo $getresult["front"]; ?>" name="pic" id="pic" /><input type="hidden" value="" name="shelf" id="shelf" /></td>

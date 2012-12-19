@@ -27,7 +27,7 @@ $(document).ready(function() {
     	$("#walltop").attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b0102.png");
     	$("#coltop").attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b02.png");
     	$("#markettop").attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b03.png");
-    	$("#membertop").attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b05.png");
+    	$("#membertop").attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b0601.png");
     	
     	$("#walltop").hover(function(){
     		$(this).attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b0103.png");
@@ -45,16 +45,16 @@ $(document).ready(function() {
     		$(this).attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b03.png");
     	});
     	$("#membertop").hover(function(){
-    		$(this).attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b0503.png");
+    		$(this).attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b0603.png");
     	}, function() { 
-    		$(this).attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b05.png");
+    		$(this).attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b0601.png");
     	});
     }
-    else if(app == "accounts"){
+    else if(app == "apps"){
     	$("#walltop").attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b01.png");
     	$("#coltop").attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b02.png");
     	$("#markettop").attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b03.png");
-    	$("#membertop").attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b0502.png");
+    	$("#membertop").attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b0602.png");
     	
     	$("#walltop").hover(function(){
     		$(this).attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b0103.png");
@@ -72,16 +72,16 @@ $(document).ready(function() {
     		$(this).attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b03.png");
     	});
     	$("#membertop").hover(function(){
-    		$(this).attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b0503.png");
+    		$(this).attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b0603.png");
     	}, function() { 
-    		$(this).attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b0502.png");
+    		$(this).attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b0602.png");
     	});
     }
     else if(app == "column"){
     	$("#walltop").attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b01.png");
     	$("#coltop").attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b0202.png");
     	$("#markettop").attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b03.png");
-    	$("#membertop").attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b05.png");
+    	$("#membertop").attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b0601.png");
     	
     	$("#walltop").hover(function(){
     		$(this).attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b0103.png");
@@ -99,9 +99,9 @@ $(document).ready(function() {
     		$(this).attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b03.png");
     	});
     	$("#membertop").hover(function(){
-    		$(this).attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b0503.png");
+    		$(this).attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b0603.png");
     	}, function() { 
-    		$(this).attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b05.png");
+    		$(this).attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b0601.png");
     	});
     }
     
@@ -112,7 +112,7 @@ $(document).ready(function() {
         $("#walltop").attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b01.png");
         $("#coltop").attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b02.png");
         $("#markettop").attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b0302.png");
-        $("#membertop").attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b05.png");
+        $("#membertop").attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b0601.png");
         
         $("#walltop").hover(function(){
             $(this).attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b0103.png");
@@ -130,16 +130,16 @@ $(document).ready(function() {
             $(this).attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b0302.png");
         });
         $("#membertop").hover(function(){
-            $(this).attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b0503.png");
+            $(this).attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b0603.png");
         }, function() { 
-            $(this).attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b05.png");
+            $(this).attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b0601.png");
         });
     }
     else {
 	    $("#walltop").attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b01.png");
     	$("#coltop").attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b02.png");
     	$("#markettop").attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b03.png");
-    	$("#membertop").attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b05.png");
+    	$("#membertop").attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b0601.png");
     	
     	$("#walltop").hover(function(){
     		$(this).attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b0103.png");
@@ -157,9 +157,9 @@ $(document).ready(function() {
     		$(this).attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b03.png");
     	});
     	$("#membertop").hover(function(){
-    		$(this).attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b0503.png");
+    		$(this).attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b0603.png");
     	}, function() { 
-    		$(this).attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b05.png");
+    		$(this).attr("src", "http://<?php echo $_SERVER ['HTTP_HOST'] ?>/global/navi_white/images/b0601.png");
     	});
     }
 });
@@ -189,7 +189,7 @@ $(document).ready(function() {
                                                             <td><a href="http://<?php echo $_SERVER ['HTTP_HOST'] ?>/column/"><img alt="" width="86" height="35" border="0" id="coltop" /></a></td>
 
                                                             <td><a href="http://<?php echo $_SERVER ['HTTP_HOST'] ?>/marketProject/marketIndex.php"><img alt="" width="86" height="35" border="0" id="markettop" /></a></td>
-                                                            <td><a href="http://<?php echo $_SERVER ['HTTP_HOST'] ?>/accounts/revises.php"><img width="86" height="35" border="0" id="membertop"></a></td>
+                                                            <td><a href="http://<?php echo $_SERVER ['HTTP_HOST'] ?>/apps/index.php"><img width="86" height="35" border="0" id="membertop"></a></td>
                                                         </tr>
                                                     </table>
                                                 </td>
