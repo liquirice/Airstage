@@ -2,8 +2,8 @@
 	// Last Modified Day : 2012.09.10
 	//連接資料庫的參數
 	$host = "localhost";	
-	$user = "Airstage";		
-	$pass = "airstage0401pma";	
+	$user = "root";		
+	$pass = "root";	
 	$db = "Airstage";		
 
 	$conn = @mysqli_connect( $host, $user, $pass, $db );	

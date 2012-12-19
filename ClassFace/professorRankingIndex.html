@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Facing Courses</title>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/docs.css" rel="stylesheet" />
+    <style>
+		h3 {
+			color: #09F;	
+		}
+		option, ul, li, p, body {
+			font-family: "微軟正黑體";	
+		}
+	</style>
+</head>
+
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+  		<div class="navbar-inner">
+    		<div class="container">
+      			<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        		<span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+        		<span class="icon-bar"></span>
+		        </button>
+      			<a class="brand" href="../index.php">Airstage</a>
+      			<div class="nav-collapse collapse">
+        		<ul class="nav">
+        			<li class="">
+            			<a href="../index.php">活動牆</a>
+            		</li>
+            		<li class="">
+            			<a href="marketIndex.php">學生市集</a>
+            		</li>
+					<li class="">
+    	        		<a href="../column/">校園專欄</a>
+            		</li> 
+                    <li class="active">
+                    	<a href="#">Facing Courses</a>
+                    </li>
+            		<li class="">
+            			<a href="../accounts/revises.php">會員中心</a>         
+            		</li>             
+        		</ul>
+      			</div>
+    		</div>
+  		</div>
+	</div>
+    
+    <div class="container">
+    	<br />
+	    <h1>Facing Course In NSYSU</h1><br />
+        
+        <form method="post" action="">
+        	<div class="accordion-heading">
+          		<h3>Find The Info Of The Class</h3>
+          		<blockquote>
+          			<small>General Search</small>
+          		</blockquote>        	
+      		</div>        
+            
+            <select class="span2">
+            	<option>Department</option>
+            	<option>CSE</option>
+                <option>EE</option>
+                <option>MEM</option>
+                <option>CHE</option>
+            </select>
+            
+            <select class="span2">
+            	<option>Degree</option>
+            	<option>College</option>
+                <option>Master</option>
+                <option>PhD</option>
+            </select>
+            
+            <select class="span2">
+            	<option>Grade</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>All</option>            
+            </select>
+            
+            <select class="span2">
+            	<option>Year</option>
+                <option>99</option>
+                <option>100</option>
+                <option>101</option>
+                <option>102</option>
+                <option>103</option>            
+            </select>
+            
+            <br />
+            <Button type="submit" name="YearSearch" class="btn btn-primary"><i class="icon-ok icon-white"></i> &nbsp;Search</button>
+            
+            <br /><br /><br />
+            <blockquote>
+          		<small>Search By The Class Name</small>
+          	</blockquote>
+        	<input type="text" name="className" placeholder="Class Name" /><br />
+            <Button type="submit" name="nameSearch" class="btn btn-primary"><i class="icon-ok icon-white"></i> &nbsp;Search</button>
+            
+            <br /><br /><br />
+            <blockquote>
+          		<small>Search By The Professor's Name</small>
+          	</blockquote>
+            <input type="text" name="professorName" placeholder="Professor Name" /><br />
+            <Button type="submit" name="professorSearch" class="btn btn-primary"><i class="icon-ok icon-white"></i> &nbsp;Search</button>
+        </form>
+        
+        <hr />
+        
+        <!-- Warning Area -->
+		<div class="alert alert-info fade in" style="font-family: '微軟正黑體', 'Arial';">
+        	<button type="button" class="close" data-dismiss="alert">&times;</button>
+        	<strong>Attention!</strong> 為了保障評分公信度, 每個人對每一門課只能評鑑一次喔! 
+    	</div>
+        
+        <div class="thumbnail" style="width: 200px; height: 200px;">
+      		官大智智障頭像 p.s. 去除極端值
+        </div>
+        <br />
+        <i class="icon-book"></i> <b>課程名稱</b> : Algorithm<br /><br />
+        <i class="icon-globe"></i> <b>系所名稱</b> : Computer Science and Engineering<br /><br />
+        <i class="icon-user"></i> <b>教授名字</b> : 官大智<br /><br />
+        <i class="icon-edit"></i> <b>評分人數</b> : 60 People<br /><br />
+        <i class="icon-ok"></i> <b>目前總評分<b> : <br /><br />
+		<div class="progress progress-danger progress-striped active">
+			<div class="bar" style="width: 25%;">目前總評分 25%</div>
+		</div>
+        <i class="icon-glass"></i> <b>教材講授品質</b> : <i class="icon-star"></i><i class="icon-star"></i><br /><br />
+		<div class="progress progress-danger progress-striped active">
+			<div class="bar" style="width: 15%;">教材講授品質 15%</div>
+		</div>
+		<i class="icon-glass"></i> <b>加簽困難度</b> : <i class="icon-star"></i><i class="icon-star"></i><br /><br />
+		<div class="progress progress-danger progress-striped active">
+			<div class="bar" style="width: 5%;">加簽困難度 5%</div>
+		</div>
+		<i class="icon-glass"></i> <b>學習難易度</b> : <i class="icon-star"></i><i class="icon-star"></i><br /><br />
+		<div class="progress progress-info progress-striped active">
+			<div class="bar" style="width: 95%;">學習難易度 95%</div>
+		</div>
+		<i class="icon-glass"></i> <b>課程困難度</b> : <i class="icon-star"></i><i class="icon-star"></i><br /><br />
+		<div class="progress progress-info progress-striped active">
+			<div class="bar" style="width: 85%;">課程困難度 85%</div>
+		</div>
+        <i class="icon-music"></i> <b>課程實用度</b> : <i class="icon-star"></i><br /><br />
+		<div class="progress progress-warning progress-striped active">
+			<div class="bar" style="width: 45%;">課程實用度 45%</div>
+		</div>
+        <i class="icon-pencil"></i> <b>作業困難度</b> : <i class="icon-star"></i><br /><br />
+		<div class="progress progress-info progress-striped active">
+			<div class="bar" style="width: 100%;">作業困難度 100%</div>
+		</div>
+        <i class="icon-refresh"></i> <b>得分困難度</b> : <i class="icon-star"></i><br /><br />
+		<div class="progress progress-info progress-striped active">
+			<div class="bar" style="width: 90%;">得分困難度 90%</div>
+		</div>
+        <i class="icon-list"></i> <b>助教強度</b> : <i class="icon-star"></i><i class="icon-star"></i><br /><br />
+		<div class="progress progress-success progress-striped active">
+			<div class="bar" style="width: 70%;">助教強度 70%</div>
+		</div>
+		<i class="icon-glass"></i> <b>耗時程度</b> : <i class="icon-star"></i><i class="icon-star"></i><br /><br />
+		<div class="progress progress-inverse progress-striped active">
+			<div class="bar" style="width: 85%;">耗時程度 85%</div>
+		</div>
+		<i class="icon-glass"></i> <b>營養程度</b> : <i class="icon-star"></i><i class="icon-star"></i><br /><br />
+		<div class="progress progress-warning progress-striped active">
+			<div class="bar" style="width: 30%;">營養程度 30%</div>
+		</div>
+		<i class="icon-glass"></i> <b>點名頻率</b> : <i class="icon-star"></i><i class="icon-star"></i><br /><br />
+		<div class="progress progress-inverse progress-striped active">
+			<div class="bar" style="width: 70%;">點名頻率 70%</div>
+		</div>
+        <br />
+        
+        <table class="table">
+        	<tr>
+            	<th>#</th>
+                <th><i class="icon-book"></i> <b>課程名稱</b></th>
+                <th><i class="icon-globe"></i> <b>系所名稱</b></th>             
+                <th><i class="icon-user"></i> <b>教授</b></th>
+                <th><i class="icon-ok"></i> <b>目前評分<b></th>
+                <th><i class="icon-edit"></i> <b>評分人數</b></th>
+            </tr>
+            <tr>
+            	<td>1</td>
+                <td>Algorithm</td>
+                <td>資訊工程學系</td>
+                <td>官大智</td>
+                <td><i class="icon-star"></i><i class="icon-star"></i></td>
+                <td>69 人</td>
+            </tr>
+        </table>
+        
+    </div>
+    
+    <footer class="footer" style = "background-color: #EEE;">
+		<div class="container">
+    		<p class="pull-right"><a href="#">Back To Top</a></p>
+    		<p>
+	    		Design By Archerwind
+    		</p>
+    		<ul class="footer-links">
+	    		<li><a href="../about/index.php">AIRSTAGE</a></li>
+	    		<li><a href="../about/03.php">人才招募</a></li>
+	    		<li><a href="../about/02.php">聯絡我們</a></li>
+	    	</ul> 	
+		</div>
+	</footer>
+</body>
+</html>
