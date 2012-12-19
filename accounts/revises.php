@@ -48,25 +48,25 @@
 				$car = mysqli_real_escape_string( $conn, trim($_POST['car']) );
 				
 				// Checkboxes.
-				$stu_id_c = $_POST['stu_id_c'];
-				$name_c = $_POST['name_c'];
-				$gender_c = $_POST['gender_c'];
-				$grade_c = $_POST['grade_c'];
-				$facebook_c = $_POST['facebook_c'];
-				$group_c = $_POST['group_c'];
-				$groupLevel_c = $_POST['groupLevel_c'];
-				$msn_c = $_POST['msn_c'];
-				$twitter_c = $_POST['twitter_c'];
-				$plurk_c = $_POST['plurk_c'];
-				$skype_c = $_POST['skype_c'];
-				$phone_c = $_POST['phone_c'];
-				$email_c = $_POST['email_c'];
-				$home_c = $_POST['home_c'];
-				$dorm_c = $_POST['dorm_c'];
-				$outAddr_c = $_POST['outAddr_c'];
-				$car_c = $_POST['car_c'];
-				$about_c = $_POST['about_c'];
-				$profile_pic_c = $_POST['profile_pic_c'];
+				$stu_id_c = mysqli_real_escape_string( $conn, trim($_POST['stu_id_c']));
+				$name_c = mysqli_real_escape_string( $conn, trim($_POST['name_c']));
+				$gender_c = mysqli_real_escape_string( $conn, trim$_POST['gender_c']));
+				$grade_c = mysqli_real_escape_string( $conn, trim$_POST['grade_c']));
+				$facebook_c = mysqli_real_escape_string( $conn, trim$_POST['facebook_c']));
+				$group_c = mysqli_real_escape_string( $conn, trim$_POST['group_c']));
+				$groupLevel_c = mysqli_real_escape_string( $conn, trim$_POST['groupLevel_c']));
+				$msn_c = mysqli_real_escape_string( $conn, trim$_POST['msn_c']));
+				$twitter_c = mysqli_real_escape_string( $conn, trim$_POST['twitter_c']));
+				$plurk_c = mysqli_real_escape_string( $conn, trim$_POST['plurk_c']));
+				$skype_c = mysqli_real_escape_string( $conn, trim$_POST['skype_c']));
+				$phone_c = mysqli_real_escape_string( $conn, trim$_POST['phone_c']));
+				$email_c = mysqli_real_escape_string( $conn, trim$_POST['email_c']));
+				$home_c = mysqli_real_escape_string( $conn, trim$_POST['home_c']));
+				$dorm_c = mysqli_real_escape_string( $conn, trim$_POST['dorm_c']));
+				$outAddr_c = mysqli_real_escape_string( $conn, trim$_POST['outAddr_c']));
+				$car_c = mysqli_real_escape_string( $conn, trim$_POST['car_c']));
+				$about_c = mysqli_real_escape_string( $conn, trim$_POST['about_c']));
+				$profile_pic_c = mysqli_real_escape_string( $conn, trim$_POST['profile_pic_c']));
 					
 				// Profile Pic.
 				$picName = $_FILES['profile_pic']['name'];
