@@ -11,19 +11,31 @@
       <div class="nav-collapse collapse">
         <ul class="nav">
         	<li class="">
-				<a href="../index.php"><img src="img/airs.png" />&nbsp;&nbsp;&nbsp;<img src="img/nsysu.png" /></a>
+				<a href="../index.php"><img src="img/airs.png" />&nbsp;&nbsp;&nbsp;&nbsp;<img src="img/nsysu.png" /></a>
             </li>
 			<li>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</li>
+			<li>
 				<a href="../index.php">活動牆</a>
-            </li>      		
+            </li>  
+			<li>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</li>    		
 			<li class="">
             	<a href="../column/">專 &nbsp;&nbsp;&nbsp;&nbsp;欄</a>
             </li> 
+			<li>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</li>
 			<li class="active">
             	<a href="marketIndex.php">市 &nbsp;&nbsp;&nbsp;&nbsp;集</a>
             </li>
+			<li>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</li>
             <li class="">
-            	<a href="../accounts/revises.php">會員中心</a>         
+            	<a href="../apps/index.php">應用程式</a>         
             </li>            
         </ul>
       </div>
