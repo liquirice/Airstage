@@ -589,7 +589,7 @@
 			<option value="29" >電機工程學系 ( EE )</option>
 			<option value="30" >電機電力碩士 ( IMPE )</option>
 			<option value="31" >通訊工程碩士 ( ICE )</option>
-			<option value="32" >機械與電機工程學系 ( MEME )</option>
+			<option value="32" >機械與機電工程學系 ( MEME )</option>
 			<option value="33" >資訊工程學系 ( CSE )</option>
 			<option value="34" >光電工程學系 ( EO )</option>
 			<option value="35" >材料與光電工程學系 ( MOES )</option>
