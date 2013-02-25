@@ -1,0 +1,66 @@
+<?php
+	function DepartmentParse( $id ) {
+		switch( $id ) {
+			case 0: echo '國語文'; break;
+			case 1: echo '英文初級'; break;
+			case 2: echo '英文中級'; break;
+			case 3: echo '英文中高級'; break;
+			case 4: echo '英文高級'; break;
+			case 5: echo '運動與健康'; break;
+			case 6: echo '興趣選修'; break;
+			case 7: echo '通識教育'; break;
+			case 8: echo '應用性課程'; break;
+			case 9: echo '普通物理小組'; break;
+			case 10: echo '跨院選修（通）'; break;
+			case 11: echo '跨院選修（文）'; break;
+			case 12: echo '跨院選修（理）'; break;
+			case 13: echo '跨院選修（工）'; break;
+			case 14: echo '跨院選修（管）'; break;
+			case 15: echo '跨院選修（海）'; break;
+			case 16: echo '跨院選修（社）'; break;
+			case 17: echo '服務學習'; break;
+			case 18: echo 'CL'; break;
+			case 19: echo 'DFLL'; break;
+			case 20: echo 'LIBA'; break;
+			case 21: echo 'MUSI'; break;
+			case 22: echo 'PHIL'; break;
+			case 23: echo 'TA'; break;
+			case 24: echo 'BIOS'; break;
+			case 25: echo 'IMBS'; break;
+			case 26: echo 'CHE'; break;
+			case 27: echo 'PHYS'; break;
+			case 28: echo 'MATH'; break;
+			case 29: echo 'EE'; break;
+			case 30: echo 'IMPE'; break;
+			case 31: echo 'ICE'; break;
+			case 32: echo 'MEME'; break;
+			case 33: echo 'CSE'; break;
+			case 34: echo 'EO'; break;
+			case 35: echo 'MOES'; break;
+			case 36: echo 'ENVE'; break;
+			case 37: echo 'BM'; break;
+			case 38: echo 'MIS'; break;
+			case 39: echo 'FM'; break;
+			case 40: echo 'HRM'; break;
+			case 41: echo 'ICM'; break;
+			case 42: echo 'PE'; break;
+			case 43: echo 'PAM'; break;
+			case 44: echo 'IPS'; break;
+			case 45: echo 'ECON'; break;
+			case 46: echo 'SOC'; break;
+			case 47: echo 'IOE'; break;
+			case 48: echo 'CAPS'; break;
+			case 49: echo 'CSS'; break;
+			case 50: echo 'MAEV'; break;
+			case 51: echo 'MBR'; break;
+			case 52: echo 'MRBI'; break;
+			case 53: echo 'IMGC'; break;
+			case 54: echo 'MA'; break;
+			case 55: echo 'UTAO'; break;
+			case 56: echo 'BPM'; break;
+			case 57: echo 'STP'; break;
+			case 58: echo 'IHCM'; break;
+			case 59: echo 'IB'; break;
+		}
+	}
+?>
