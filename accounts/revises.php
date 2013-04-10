@@ -1,7 +1,8 @@
 <?php
 	// Last Modified Day : 2012.09.27
-	require_once( "redirectFilter.php" );
+	//require_once( "redirectFilter.php" );
 	require_once( "../global/setSession.php" );
+
 	
 	if( !isset($_SESSION['stu_id']) || !isset($_SESSION['name']) || !isset($_SESSION['auth']) || !isset($_SESSION['nick']) ) {
 		echo '<script type="text/javascript">alert("請先登入唷～"); location.href="../index.php"</script>';
@@ -9,6 +10,7 @@
 		if( $_SESSION['auth'] == 0 ) {
 			echo '<script type="text/javascript">alert("記得去信箱認證帳號才有權限進來唷!"); location.href="../index.php"</script>';
 		} else {
+			
 			require_once( "../global/connectVar.php" );
 			require_once( "uploadPath.php" );
 			$stu_id = $_SESSION['stu_id'];
@@ -27,12 +29,13 @@
 				$gender = mysqli_real_escape_string( $conn, trim($_POST['gender']) );
 				$department = mysqli_real_escape_string( $conn, trim($_POST['department']) );
 				$grade = mysqli_real_escape_string( $conn, trim($_POST['grade']) );
-				$facebook = mysqli_real_escape_string( $conn, trim($_POST['facebook']) );
+				//$facebook = mysqli_real_escape_string( $conn, trim($_POST['facebook']) );
 				$about = mysqli_real_escape_string( $conn, trim($_POST['about']) );
 				
 				// Common info.
 				$group = mysqli_real_escape_string( $conn, trim($_POST['group']) );
 				$groupLevel = mysqli_real_escape_string( $conn, trim($_POST['groupLevel']) );
+				$relationship = mysqli_real_escape_string( $conn, trim($_POST['relationship']) );
 				$msn = mysqli_real_escape_string( $conn, trim($_POST['msn']) );
 				$twitter = mysqli_real_escape_string( $conn, trim($_POST['twitter']) );
 				$plurk = mysqli_real_escape_string( $conn, trim($_POST['plurk']) );
@@ -55,6 +58,7 @@
 				$facebook_c = mysqli_real_escape_string( $conn, trim($_POST['facebook_c']));
 				$group_c = mysqli_real_escape_string( $conn, trim($_POST['group_c']));
 				$groupLevel_c = mysqli_real_escape_string( $conn, trim($_POST['groupLevel_c']));
+				$relationship_c = mysqli_real_escape_string( $conn, trim($_POST['relationship_c']));
 				$msn_c = mysqli_real_escape_string( $conn, trim($_POST['msn_c']));
 				$twitter_c = mysqli_real_escape_string( $conn, trim($_POST['twitter_c']));
 				$plurk_c = mysqli_real_escape_string( $conn, trim($_POST['plurk_c']));
@@ -67,7 +71,8 @@
 				$car_c = mysqli_real_escape_string( $conn, trim($_POST['car_c']) );
 				$about_c = mysqli_real_escape_string( $conn, trim($_POST['about_c']) );
 				$profile_pic_c = mysqli_real_escape_string( $conn, trim($_POST['profile_pic_c']) );
-					
+				
+
 				// Profile Pic.
 				$picName = $_FILES['profile_pic']['name'];
 				$picType = $_FILES['profile_pic']['type'];
@@ -193,7 +198,7 @@
 				$result = mysqli_query( $conn, $query ) or die('Update Error1');
 				
 				// Upadte the common info.
-				$query = "UPDATE member_Info SET msn = '$msn', twitter = '$twitter', plurk = '$plurk', skype = '$skype', facebook = '$facebook', `group` = '$group', groupLevel = '$groupLevel'".
+				$query = "UPDATE member_Info SET msn = '$msn', twitter = '$twitter', plurk = '$plurk', skype = '$skype',  `group` = '$group', groupLevel = '$groupLevel', relationship = '$relationship'".
 				 		 " ,phone = '$phone', food = '$food', home = '$home', id = '$id', dorm = '$dorm', room = '$room', outAddr = '$outAddr', car = '$car'".
 				 		 " WHERE stu_id = '$stu_id'";
 				$result = mysqli_query( $conn, $query ) or die('Update Error2');
@@ -201,7 +206,7 @@
 				// Upadte the checkbox.
 				$query = "UPDATE display_check SET stu_id_c = '$stu_id_c', name_c = '$name_c', gender_c = '$gender_c', grade_c = '$grade_c', facebook_c = '$facebook_c', about_c = '$about_c'".
 						 " ,msn_c = '$msn_c', twitter_c = '$twitter_c', plurk_c = '$plurk_c', skype_c = '$skype_c', phone_c = '$phone_c', email_c = '$email_c', home_c = '$home_c'".
-						 " ,dorm_c = '$dorm_c', outAddr_c = '$outAddr_c', car_c = '$car_c', profile_pic_c = '$profile_pic_c', group_c = '$group_c', groupLevel_c = '$groupLevel_c' ".
+						 " ,dorm_c = '$dorm_c', outAddr_c = '$outAddr_c', car_c = '$car_c', profile_pic_c = '$profile_pic_c', group_c = '$group_c', groupLevel_c = '$groupLevel_c' , relationship_c = '$relationship_c' ".
 						 " WHERE stu_id = '$stu_id'";
 				$result = mysqli_query( $conn, $query ) or die('Upadte Error3');
 				
@@ -210,19 +215,154 @@
 				
 			$query = "SELECT * FROM Member INNER JOIN member_Info Using(stu_id) WHERE Member.stu_id = '$stu_id'";
 			$result = mysqli_query( $conn, $query );
+			//display query result
+			$result_query = mysqli_query( $conn, $query );
+			$result_query_array =  mysqli_fetch_array($result_query);
+			
+			/*
+			echo "<br>";
+			echo "<br>";
+			foreach ($result_query_array as $key => $value) {
+		        echo $key." - ".$value."<br>";
+    		}*/
 			
 			$displayCheck = "SELECT * FROM display_check WHERE stu_id = '$stu_id'";
 			$checkResult = mysqli_query( $conn, $displayCheck );
 			
+			
+
 			if( mysqli_num_rows($result) == 0 ) {
 				echo '<script type="text/javascript">alert("查無此使用者，請重新登入"); location.href="../index.php"</script>';
 			} else {
 				$row = mysqli_fetch_array( $result );	
 				$check = mysqli_fetch_array( $checkResult );
 			}
+			
+
+			
+
+
+			
+			$sql_fb = "select * from member_fb_info WHERE stu_id = '$stu_id'";
+			$sql_fb_query = mysqli_query( $conn, $sql_fb );
+			$sql_fb_array =  mysqli_fetch_array($sql_fb_query);
+			$fb_login_stu_id =  $row['stu_id'];
+			/*
+			foreach ($sql_fb_array as $key => $value) {
+		    	echo $key." - ".$value."<br>";
+    		}
+
+			
+			$num = mysqli_num_rows($result_fb);			
+			*/
+			
+
+
+
+			//array_keys_multi($result_fb);
+			
+
+    		/*
+			echo $row[0];
+			echo $row[0];
+			echo '<br>';
+			echo $row['stu_id'];
+			$fb_login_stu_id =  $row['stu_id'];
+			echo $fb_login_stu_id.$fb_login_stu_id;
+			*/
+			//echo $loginUrl;
+
+/*********GET FACEBOOK API*********
+ * Copyright 2011 Facebook, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License. You may obtain
+ * a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ */
+//require_once( "../global/connectVar.php" );
+require 'fb_src/src/facebook.php';
+
+//require_once( "../../../../global/connectVar.php" );
+//database connection
+	
+
+//Application Configurations
+$app_id		= "209856362473286";
+$app_secret	= "ead0bc3668fe742cb7ab125a46303674";
+
+ 
+// Create our Application instance (replace this with your appId and secret).
+$facebook = new Facebook(array(
+  'appId'  => $app_id,
+  'secret' => $app_secret,
+));
+
+// Get User ID
+$user = $facebook->getUser();
+
+// We may or may not have this data based on whether the user is logged in.
+//
+// If we have a $user id here, it means we know the user is logged into
+// Facebook, but we don't know if the access token is valid. An access
+// token is invalid if the user logged out of Facebook.
+
+if ($user) {
+  try {
+    // Proceed knowing you have a logged in user who's authenticated.
+    $user_profile = $facebook->api('/me');
+  } catch (FacebookApiException $e) {
+    error_log($e);
+    $user = null;
+  }
+}
+
+// Login or logout url will be needed depending on current user state.
+if ($user) {
+  $logoutUrl = $facebook->getLogoutUrl(
+  array(
+		'next'	=> 'http://www.airstage.com.tw/accounts/example.php', // URL to which to redirect the user after logging out
+		)
+  );
+} else {
+  $loginUrl = $facebook->getLoginUrl(
+  array(
+      'scope' => 'email, user_about_me, user_birthday, user_checkins, user_education_history, user_hometown, user_interests, user_location, user_photos , user_relationships, user_relationship_details, user_status, user_website, user_work_history, user_religion_politics',
+      'next' => 'http://www.airstage.com.tw/accounts/example.php?stu_id='.$fb_login_stu_id.'',
+	  'redirect_uri' => 'http://www.airstage.com.tw/accounts/example.php?stu_id='.$fb_login_stu_id.'' // URL to redirect the user to once the login/authorization process is complete.
+	
+      )
+  );
+}
+
+// This call will always work since we are fetching public data.
+$naitik = $facebook->api('/naitik');
+/*********GET FACEBOOK API END*********/
+
+/*
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo 'facebook login url'.$loginUrl;
+*/
 		}
 	}
+	
+	
 ?>
+
 
 <!DOCTYPE HTML>
 <html>
@@ -252,6 +392,32 @@
 		text-align: left;
 	}
 </style>
+
+<script type="application/javascript">
+//facebook submit
+	function conn_wit_fb(clicked)
+	{
+		var php_fb_var = "<?php echo $sql_fb_array[stu_id];?>";	  
+		var php_row_var = "<?php echo $row['0'];?>";	
+		var fb_id_var = "<?php echo $sql_fb_array[fb_id];?>";	
+		var fb_redirect_url = "<?php echo $loginUrl;?>"; 
+		//href="<?php echo $loginUrl; ?>" 
+		if(fb_id_var != null && php_fb_var != null && php_row_var === php_fb_var){	
+			//alert(fb_id_var);
+			alert("你的帳號已經Facebook連接過了喔！");
+		}
+		else{
+			//alert(php_row_var);
+			//alert("即將要轉網址了!!");
+			//alert(fb_redirect_url);
+			location.href=fb_redirect_url;
+			//location.href="example.php?stu_id="+php_row_var;		
+		}		
+		return false;
+	}
+
+	
+</script>
 </head>
 
 <body>
@@ -284,58 +450,75 @@
 	            <div class="navbar">
 	            	
 	            <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" enctype = "multipart/form-data">
-	            <h5>♠（一）基本資料( 請<font color="#FF7573">勾選</font>欲讓人看到的項目 )</h5>
+	            <h5><img src="jpg/t1.png"></h5>
 	            <!--hr class="bs-docs-separator" /-->
 	              <table width="645" class="table table-hover">
 	              <tbody>
 	                  <tr>
-	                    <td>
-		                    <label class="checkbox">
-		                    	<input type="checkbox" name="stu_id_c" <?php if($check['stu_id_c'] == "on") { echo 'checked'; } ?> />&nbsp;學　　號
-		                    </label>
+	                    <td width="19%" align="left">
+		                    <label class="checkbox">&nbsp;學　　號</label>
 	                    </td>
-	                    <td>
-		                    <i class="icon-book"></i>&nbsp;<?php echo $row['stu_id'];?>	                  
+	                    <td width="81%">
+		                    </i>&nbsp;<?php echo $row['stu_id'];?>	                  
 		                </td>	                  
                       </tr>
                       
 	                  <tr>
 	                    <td>
-	                    <label class="checkbox">
-	                      <input type="checkbox" name="name_c" id="check_name" <?php if($check['name_c'] == "on") { echo "checked"; }?> />&nbsp;姓　　名
+	                    <label class="checkbox">&nbsp;姓　　名
 	                    </label>
 	                    </td>
 	                    <td> 
-		                	<i class="icon-user"></i>&nbsp;<?php echo $row['name'];?>
+		                	</i>&nbsp;<?php echo $row['name'];?>
 	                    </td>
                       </tr>
                       
                       <tr>
 	                    <td>
-	                    <label class="checkbox">
-	                    	<input type="checkbox" disabled checked/>&nbsp;匿　　稱
+	                    <label class="checkbox">&nbsp;匿　　稱
 	                    </label>
 	                    </td>
 	                    <td>
 	                    	<div class="controls">
-	                    		<input name="username" class="span3" value = "<?php echo $row['username'];?> " placeholder="輸入你的匿稱吧"/>
+	                    		<input name="username" class="span3" value = "<?php 	                    		
+		                    		if($row['username'] != null){
+		                    			echo $row['username'];
+		                    		}
+		                    		else{
+										echo $sql_fb_array[fb_name];
+		                    		}
+		                    		?> 
+		                    	" placeholder="輸入你的匿稱吧"/>
 	                    	</div>
 	                    </td>
                       </tr>
                       
 	                  <tr>
 	                    <td>
-	                    <label class="checkbox">
-	                      <input type="checkbox" name="gender_c" id="check_gender" <?php if($check['gender_c'] == "on") { echo "checked"; }?> />&nbsp;性　　別
+	                    <label class="checkbox">&nbsp;性　　別
 	                    </label>
 	                    </td>
 	                    <td>
 	                    <label class="radio inline">
-	                      <input type="radio" value="男" name="gender" <?php if($row['gender'] == "男") { echo "checked"; } ?> />
+	                      <input type="radio" value="男" name="gender" <?php 
+	                      if($row['gender'] == "男" && $row['gender'] != null) { 
+	                      	echo "checked"; 
+	                      }
+	                      elseif ($sql_fb_array[fb_gender ] == "male"  && $sql_fb_array[fb_gender ] != null) {
+	                      	echo "checked"; 
+	                      }
+	                       ?> />
 	                      男&nbsp;&nbsp;
 	                    </label>
 	                    <label class="radio inline">
-	                      <input type="radio" value="女" name="gender" <?php if($row['gender'] == "女") { echo "checked"; } ?> />
+	                      <input type="radio" value="女" name="gender" <?php 
+	                      if($row['gender'] == "女" && $row['gender'] != null) {
+	                      	echo "checked"; 
+	                      } 
+	                      elseif ($sql_fb_array[fb_gender] == "female" && $sql_fb_array != null) {
+	                      	echo "checked";
+	                      }
+	                      ?> />
 	                      女
 	                    </label>
 	                    </td>	                 
@@ -343,8 +526,7 @@
                       
 	                  <tr>
 	                    <td>
-	                    <label class="checkbox">
-	                      <input type="checkbox" name="grade_c" id="check_grade" <?php if($check['grade_c'] == "on") { echo "checked"; }?> />&nbsp;系　　級
+	                    <label class="checkbox">&nbsp;系　　級
 	                    </label>	
 	                    </td>
 	                    <td>                    
@@ -402,101 +584,112 @@
 	                        <option value="103" <?php if($row['grade'] == '103') { echo "selected"; }?>>103</option>
 	                        <option value="102" <?php if($row['grade'] == '102') { echo "selected"; }?>>102</option>
 	                        <option value="101" <?php if($row['grade'] == '101') { echo "selected"; }?>>101</option>
+	                        <option value="100" <?php if($row['grade'] == '101') { echo "selected"; }?>>100</option>
 	                      </select>
 	                    </td>
-                      </tr>
-	                  <tr>
-	                    <td>
-	                    <label class="checkbox">
-	                      	<input type="checkbox" name="facebook_c" id="check_facebook" <?php if($check['facebook_c'] == "on") { echo "checked"; }?> />&nbsp;Facebook
-	                    </label>
-	                    </td>
-	                    <td>
-		                    <div class="controls">
-		                    	<img src="http://www.pccillin.com.tw/images/fb.gif" >
-		                    	<input name="facebook" class="span5" value = "<?php echo $row['facebook'];?>" placeholder="想分享FB給別人知道嗎？" />
-		                    </div>
-	                    </td>	                  
                       </tr>   
                     </tbody>                   
                     </table>
                     
-                    <!-- Next Part Start --> 
+                    <table width="395" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+
+                        <td width="395">
+                        	<?php
+	                        	if($sql_fb_array[fb_id] == null){
+	                    			echo "<button type = 'button' onclick='conn_wit_fb()' class='btn btn-info'><i class='icon-leaf icon-white'></i>與Facebook帳號連結</button>";
+	                    		}
+                    		?>
+                        </td>
+                      </tr>
+                    </table>
                     
-                    <br />
                     
-                    <h5>♠（二）常用資料：</h5> 
+                   
+                    <!-- Next Part Start --><br />
+                    
+                    <h5><img src="jpg/t2.png"></h5> 
 	                <table width="645" class="table table-hover">	     
-	                <tbody>           
+	                <tbody>
+                      
 	                  <tr>
 	                    <td>
-	                    <label class="checkbox">
-	                    	<input type="checkbox" name="msn_c" id="check_msn" <?php if($check['msn_c'] == "on") { echo "checked"; }?> /> &nbsp;MSN
-	                    </label>
-	                    </td>
-	                    <td>
-	                    	<img src="https://encrypted-tbn3.google.com/images?q=tbn:ANd9GcTBZwvwVjMGbhInOthILiljaNLc_AC0AdmBsvlqdC3OLz6RVttG" width="14" height="14">&nbsp;
-	                    	<input name="msn" class="span4" value = "<?php echo $row['msn'];?>" />
-	                    </td>
-                      </tr>
+	                      <label class="checkbox">
+	                        <input type="checkbox" disabled />
+	                        &nbsp;Skype
+	                        </label>
+	                      </td>
+	                    <td>&nbsp;&nbsp;&nbsp;
+	                      <input name="skype" class="span4" value = "<?php echo $row['skype'];?>" />
+	                      </td>	                  
+	                    </tr>
                       
 	                  <tr>
 	                    <td>
 	                    <label class="checkbox">
-	                      	<input type="checkbox" name="twitter_c" <?php if($check['twitter_c'] == "on") { echo "checked"; }?> />&nbsp;Twitter
-	                    </label>
-	                    </td>
-	                    <td>
-	                    	<img src="https://encrypted-tbn0.google.com/images?q=tbn:ANd9GcRXwLPUkXaduzV_Mna-a74rv4K5w-oirMO4H0hEbjnNMkI9BIbS0A" width="14" height="14">&nbsp;
-	                    	<input name="twitter" class="span4" value = "<?php echo $row['twitter'];?>" />
-	                    </td>	                  
-                      </tr>
-                      
-	                  <tr>
-	                    <td>
-	                    <label class="checkbox">
-	                      	<input type="checkbox" name="plurk_c" <?php if($check['plurk_c'] == "on") { echo "checked"; }?> />&nbsp;Plurk
-	                    </label>
-	                    </td>
-	                    <td>
-	                    	<img src="https://encrypted-tbn0.google.com/images?q=tbn:ANd9GcR1JaAOCNgLEWVxxyk8qXiq4otEva94IQbiEAZNeJy7iYP04o7Y" width="14" height="14">&nbsp;
-	                    	<input name="plurk" class="span4" value = "<?php echo $row['plurk'];?>" />
-	                    </td>	                   
-                      </tr>
-                      
-	                  <tr>
-	                    <td>
-	                    <label class="checkbox">
-		                    <input type="checkbox" name="skype_c" <?php if($check['skype_c'] == "on") { echo "checked"; }?> />&nbsp;Skype
+	                      <input type="checkbox" disabled />
+	                      &nbsp;手　　機
 	                    </label>
 		                </td>
 	                    <td>
-	                    	<img src="https://encrypted-tbn2.google.com/images?q=tbn:ANd9GcTxk19xab9zH7syPeMI7E1uaF5o9CUw0wl0RIIG8zzqH6TyYCPc" width="14" height="14">&nbsp;
-	                    	<input name="skype" class="span4" value = "<?php echo $row['skype'];?>" />
-	                    </td>	                  
-                      </tr>
-                      
-	                  <tr>
-	                    <td>
-	                    <label class="checkbox">
-		                    <input type="checkbox" name="phone_c" id="check_phone" <?php if($check['phone_c'] == "on") { echo "checked"; }?> />&nbsp;手　　機
-	                    </label>
-		                </td>
-	                    <td>
-	                    	<i class="icon-signal icon"></i>&nbsp;&nbsp;<input name="phone" class="span4" value = "<?php echo $row['phone'];?>" />
+	                    	</i>&nbsp;&nbsp;&nbsp;	                    	<input name="phone" class="span4" value = "<?php echo $row['phone'];?>" />
 	                    </td>	                    
                       </tr>
                       
 	                  <tr>
 	                    <td>
 	                    <label class="checkbox">
-		                    <input type="checkbox" name="email_c" id="check_email" <?php if($check['email_c'] == "on") { echo "checked"; }?> />&nbsp;常用信箱
+	                      <input type="checkbox" disabled />
+	                      &nbsp;常用信箱
 	                    </label>
 		                </td>
-	                    <td>
-	                    	<i class="icon-envelope"></i>&nbsp;&nbsp;<input type = "text "name="email" class="span4" value = "<?php echo $row['email'];?>" placeholder="一定要填喔！"/>
+	                    <td>&nbsp;&nbsp;&nbsp;	                      <input type = "text "name="email" class="span4" value = "<?php
+	                    if($row['email'] != null){
+		                    echo $row['email'];
+		                }
+		                else{
+							echo $sql_fb_array[fb_email];
+		                }
+		                ?>" placeholder="一定要填喔！"/>
 	                    </td>	                    
                       </tr>
+	                  <tr>
+	                    <td><label class="checkbox">
+	                      <input type="checkbox" disabled />
+	                      &nbsp;飲　　食 </label></td>
+	                    <td></i>
+	                      &nbsp;&nbsp;&nbsp;
+	                      <select name="food2" size="1">
+	                        <option>有不能吃的嗎？</option>
+	                        <option value="0" <?php if( $row['food'] == 0 ) { echo "selected"; } ?> />                            
+	                        葷食
+	                        </option>
+	                        <option value="1" <?php if( $row['food'] == 1 ) { echo "selected"; }?> />                            
+	                        素食
+	                        </option>
+	                        </select></td>
+	                    </tr>
+	                  <tr>
+	                    <td><label class="checkbox">
+	                      <input type="checkbox" disabled />
+	                      &nbsp; 身  分  證 </label></td>
+	                    <td></i>
+	                      &nbsp;&nbsp;&nbsp;
+	                      <input name="id" size="34" value ="<?php echo $row['id'];?>" /></td>
+	                    </tr>
+	                  <tr>
+	                    <td><label class="checkbox">
+	                      <input type="checkbox" disabled />
+	                      &nbsp;校外住址 </label></td>
+	                    <td></i>
+	                      &nbsp;&nbsp;&nbsp;
+	                      <input name="outAddr" class="span4" value = "<?php echo $row['outAddr']; ?>" /></td>
+	                    </tr>
+	                  <tr>
+	                    <td height="94" colspan="2"><p>&nbsp;</p>
+	                      <p>&nbsp;</p>
+	                      <p><img src="jpg/t3.png"></p></td>
+	                    </tr>
                       
 	                  <tr>
 	                    <td>
@@ -505,7 +698,7 @@
 	                    </label>
 						</td>
 	                    <td>
-						<i class="icon-qrcode"></i>&nbsp;
+						</i>&nbsp;&nbsp;&nbsp;
 	                      <select size="1" name="group">&nbsp;
 	                      	<option value="">有參加社團嗎？</option>
 	                        
@@ -624,7 +817,7 @@
 		                </label>
 						</td>
 	               	    <td>
-						  <i class="icon-barcode"></i>&nbsp;
+						  </i>&nbsp;&nbsp;&nbsp;
 	                      <select name="groupLevel" size="1">
 	                        <option value="">社團裡的身分？</option>
 	                        <option value="0" <?php if($row['groupLevel'] == "0") echo 'selected';?>>會長</option>
@@ -635,88 +828,116 @@
 	                      </font></span>
 	                     </td>
                       </tr>
+	                  <tr>
+	                    <td><label class="checkbox">
+
+	                      <input type="checkbox" name="relationship_c" id="relationship_c" <?php 
+	                      if($check['relationship_c'] == "on") 
+	                      	{ echo "checked"; }
+	                      elseif ($check['relationship_c'] == "") {
+	                      	$relationship_c = "off";
+	                      }
+	                      else{
+	                      	echo "unchecked";
+	                      }
+
+	                      ?> />
+	                      &nbsp;感情狀況 </label></td>
+	                    <td>&nbsp;&nbsp;&nbsp;
+<select name="relationship" size="1">
+
+
+						if($row['gender'] == "女" && $row['gender'] != null) {
+	                      	echo "checked"; 
+	                      } 
+	                      elseif ($sql_fb_array[fb_gender] == "female" && $sql_fb_array != null) {
+	                      	echo "checked";
+
+
+
+	                      <option value="">感情狀況是？</option>
+	                      <option value="單身" <?php
+	                      if($row['relationship'] == "單身" && $row['relationship'] != null){
+	                      	echo 'selected';
+	                      } 
+	                      elseif ($sql_fb_array[fb_relationship_status] == "Single" && $sql_fb_array[fb_relationship_status] != null) {
+	                      	echo 'selected';
+	                      }
+	                      ?>>單身</option>
+	                      <option value="穩定交往中" <?php
+	                      if($row['relationship'] == "穩定交往中" && $row['relationship'] != null) {
+	                      	echo 'selected';
+	                      }
+	                      elseif ($sql_fb_array[fb_relationship_status] == "In a Relationship" && $sql_fb_array[fb_relationship_status] != null) {
+	                      	echo 'selected';
+	                      }
+	                      ?>>穩定交往中</option>
+	                      <option value="一言難盡" <?php 
+	                      if($row['relationship'] == "一言難盡" && $row['relationship'] != null) {
+	                      	echo 'selected';
+	                      }
+	                      elseif ($sql_fb_array[fb_relationship_status] == "Complicated" && $sql_fb_array[fb_relationship_status] != null) {
+	                      	echo 'selected';
+	                      }
+	                      ?>>一言難盡</option>
+	                    </select></td>
+                        </font></span>
+	                    </tr>
                       
 	                  <tr>
 	                    <td>
-	                    <label class="checkbox">
-	                    	<input type="checkbox" disabled />&nbsp;飲　　食
-	                    </label>
-		                </td>
+	                      <label class="checkbox">
+	                        <input type="checkbox" name="home_c" id="check_hometown" <?php if($check['home_c'] == "on") { echo "checked"; }?> />&nbsp;家　　鄉
+	                        </label>
+	                      </td>	                  
 	                    <td>
-	                    	<i class="icon-glass"></i>&nbsp;
-	                    	<select name="food" size="1">
-	                        	<option>有不能吃的嗎？</option>
-	                        	<option value="0" <?php if( $row['food'] == 0 ) { echo "selected"; } ?> />葷食</option>
-	                        	<option value="1" <?php if( $row['food'] == 1 ) { echo "selected"; }?> />素食</option>
-	                        </select>
-	                    </td>	                   
-                      </tr>
-                      
-	                  <tr>
-	                    <td>
-	                    <label class="checkbox">
-	                      	<input type="checkbox" name="home_c" id="check_hometown" <?php if($check['home_c'] == "on") { echo "checked"; }?> />&nbsp;家　　鄉
-	                    </label>
-	                    </td>	                  
-	                    <td>
-	                    <i class="icon-home"></i>&nbsp;
+	                      </i>&nbsp;&nbsp;&nbsp;
 	                      <select size="1" name="home">
 	                        <option selected>來至哪裡呀？</option>
 	                        <option disabled>【台灣】</option>
-	                        <option value="Keelung" <?php if($row['home'] == "Keelung") echo 'selected';?>>基隆</option>
-	                        <option value="Taipei" <?php if($row['home'] == "Taipei") echo 'selected';?>>台北</option>
-	                        <option value="Taoyuan" <?php if($row['home'] == "Taoyuan") echo 'selected';?>>桃園</option>
-	                        <option value="Hsinchu" <?php if($row['home'] == "Hsinchu") echo 'selected';?>>新竹</option>
-	                        <option value="Ilan" <?php if($row['home'] == "Ilan") echo 'selected';?>>宜蘭</option>
-	                        <option value="Miaoli" <?php if($row['home'] == "Miaoli") echo 'selected';?>>苗栗</option>
-	                        <option value="Taichung" <?php if($row['home'] == "Taichung") echo 'selected';?>>台中</option>
-	                        <option value="Changhua" <?php if($row['home'] == "Changhua") echo 'selected';?>>彰化</option>
-	                        <option value="Nantou" <?php if($row['home'] == "Nantou") echo 'selected';?>>南投</option>
-	                        <option value="Hualien" <?php if($row['home'] == "Hualien") echo 'selected';?>>花蓮</option>
-	                        <option value="Yunlin" <?php if($row['home'] == "Yunlin") echo 'selected';?>>雲林</option>
-	                        <option value="Chiayi" <?php if($row['home'] == "Chiayi") echo 'selected';?>>嘉義</option>
-	                        <option value="Tainan" <?php if($row['home'] == "Tainan") echo 'selected';?>>台南</option>
-	                        <option value="Kaohsiung" <?php if($row['home'] == "Kaohsiung") echo 'selected';?>>高雄</option>
-	                        <option value="Taitung" <?php if($row['home'] == "Taitung") echo 'selected';?>>台東</option>
-	                        <option value="Pingtung" <?php if($row['home'] == "Pingtung") echo 'selected';?>>屏東</option>
-	                        <option value="Golden" <?php if($row['home'] == "Golden") echo 'selected';?>>金門</option>
-	                        <option value="Penghu" <?php if($row['home'] == "Penghu") echo 'selected';?>>澎湖</option>
+	                        <option value="基隆" <?php if($row['home'] == "基隆") echo 'selected';?>>基隆</option>
+	                        <option value="台北" <?php if($row['home'] == "台北") echo 'selected';?>>台北</option>
+	                        <option value="桃園" <?php if($row['home'] == "桃園") echo 'selected';?>>桃園</option>
+	                        <option value="新竹" <?php if($row['home'] == "新竹") echo 'selected';?>>新竹</option>
+	                        <option value="宜蘭" <?php if($row['home'] == "宜蘭") echo 'selected';?>>宜蘭</option>
+	                        <option value="苗栗" <?php if($row['home'] == "苗栗") echo 'selected';?>>苗栗</option>
+	                        <option value="台中" <?php if($row['home'] == "台中") echo 'selected';?>>台中</option>
+	                        <option value="彰化" <?php if($row['home'] == "彰化") echo 'selected';?>>彰化</option>
+	                        <option value="南投" <?php if($row['home'] == "南投") echo 'selected';?>>南投</option>
+	                        <option value="花蓮" <?php if($row['home'] == "花蓮") echo 'selected';?>>花蓮</option>
+	                        <option value="雲林" <?php if($row['home'] == "雲林") echo 'selected';?>>雲林</option>
+	                        <option value="嘉義" <?php if($row['home'] == "嘉義") echo 'selected';?>>嘉義</option>
+	                        <option value="台南" <?php if($row['home'] == "台南") echo 'selected';?>>台南</option>
+	                        <option value="高雄" <?php if($row['home'] == "高雄") echo 'selected';?>>高雄</option>
+	                        <option value="台東" <?php if($row['home'] == "台東") echo 'selected';?>>台東</option>
+	                        <option value="屏東" <?php if($row['home'] == "屏東") echo 'selected';?>>屏東</option>
+	                        <option value="金門" <?php if($row['home'] == "金門") echo 'selected';?>>金門</option>
+	                        <option value="澎湖" <?php if($row['home'] == "澎湖") echo 'selected';?>>澎湖</option>
 	                        <option disabled>【海外】</option>
-	                        <option value="Malaysia" <?php if($row['home'] == "Malaysia") echo 'selected';?>>馬來西亞</option>
-	                        <option value="Singapore" <?php if($row['home'] == "Singapore") echo 'selected';?>>新加坡</option>
-	                        <option value="China" <?php if($row['home'] == "China") echo 'selected';?>>中國</option>
-	                        <option value="Macao" <?php if($row['home'] == "Macao") echo 'selected';?>>澳門</option>
-	                        <option value="HongKong" <?php if($row['home'] == "HongKong") echo 'selected';?>>香港</option>
-	                        <option value="Philippines" <?php if($row['home'] == "Philippines") echo 'selected';?>>菲律賓</option>
-	                        <option value="Vietnam" <?php if($row['home'] == "Vietnam") echo 'selected';?>>越南</option>
-	                        <option value="India" <?php if($row['home'] == "India") echo 'selected';?>>印度</option>
-	                        <option value="Europe" <?php if($row['home'] == "Europe") echo 'selected';?>>歐洲</option>
-	                        <option value="Australia" <?php if($row['home'] == "Australia") echo 'selected';?>>澳洲</option>
-	                        <option value="America" <?php if($row['home'] == "America") echo 'selected';?>>美洲</option>
-	                        <option value="Asia" <?php if($row['home'] == "Asia") echo 'selected';?>>亞洲</option>	                        
-                          </select>
-	                    </td>
-                      </tr>
+	                        <option value="馬來西亞" <?php if($row['home'] == "馬來西亞") echo 'selected';?>>馬來西亞</option>
+	                        <option value="新加坡" <?php if($row['home'] == "新加坡") echo 'selected';?>>新加坡</option>
+	                        <option value="中國" <?php if($row['home'] == "中國") echo 'selected';?>>中國</option>
+	                        <option value="澳門" <?php if($row['home'] == "澳門") echo 'selected';?>>澳門</option>
+	                        <option value="香港" <?php if($row['home'] == "香港") echo 'selected';?>>香港</option>
+	                        <option value="菲律賓" <?php if($row['home'] == "菲律賓") echo 'selected';?>>菲律賓</option>
+	                        <option value="越南" <?php if($row['home'] == "越南") echo 'selected';?>>越南</option>
+	                        <option value="印度" <?php if($row['home'] == "印度") echo 'selected';?>>印度</option>
+	                        <option value="歐洲" <?php if($row['home'] == "歐洲") echo 'selected';?>>歐洲</option>
+	                        <option value="澳洲" <?php if($row['home'] == "澳洲") echo 'selected';?>>澳洲</option>
+	                        <option value="美洲" <?php if($row['home'] == "美洲") echo 'selected';?>>美洲</option>
+	                        <option value="亞洲" <?php if($row['home'] == "亞洲") echo 'selected';?>>亞洲</option>	                        
+	                        </select>
+	                      </td>
+	                    </tr>
                       
 	                  <tr>
 	                    <td>
-	                    <label class="checkbox">
-		                    <input type="checkbox" disabled />&nbsp; 身  分  證	
-	                    </label>
-	                    </td>
-	                    <td>	                    
-	                    	<i class="icon-pencil"></i>&nbsp;&nbsp;<input name="id" size="34" value ="<?php echo $row['id'];?>" />
-	                    </td>	                    
-                      </tr>
-                      
-	                  <tr>
+	                      <label class="checkbox">
+	                        <input type="checkbox" name="dorm_c" id="check_dorm" <?php if($check['dorm_c'] == "on") { echo "checked"; }?> />&nbsp;宿　　舍
+	                        </label>
+	                      </td>
 	                    <td>
-	                    <label class="checkbox">
-	                      	<input type="checkbox" name="dorm_c" id="check_dorm" <?php if($check['dorm_c'] == "on") { echo "checked"; }?> />&nbsp;宿　　舍
-	                    </label>
-	                    </td>
-	                    <td>
-	                    <i class="icon-tags"></i>&nbsp;
+	                      </i>&nbsp;&nbsp;&nbsp;
 	                      <select size="1" name="dorm" class="span2">
 	                        <span class="Apple-converted-space"></span>
 	                        <option selected>住哪一棟呢？</option>
@@ -750,42 +971,31 @@
 	                        <span class="Apple-converted-space"></span>
 	                        <option value="L" <?php if($row['dorm'] == "L" || $row['dorm'] == "l") { echo "selected";}?>>翠亨L棟-女宿</option>
 	                        <span class="Apple-converted-space"></span>
-                          </select>	   
-                          <div class="controls">                  
-	                      房號 -
-	                      <input type="text" name="room" size="2" class="span1" value = <?php echo $row['room']; ?> />
-                          </div>
-	                    </td>
-                      </tr>                     	               
+	                        </select>	   
+	                      <div class="controls">                  
+	                        &nbsp;&nbsp;&nbsp;房號 -
+	                        <input type="text" name="room" size="2" class="span1" value = <?php echo $row['room']; ?> />
+	                        </div>
+	                      </td>
+	                    </tr>
                       
 	                  <tr>
 	                    <td>
-	                    <label class="checkbox">
-	                      	<input type="checkbox" name="outAddr_c" <?php if($check['outAddr_c'] == "on") { echo "checked"; }?> />&nbsp;校外住址
-	                    </label>
-	                    </td>
+	                      <label class="checkbox">
+	                        <input type="checkbox" name="car_c" <?php if($check['car_c'] == "on") { echo "checked"; }?> />&nbsp;交通工具
+	                        </label>
+	                      </td>
 	                    <td>
-	                    	<i class="icon-flag"></i>&nbsp;&nbsp;<input name="outAddr" class="span4" value = "<?php echo $row['outAddr']; ?>" />
-	                    </td>
-                      </tr>
-                      
-	                  <tr>
-	                    <td>
-	                    <label class="checkbox">
-	                      	<input type="checkbox" name="car_c" <?php if($check['car_c'] == "on") { echo "checked"; }?> />&nbsp;交通工具
-	                    </label>
-	                    </td>
-	                    <td>
-	                    <i class="icon-road"></i>&nbsp;
+	                      </i>&nbsp;&nbsp;&nbsp;
 	                      <select name="car" size="1">
 	                        <option selected>有機車嗎？</option>
 	                        <option value="0" <?php if($row['car'] == "0") { echo "selected"; }?>>步行</option>
 	                        <option value="1" <?php if($row['car'] == "1") { echo "selected"; }?>>會騎車,沒機車</option>
 	                        <option value="2" <?php if($row['car'] == "2") { echo "selected"; }?>>會騎車,有機車</option>
 	                        <option value="3" <?php if($row['car'] == "3") { echo "selected"; }?>>汽車</option>
-                          </select>
-	                    </td>
-                      </tr>
+	                        </select>
+	                      </td>
+	                    </tr>
                       
 					  <tr>
 	                    <td>
@@ -794,16 +1004,28 @@
 	                    </label>
 	                    </td>
 	                    <td>
-	                    	<i class="icon-comment"></i>&nbsp;&nbsp;
-							<textarea placeholder="關於我是什麼呢?" name="about" style="height: 200px; width: 400px;" ><?php echo $row['aboutauthor'];?></textarea>
+	                    	</i>&nbsp;&nbsp;
+							<textarea placeholder="關於我是什麼呢?" name="about" style="height: 200px; width: 400px;" ><?php 	                    		
+		                    		if($row['aboutauthor'] != null){
+		                    			echo $row['aboutauthor'];
+		                    		}
+		                    		else{
+										echo $sql_fb_array[fb_bio];
+		                    		}
+		                    		?>								
+							</textarea>
 	                    </td>
                       </tr>
+					  <tr>
+					    <td colspan="2"><p>&nbsp;</p>
+					      <p><img src="jpg/t4.png"></p></td>
+					    </tr>
 					  
 	                  <tr>
 	                    <td>
 	                    <label class="checkbox">
-	                      	<input type="checkbox" name="profile_pic_c" id="profile_pic_c" <?php if($check['profile_pic_c'] == "on") { echo "checked"; }?> />&nbsp;個人圖像
-	                    </label>
+	                      	<input type="checkbox" name="profile_pic_c" id="profile_pic_c" <?php if($check['profile_pic_c'] == "on") { echo "checked"; }?> />
+	                      	&nbsp;我的照片 </label>
 	                    </td>
 	                    <td>
 		                    <ul class="thumbnails">
